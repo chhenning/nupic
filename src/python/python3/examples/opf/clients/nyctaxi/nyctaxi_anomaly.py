@@ -82,9 +82,9 @@ def runNYCTaxiAnomaly():
     reader = csv.reader(fin)
     csvWriter = csv.writer(open(_OUTPUT_PATH,"wb"))
     csvWriter.writerow(["timestamp", "value", "anomaly_score"])
-    headers = reader.next()
+    headers = next(reader)
     for i, record in enumerate(reader, start=1):
-      modelInput = dict(zip(headers, record))
+      modelInput = dict(list(zip(headers, record)))
       modelInput["value"] = float(modelInput["value"])
       modelInput["timestamp"] = datetime.datetime.strptime(
           modelInput["timestamp"], "%Y-%m-%d %H:%M:%S")
@@ -96,7 +96,7 @@ def runNYCTaxiAnomaly():
         _LOGGER.info("Anomaly detected at [%s]. Anomaly score: %f.",
                       result.rawInput["timestamp"], anomalyScore)
 
-  print "Anomaly scores have been written to",_OUTPUT_PATH
+  print("Anomaly scores have been written to",_OUTPUT_PATH)
 
 if __name__ == "__main__":
   logging.basicConfig(level=logging.INFO)

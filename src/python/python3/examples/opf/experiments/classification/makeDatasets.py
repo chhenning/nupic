@@ -52,7 +52,7 @@ def _generateCategory(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Create the output file
   scriptDir = os.path.dirname(__file__)
   pathname = os.path.join(scriptDir, 'datasets', filename)
-  print "Creating %s..." % (pathname)
+  print("Creating %s..." % (pathname))
   fields = [('reset', 'int', 'R'), ('category', 'int', 'C'),
             ('field1', 'string', '')]  
   outFile = FileRecordStream(pathname, write=True, fields=fields)
@@ -66,7 +66,7 @@ def _generateCategory(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Write out the sequences in random order
   seqIdxs = []
   for i in range(numRepeats):
-    seqIdxs += range(numSequences)
+    seqIdxs += list(range(numSequences))
   random.shuffle(seqIdxs)
   
   for seqIdx in seqIdxs:
@@ -100,7 +100,7 @@ def _generateScalar(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Create the output file
   scriptDir = os.path.dirname(__file__)
   pathname = os.path.join(scriptDir, 'datasets', filename)
-  print "Creating %s..." % (pathname)
+  print("Creating %s..." % (pathname))
   fields = [('reset', 'int', 'R'), ('category', 'int', 'C'),
             ('field1', 'float', '')]  
   outFile = FileRecordStream(pathname, write=True, fields=fields)
@@ -114,7 +114,7 @@ def _generateScalar(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Write out the sequences in random order
   seqIdxs = []
   for i in range(numRepeats):
-    seqIdxs += range(numSequences)
+    seqIdxs += list(range(numSequences))
   random.shuffle(seqIdxs)
   
   for seqIdx in seqIdxs:
@@ -153,7 +153,7 @@ def _generateOverlapping(filename="overlap.csv", numSequences=2, elementsPerSeq=
   # Create the output file
   scriptDir = os.path.dirname(__file__)
   pathname = os.path.join(scriptDir, 'datasets', filename)
-  print "Creating %s..." % (pathname)
+  print("Creating %s..." % (pathname))
   fields = [('reset', 'int', 'R'), ('category', 'int', 'C'),
             ('field1', 'string', '')]  
   outFile = FileRecordStream(pathname, write=True, fields=fields)
@@ -180,7 +180,7 @@ def _generateOverlapping(filename="overlap.csv", numSequences=2, elementsPerSeq=
   # Write out the sequences in random order
   seqIdxs = []
   for _ in range(numRepeats):
-    seqIdxs += range(numSequences)
+    seqIdxs += list(range(numSequences))
   random.shuffle(seqIdxs)
   
   for seqIdx in seqIdxs:

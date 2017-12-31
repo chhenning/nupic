@@ -23,9 +23,9 @@ def run():
   with open(ORIGINAL, 'rb') as inputFile:
     reader = csv.reader(inputFile)
     outputCache = ""
-    headers = reader.next()
-    types = reader.next()
-    flags = reader.next()
+    headers = next(reader)
+    types = next(reader)
+    flags = next(reader)
 
     for row in [headers, types, flags]:
       outputCache += ",".join(row) + "\n"

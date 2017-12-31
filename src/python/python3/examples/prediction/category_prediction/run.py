@@ -72,8 +72,8 @@ MODEL_PARAMS = {
       "verbosity" : 0,
       "encoders": {
         "token": {
-          "fieldname": u"token",
-          "name": u"token",
+          "fieldname": "token",
+          "name": "token",
           "type": "CategoryEncoder",
           "categoryList": list(set(map(str.strip, open("tokens.txt").readlines()))),
           "w": 21
@@ -140,4 +140,4 @@ with open("tokens.txt") as inp:
     modelInput = {"token": token}
     result = shifter.shift(model.run(modelInput))
     if result.inferences["multiStepPredictions"][1]:
-      out.writerow([token] + [y for x in sorted(result.inferences["multiStepPredictions"][1].items(), key=itemgetter(1)) for y in x])
+      out.writerow([token] + [y for x in sorted(list(result.inferences["multiStepPredictions"][1].items()), key=itemgetter(1)) for y in x])

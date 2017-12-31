@@ -52,7 +52,7 @@ def _generateCategory(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Create the output file
   scriptDir = os.path.dirname(__file__)
   pathname = os.path.join(scriptDir, 'datasets', filename)
-  print "Creating %s..." % (pathname)
+  print("Creating %s..." % (pathname))
   fields = [('classification', 'string', ''), 
             ('field1', 'string', '')]  
   outFile = FileRecordStream(pathname, write=True, fields=fields)
@@ -66,7 +66,7 @@ def _generateCategory(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Write out the sequences in random order
   seqIdxs = []
   for i in range(numRepeats):
-    seqIdxs += range(numSequences)
+    seqIdxs += list(range(numSequences))
   random.shuffle(seqIdxs)
   
   for seqIdx in seqIdxs:
@@ -98,7 +98,7 @@ def _generateScalar(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Create the output file
   scriptDir = os.path.dirname(__file__)
   pathname = os.path.join(scriptDir, 'datasets', filename)
-  print "Creating %s..." % (pathname)
+  print("Creating %s..." % (pathname))
   fields = [('classification', 'float', ''), 
             ('field1', 'float', '')]  
   if includeRandom:
@@ -117,7 +117,7 @@ def _generateScalar(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Write out the sequences in random order
   seqIdxs = []
   for i in range(numRepeats):
-    seqIdxs += range(numSequences)
+    seqIdxs += list(range(numSequences))
   random.shuffle(seqIdxs)
   
   for seqIdx in seqIdxs:

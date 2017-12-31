@@ -125,11 +125,11 @@ config = {
             #
             # (value generated from DS_ENCODER_SCHEMA)
             'encoders': {
-                u'f':     {
+                'f':     {
 			'clipInput': True,
-			'fieldname': u'f',
+			'fieldname': 'f',
     			'n': 100,
-    			'name': u'f',
+    			'name': 'f',
     			'minval': 0,
     			'maxval': 5,
     			'type': 'ScalarEncoder',
@@ -344,11 +344,11 @@ control = {
 
   # Input stream specification per py/nupic/cluster/database/StreamDef.json.
   #
-  'dataset' : {   u'info': u'cerebro_dummy',
-        u'streams': [   {   u'columns': [u'*'],
-                            u'info': u'hotGym.csv',
-                            u'source': u'file://'+os.path.join(os.path.dirname(__file__), 'data.csv')}],
-        u'version': 1},
+  'dataset' : {   'info': 'cerebro_dummy',
+        'streams': [   {   'columns': ['*'],
+                            'info': 'hotGym.csv',
+                            'source': 'file://'+os.path.join(os.path.dirname(__file__), 'data.csv')}],
+        'version': 1},
 
   # Iteration count: maximum number of iterations.  Each iteration corresponds
   # to one record from the (possibly aggregated) dataset.  The task is
@@ -361,12 +361,12 @@ control = {
 
 
   # A dictionary containing all the supplementary parameters for inference
-  "inferenceArgs":{u'predictedField': u'f', u'predictionSteps': [1]},
+  "inferenceArgs":{'predictedField': 'f', 'predictionSteps': [1]},
 
   # Metrics: A list of MetricSpecs that instantiate the metrics that are
   # computed for this experiment
   'metrics':[
-    MetricSpec(field=u'f', metric='passThruPrediction', inferenceElement='anomalyScore', params={'window': 1000}),
+    MetricSpec(field='f', metric='passThruPrediction', inferenceElement='anomalyScore', params={'window': 1000}),
   ],
 
   # Logged Metrics: A sequence of regular expressions that specify which of

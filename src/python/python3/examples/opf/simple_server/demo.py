@@ -69,14 +69,14 @@ def runDemo(server, port):
 
     for i in range(_NUM_RECORDS):
       record = f.getNextRecord()
-      modelInput = dict(zip(headers, record))
+      modelInput = dict(list(zip(headers, record)))
       modelInput["consumption"] = float(modelInput["consumption"])
       modelInput["timestamp"] = modelInput["timestamp"].strftime("%m/%d/%y %H:%M")
 
       res = requests.post(
           "http://{server}:{port}/models/demo/run".format(server=server, port=port),
           json.dumps(modelInput))
-      print "result = %s" % res.text
+      print("result = %s" % res.text)
 
       isLast = i == _NUM_RECORDS
       if isLast:

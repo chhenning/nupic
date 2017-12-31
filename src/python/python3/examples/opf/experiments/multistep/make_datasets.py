@@ -51,7 +51,7 @@ def _generateSimple(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Create the output file
   scriptDir = os.path.dirname(__file__)
   pathname = os.path.join(scriptDir, 'datasets', filename)
-  print "Creating %s..." % (pathname)
+  print("Creating %s..." % (pathname))
   fields = [('reset', 'int', 'R'), 
             ('field1', 'string', ''),  
             ('field2', 'float', '')]  
@@ -66,7 +66,7 @@ def _generateSimple(filename="simple.csv", numSequences=2, elementsPerSeq=1,
   # Write out the sequences in random order
   seqIdxs = []
   for i in range(numRepeats):
-    seqIdxs += range(numSequences)
+    seqIdxs += list(range(numSequences))
   random.shuffle(seqIdxs)
   
   for seqIdx in seqIdxs:
@@ -105,7 +105,7 @@ def _generateOverlapping(filename="overlap.csv", numSequences=2, elementsPerSeq=
   # Create the output file
   scriptDir = os.path.dirname(__file__)
   pathname = os.path.join(scriptDir, 'datasets', filename)
-  print "Creating %s..." % (pathname)
+  print("Creating %s..." % (pathname))
   fields = [('reset', 'int', 'R'), 
             ('field1', 'string', ''),  
             ('field2', 'float', '')]  
@@ -133,7 +133,7 @@ def _generateOverlapping(filename="overlap.csv", numSequences=2, elementsPerSeq=
   # Write out the sequences in random order
   seqIdxs = []
   for _ in range(numRepeats):
-    seqIdxs += range(numSequences)
+    seqIdxs += list(range(numSequences))
   random.shuffle(seqIdxs)
   
   for seqIdx in seqIdxs:
@@ -284,7 +284,7 @@ def _generateFileFromProb(filename, numRecords, categoryList, initProb,
   """
   
   # Create the file
-  print "Creating %s..." % (filename)
+  print("Creating %s..." % (filename))
   fields = [('reset', 'int', 'R'), 
             ('field1', 'string', ''),
             ('field2', 'float', '')]
@@ -298,12 +298,12 @@ def _generateFileFromProb(filename, numRecords, categoryList, initProb,
   initCumProb = initProb.cumsum()
   
   firstOrderCumProb = dict()
-  for (key,value) in firstOrderProb.iteritems():
+  for (key,value) in firstOrderProb.items():
     firstOrderCumProb[key] = value.cumsum()
     
   if secondOrderProb is not None:
     secondOrderCumProb = dict()
-    for (key,value) in secondOrderProb.iteritems():
+    for (key,value) in secondOrderProb.items():
       secondOrderCumProb[key] = value.cumsum()
   else:
     secondOrderCumProb = None
@@ -314,7 +314,7 @@ def _generateFileFromProb(filename, numRecords, categoryList, initProb,
   elementsInSeq = []
   numElementsSinceReset = 0
   maxCatIdx = len(categoryList) - 1
-  for _ in xrange(numRecords):
+  for _ in range(numRecords):
 
     # Generate a reset?
     if numElementsSinceReset == 0:

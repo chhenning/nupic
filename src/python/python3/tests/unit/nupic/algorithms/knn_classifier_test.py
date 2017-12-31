@@ -179,20 +179,20 @@ class KNNClassifierTest(unittest.TestCase):
     b = np.array([2, 4, 8, 12, 14, 18, 20, 28, 30], dtype=np.int32)
 
     numPatterns = classifier.learn(a, 0, isSparse=dimensionality)
-    self.assertEquals(numPatterns, 1)
+    self.assertEqual(numPatterns, 1)
 
     numPatterns = classifier.learn(b, 1, isSparse=dimensionality)
-    self.assertEquals(numPatterns, 2)
+    self.assertEqual(numPatterns, 2)
 
     denseA = np.zeros(dimensionality)
     denseA[a] = 1.0
     cat, _, _, _ = classifier.infer(denseA)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
     denseB = np.zeros(dimensionality)
     denseB[b] = 1.0
     cat, _, _, _ = classifier.infer(denseB)
-    self.assertEquals(cat, 1)
+    self.assertEqual(cat, 1)
 
 
   def testMinSparsity(self):
@@ -213,16 +213,16 @@ class KNNClassifierTest(unittest.TestCase):
     d = np.array([2, 3, 8, 11, 18], dtype=np.int32)
 
     numPatterns = classifier.learn(a, 0, isSparse=dimensionality)
-    self.assertEquals(numPatterns, 1)
+    self.assertEqual(numPatterns, 1)
 
     numPatterns = classifier.learn(b, 1, isSparse=dimensionality)
-    self.assertEquals(numPatterns, 2)
+    self.assertEqual(numPatterns, 2)
 
     numPatterns = classifier.learn(c, 1, isSparse=dimensionality)
-    self.assertEquals(numPatterns, 3)
+    self.assertEqual(numPatterns, 3)
 
     numPatterns = classifier.learn(d, 1, isSparse=dimensionality)
-    self.assertEquals(numPatterns, 3)
+    self.assertEqual(numPatterns, 3)
 
     # Test that inference ignores low sparsity vectors but not others
     e = np.array([2, 4, 5, 6, 8, 12, 14, 18, 20], dtype=np.int32)
@@ -271,16 +271,16 @@ class KNNClassifierTest(unittest.TestCase):
     classifier.learn(b, 1, isSparse=dimensionality, partitionId=1)
 
     cat, _, _, _ = classifier.infer(denseA, partitionId=1)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
     cat, _, _, _ = classifier.infer(denseA, partitionId=0)
-    self.assertEquals(cat, 1)
+    self.assertEqual(cat, 1)
 
     cat, _, _, _ = classifier.infer(denseB, partitionId=0)
-    self.assertEquals(cat, 1)
+    self.assertEqual(cat, 1)
 
     cat, _, _, _ = classifier.infer(denseB, partitionId=1)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
     # Ensure it works even if you invoke learning again. To make it a bit more
     # complex this time we insert A again but now with Id=2
@@ -289,7 +289,7 @@ class KNNClassifierTest(unittest.TestCase):
     # Even though first A should be ignored, the second instance of A should
     # not be ignored.
     cat, _, _, _ = classifier.infer(denseA, partitionId=0)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
 
   def testGetPartitionId(self):
@@ -322,23 +322,23 @@ class KNNClassifierTest(unittest.TestCase):
     classifier.learn(c, 1, isSparse=dimensionality, partitionId=None)
     classifier.learn(d, 1, isSparse=dimensionality, partitionId=433)
 
-    self.assertEquals(classifier.getPartitionId(0), 433)
-    self.assertEquals(classifier.getPartitionId(1), 213)
-    self.assertEquals(classifier.getPartitionId(2), None)
-    self.assertEquals(classifier.getPartitionId(3), 433)
+    self.assertEqual(classifier.getPartitionId(0), 433)
+    self.assertEqual(classifier.getPartitionId(1), 213)
+    self.assertEqual(classifier.getPartitionId(2), None)
+    self.assertEqual(classifier.getPartitionId(3), 433)
 
     cat, _, _, _ = classifier.infer(denseA, partitionId=213)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
     # Test with patternId not in classifier
     cat, _, _, _ = classifier.infer(denseA, partitionId=666)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
     # Partition Ids should be maintained after inference
-    self.assertEquals(classifier.getPartitionId(0), 433)
-    self.assertEquals(classifier.getPartitionId(1), 213)
-    self.assertEquals(classifier.getPartitionId(2), None)
-    self.assertEquals(classifier.getPartitionId(3), 433)
+    self.assertEqual(classifier.getPartitionId(0), 433)
+    self.assertEqual(classifier.getPartitionId(1), 213)
+    self.assertEqual(classifier.getPartitionId(2), None)
+    self.assertEqual(classifier.getPartitionId(3), 433)
 
     # Should return exceptions if we go out of bounds
     with self.assertRaises(RuntimeError):
@@ -348,7 +348,7 @@ class KNNClassifierTest(unittest.TestCase):
 
     # Learn again
     classifier.learn(e, 4, isSparse=dimensionality, partitionId=413)
-    self.assertEquals(classifier.getPartitionId(4), 413)
+    self.assertEqual(classifier.getPartitionId(4), 413)
 
     # Test getPatternIndicesWithPartitionId
     self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(433),
@@ -358,7 +358,7 @@ class KNNClassifierTest(unittest.TestCase):
     self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(413),
                           [4])
 
-    self.assertEquals(classifier.getNumPartitionIds(), 3)
+    self.assertEqual(classifier.getNumPartitionIds(), 3)
 
     # Check that the full set of partition ids is what we expect
     self.assertItemsEqual(classifier.getPartitionIdList(),
@@ -366,7 +366,7 @@ class KNNClassifierTest(unittest.TestCase):
     self.assertItemsEqual(classifier.getPartitionIdKeys(), [433, 413, 213])
 
     # Remove two rows - all indices shift down
-    self.assertEquals(classifier._removeRows([0,2]), 2)
+    self.assertEqual(classifier._removeRows([0,2]), 2)
     self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(433),
                           [1])
     self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(413),
@@ -374,7 +374,7 @@ class KNNClassifierTest(unittest.TestCase):
 
     # Remove another row and check number of partitions have decreased
     classifier._removeRows([0])
-    self.assertEquals(classifier.getNumPartitionIds(), 2)
+    self.assertEqual(classifier.getNumPartitionIds(), 2)
 
     # Check that the full set of partition ids is what we expect
     self.assertItemsEqual(classifier.getPartitionIdList(), [433, 413])
@@ -408,13 +408,13 @@ class KNNClassifierTest(unittest.TestCase):
     classifier.learn(d, 1, isSparse=dimensionality, partitionId=405)
 
     cat, _, _, _ = classifier.infer(denseA, partitionId=405)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
     cat, _, _, _ = classifier.infer(denseD, partitionId=405)
-    self.assertEquals(cat, 2)
+    self.assertEqual(cat, 2)
 
     cat, _, _, _ = classifier.infer(denseD)
-    self.assertEquals(cat, 1)
+    self.assertEqual(cat, 1)
 
 
   @unittest.skipUnless(__debug__, "Only applicable when asserts are enabled")
@@ -441,13 +441,13 @@ class KNNClassifierTest(unittest.TestCase):
     # Learn with incorrect dimensionality, greater than largest ON bit, but
     # inconsistent when inferring
     numPatterns = classifier.learn(a, 0, isSparse=31)
-    self.assertEquals(numPatterns, 1)
+    self.assertEqual(numPatterns, 1)
 
     denseA = np.zeros(dimensionality)
     denseA[a] = 1.0
 
     cat, _, _, _ = classifier.infer(denseA)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
 
   @unittest.skipUnless(__debug__, "Only applicable when asserts are enabled")
@@ -476,12 +476,12 @@ class KNNClassifierTest(unittest.TestCase):
     a = np.array([], dtype=np.int32)
 
     numPatterns = classifier.learn(a, 0, isSparse=dimensionality)
-    self.assertEquals(numPatterns, 1)
+    self.assertEqual(numPatterns, 1)
 
     denseA = np.zeros(dimensionality)
     denseA[a] = 1.0
     cat, _, _, _ = classifier.infer(denseA)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
 
   @unittest.skip("Finish when infer has options for sparse and dense "
@@ -500,10 +500,10 @@ class KNNClassifierTest(unittest.TestCase):
     # TODO Test case where infer is passed a sparse representation after
     # infer() has been extended to handle sparse and dense
     cat, _, _, _ = classifier.infer(a)
-    self.assertEquals(cat, 0)
+    self.assertEqual(cat, 0)
 
     cat, _, _, _ = classifier.infer(b)
-    self.assertEquals(cat, 1)
+    self.assertEqual(cat, 1)
 
 
   @unittest.skipUnless(

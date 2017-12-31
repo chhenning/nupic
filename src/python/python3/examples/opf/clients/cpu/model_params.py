@@ -43,9 +43,9 @@ MODEL_PARAMS = {
             # CPU usage encoder.
             'encoders': {
                 'cpu': {
-                    'fieldname': u'cpu',
+                    'fieldname': 'cpu',
                     'n': 200,
-                    'name': u'cpu',
+                    'name': 'cpu',
                     'type': 'ScalarEncoder',
                     'minval': 0.0,
                     'maxval': 100.0,

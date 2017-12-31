@@ -19,7 +19,7 @@
 # http://numenta.org/licenses/
 # ----------------------------------------------------------------------
 
-import unittest
+import unittest2 as unittest
 
 from nupic.regions.spec import (Spec,
                                 InputSpec,

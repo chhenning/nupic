@@ -55,20 +55,20 @@ MODEL_PARAMS = {
 
             # Include the encoders we use
             'encoders': {
-                u'consumption':    {
-                    'fieldname': u'consumption',
+                'consumption':    {
+                    'fieldname': 'consumption',
                     'resolution': 0.88,
                     'seed': 1,
-                    'name': u'consumption',
+                    'name': 'consumption',
                     'type': 'RandomDistributedScalarEncoder',
                     },
 
-                'timestamp_timeOfDay': {   'fieldname': u'timestamp',
-                                           'name': u'timestamp_timeOfDay',
+                'timestamp_timeOfDay': {   'fieldname': 'timestamp',
+                                           'name': 'timestamp_timeOfDay',
                                            'timeOfDay': (21, 1),
                                            'type': 'DateEncoder'},
-                'timestamp_weekend': {   'fieldname': u'timestamp',
-                                         'name': u'timestamp_weekend',
+                'timestamp_weekend': {   'fieldname': 'timestamp',
+                                         'name': 'timestamp_weekend',
                                          'type': 'DateEncoder',
                                          'weekend': 21}
             },
@@ -238,9 +238,9 @@ MODEL_PARAMS = {
             'implementation': 'py',
         },
 
-        'anomalyParams': { u'anomalyCacheRecords': None,
-                           u'autoDetectThreshold': None,
-                           u'autoDetectWaitRecords': 2184},
+        'anomalyParams': { 'anomalyCacheRecords': None,
+                           'autoDetectThreshold': None,
+                           'autoDetectWaitRecords': 2184},
 
         'trainSPNetOnlyIfRequested': False,
     },

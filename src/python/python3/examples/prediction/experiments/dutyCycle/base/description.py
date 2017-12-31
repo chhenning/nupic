@@ -87,7 +87,7 @@ if config['encodingOnBitsB'] is None:
   config['encodingOnBitsB'] = config['encodingOnBitsA']
 
 if config['tpActivationThresholds'] is None:
-  config['tpActivationThresholds'] = range(8, config['spNumActivePerInhArea']+1)
+  config['tpActivationThresholds'] = list(range(8, config['spNumActivePerInhArea']+1))
 
 
 def getBaseDatasets():
@@ -131,13 +131,13 @@ def getDatasets(baseDatasets, generate=False):
 
   if (not os.path.exists(trainingFilename)) or \
      (testingFilename is not None and not os.path.exists(testingFilename)):
-    print "====================================================================="
-    print "Creating data set..."
+    print("=====================================================================")
+    print("Creating data set...")
 
     # Create the pool of A values
-    aValues = range(config['numAValues'])
+    aValues = list(range(config['numAValues']))
     # Create the pool of B values, allowing for unequal distribution
-    bValues = range(config['numBValues'])
+    bValues = list(range(config['numBValues']))
 
     # Pick a random A and B value
     random.seed(42)
@@ -147,15 +147,15 @@ def getDatasets(baseDatasets, generate=False):
       return (a, b)
 
     if config['b0Likelihood'] is not None:
-      print "In the B dataset, there is a %d%% chance of getting a B value of 0" \
-            % (int(100 * config['b0Likelihood']))
+      print("In the B dataset, there is a %d%% chance of getting a B value of 0" \
+            % (int(100 * config['b0Likelihood'])))
       # likelihood of B0 is: (numB0) / (numB0 + numBvalues)
       # solving for numB0 = numBValues / (1 - likelihood)
       numB0Values = int(round(len(bValues) / (1.0 - config['b0Likelihood'])))
       bValues.extend([0]*numB0Values)   # 90% chance of getting first B value
     else:
-      print "All values in B are equally likely"
-    print
+      print("All values in B are equally likely")
+    print()
 
     # -----------------------------------------------------------------------
     fields = [('fieldA', 'int', ''), ('fieldB', 'int', '')]
@@ -167,13 +167,13 @@ def getDatasets(baseDatasets, generate=False):
         testSet.add(generateSample())
       testList = list(testSet)
       testList.sort()
-      print "These (A,B) combinations are reserved for the test set:", testList
-      print
+      print("These (A,B) combinations are reserved for the test set:", testList)
+      print()
 
       # Write out the test set
-      print "Creating test set: %s..." % (testingFilename)
-      print "Contains %d unique combinations of A and B chosen from the %d possible" \
-              % (testSetSize, numUnique)
+      print("Creating test set: %s..." % (testingFilename))
+      print("Contains %d unique combinations of A and B chosen from the %d possible" \
+              % (testSetSize, numUnique))
       with File(testingFilename, fields=fields) as o:
         numSamples = 0
         while numSamples < config['iterationCount']:
@@ -183,18 +183,18 @@ def getDatasets(baseDatasets, generate=False):
             #print >>fd, "%d, %d" % (sample[0], sample[1])
 
             numSamples += 1
-      print
+      print()
 
     # ------------------------------------------------------------------------
     # Write out the training set
-    print "Creating training set: %s..." % (trainingFilename)
+    print("Creating training set: %s..." % (trainingFilename))
     if len(testSet) > 0:
-      print "Contains %d samples, chosen from %d of the possible %d combinations " \
+      print("Contains %d samples, chosen from %d of the possible %d combinations " \
             "that are not in the test set" % (config['iterationCount'],
-            numUnique - testSetSize, numUnique)
+            numUnique - testSetSize, numUnique))
     else:
-      print "Contains %d samples" % (config['iterationCount'])
-    print
+      print("Contains %d samples" % (config['iterationCount']))
+    print()
     with FileRecordStream(trainingFilename, write=True, fields=fields) as o:
       numSamples = 0
       while numSamples < config['iterationCount']:
@@ -220,7 +220,7 @@ def getDescription(datasets):
   elif config['encodingFieldStyleA'] == 'sdr':
     encoder.addEncoder('fieldA', SDRCategoryEncoder(w=config['encodingOnBitsA'],
                         n=config['encodingFieldWidthA'],
-                        categoryList=range(config['numAValues']), name='fieldA'))
+                        categoryList=list(range(config['numAValues'])), name='fieldA'))
   else:
     assert False
 
@@ -232,7 +232,7 @@ def getDescription(datasets):
   elif config['encodingFieldStyleB'] == 'sdr':
     encoder.addEncoder('fieldB', SDRCategoryEncoder(w=config['encodingOnBitsB'],
                       n=config['encodingFieldWidthB'],
-                      categoryList=range(config['numBValues']), name='fieldB'))
+                      categoryList=list(range(config['numBValues'])), name='fieldB'))
   else:
     assert False
 

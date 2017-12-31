@@ -121,9 +121,9 @@ def runNetwork(network):
   filename = resource_filename("nupic.datafiles",
                                "extra/hotgym/rec-center-hourly.csv")
   csvReader = csv.reader(open(filename, 'r'))
-  csvReader.next()
-  csvReader.next()
-  csvReader.next()
+  next(csvReader)
+  next(csvReader)
+  next(csvReader)
   for row in csvReader:
     timestampStr, consumptionStr = row
 
@@ -138,7 +138,7 @@ def runNetwork(network):
     network.run(1)
 
     anomalyScore = tmRegion.getOutputData('anomalyScore')[0]
-    print "Consumption: %s, Anomaly score: %f" % (consumptionStr, anomalyScore)
+    print("Consumption: %s, Anomaly score: %f" % (consumptionStr, anomalyScore))
 
 if __name__ == "__main__":
   network = createNetwork()

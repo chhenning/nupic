@@ -67,7 +67,7 @@ class AnomalyLikelihoodRegionTest(unittest.TestCase):
     outputs = AnomalyLikelihoodRegion.getSpec()['outputs']
     with open (_INPUT_DATA_FILE) as f:
       reader = csv.reader(f)
-      reader.next()
+      next(reader)
       for record in reader:
         consumption = float(record[1])
         anomalyScore = float(record[2])
@@ -90,7 +90,7 @@ class AnomalyLikelihoodRegionTest(unittest.TestCase):
     inputs = AnomalyLikelihoodRegion.getSpec()['inputs']
     outputs = AnomalyLikelihoodRegion.getSpec()['outputs']
 
-    for _ in xrange(0, 6):
+    for _ in range(0, 6):
       inputs['rawAnomalyScore'] = numpy.array([random.random()])
       inputs['metricValue'] = numpy.array([random.random()])
       anomalyLikelihoodRegion1.compute(inputs, outputs)
@@ -110,7 +110,7 @@ class AnomalyLikelihoodRegionTest(unittest.TestCase):
     anomalyLikelihoodRegion2 = AnomalyLikelihoodRegion.read(proto2)
     self.assertEqual(anomalyLikelihoodRegion1, anomalyLikelihoodRegion2)
 
-    for _ in xrange(6, 500):
+    for _ in range(6, 500):
       inputs['rawAnomalyScore'] = numpy.array([random.random()])
       inputs['metricValue'] = numpy.array([random.random()])
       anomalyLikelihoodRegion1.compute(inputs, outputs)

@@ -20,7 +20,7 @@
 # ----------------------------------------------------------------------
 
 import logging
-import unittest
+import unittest2 as unittest
 
 import numpy
 

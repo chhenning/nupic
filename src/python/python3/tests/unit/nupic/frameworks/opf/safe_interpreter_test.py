@@ -25,7 +25,7 @@ import ast
 import io
 import types
 
-import unittest
+import unittest2 as unittest
 
 from nupic.frameworks.opf.safe_interpreter import SafeInterpreter
 

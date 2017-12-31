@@ -29,7 +29,7 @@ MODEL_PARAMS = {
     # Intermediate variables used to compute fields in modelParams and also
     # referenced from the control section.
     'aggregationInfo': {  'days': 0,
-        'fields': [(u'c1', 'sum'), (u'c0', 'first')],
+        'fields': [('c1', 'sum'), ('c0', 'first')],
         'hours': 1,
         'microseconds': 0,
         'milliseconds': 0,
@@ -60,21 +60,21 @@ MODEL_PARAMS = {
             #
             # (value generated from DS_ENCODER_SCHEMA)
             'encoders': {
-                u'timestamp_timeOfDay': {
-                        'fieldname': u'timestamp',
-                        'name': u'timestamp_timeOfDay',
+                'timestamp_timeOfDay': {
+                        'fieldname': 'timestamp',
+                        'name': 'timestamp_timeOfDay',
                         'timeOfDay': (21, 9.5),
                         'type': 'DateEncoder'
                 },
-                u'timestamp_dayOfWeek': None,
-                u'timestamp_weekend': None,
-                u'consumption':    {
+                'timestamp_dayOfWeek': None,
+                'timestamp_weekend': None,
+                'consumption':    {
                     'clipInput': True,
-                    'fieldname': u'consumption',
+                    'fieldname': 'consumption',
                     'maxval': 100.0,
                     'minval': 0.0,
                     'n': 50,
-                    'name': u'consumption',
+                    'name': 'consumption',
                     'type': 'ScalarEncoder',
                     'w': 21
                 },
@@ -232,9 +232,9 @@ MODEL_PARAMS = {
         'clEnable': False,
         'clParams': None,
 
-        'anomalyParams': {  u'anomalyCacheRecords': None,
-    u'autoDetectThreshold': None,
-    u'autoDetectWaitRecords': 2184},
+        'anomalyParams': {  'anomalyCacheRecords': None,
+    'autoDetectThreshold': None,
+    'autoDetectWaitRecords': 2184},
 
         'trainSPNetOnlyIfRequested': False,
     },

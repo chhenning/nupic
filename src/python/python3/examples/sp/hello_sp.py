@@ -68,7 +68,7 @@ class Example(object):
   def createInput(self):
     """create a random input vector"""
 
-    print "-" * 70 + "Creating a random input vector" + "-" * 70
+    print("-" * 70 + "Creating a random input vector" + "-" * 70)
 
     #clear the inputArray to zero before creating a new input vector
     self.inputArray[0:] = 0
@@ -81,12 +81,12 @@ class Example(object):
   def run(self):
     """Run the spatial pooler with the input vector"""
 
-    print "-" * 80 + "Computing the SDR" + "-" * 80
+    print("-" * 80 + "Computing the SDR" + "-" * 80)
 
     #activeArray[column]=1 if column is active after spatial pooling
     self.sp.compute(self.inputArray, True, self.activeArray)
 
-    print self.activeArray.nonzero()
+    print(self.activeArray.nonzero())
 
 
   def addNoise(self, noiseLevel):
@@ -113,9 +113,9 @@ class Example(object):
 example = Example((32, 32), (64, 64))
 
 # Lesson 1
-print "\n \nFollowing columns represent the SDR"
-print "Different set of columns each time since we randomize the input"
-print "Lesson - different input vectors give different SDRs\n\n"
+print("\n \nFollowing columns represent the SDR")
+print("Different set of columns each time since we randomize the input")
+print("Lesson - different input vectors give different SDRs\n\n")
 
 # Trying random vectors
 for i in range(3):
@@ -123,29 +123,29 @@ for i in range(3):
   example.run()
 
 # Lesson 2
-print "\n\nIdentical SDRs because we give identical inputs"
-print "Lesson - identical inputs give identical SDRs\n\n"
+print("\n\nIdentical SDRs because we give identical inputs")
+print("Lesson - identical inputs give identical SDRs\n\n")
 
-print "-" * 75 + "Using identical input vectors" + "-" * 75
+print("-" * 75 + "Using identical input vectors" + "-" * 75)
 
 # Trying identical vectors
 for i in range(2):
   example.run()
 
 # Lesson 3
-print "\n\nNow we are changing the input vector slightly."
-print "We change a small percentage of 1s to 0s and 0s to 1s."
-print "The resulting SDRs are similar, but not identical to the original SDR"
-print "Lesson - Similar input vectors give similar SDRs\n\n"
+print("\n\nNow we are changing the input vector slightly.")
+print("We change a small percentage of 1s to 0s and 0s to 1s.")
+print("The resulting SDRs are similar, but not identical to the original SDR")
+print("Lesson - Similar input vectors give similar SDRs\n\n")
 
 # Adding 10% noise to the input vector
 # Notice how the output SDR hardly changes at all
-print "-" * 75 + "After adding 10% noise to the input vector" + "-" * 75
+print("-" * 75 + "After adding 10% noise to the input vector" + "-" * 75)
 example.addNoise(0.1)
 example.run()
 
 # Adding another 20% noise to the already modified input vector
 # The output SDR should differ considerably from that of the previous output
-print "-" * 75 + "After adding another 20% noise to the input vector" + "-" * 75
+print("-" * 75 + "After adding another 20% noise to the input vector" + "-" * 75)
 example.addNoise(0.2)
 example.run()

@@ -70,11 +70,11 @@ def runHotgym():
                                   model.getInferenceType())
   with open (_INPUT_FILE_PATH) as fin:
     reader = csv.reader(fin)
-    headers = reader.next()
-    reader.next()
-    reader.next()
+    headers = next(reader)
+    next(reader)
+    next(reader)
     for i, record in enumerate(reader, start=1):
-      modelInput = dict(zip(headers, record))
+      modelInput = dict(list(zip(headers, record)))
       modelInput["consumption"] = float(modelInput["consumption"])
       modelInput["timestamp"] = datetime.datetime.strptime(
           modelInput["timestamp"], "%m/%d/%y %H:%M")

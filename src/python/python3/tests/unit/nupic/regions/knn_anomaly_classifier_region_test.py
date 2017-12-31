@@ -24,7 +24,7 @@
 import sys
 import copy
 from datetime import datetime
-import unittest
+import unittest2 as unittest
 import random
 import tempfile
 
@@ -839,13 +839,13 @@ class KNNAnomalyClassifierRegionTest(unittest.TestCase):
 
     self.maxDiff = None
     records = []
-    for i in xrange(self.helper.trainRecords):
+    for i in range(self.helper.trainRecords):
       spBottomUpOut = numpy.zeros(1000)
       tpTopDownOut = numpy.zeros(1000)
       tpLrnActiveStateT = numpy.zeros(1000)
-      spBottomUpOut[random.sample(xrange(1000), 20)] = 1
-      tpTopDownOut[random.sample(xrange(1000), 20)] = 1
-      tpLrnActiveStateT[random.sample(xrange(1000), 20)] = 1
+      spBottomUpOut[random.sample(range(1000), 20)] = 1
+      tpTopDownOut[random.sample(range(1000), 20)] = 1
+      tpLrnActiveStateT[random.sample(range(1000), 20)] = 1
       records.append({
         'spBottomUpOut': spBottomUpOut,
         'tpTopDownOut': tpTopDownOut,
@@ -853,10 +853,10 @@ class KNNAnomalyClassifierRegionTest(unittest.TestCase):
       })
 
     self.helper.setParameter('anomalyThreshold', None, 0.5)
-    for i in xrange(self.helper.trainRecords):
+    for i in range(self.helper.trainRecords):
       self.helper.compute(records[i], None)
 
-    for _ in xrange(10):
+    for _ in range(10):
       self.helper.compute(random.choice(records), None)
 
     proto = KNNAnomalyClassifierRegionProto.new_message()
@@ -870,33 +870,33 @@ class KNNAnomalyClassifierRegionTest(unittest.TestCase):
     knnDeserialized = KNNAnomalyClassifierRegion.readFromProto(
       protoDeserialized)
 
-    self.assertEquals(self.helper._maxLabelOutputs,
+    self.assertEqual(self.helper._maxLabelOutputs,
                       knnDeserialized._maxLabelOutputs)
-    self.assertEquals(self.helper._activeColumnCount,
+    self.assertEqual(self.helper._activeColumnCount,
                       knnDeserialized._activeColumnCount)
     self.assertTrue((self.helper._prevPredictedColumns ==
                              knnDeserialized._prevPredictedColumns).all())
-    self.assertEquals(self.helper._anomalyVectorLength,
+    self.assertEqual(self.helper._anomalyVectorLength,
                       knnDeserialized._anomalyVectorLength)
-    self.assertAlmostEquals(self.helper._classificationMaxDist,
+    self.assertAlmostEqual(self.helper._classificationMaxDist,
                       knnDeserialized._classificationMaxDist)
-    self.assertEquals(self.helper._iteration, knnDeserialized._iteration)
-    self.assertEquals(self.helper.trainRecords, knnDeserialized.trainRecords)
-    self.assertEquals(self.helper.anomalyThreshold,
+    self.assertEqual(self.helper._iteration, knnDeserialized._iteration)
+    self.assertEqual(self.helper.trainRecords, knnDeserialized.trainRecords)
+    self.assertEqual(self.helper.anomalyThreshold,
                       knnDeserialized.anomalyThreshold)
-    self.assertEquals(self.helper.cacheSize, knnDeserialized.cacheSize)
-    self.assertEquals(self.helper.classificationVectorType,
+    self.assertEqual(self.helper.cacheSize, knnDeserialized.cacheSize)
+    self.assertEqual(self.helper.classificationVectorType,
                       knnDeserialized.classificationVectorType)
     self.assertListEqual(self.helper.getLabelResults(),
                          knnDeserialized.getLabelResults())
 
     for i, expected in enumerate(self.helper._recordsCache):
       actual = knnDeserialized._recordsCache[i]
-      self.assertEquals(expected.ROWID, actual.ROWID)
-      self.assertAlmostEquals(expected.anomalyScore, actual.anomalyScore)
+      self.assertEqual(expected.ROWID, actual.ROWID)
+      self.assertAlmostEqual(expected.anomalyScore, actual.anomalyScore)
       self.assertListEqual(expected.anomalyVector, actual.anomalyVector)
       self.assertListEqual(expected.anomalyLabel, actual.anomalyLabel)
-      self.assertEquals(expected.setByUser, actual.setByUser)
+      self.assertEqual(expected.setByUser, actual.setByUser)
 
 
 if __name__ == '__main__':

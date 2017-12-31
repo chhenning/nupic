@@ -209,7 +209,7 @@ def getDescription(datasets):
   encoder = MultiEncoder()  
   if 'filenameCategory' in datasets:
     categories = [x.strip() for x in 
-                              open(datasets['filenameCategory']).xreadlines()]
+                              open(datasets['filenameCategory'])]
   else:
     categories = [chr(x+ord('a')) for x in range(26)]
 
@@ -328,7 +328,7 @@ def getDescription(datasets):
 
   if config['trainTP']:
     description['tpTrain'] = []
-    for i in xrange(config['trainTPRepeats']):
+    for i in range(config['trainTPRepeats']):
       stepDict = dict(name='step_%d' % (i), 
                       setup=sensorRewind, 
                       iterationCount=config['iterationCountTrain'],

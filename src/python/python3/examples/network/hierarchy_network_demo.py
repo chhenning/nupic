@@ -112,17 +112,17 @@ def createEncoder():
   """
   encoder = MultiEncoder()
   encoder.addMultipleEncoders({
-      "consumption": {"fieldname": u"consumption",
+      "consumption": {"fieldname": "consumption",
                       "type": "ScalarEncoder",
-                      "name": u"consumption",
+                      "name": "consumption",
                       "minval": 0.0,
                       "maxval": 100.0,
                       "clipInput": True,
                       "w": 21,
                       "n": 500},
-      "timestamp_timeOfDay": {"fieldname": u"timestamp",
+      "timestamp_timeOfDay": {"fieldname": "timestamp",
                               "type": "DateEncoder",
-                              "name": u"timestamp_timeOfDay",
+                              "name": "timestamp_timeOfDay",
                               "timeOfDay": (21, 9.5)}
   })
   return encoder
@@ -291,7 +291,7 @@ def runNetwork(network, numRecords, writer):
   l2PreviousPrediction = None
   l1ErrorSum = 0.0
   l2ErrorSum = 0.0
-  for record in xrange(numRecords):
+  for record in range(numRecords):
     # Run the network for a single iteration
     network.run(1)
 
@@ -326,23 +326,23 @@ def runNetwork(network, numRecords, writer):
 
   # Output absolute average error for each level
   if numRecords > 1:
-    print "L1 ave abs class. error: %f" % (l1ErrorSum / (numRecords - 1))
-    print "L2 ave abs class. error: %f" % (l2ErrorSum / (numRecords - 1))
+    print("L1 ave abs class. error: %f" % (l1ErrorSum / (numRecords - 1)))
+    print("L2 ave abs class. error: %f" % (l2ErrorSum / (numRecords - 1)))
 
 
 
 def runDemo():
   dataSource = FileRecordStream(streamID=_INPUT_FILE_PATH)
   numRecords = dataSource.getDataRowCount()
-  print "Creating network"
+  print("Creating network")
   network = createNetwork(dataSource)
   outputPath = os.path.join(os.path.dirname(__file__), _OUTPUT_FILE_NAME)
   with open(outputPath, "w") as outputFile:
     writer = csv.writer(outputFile)
-    print "Running network"
-    print "Writing output to: %s" % outputPath
+    print("Running network")
+    print("Writing output to: %s" % outputPath)
     runNetwork(network, numRecords, writer)
-  print "Hierarchy demo finished"
+  print("Hierarchy demo finished")
 
 
 

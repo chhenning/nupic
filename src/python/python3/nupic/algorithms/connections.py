@@ -1,6 +1,5 @@
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)
-# Copyright (C) 2017, Christian Henning
 # Copyright (C) 2014-2016, Numenta, Inc.  Unless you have an agreement
 # with Numenta, Inc., for a separate license for this software code, the
 # following terms and conditions apply:
@@ -38,7 +37,7 @@ class Segment(object):
 
   :param flatIdx: (int) The segment's flattened list index.
 
-  :param ordinal: (int) Used to sort segments. The sort order needs to be 
+  :param ordinal: (long) Used to sort segments. The sort order needs to be 
          consistent between implementations so that tie-breaking is consistent 
          when finding the best matching segment.
   """
@@ -75,7 +74,7 @@ class Synapse(object):
 
   :param permanence: (float) Permanence of the synapse from 0.0 to 1.0.
 
-  :param ordinal: (int) Used to sort synapses. The sort order needs to be 
+  :param ordinal: (long) Used to sort synapses. The sort order needs to be 
          consistent between implementations so that tie-breaking is consistent 
          when finding the min permanence synapse.
   """
@@ -527,7 +526,7 @@ class Connections(Serializable):
         len(self._synapsesForPresynapticCell)):
       return False
 
-    for i in self._synapsesForPresynapticCell.keys():
+    for i in list(self._synapsesForPresynapticCell.keys()):
       synapses = self._synapsesForPresynapticCell[i]
       otherSynapses = other._synapsesForPresynapticCell[i]
       if len(synapses) != len(otherSynapses):
@@ -558,3 +557,7 @@ class Connections(Serializable):
     :param other: (:class:`Connections`) Connections instance to compare to
     """
     return not self.__eq__(other)
+    
+  def getSchema():
+     raise NotImplementedError
+    

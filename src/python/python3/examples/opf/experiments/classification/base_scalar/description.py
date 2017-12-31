@@ -126,9 +126,9 @@ config = {
             #
             # (value generated from DS_ENCODER_SCHEMA)
             'encoders': {   'field1': {   'clipInput': True,
-                              'fieldname': u'field1',
+                              'fieldname': 'field1',
                               'n': 438,
-                              'name': u'field1',
+                              'name': 'field1',
                               'type': 'AdaptiveScalarEncoder',
                               'w': 7,
 			      'forced': True}},
@@ -360,13 +360,13 @@ control = {
 
       # Input stream specification per py/nupic/cluster/database/StreamDef.json.
       #
-      'dataset' : {   u'info': u'test_NoProviders',
-        u'streams': [   {
-              u'columns': [u'*'],
-              u'info': u'simple.csv',
+      'dataset' : {   'info': 'test_NoProviders',
+        'streams': [   {
+              'columns': ['*'],
+              'info': 'simple.csv',
               'source':  config['dataSource'],
           }],
-        u'version': 1},
+        'version': 1},
 
       # Iteration count: maximum number of iterations.  Each iteration corresponds
       # to one record from the (possibly aggregated) dataset.  The task is

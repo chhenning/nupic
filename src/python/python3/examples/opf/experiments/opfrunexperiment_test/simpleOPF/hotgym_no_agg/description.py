@@ -95,9 +95,9 @@ config = {
     # Intermediate variables used to compute fields in modelParams and also
     # referenced from the control section.
     'aggregationInfo': {
-    'fields': [   (u'timestamp', 'first'),
-                  (u'gym', 'first'),
-                  (u'consumption', 'sum')],
+    'fields': [   ('timestamp', 'first'),
+                  ('gym', 'first'),
+                  ('consumption', 'sum')],
     'days': 0,
     'hours': 0,
     'microseconds': 0,
@@ -128,22 +128,22 @@ config = {
             #
             # (value generated from DS_ENCODER_SCHEMA)
             'encoders': {
-                u'timestamp_timeOfDay':     {   'fieldname': u'timestamp',
-    'name': u'timestamp_timeOfDay',
+                'timestamp_timeOfDay':     {   'fieldname': 'timestamp',
+    'name': 'timestamp_timeOfDay',
     'timeOfDay': (21, 1),
     'type': 'DateEncoder'},
-  u'timestamp_dayOfWeek':     {   'dayOfWeek': (21, 1),
-    'fieldname': u'timestamp',
-    'name': u'timestamp_dayOfWeek',
+  'timestamp_dayOfWeek':     {   'dayOfWeek': (21, 1),
+    'fieldname': 'timestamp',
+    'name': 'timestamp_dayOfWeek',
     'type': 'DateEncoder'},
-  u'timestamp_weekend':     {   'fieldname': u'timestamp',
-    'name': u'timestamp_weekend',
+  'timestamp_weekend':     {   'fieldname': 'timestamp',
+    'name': 'timestamp_weekend',
     'type': 'DateEncoder',
     'weekend': 21},
-  u'consumption':     {   'clipInput': True,
-    'fieldname': u'consumption',
+  'consumption':     {   'clipInput': True,
+    'fieldname': 'consumption',
     'n': 100,
-    'name': u'consumption',
+    'name': 'consumption',
     'type': 'AdaptiveScalarEncoder',
     'w': 21},
             },
@@ -159,7 +159,7 @@ config = {
             # Example for 1.5 days: sensorAutoReset = dict(days=1,hours=12),
             #
             # (value generated from SENSOR_AUTO_RESET)
-            'sensorAutoReset' : {   u'days': 0, u'hours': 0},
+            'sensorAutoReset' : {   'days': 0, 'hours': 0},
         },
 
         'spEnable': True,
@@ -350,12 +350,12 @@ control = {
   # Input stream specification per py/nupic/cluster/database/StreamDef.json.
   #
   'dataset' : {   'aggregation': config['aggregationInfo'],
-        u'info': u'test_hotgym',
-        u'streams': [   {   u'columns': [u'*'],
-                            u'info': u'hotGym.csv',
-                            u'last_record': 100,
-                            u'source': u'file://extra/hotgym/hotgym.csv'}],
-        u'version': 1},
+        'info': 'test_hotgym',
+        'streams': [   {   'columns': ['*'],
+                            'info': 'hotGym.csv',
+                            'last_record': 100,
+                            'source': 'file://extra/hotgym/hotgym.csv'}],
+        'version': 1},
 
   # Iteration count: maximum number of iterations.  Each iteration corresponds
   # to one record from the (possibly aggregated) dataset.  The task is
@@ -368,13 +368,13 @@ control = {
 
 
   # A dictionary containing all the supplementary parameters for inference
-  "inferenceArgs":{u'predictedField': u'consumption', u'predictionSteps': [1, 5]},
+  "inferenceArgs":{'predictedField': 'consumption', 'predictionSteps': [1, 5]},
 
   # Metrics: A list of MetricSpecs that instantiate the metrics that are
   # computed for this experiment
   'metrics':[
-    MetricSpec(field=u'consumption', metric='multiStep', inferenceElement='multiStepBestPredictions', params={'window': 1000, 'steps': [1, 5], 'errorMetric': 'aae'}),
-    MetricSpec(field=u'consumption', metric='multiStep', inferenceElement='multiStepBestPredictions', params={'window': 1000, 'steps': [1, 5], 'errorMetric': 'altMAPE'}),
+    MetricSpec(field='consumption', metric='multiStep', inferenceElement='multiStepBestPredictions', params={'window': 1000, 'steps': [1, 5], 'errorMetric': 'aae'}),
+    MetricSpec(field='consumption', metric='multiStep', inferenceElement='multiStepBestPredictions', params={'window': 1000, 'steps': [1, 5], 'errorMetric': 'altMAPE'}),
   ],
 
   # Logged Metrics: A sequence of regular expressions that specify which of

@@ -45,9 +45,9 @@ class Worker(multiprocessing.Process):
         if command=='predict':
           self.index=self.index+1
           self.updateModelStats()
-          self.result_queue.put([(self.Scores[m], self.predictionStreams[m][-1], self.truth[self.index], m) for m in self.M.keys()])
+          self.result_queue.put([(self.Scores[m], self.predictionStreams[m][-1], self.truth[self.index], m) for m in list(self.M.keys())])
         if command=='getPredictionStreams':
-          self.result_queue.put(dict([(m, self.predictionStreams[m][:-windowSize]) for m in self.predictionStreams.keys()]))
+          self.result_queue.put(dict([(m, self.predictionStreams[m][:-windowSize]) for m in list(self.predictionStreams.keys())]))
         if command=='delete':
           delList=jobaux[1]
           for d in delList:
@@ -55,11 +55,11 @@ class Worker(multiprocessing.Process):
               del self.M[d]
               del self.Scores[d]
               del self.predictionStreams[d]
-              print 'deleted Model'+str(d)+" in process "+str(self.iden)
-          print "number of models remaining in "+str(self.iden)+": "+str(len(self.M))
+              print('deleted Model'+str(d)+" in process "+str(self.iden))
+          print("number of models remaining in "+str(self.iden)+": "+str(len(self.M)))
           self.result_queue.put(self.iden)
         if command=='getAAEs':
-          self.result_queue.put([(m, computeAAE(self.truth, self.predictionStreams[m],r ), self.getModelState(self.M[m]), self.M[m]['modelDescription']) for m in self.M.keys()])
+          self.result_queue.put([(m, computeAAE(self.truth, self.predictionStreams[m],r ), self.getModelState(self.M[m]), self.M[m]['modelDescription']) for m in list(self.M.keys())])
         if command=='addPSOVariants':
           for t in jobaux[1]:
             if(t[0]==self.iden):
@@ -77,7 +77,7 @@ class Worker(multiprocessing.Process):
               self.M[name]['v']=v
               self.Scores[name]=10000
               self.predictionStreams[name]=[0,]
-              print "added new model "+str(name)+" to process"+str(self.iden)
+              print("added new model "+str(name)+" to process"+str(self.iden))
 
 
 
@@ -118,7 +118,7 @@ class Worker(multiprocessing.Process):
 
   def updateModelStats(self):
     updatedTruth=False
-    for m in self.M.keys():
+    for m in list(self.M.keys()):
       truth, prediction=self.M[m]['client'].nextTruthPrediction(self.predictedField)
       if(not updatedTruth):
         self.truth.append(truth)
@@ -137,13 +137,13 @@ def getStableVote(scores, stableSize, votes, currModel):
   if not median:
     for s in scores:
       if s[3]==currModel:
-        print [(score[0], score[3]) for score in scores]
+        print([(score[0], score[3]) for score in scores])
 
         return s[1], currModel
-    print [(s[0], s[3]) for s in scores], "switching voting Model!"
+    print([(s[0], s[3]) for s in scores], "switching voting Model!")
     return scores[0][1], scores[0][3]
   else:
-    print [(s[0], s[3]) for s in scores]
+    print([(s[0], s[3]) for s in scores])
     voters = sorted(scores, key=lambda t: t[1])
     for voter in voters:
       votes[voter[3]]=votes[voter[3]]+1
@@ -170,11 +170,11 @@ def getFieldPermutations(config, predictedField):
 def getModelDescriptionLists(numProcesses, experiment):
     config, control = helpers.loadExperiment(experiment)
     encodersList=getFieldPermutations(config, 'pounds')
-    ns=range(50, 140, 120)
+    ns=list(range(50, 140, 120))
     clAlphas=np.arange(0.01, 0.16, 0.104)
     synPermInactives=np.arange(0.01, 0.16, 0.105)
-    tpPamLengths=range(5, 8, 2)
-    tpSegmentActivations=range(13, 17, 12)
+    tpPamLengths=list(range(5, 8, 2))
+    tpSegmentActivations=list(range(13, 17, 12))
 
     if control['environment'] == 'opfExperiment':
       experimentTasks = control['tasks']
@@ -211,7 +211,7 @@ def getModelDescriptionLists(numProcesses, experiment):
                 name=name+1
               #print modelInfo['modelConfig']['modelParams']['tmParams']
               #print modelInfo['modelConfig']['modelParams']['sensorParams']['encoders'][4]['n']
-    print "num Models"+str( len(ModelSetUpData))
+    print("num Models"+str( len(ModelSetUpData)))
 
     shuffle(ModelSetUpData)
     #print [ (m[1]['modelConfig']['modelParams']['tmParams']['pamLength'], m[1]['modelConfig']['modelParams']['sensorParams']['encoders']) for m in ModelSetUpData]
@@ -222,7 +222,7 @@ def chunk(l, n):
     """ Yield n successive chunks from l.
     """
     newn = int(1.0 * len(l) / n + 0.5)
-    for i in xrange(0, n-1):
+    for i in range(0, n-1):
         yield l[i*newn:i*newn+newn]
     yield l[n*newn-newn:]
 
@@ -233,14 +233,14 @@ def command(command, work_queues, aux):
 
 def getDuplicateList(streams, delta):
   delList=[]
-  keys=streams.keys()
+  keys=list(streams.keys())
   for key1 in keys:
     if key1 in streams:
-      for key2 in streams.keys():
+      for key2 in list(streams.keys()):
         if(key1 !=key2):
-          print 'comparing model'+str(key1)+" to "+str(key2)
+          print('comparing model'+str(key1)+" to "+str(key2))
           dist=sum([(a-b)**2 for a, b in zip(streams[key1], streams[key2])])
-          print dist
+          print(dist)
           if(dist<delta):
             delList.append(key2)
             del streams[key2]
@@ -266,9 +266,9 @@ def slice_sampler(px, N = 1, x = None):
     samples = np.arange(len(px))
     px = np.array(px) / (1.*sum(px))
     u = uniform(0, max(px))
-    for n in xrange(N):
+    for n in range(N):
         included = px>=u
-        choice = random.sample(range(np.sum(included)), 1)[0]
+        choice = random.sample(list(range(np.sum(included))), 1)[0]
         values[n] = samples[included][choice]
         u = uniform(0, px[included][choice])
     if x:
@@ -276,7 +276,7 @@ def slice_sampler(px, N = 1, x = None):
             x=np.array(x)
             values = x[values]
         else:
-            print "px and x are different lengths. Returning index locations for px."
+            print("px and x are different lengths. Returning index locations for px.")
 
     return values
 
@@ -284,12 +284,12 @@ def slice_sampler(px, N = 1, x = None):
 def getPSOVariants(modelInfos, votes, n):
   # get x, px lists for sampling
   norm=sum(votes.values())
-  xpx =[(m, float(votes[m])/norm) for m in votes.keys()]
+  xpx =[(m, float(votes[m])/norm) for m in list(votes.keys())]
   x,px = [[z[i] for z in xpx] for i in (0,1)]
   #sample form set of models
   variantIDs=slice_sampler(px, n, x)
-  print "variant IDS"
-  print variantIDs
+  print("variant IDS")
+  print(variantIDs)
   #best X
   x_best=modelInfos[0][2][0]
   # create PSO variates of models
@@ -298,14 +298,14 @@ def getPSOVariants(modelInfos, votes, n):
     t=modelInfos[[i for i, v in enumerate(modelInfos) if v[0] == variantID][0]]
     x=t[2][0]
     v=t[2][1]
-    print "old x"
-    print x
+    print("old x")
+    print(x)
     modelDescriptionMod=copy.deepcopy(t[3])
     configmod=modelDescriptionMod['modelConfig']
     v=inertia*v+socRate*np.random.random_sample(len(v))*(x_best-x)
     x=x+v
-    print "new x"
-    print x
+    print("new x")
+    print(x)
     configmod['modelParams']['clParams']['alpha']=max(0.01, x[0])
     configmod['modelParams']['spParams']['synPermInactiveDec']=max(0.01, x[2])
     configmod['modelParams']['tmParams']['pamLength']=int(round(max(1, x[4])))
@@ -319,7 +319,7 @@ def getPSOVariants(modelInfos, votes, n):
 
 def computeAAE(truth, predictions, windowSize):
   windowSize=min(windowSize, len(truth))
-  zipped=zip(truth[-windowSize:], predictions[-windowSize-1:])
+  zipped=list(zip(truth[-windowSize:], predictions[-windowSize-1:]))
   AAE=sum([abs(a - b) for a, b in zipped])/windowSize
   return AAE
 
@@ -336,7 +336,7 @@ if __name__ == "__main__":
     divisor=4
     ModelSetUpData=getModelDescriptionLists(divisor, './')
     num_processes=len(ModelSetUpData)
-    print num_processes
+    print(num_processes)
     work_queues=[]
     votes={}
     votingParameterStats={"tpSegmentActivationThreshold":[], "tpPamLength":[], "synPermInactiveDec":[], "clAlpha":[], "numBuckets":[]}
@@ -347,7 +347,7 @@ if __name__ == "__main__":
     workerName=0
     modelNameCount=0
     for modelData in ModelSetUpData:
-        print len(modelData)
+        print(len(modelData))
         modelNameCount+=len(modelData)
         work_queue= multiprocessing.Queue()
         work_queues.append(work_queue)
@@ -368,12 +368,12 @@ if __name__ == "__main__":
       for j in range(num_processes):
         subscore=result_queue.get()
         scores.extend(subscore)
-      print ""
-      print i
+      print("")
+      print(i)
       ensemblePrediction, currModel=getStableVote(scores, stableSize, votes, currModel)
       ensemblePredictions.append(ensemblePrediction)
       truth.append(scores[0][2])
-      print  computeAAE(truth,ensemblePredictions, windowSize), int(currModel)
+      print(computeAAE(truth,ensemblePredictions, windowSize), int(currModel))
       assert(result_queue.empty())
       if i%r==0 and i!=0: #refresh ensemble
         assert(result_queue.empty())
@@ -385,16 +385,16 @@ if __name__ == "__main__":
           AAEs.extend(subAAEs)
         AAEs=sorted(AAEs, key=lambda t: t[1])
         numToDelete=int(round(cutPercentage*len(AAEs)))
-        print "Single Model AAES"
-        print [(aae[0], aae[1]) for aae in AAEs]
-        print "Ensemble AAE"
-        print computeAAE(truth, ensemblePredictions, r)
+        print("Single Model AAES")
+        print([(aae[0], aae[1]) for aae in AAEs])
+        print("Ensemble AAE")
+        print(computeAAE(truth, ensemblePredictions, r))
         #add bottom models to delList
-        print "Vote counts"
-        print votes
+        print("Vote counts")
+        print(votes)
         delList=[t[0] for t in AAEs[-numToDelete:]]
-        print "delList"
-        print delList
+        print("delList")
+        print(delList)
         #find duplicate models(now unnecessary)
         #command('getPredictionStreams', work_queues, None)
         #streams={}
@@ -406,7 +406,7 @@ if __name__ == "__main__":
         command('delete', work_queues, delList)
         for iden in delList:
           del votes[iden]
-        print votes
+        print(votes)
         #wait for deletion to finish and collect processIndices for addition
         processIndices=[]
         for j in range(num_processes):
@@ -423,15 +423,15 @@ if __name__ == "__main__":
 
         command('addPSOVariants', work_queues, aux)
         #set votes to 0
-        for key in votes.keys():
+        for key in list(votes.keys()):
           votes[key]=0
 
 
 
 
-    print "AAE over full stream"
-    print computeAAE(truth, ensemblePredictions, len(truth))
-    print "AAE1000"
-    print computeAAE(truth, ensemblePredictions, 1000)
+    print("AAE over full stream")
+    print(computeAAE(truth, ensemblePredictions, len(truth)))
+    print("AAE1000")
+    print(computeAAE(truth, ensemblePredictions, 1000))
 
 

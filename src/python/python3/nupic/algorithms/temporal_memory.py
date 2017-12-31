@@ -1,6 +1,5 @@
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)
-# Copyright (C) 2017, Christian Henning
 # Copyright (C) 2014-2016, Numenta, Inc.  Unless you have an agreement
 # with Numenta, Inc., for a separate license for this software code, the
 # following terms and conditions apply:
@@ -25,8 +24,6 @@ Temporal Memory implementation in Python. See
 `numenta.com <https://numenta.com/temporal-memory-algorithm/>`_ for details.
 """
 
-from functools import reduce
-
 from collections import defaultdict
 from nupic.bindings.math import Random
 from operator import mul
@@ -34,6 +31,7 @@ from operator import mul
 from nupic.algorithms.connections import Connections, binSearch
 from nupic.serializable import Serializable
 from nupic.support.group_by import groupby2
+from functools import reduce
 
 EPSILON = 0.00001 # constant error threshold to check equality of permanences to
                   # other floats
@@ -857,7 +855,7 @@ class TemporalMemory(Serializable):
 
     start = self.cellsPerColumn * column
     end = start + self.cellsPerColumn
-    return range(start, end)
+    return list(range(start, end))
 
 
   def numberOfColumns(self):
@@ -1254,14 +1252,14 @@ class TemporalMemory(Serializable):
       tm.numActivePotentialSynapsesForSegment[segment.flatIdx] = (
         int(protoSegment.number))
 
-    tm.iteration = long(proto.iteration)
+    tm.iteration = int(proto.iteration)
 
     for protoSegment in proto.lastUsedIterationForSegment:
       segment = tm.connections.getSegment(protoSegment.cell,
                                           protoSegment.idxOnCell)
 
       tm.lastUsedIterationForSegment[segment.flatIdx] = (
-        long(protoSegment.number))
+        int(protoSegment.number))
 
     return tm
 
@@ -1341,7 +1339,11 @@ class TemporalMemory(Serializable):
     if cell >= self.numberOfCells() or cell < 0:
       raise IndexError("Invalid cell")
 
-
+  def getSchema():
+     raise NotImplementedError
+  
+      
+      
   @classmethod
   def getCellIndices(cls, cells):
     """

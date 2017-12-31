@@ -22,7 +22,7 @@
 
 import numpy
 import os
-import unittest
+import unittest2 as unittest
 
 from nupic.engine import Network
 from nupic.encoders import MultiEncoder
@@ -110,14 +110,14 @@ class RecordSensorRegionTest(unittest.TestCase):
     network = _createNetwork()
     network.run(1)  # Process 1 row of data
     bucketIdxOut = network.regions['sensor'].getOutputData('bucketIdxOut')[0]
-    self.assertEquals(bucketIdxOut, 500)
+    self.assertEqual(bucketIdxOut, 500)
 
 
   def testActValueOut(self):
     network = _createNetwork()
     network.run(1)  # Process 1 row of data
     actValueOut = network.regions['sensor'].getOutputData('actValueOut')[0]
-    self.assertEquals(round(actValueOut, 1), 21.2)  # only 1 precision digit
+    self.assertEqual(round(actValueOut, 1), 21.2)  # only 1 precision digit
 
 
 

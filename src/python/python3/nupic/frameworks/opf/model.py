@@ -21,7 +21,7 @@
 
 """Module defining the OPF Model base class."""
 
-import cPickle as pickle
+import pickle as pickle
 import json
 import os
 import shutil
@@ -32,7 +32,7 @@ import nupic.frameworks.opf.opf_utils as opf_utils
 from nupic.serializable import Serializable
 
 
-class Model(Serializable):
+class Model(Serializable, metaclass=ABCMeta):
   """ This is the base class that all OPF Model implementations should
   subclass.
 
@@ -42,8 +42,6 @@ class Model(Serializable):
   :param inferenceType: (:class:`~nupic.frameworks.opf.opf_utils.InferenceType`)
          A value that specifies the type of inference.
   """
-
-  __metaclass__ = ABCMeta
 
   def __init__(self, inferenceType=None, proto=None):
     """

@@ -30,7 +30,7 @@ import math as coremath # The core Python module.
 # bitstringToArray/CMultiArgMax are not part of NuPIC2
 from nupic.bindings.math import (GetNTAReal,
                                  GetNumpyDataType,
-                                 SparseMatrix,  SparseTensor,
+                                 SM32 as SparseMatrix,  SparseTensor,
                                  TensorIndex, Domain)
 from nupic.bindings.math import lgamma, erf
 

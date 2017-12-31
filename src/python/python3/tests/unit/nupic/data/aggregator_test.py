@@ -21,7 +21,7 @@
 
 """Unit tests for aggregator module."""
 
-import unittest
+import unittest2 as unittest
 
 from nupic.data import aggregator
 

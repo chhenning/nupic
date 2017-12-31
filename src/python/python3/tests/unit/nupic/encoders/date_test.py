@@ -26,7 +26,7 @@ import numpy
 import tempfile
 from nupic.encoders.base import defaultDtype
 from nupic.data import SENTINEL_VALUE_FOR_MISSING_DATA
-import unittest
+import unittest2 as unittest
 
 from nupic.encoders.date import DateEncoder
 

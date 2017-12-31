@@ -44,10 +44,7 @@ WEEKEND_HIGHLIGHT_COLOR = 'yellow'
 ANOMALY_THRESHOLD = 0.9
 
 
-class NuPICOutput(object):
-
-  __metaclass__ = ABCMeta
-
+class NuPICOutput(object, metaclass=ABCMeta):
 
   def __init__(self, name):
     self.name = name
@@ -79,7 +76,7 @@ class NuPICFileOutput(NuPICOutput):
       'anomaly_score', 'anomaly_likelihood'
     ]
     outputFileName = "%s_out.csv" % self.name
-    print "Preparing to output %s data to %s" % (self.name, outputFileName)
+    print("Preparing to output %s data to %s" % (self.name, outputFileName))
     self.outputFile = open(outputFileName, "w")
     self.outputWriter = csv.writer(self.outputFile)
     self.outputWriter.writerow(headerRow)
@@ -100,7 +97,7 @@ class NuPICFileOutput(NuPICOutput):
 
   def close(self):
     self.outputFile.close()
-    print "Done. Wrote %i data lines to %s." % (self.lineCount, self.name)
+    print("Done. Wrote %i data lines to %s." % (self.lineCount, self.name))
 
 
 
@@ -200,7 +197,7 @@ class NuPICPlotOutput(NuPICOutput):
 
 
   def initializeLines(self, timestamp):
-    print "initializing %s" % self.name
+    print("initializing %s" % self.name)
     anomalyRange = (0.0, 1.0)
     self.dates = deque([timestamp] * WINDOW, maxlen=WINDOW)
     self.convertedDates = deque(

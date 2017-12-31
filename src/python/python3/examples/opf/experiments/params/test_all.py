@@ -51,15 +51,15 @@ def testAll(experiments):
     metricSpecs = control['metrics']
 
     datasetPath = datasetURI[len("file://"):]
-    for i in xrange(1024, 2176, 128):
+    for i in range(1024, 2176, 128):
       #config['modelParams']['tmParams']['cellsPerColumn'] = 16
       config['modelParams']['tmParams']['columnCount'] = i
       config['modelParams']['spParams']['columnCount'] = i
-      print 'Running with 32 cells per column and %i columns.' % i
+      print('Running with 32 cells per column and %i columns.' % i)
       start = time.time()
       result = runOneExperiment(config, control['inferenceArgs'], metricSpecs,
                                 datasetPath)
-      print 'Total time: %d.' % (time.time() - start)
+      print('Total time: %d.' % (time.time() - start))
       pprint(result)
 
 

@@ -16,12 +16,12 @@ def printMatrix(inputs, spOutput):
   numActive=len(np.nonzero(spOutput[0])[0])
   matrix = np.zeros([2*w+1,2*numActive+1])
     
-  for x in xrange(len(inputs)):
+  for x in range(len(inputs)):
     i = [_hammingDistance(inputs[x], z) for z in inputs[x:]]
     j = [_hammingDistance(spOutput[x], a) for a in spOutput[x:]]
     for p, q in zip(i,j):
       matrix[p,q]+=1
-    for y in xrange(len(matrix))  :
+    for y in range(len(matrix))  :
       matrix[y]=[max(10*x, 100) if (x<100 and x>0) else x for x in matrix[y]]
   
   cdict = {'red':((0.0,0.0,0.0),(0.01,0.7,0.5),(0.3,1.0,0.7),(1.0,1.0,1.0)),\

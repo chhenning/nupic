@@ -111,7 +111,7 @@ def runNetwork(network, writer):
   """
   identityRegion = network.regions["identityRegion"]
 
-  for i in xrange(_NUM_RECORDS):
+  for i in range(_NUM_RECORDS):
     # Run the network for a single iteration
     network.run(1)
 
@@ -128,5 +128,5 @@ if __name__ == "__main__":
   outputPath = os.path.join(os.path.dirname(__file__), _OUTPUT_PATH)
   with open(outputPath, "w") as outputFile:
     writer = csv.writer(outputFile)
-    print "Writing output to %s" % outputPath
+    print("Writing output to %s" % outputPath)
     runNetwork(network, writer)

@@ -31,39 +31,39 @@ from nupic.math.topology import (coordinatesFromIndex,
 class TestTopology(unittest.TestCase):
 
   def testIndexFromCoordinates(self):
-    self.assertEquals(0, indexFromCoordinates((0,), (100,)))
-    self.assertEquals(50, indexFromCoordinates((50,), (100,)))
-    self.assertEquals(99, indexFromCoordinates((99,), (100,)))
+    self.assertEqual(0, indexFromCoordinates((0,), (100,)))
+    self.assertEqual(50, indexFromCoordinates((50,), (100,)))
+    self.assertEqual(99, indexFromCoordinates((99,), (100,)))
 
-    self.assertEquals(0, indexFromCoordinates((0, 0), (100, 80)))
-    self.assertEquals(10, indexFromCoordinates((0, 10), (100, 80)))
-    self.assertEquals(80, indexFromCoordinates((1, 0), (100, 80)))
-    self.assertEquals(90, indexFromCoordinates((1, 10), (100, 80)))
+    self.assertEqual(0, indexFromCoordinates((0, 0), (100, 80)))
+    self.assertEqual(10, indexFromCoordinates((0, 10), (100, 80)))
+    self.assertEqual(80, indexFromCoordinates((1, 0), (100, 80)))
+    self.assertEqual(90, indexFromCoordinates((1, 10), (100, 80)))
 
-    self.assertEquals(0, indexFromCoordinates((0, 0, 0), (100, 10, 8)))
-    self.assertEquals(7, indexFromCoordinates((0, 0, 7), (100, 10, 8)))
-    self.assertEquals(8, indexFromCoordinates((0, 1, 0), (100, 10, 8)))
-    self.assertEquals(80, indexFromCoordinates((1, 0, 0), (100, 10, 8)))
-    self.assertEquals(88, indexFromCoordinates((1, 1, 0), (100, 10, 8)))
-    self.assertEquals(89, indexFromCoordinates((1, 1, 1), (100, 10, 8)))
+    self.assertEqual(0, indexFromCoordinates((0, 0, 0), (100, 10, 8)))
+    self.assertEqual(7, indexFromCoordinates((0, 0, 7), (100, 10, 8)))
+    self.assertEqual(8, indexFromCoordinates((0, 1, 0), (100, 10, 8)))
+    self.assertEqual(80, indexFromCoordinates((1, 0, 0), (100, 10, 8)))
+    self.assertEqual(88, indexFromCoordinates((1, 1, 0), (100, 10, 8)))
+    self.assertEqual(89, indexFromCoordinates((1, 1, 1), (100, 10, 8)))
 
 
   def testCoordinatesFromIndex(self):
-    self.assertEquals([0], coordinatesFromIndex(0, [100]));
-    self.assertEquals([50], coordinatesFromIndex(50, [100]));
-    self.assertEquals([99], coordinatesFromIndex(99, [100]));
+    self.assertEqual([0], coordinatesFromIndex(0, [100]));
+    self.assertEqual([50], coordinatesFromIndex(50, [100]));
+    self.assertEqual([99], coordinatesFromIndex(99, [100]));
 
-    self.assertEquals([0, 0], coordinatesFromIndex(0, [100, 80]));
-    self.assertEquals([0, 10], coordinatesFromIndex(10, [100, 80]));
-    self.assertEquals([1, 0], coordinatesFromIndex(80, [100, 80]));
-    self.assertEquals([1, 10], coordinatesFromIndex(90, [100, 80]));
+    self.assertEqual([0, 0], coordinatesFromIndex(0, [100, 80]));
+    self.assertEqual([0, 10], coordinatesFromIndex(10, [100, 80]));
+    self.assertEqual([1, 0], coordinatesFromIndex(80, [100, 80]));
+    self.assertEqual([1, 10], coordinatesFromIndex(90, [100, 80]));
 
-    self.assertEquals([0, 0, 0], coordinatesFromIndex(0, [100, 10, 8]));
-    self.assertEquals([0, 0, 7], coordinatesFromIndex(7, [100, 10, 8]));
-    self.assertEquals([0, 1, 0], coordinatesFromIndex(8, [100, 10, 8]));
-    self.assertEquals([1, 0, 0], coordinatesFromIndex(80, [100, 10, 8]));
-    self.assertEquals([1, 1, 0], coordinatesFromIndex(88, [100, 10, 8]));
-    self.assertEquals([1, 1, 1], coordinatesFromIndex(89, [100, 10, 8]));
+    self.assertEqual([0, 0, 0], coordinatesFromIndex(0, [100, 10, 8]));
+    self.assertEqual([0, 0, 7], coordinatesFromIndex(7, [100, 10, 8]));
+    self.assertEqual([0, 1, 0], coordinatesFromIndex(8, [100, 10, 8]));
+    self.assertEqual([1, 0, 0], coordinatesFromIndex(80, [100, 10, 8]));
+    self.assertEqual([1, 1, 0], coordinatesFromIndex(88, [100, 10, 8]));
+    self.assertEqual([1, 1, 1], coordinatesFromIndex(89, [100, 10, 8]));
 
 
   # ===========================================================================
@@ -80,9 +80,9 @@ class TestTopology(unittest.TestCase):
                                                  dimensions),
                                     expected):
       numIndices += 1
-      self.assertEquals(index, expectedIndex)
+      self.assertEqual(index, expectedIndex)
 
-    self.assertEquals(numIndices, len(expected))
+    self.assertEqual(numIndices, len(expected))
 
 
   def expectNeighborhoodCoords(self, centerCoords, radius, dimensions, expected):
@@ -94,9 +94,9 @@ class TestTopology(unittest.TestCase):
                                                  dimensions),
                                     expected):
       numIndices += 1
-      self.assertEquals(index, indexFromCoordinates(expectedIndex, dimensions))
+      self.assertEqual(index, indexFromCoordinates(expectedIndex, dimensions))
 
-    self.assertEquals(numIndices, len(expected))
+    self.assertEqual(numIndices, len(expected))
 
 
   def testNeighborhoodOfOrigin1D(self):
@@ -214,9 +214,9 @@ class TestTopology(unittest.TestCase):
                                                          dimensions),
                                     expected):
       numIndices += 1
-      self.assertEquals(index, expectedIndex)
+      self.assertEqual(index, expectedIndex)
 
-    self.assertEquals(numIndices, len(expected))
+    self.assertEqual(numIndices, len(expected))
 
 
   def expectWrappingNeighborhoodCoords(self, centerCoords, radius, dimensions,
@@ -229,9 +229,9 @@ class TestTopology(unittest.TestCase):
                                                          dimensions),
                                     expected):
       numIndices += 1
-      self.assertEquals(index, indexFromCoordinates(expectedIndex, dimensions))
+      self.assertEqual(index, indexFromCoordinates(expectedIndex, dimensions))
 
-    self.assertEquals(numIndices, len(expected))
+    self.assertEqual(numIndices, len(expected))
 
 
   def testWrappingNeighborhoodOfOrigin1D(self):

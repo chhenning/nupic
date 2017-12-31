@@ -27,7 +27,7 @@ TODO: Fix this up to be more unit testy.
 """
 
 import numpy
-import unittest
+import unittest2 as unittest
 
 from nupic.algorithms.spatial_pooler import SpatialPooler
 

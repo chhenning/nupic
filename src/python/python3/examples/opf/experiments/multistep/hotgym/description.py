@@ -126,21 +126,21 @@ config = {
             #
             # (value generated from DS_ENCODER_SCHEMA)
             'encoders': {   'consumption': {   'clipInput': True,
-                                   'fieldname': u'consumption',
+                                   'fieldname': 'consumption',
                                    'n': 100,
-                                   'name': u'consumption',
+                                   'name': 'consumption',
                                    'type': 'AdaptiveScalarEncoder',
                                    'w': 21},
                 'timestamp_dayOfWeek': {   'dayOfWeek': (21, 1),
-                                           'fieldname': u'timestamp',
-                                           'name': u'timestamp_dayOfWeek',
+                                           'fieldname': 'timestamp',
+                                           'name': 'timestamp_dayOfWeek',
                                            'type': 'DateEncoder'},
-                'timestamp_timeOfDay': {   'fieldname': u'timestamp',
-                                           'name': u'timestamp_timeOfDay',
+                'timestamp_timeOfDay': {   'fieldname': 'timestamp',
+                                           'name': 'timestamp_timeOfDay',
                                            'timeOfDay': (21, 1),
                                            'type': 'DateEncoder'},
-                'timestamp_weekend': {   'fieldname': u'timestamp',
-                                         'name': u'timestamp_weekend',
+                'timestamp_weekend': {   'fieldname': 'timestamp',
+                                         'name': 'timestamp_weekend',
                                          'type': 'DateEncoder',
                                          'weekend': 21}},
 
@@ -360,13 +360,13 @@ control = {
   # Input stream specification per py/nupic/cluster/database/StreamDef.json.
   #
   'dataset' : {
-        u'info': u'test_hotgym',
-        u'streams': [   {   u'columns': [u'*'],
-                            u'info': u'hotGym.csv',
-                            u'last_record': config['numRecords'],
-                            u'source': u'file://extra/hotgym/hotgym.csv'}],
+        'info': 'test_hotgym',
+        'streams': [   {   'columns': ['*'],
+                            'info': 'hotGym.csv',
+                            'last_record': config['numRecords'],
+                            'source': 'file://extra/hotgym/hotgym.csv'}],
          'aggregation': config['aggregationInfo'],
-        u'version': 1},
+        'version': 1},
 
   # Iteration count: maximum number of iterations.  Each iteration corresponds
   # to one record from the (possibly aggregated) dataset.  The task is

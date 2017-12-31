@@ -53,7 +53,7 @@ def _generateSimple(filename="simple.csv", numSequences=1, elementsPerSeq=3,
   # Create the output file
   scriptDir = os.path.dirname(__file__)
   pathname = os.path.join(scriptDir, 'datasets', filename)
-  print "Creating %s..." % (pathname)
+  print("Creating %s..." % (pathname))
   fields = [('timestamp', 'datetime', 'T'), 
             ('field1', 'string', ''),  
             ('field2', 'float', '')]  
@@ -69,7 +69,7 @@ def _generateSimple(filename="simple.csv", numSequences=1, elementsPerSeq=3,
   # Write out the sequences in random order
   seqIdxs = []
   for i in range(numRepeats):
-    seqIdxs += range(numSequences)
+    seqIdxs += list(range(numSequences))
   random.shuffle(seqIdxs)
   
   # Put 1 hour between each record

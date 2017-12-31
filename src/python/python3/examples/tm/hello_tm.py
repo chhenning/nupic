@@ -1,6 +1,5 @@
 # ----------------------------------------------------------------------
 # Numenta Platform for Intelligent Computing (NuPIC)
-# Copyright (C) 2017, Christian Henning
 # Copyright (C) 2013, Numenta, Inc.  Unless you have an agreement
 # with Numenta, Inc., for a separate license for this software code, the
 # following terms and conditions apply:
@@ -95,10 +94,10 @@ for i in range(10):
 
     # The following print statements can be ignored.
     # Useful for tracing internal states
-    print("active cells " + str(tm.getActiveCells()))
-    print("predictive cells " + str(tm.getPredictiveCells()))
-    print("winner cells " + str(tm.getWinnerCells()))
-    print("# of active segments " + str(tm.connections.numSegments()))
+    print(("active cells " + str(tm.getActiveCells())))
+    print(("predictive cells " + str(tm.getPredictiveCells())))
+    print(("winner cells " + str(tm.getWinnerCells())))
+    print(("# of active segments " + str(tm.connections.numSegments())))
 
   # The reset command tells the TM that a sequence just ended and essentially
   # zeros out all the states. It is not strictly necessary but it's a bit
@@ -125,10 +124,10 @@ for j in range(5):
   # predicted state is 1 represent the SDR for the next expected pattern
   print("\nAll the active and predicted cells:")
 
-  print("active cells " + str(tm.getActiveCells()))
-  print("predictive cells " + str(tm.getPredictiveCells()))
-  print("winner cells " + str(tm.getWinnerCells()))
-  print("# of active segments " + str(tm.connections.numSegments()))
+  print(("active cells " + str(tm.getActiveCells())))
+  print(("predictive cells " + str(tm.getPredictiveCells())))
+  print(("winner cells " + str(tm.getWinnerCells())))
+  print(("# of active segments " + str(tm.connections.numSegments())))
 
   activeColumnsIndeces = [tm.columnForCell(i) for i in tm.getActiveCells()]
   predictedColumnIndeces = [tm.columnForCell(i) for i in tm.getPredictiveCells()]

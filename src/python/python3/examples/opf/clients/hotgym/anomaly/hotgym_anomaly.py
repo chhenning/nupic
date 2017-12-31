@@ -56,11 +56,11 @@ def runHotgymAnomaly():
     reader = csv.reader(fin)
     csvWriter = csv.writer(open(_OUTPUT_PATH,"wb"))
     csvWriter.writerow(["timestamp", "consumption", "anomaly_score"])
-    headers = reader.next()
-    reader.next()
-    reader.next()
+    headers = next(reader)
+    next(reader)
+    next(reader)
     for i, record in enumerate(reader, start=1):
-      modelInput = dict(zip(headers, record))
+      modelInput = dict(list(zip(headers, record)))
       modelInput["consumption"] = float(modelInput["consumption"])
       modelInput["timestamp"] = datetime.datetime.strptime(
           modelInput["timestamp"], "%m/%d/%y %H:%M")
@@ -72,7 +72,7 @@ def runHotgymAnomaly():
         _LOGGER.info("Anomaly detected at [%s]. Anomaly score: %f.",
                       result.rawInput["timestamp"], anomalyScore)
 
-  print "Anomaly scores have been written to",_OUTPUT_PATH
+  print("Anomaly scores have been written to",_OUTPUT_PATH)
 
 if __name__ == "__main__":
   logging.basicConfig(level=logging.INFO)

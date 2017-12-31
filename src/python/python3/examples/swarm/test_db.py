@@ -91,28 +91,28 @@ def dbValidator():
   passwd = Configuration.get("nupic.cluster.database.passwd")
 
 
-  print "This script will validate that your MySQL is setup correctly for "
-  print "NuPIC. MySQL is required for NuPIC swarming. The settings are"
-  print "defined in a configuration file found in  "
-  print "$NUPIC/src/nupic/support/nupic-default.xml Out of the box those "
-  print "settings contain MySQL's default access credentials."
-  print
-  print "The nupic-default.xml can be duplicated to define user specific "
-  print "changes calling the copied file "
-  print "$NUPIC/src/nupic/support/nupic-site.xml Refer to the "
-  print "nupic-default.xml for additional instructions."
-  print
-  print "Defaults: localhost, 3306, root, no password"
-  print
-  print "Retrieved the following NuPIC configuration using: ", fileused
-  print "    host   :    ", host
-  print "    port   :    ", port
-  print "    user   :    ", user
-  print "    passwd :    ", "*" * len(passwd)
+  print("This script will validate that your MySQL is setup correctly for ")
+  print("NuPIC. MySQL is required for NuPIC swarming. The settings are")
+  print("defined in a configuration file found in  ")
+  print("$NUPIC/src/nupic/support/nupic-default.xml Out of the box those ")
+  print("settings contain MySQL's default access credentials.")
+  print()
+  print("The nupic-default.xml can be duplicated to define user specific ")
+  print("changes calling the copied file ")
+  print("$NUPIC/src/nupic/support/nupic-site.xml Refer to the ")
+  print("nupic-default.xml for additional instructions.")
+  print()
+  print("Defaults: localhost, 3306, root, no password")
+  print()
+  print("Retrieved the following NuPIC configuration using: ", fileused)
+  print("    host   :    ", host)
+  print("    port   :    ", port)
+  print("    user   :    ", user)
+  print("    passwd :    ", "*" * len(passwd))
 
 
   testDbConnection(host, port, user, passwd)
-  print "Connection successful!!"
+  print("Connection successful!!")
 
 if __name__ == "__main__":
   dbValidator()

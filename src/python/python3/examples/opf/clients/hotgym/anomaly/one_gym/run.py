@@ -69,7 +69,7 @@ def getModelParamsFromName(gymName):
   importName = "model_params.%s_model_params" % (
     gymName.replace(" ", "_").replace("-", "_")
   )
-  print "Importing model params from %s" % importName
+  print("Importing model params from %s" % importName)
   try:
     importedModelParams = importlib.import_module(importName).MODEL_PARAMS
   except ImportError:
@@ -92,9 +92,9 @@ def runIoThroughNupic(inputData, model, gymName, plot):
   inputFile = open(inputData, "rb")
   csvReader = csv.reader(inputFile)
   # skip header rows
-  csvReader.next()
-  csvReader.next()
-  csvReader.next()
+  next(csvReader)
+  next(csvReader)
+  next(csvReader)
 
   shifter = InferenceShifter()
   if plot:
@@ -106,7 +106,7 @@ def runIoThroughNupic(inputData, model, gymName, plot):
   for row in csvReader:
     counter += 1
     if (counter % 100 == 0):
-      print "Read %i lines..." % counter
+      print("Read %i lines..." % counter)
     timestamp = datetime.datetime.strptime(row[0], DATE_FORMAT)
     consumption = float(row[1])
     result = model.run({
@@ -135,7 +135,7 @@ def runModel(gymName, plot=False):
   :param plot: Plot in matplotlib? Don't use this unless matplotlib is
   installed.
   """
-  print "Creating model from %s..." % gymName
+  print("Creating model from %s..." % gymName)
   model = createModel(getModelParamsFromName(gymName))
   inputData = "%s/%s.csv" % (DATA_DIR, gymName.replace(" ", "_"))
   runIoThroughNupic(inputData, model, gymName, plot)
@@ -143,7 +143,7 @@ def runModel(gymName, plot=False):
 
 
 if __name__ == "__main__":
-  print DESCRIPTION
+  print(DESCRIPTION)
   plot = False
   args = sys.argv[1:]
   if "--plot" in args:

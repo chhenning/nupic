@@ -185,7 +185,7 @@ def runNetwork(network, writer):
 
   prevPredictedColumns = []
 
-  for i in xrange(_NUM_RECORDS):
+  for i in range(_NUM_RECORDS):
     # Run the network for a single iteration
     network.run(1)
 
@@ -205,20 +205,20 @@ if __name__ == "__main__":
 
   spRegion = network.getRegionsByType(SPRegion)[0]
   sp = spRegion.getSelf().getAlgorithmInstance()
-  print "spatial pooler region inputs: {0}".format(spRegion.getInputNames())
-  print "spatial pooler region outputs: {0}".format(spRegion.getOutputNames())
-  print "# spatial pooler columns: {0}".format(sp.getNumColumns())
-  print
+  print("spatial pooler region inputs: {0}".format(spRegion.getInputNames()))
+  print("spatial pooler region outputs: {0}".format(spRegion.getOutputNames()))
+  print("# spatial pooler columns: {0}".format(sp.getNumColumns()))
+  print()
 
   tmRegion = network.getRegionsByType(TMRegion)[0]
   tm = tmRegion.getSelf().getAlgorithmInstance()
-  print "temporal memory region inputs: {0}".format(tmRegion.getInputNames())
-  print "temporal memory region outputs: {0}".format(tmRegion.getOutputNames())
-  print "# temporal memory columns: {0}".format(tm.numberOfCols)
-  print
+  print("temporal memory region inputs: {0}".format(tmRegion.getInputNames()))
+  print("temporal memory region outputs: {0}".format(tmRegion.getOutputNames()))
+  print("# temporal memory columns: {0}".format(tm.numberOfCols))
+  print()
 
   outputPath = os.path.join(os.path.dirname(__file__), _OUTPUT_PATH)
   with open(outputPath, "w") as outputFile:
     writer = csv.writer(outputFile)
-    print "Writing output to %s" % outputPath
+    print("Writing output to %s" % outputPath)
     runNetwork(network, writer)

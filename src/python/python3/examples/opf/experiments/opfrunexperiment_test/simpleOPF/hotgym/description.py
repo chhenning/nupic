@@ -385,7 +385,7 @@ tasks = [
       ],
 
       'metrics' : [
-        MetricSpec(field=u'consumption',
+        MetricSpec(field='consumption',
                    inferenceElement='prediction',
                    metric='aae',
                    params={'window': 200}),

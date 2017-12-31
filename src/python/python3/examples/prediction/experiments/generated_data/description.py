@@ -42,7 +42,7 @@ def generateFunction(info):
   # Dictionary keys must match the names in the multiencoder
   d["date"] = t
   d["amount"] = amount
-  for i in xrange(info['nRandomFields']):
+  for i in range(info['nRandomFields']):
     d["random%d" %i] = random.randint(0, info['randomFieldWidth'])
   return d
 
@@ -57,7 +57,7 @@ def getDescription(datasets):
   encoder = MultiEncoder()
   encoder.addEncoder("date", DateEncoder(timeOfDay=3))
   encoder.addEncoder("amount", LogEncoder(name="amount", maxval=1000))
-  for i in xrange(0, nRandomFields):
+  for i in range(0, nRandomFields):
     s = ScalarEncoder(name="scalar", minval=0, maxval=randomFieldWidth, resolution=1, w=3)
     encoder.addEncoder("random%d" % i, s)
 
@@ -108,7 +108,7 @@ def getDescription(datasets):
   nodeParams.update(otherParams)
 
   def mySetupCallback(experiment):
-    print "Setup function called"
+    print("Setup function called")
 
   description = dict(
     options = dict(

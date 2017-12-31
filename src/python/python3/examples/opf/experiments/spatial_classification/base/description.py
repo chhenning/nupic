@@ -124,17 +124,17 @@ config = {
             #
             # (value generated from DS_ENCODER_SCHEMA)
             'encoders': {
-                u'field1':     {
-                  'fieldname': u'field1',
+                'field1':     {
+                  'fieldname': 'field1',
                   'n': 121,
-                  'name': u'field1',
+                  'name': 'field1',
                   'type': 'SDRCategoryEncoder',
                   'w': 21},
-                u'classification':     {
+                'classification':     {
                   'classifierOnly': True,
-                  'fieldname': u'classification',
+                  'fieldname': 'classification',
                   'n': 121,
-                  'name': u'classification',
+                  'name': 'classification',
                   'type': 'SDRCategoryEncoder',
                   'w': 21},
             },
@@ -310,9 +310,9 @@ config = {
         },
 
         'anomalyParams': {
-          u'anomalyCacheRecords': None,
-          u'autoDetectThreshold': None,
-          u'autoDetectWaitRecords': None
+          'anomalyCacheRecords': None,
+          'autoDetectThreshold': None,
+          'autoDetectWaitRecords': None
         },
 
         'trainSPNetOnlyIfRequested': False,
@@ -352,11 +352,11 @@ control = {
 
   # Input stream specification per py/nupic/frameworks/opf/jsonschema/stream_def.json.
   #
-  'dataset' : {   u'info': u'testSpatialClassification',
-        u'streams': [   {   u'columns': [u'*'],
-                            u'info': u'spatialClassification',
-                            u'source': config['dataSource']}],
-        u'version': 1},
+  'dataset' : {   'info': 'testSpatialClassification',
+        'streams': [   {   'columns': ['*'],
+                            'info': 'spatialClassification',
+                            'source': config['dataSource']}],
+        'version': 1},
 
   # Iteration count: maximum number of iterations.  Each iteration corresponds
   # to one record from the (possibly aggregated) dataset.  The task is
@@ -369,7 +369,7 @@ control = {
 
 
   # A dictionary containing all the supplementary parameters for inference
-  "inferenceArgs":{u'predictedField': u'classification', u'predictionSteps': [0]},
+  "inferenceArgs":{'predictedField': 'classification', 'predictionSteps': [0]},
 
   # Metrics: A list of MetricSpecs that instantiate the metrics that are
   # computed for this experiment

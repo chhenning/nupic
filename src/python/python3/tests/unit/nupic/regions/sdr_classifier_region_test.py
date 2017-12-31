@@ -21,7 +21,7 @@
 """Unit tests for the SDRClassifier region."""
 
 import os
-import unittest
+import unittest2 as unittest
 
 from nupic.engine import Network
 from nupic.encoders import MultiEncoder
@@ -88,13 +88,13 @@ class SDRClassifierRegionTest(unittest.TestCase):
   def testActValueIn(self):
     self.network.run(1)  # Process 1 row of data
     actValueIn = self.classifierRegion.getInputData('actValueIn')[0]
-    self.assertEquals(round(actValueIn, 1), 21.2)  # only 1 precision digit
+    self.assertEqual(round(actValueIn, 1), 21.2)  # only 1 precision digit
 
 
   def testBucketIdxIn(self):
     self.network.run(1)  # Process 1 row of data
     bucketIdxIn = self.classifierRegion.getInputData('bucketIdxIn')[0]
-    self.assertEquals(bucketIdxIn, 500)
+    self.assertEqual(bucketIdxIn, 500)
 
 
 

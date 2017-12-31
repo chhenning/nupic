@@ -23,7 +23,7 @@
 
 import os
 import sys
-import unittest
+import unittest2 as unittest
 import numpy as np
 from numpy.testing import assert_approx_equal
 
@@ -95,9 +95,9 @@ class ExamplesTest(unittest.TestCase):
   def testNumberOfOneStepPredictions(self):
     """Make sure all examples output the same number of oneStepPredictions."""
 
-    self.assertEquals(len(ExamplesTest.oneStepPredictions["opf"]),
+    self.assertEqual(len(ExamplesTest.oneStepPredictions["opf"]),
                       len(ExamplesTest.oneStepPredictions["algo"]))
-    self.assertEquals(len(ExamplesTest.oneStepPredictions["opf"]),
+    self.assertEqual(len(ExamplesTest.oneStepPredictions["opf"]),
                       len(ExamplesTest.oneStepPredictions["network"]))
 
   @unittest.expectedFailure

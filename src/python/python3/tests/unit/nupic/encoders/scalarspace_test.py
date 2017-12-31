@@ -21,7 +21,7 @@
 
 """Unit tests for scalar space encoder"""
 
-import unittest
+import unittest2 as unittest
 
 from nupic.encoders.scalar_space import ScalarSpaceEncoder, DeltaEncoder
 

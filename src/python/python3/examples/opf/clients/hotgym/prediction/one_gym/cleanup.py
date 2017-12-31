@@ -34,7 +34,7 @@ def cleanDirectoryCruft(directory):
     for f in os.listdir(directory):
       if re.search(r"_out\.csv$", f)\
       or re.search(r"\.pyc$", f):
-        print "Removing %s" % f
+        print("Removing %s" % f)
         os.remove(os.path.join(directory, f))
 
 
@@ -51,11 +51,11 @@ def cleanUp(directory=None, workingDirs=None):
     for doomed in workingDirs:
       doomedPath = os.path.join(directory, doomed)
       if os.path.exists(doomedPath):
-        print "Removing %s" % doomedPath
+        print("Removing %s" % doomedPath)
         shutil.rmtree(doomedPath)
 
 
 
 if __name__ == "__main__":
-  print DESCRIPTION
+  print(DESCRIPTION)
   cleanUp(workingDirs=["swarm"])

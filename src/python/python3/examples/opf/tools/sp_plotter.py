@@ -64,8 +64,8 @@ def generatePlot(outputs, origData):
       intOrigDist = int(origDist.sum()/2+0.1)
 
       if intDist < 2 and intOrigDist > 10:
-        print 'Elements %d,%d has very small SP distance: %d' % (i, j, intDist)
-        print 'Input elements distance is %d' % intOrigDist
+        print('Elements %d,%d has very small SP distance: %d' % (i, j, intDist))
+        print('Input elements distance is %d' % intOrigDist)
 
       x = int(PLOT_PRECISION*intDist/40.0)
       y = int(PLOT_PRECISION*intOrigDist/42.0)
@@ -102,7 +102,7 @@ def generateRandomInput(numRecords, elemSize = 400, numSet = 42):
 
   inputs = []
 
-  for _ in xrange(numRecords):
+  for _ in range(numRecords):
 
     input = np.zeros(elemSize, dtype=realDType)
     for _ in range(0,numSet):
@@ -123,9 +123,9 @@ def appendInputWithSimilarValues(inputs):
   records to the same inputs list.
   """
   numInputs = len(inputs)
-  for i in xrange(numInputs):
+  for i in range(numInputs):
     input = inputs[i]
-    for j in xrange(len(input)-1):
+    for j in range(len(input)-1):
       if input[j] == 1 and input[j+1] == 0:
         newInput = copy.deepcopy(input)
         newInput[j] = 0
@@ -141,11 +141,11 @@ def appendInputWithNSimilarValues(inputs, numNear = 10):
   """
   numInputs = len(inputs)
   skipOne = False
-  for i in xrange(numInputs):
+  for i in range(numInputs):
     input = inputs[i]
     numChanged = 0
     newInput = copy.deepcopy(input)
-    for j in xrange(len(input)-1):
+    for j in range(len(input)-1):
       if skipOne:
         skipOne = False
         continue
@@ -177,7 +177,7 @@ def modifyBits(inputVal, maxChanges):
 
   runningIndex = -1
   numModsDone = 0
-  for i in xrange(inputWidth):
+  for i in range(inputWidth):
     if numModsDone >= changes:
       break
     if inputVal[i] == 1:
@@ -245,7 +245,7 @@ def testSP():
       appendInputWithNSimilarValues(inputs, 42)
 
     inputSize = len(inputs)
-    print 'Num random records = %d, inputs to process %d' % (numRecords, inputSize)
+    print('Num random records = %d, inputs to process %d' % (numRecords, inputSize))
 
     # Run a number of iterations, with learning on or off,
     # retrieve results from the last iteration only
@@ -255,8 +255,8 @@ def testSP():
     if doLearn:
       numIter = itr
 
-    for iter in xrange(numIter):
-      for i in xrange(inputSize):
+    for iter in range(numIter):
+      for i in range(inputSize):
         time.sleep(0.001)
         if iter == numIter - 1:
           # TODO: See https://github.com/numenta/nupic/issues/2072
@@ -348,7 +348,7 @@ def testSPNew():
 
   cleanPlot = False
 
-  for i in xrange(numRecords):
+  for i in range(numRecords):
     input1 = getRandomWithMods(inputs, 4)
     if i % 2 == 0:
       input2 = getRandomWithMods(inputs, 4)
@@ -481,7 +481,7 @@ def testSPFile():
   reader = csv.reader(file)
 
   for row in reader:
-    input = np.array(map(float, row), dtype=realDType)
+    input = np.array(list(map(float, row)), dtype=realDType)
     if len(input.nonzero()[0]) != numSet:
       continue
 
@@ -508,24 +508,24 @@ def testSPFile():
 
   doLearn = False
 
-  print 'Finished reading file, inputs/outputs to process =', len(inputs)
+  print('Finished reading file, inputs/outputs to process =', len(inputs))
 
   size = len(inputs)
 
-  for iter in xrange(100):
+  for iter in range(100):
 
-    print 'Iteration', iter
+    print('Iteration', iter)
 
     # Learn
     if iter != 0:
-      for learnRecs in xrange(pattern[0]):
+      for learnRecs in range(pattern[0]):
 
         # TODO: See https://github.com/numenta/nupic/issues/2072
         ind = np.random.random_integers(0, size-1, 1)[0]
         sp.compute(inputs[ind], learn=True, activeArray=outputs[ind])
 
     # Test
-    for _ in xrange(pattern[1]):
+    for _ in range(pattern[1]):
       rand1 = np.random.random_integers(0, size-1, 1)[0]
       rand2 = np.random.random_integers(0, size-1, 1)[0]
 
@@ -539,7 +539,7 @@ def testSPFile():
       intInDist = int(inDist.sum()/2+0.1)
 
       if intInDist != numSet or intOutDist != spSet:
-        print rand1, rand2, '-', intInDist, intOutDist
+        print(rand1, rand2, '-', intInDist, intOutDist)
 
       x = int(PLOT_PRECISION*intOutDist/spSet)
       y = int(PLOT_PRECISION*intInDist/numSet)

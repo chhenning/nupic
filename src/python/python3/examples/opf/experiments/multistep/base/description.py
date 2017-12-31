@@ -125,17 +125,17 @@ config = {
             #     ],
             #
             # (value generated from DS_ENCODER_SCHEMA)
-            'encoders': {   'field1': {   'fieldname': u'field1',
+            'encoders': {   'field1': {   'fieldname': 'field1',
                               'n': 100,
-                              'name': u'field1',
+                              'name': 'field1',
                               'type': 'SDRCategoryEncoder',
                               'w': 21},
                 'field2': {   'clipInput': True,
-                              'fieldname': u'field2',
+                              'fieldname': 'field2',
                               'maxval': 50,
                               'minval': 0,
                               'n': 500,
-                              'name': u'field2',
+                              'name': 'field2',
                               'type': 'ScalarEncoder',
                               'w': 21}},
 

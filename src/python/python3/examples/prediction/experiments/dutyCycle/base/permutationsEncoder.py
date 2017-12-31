@@ -6,8 +6,8 @@ permutations = dict(
                 encodingFieldWidthA = [256],
                 encodingFieldWidthB = [256],
                 
-                encodingOnBitsA     = [5, 7, 9] + range(11, 40, 4) + range(43, 100, 8),
-                encodingOnBitsB     = [5, 7, 9] + range(11, 40, 4) + range(43, 100, 8),
+                encodingOnBitsA     = [5, 7, 9] + list(range(11, 40, 4)) + list(range(43, 100, 8)),
+                encodingOnBitsB     = [5, 7, 9] + list(range(11, 40, 4)) + list(range(43, 100, 8)),
                 
                 numAValues          = [25],
                 numBValues          = [25],

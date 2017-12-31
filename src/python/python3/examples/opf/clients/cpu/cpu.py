@@ -55,8 +55,8 @@ def runCPU():
   predHistory = deque([0.0] * WINDOW, maxlen=60)
 
   # Initialize the plot lines that we will update with each new record.
-  actline, = plt.plot(range(WINDOW), actHistory)
-  predline, = plt.plot(range(WINDOW), predHistory)
+  actline, = plt.plot(list(range(WINDOW)), actHistory)
+  predline, = plt.plot(list(range(WINDOW)), predHistory)
   # Set the y-axis range.
   actline.axes.set_ylim(0, 100)
   predline.axes.set_ylim(0, 100)

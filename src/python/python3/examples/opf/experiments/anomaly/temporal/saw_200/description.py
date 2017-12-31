@@ -126,11 +126,11 @@ config = {
             #
             # (value generated from DS_ENCODER_SCHEMA)
             'encoders': {   'f': {   'clipInput': True,
-                         'fieldname': u'f',
+                         'fieldname': 'f',
                          'maxval': 200,
                          'minval': 0,
                          'n': 513,
-                         'name': u'f',
+                         'name': 'f',
                          'type': 'ScalarEncoder',
                          'w': 21}},
 
@@ -336,13 +336,13 @@ control = {
 
   # Input stream specification per py/nupic/cluster/database/StreamDef.json.
   #
-  'dataset' : {   u'info': u'Artificial Data',
-        u'streams': [   {   u'columns': [u'*'],
-                            u'info': u'blah',
-                            u'source': u'file://'+os.path.join(os.path.dirname(__file__), 'data.csv'),
+  'dataset' : {   'info': 'Artificial Data',
+        'streams': [   {   'columns': ['*'],
+                            'info': 'blah',
+                            'source': 'file://'+os.path.join(os.path.dirname(__file__), 'data.csv'),
                         }
                      ],
-        u'version': 1},
+        'version': 1},
 
   # Iteration count: maximum number of iterations.  Each iteration corresponds
   # to one record from the (possibly aggregated) dataset.  The task is
@@ -355,12 +355,12 @@ control = {
 
 
   # A dictionary containing all the supplementary parameters for inference
-  "inferenceArgs":{u'predictedField': u'f', 'predictionSteps': [1]},
+  "inferenceArgs":{'predictedField': 'f', 'predictionSteps': [1]},
 
   # Metrics: A list of MetricSpecs that instantiate the metrics that are
   # computed for this experiment
   'metrics':[
-    MetricSpec(field=u'f', metric='aae', inferenceElement='prediction', params={'window': 100}),
+    MetricSpec(field='f', metric='aae', inferenceElement='prediction', params={'window': 100}),
   ],
 
   # Logged Metrics: A sequence of regular expressions that specify which of

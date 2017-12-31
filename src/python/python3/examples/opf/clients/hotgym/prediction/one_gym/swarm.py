@@ -86,26 +86,26 @@ def swarmForBestModelParams(swarmConfig, name, maxWorkers=4):
 
 def printSwarmSizeWarning(size):
   if size is "small":
-    print "= THIS IS A DEBUG SWARM. DON'T EXPECT YOUR MODEL RESULTS TO BE GOOD."
+    print("= THIS IS A DEBUG SWARM. DON'T EXPECT YOUR MODEL RESULTS TO BE GOOD.")
   elif size is "medium":
-    print "= Medium swarm. Sit back and relax, this could take awhile."
+    print("= Medium swarm. Sit back and relax, this could take awhile.")
   else:
-    print "= LARGE SWARM! Might as well load up the Star Wars Trilogy."
+    print("= LARGE SWARM! Might as well load up the Star Wars Trilogy.")
 
 
 
 def swarm(filePath):
   name = os.path.splitext(os.path.basename(filePath))[0]
-  print "================================================="
-  print "= Swarming on %s data..." % name
+  print("=================================================")
+  print("= Swarming on %s data..." % name)
   printSwarmSizeWarning(SWARM_DESCRIPTION["swarmSize"])
-  print "================================================="
+  print("=================================================")
   modelParams = swarmForBestModelParams(SWARM_DESCRIPTION, name)
-  print "\nWrote the following model param files:"
-  print "\t%s" % modelParams
+  print("\nWrote the following model param files:")
+  print("\t%s" % modelParams)
 
 
 
 if __name__ == "__main__":
-  print DESCRIPTION
+  print(DESCRIPTION)
   swarm(INPUT_FILE)

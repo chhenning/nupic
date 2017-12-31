@@ -16,6 +16,7 @@ Removals:
 - apr
 - apr-utils
 - Capn Proto
+- Swig
 
 
 Additions

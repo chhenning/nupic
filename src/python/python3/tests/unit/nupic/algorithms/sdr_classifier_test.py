@@ -22,11 +22,11 @@
 """Unit tests for SDRClassifier module."""
 
 
-import cPickle as pickle
+import pickle as pickle
 import random
 import tempfile
 import types
-import unittest
+import unittest2 as unittest
 
 import numpy
 
@@ -76,7 +76,7 @@ class SDRClassifierTest(unittest.TestCase):
 
     # Enough times to perform Inference and learn associations
     retval = []
-    for recordNum in xrange(10):
+    for recordNum in range(10):
       retval = self._compute(classifier, recordNum, [1, 5], 0, 10)
 
     self.assertEqual(retval["actualValues"][0], 10)
@@ -90,7 +90,7 @@ class SDRClassifierTest(unittest.TestCase):
 
     # Enough times to perform Inference and learn associations
     retval = []
-    for recordNum in xrange(10):
+    for recordNum in range(10):
       retval = self._compute(classifier, recordNum, [1, 5], 0, 10)
 
     self.assertEqual(retval["actualValues"][0], 10)
@@ -130,7 +130,7 @@ class SDRClassifierTest(unittest.TestCase):
     retval = c.compute(recordNum=recordNum, patternNZ=[1, 5, 9],
               classification={"bucketIdx": 4, "actValue": 34.7},
               learn=True, infer=False)
-    self.assertEquals({}, retval)
+    self.assertEqual({}, retval)
     recordNum += 1
 
     # infer only
@@ -149,7 +149,7 @@ class SDRClassifierTest(unittest.TestCase):
     retval3 = c.compute(recordNum=recordNum, patternNZ=[1, 2],
                         classification={"bucketIdx": 2, "actValue": 14.2},
                         learn=False, infer=False)
-    self.assertEquals({}, retval3)
+    self.assertEqual({}, retval3)
 
 
   def testCompute1(self):
@@ -246,7 +246,7 @@ class SDRClassifierTest(unittest.TestCase):
                                               "actValue": None},
                               learn=True, infer=True)
     for value in predictResult["actualValues"]:
-      self.assertIsInstance(value, (types.NoneType, types.StringType))
+      self.assertIsInstance(value, (type(None), bytes))
 
 
   def testComputeCategory2(self):
@@ -353,10 +353,10 @@ class SDRClassifierTest(unittest.TestCase):
                      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90])
 
     self.assertGreater(retval[1][0], 0.99)
-    for i in xrange(1, 10):
+    for i in range(1, 10):
       self.assertLess(retval[1][i], 0.01)
     self.assertGreater(retval[2][1], 0.99)
-    for i in [0] + range(2, 10):
+    for i in [0] + list(range(2, 10)):
       self.assertLess(retval[2][i], 0.01)
 
 
@@ -496,7 +496,7 @@ class SDRClassifierTest(unittest.TestCase):
     SDR2 = [2, 4, 6]
     recordNum = 0
     random.seed(42)
-    for _ in xrange(5000):
+    for _ in range(5000):
       randomNumber = random.random()
       if randomNumber < 0.3:
         bucketIdx = 0
@@ -560,7 +560,7 @@ class SDRClassifierTest(unittest.TestCase):
     SDR2[5] = SDR1[11]
 
     random.seed(42)
-    for _ in xrange(5000):
+    for _ in range(5000):
       randomNumber = random.random()
       if randomNumber < 0.3:
         bucketIdx = 0
@@ -616,7 +616,7 @@ class SDRClassifierTest(unittest.TestCase):
     SDR2 = [2, 4, 6]
     recordNum = 0
     random.seed(42)
-    for _ in xrange(5000):
+    for _ in range(5000):
       c.compute(recordNum=recordNum, patternNZ=SDR1,
                 classification={"bucketIdx": [0, 1], "actValue": [0, 1]},
                 learn=True, infer=False)
@@ -671,7 +671,7 @@ class SDRClassifierTest(unittest.TestCase):
     SDR2 = [2, 4, 6]
 
     random.seed(42)
-    for _ in xrange(10000):
+    for _ in range(10000):
       randomNumber = random.random()
       if randomNumber < 0.3:
         bucketIdx = 0
@@ -711,7 +711,7 @@ class SDRClassifierTest(unittest.TestCase):
     self.assertAlmostEqual(result2[0][1], 0.5, places=1)
     self.assertAlmostEqual(result2[0][3], 0.5, places=1)
 
-    for _ in xrange(20000):
+    for _ in range(20000):
       randomNumber = random.random()
       if randomNumber < 0.3:
         bucketIdx = 0
@@ -763,7 +763,7 @@ class SDRClassifierTest(unittest.TestCase):
     SDR1 = [1, 3, 5]
     SDR2 = [2, 4, 6]
     recordNum = 0
-    for _ in xrange(100):
+    for _ in range(100):
       c.compute(recordNum=recordNum, patternNZ=SDR1,
                 classification={"bucketIdx": 0, "actValue": 0},
                 learn=True, infer=False)
@@ -816,8 +816,8 @@ class SDRClassifierTest(unittest.TestCase):
     self.assertAlmostEqual(c1.alpha, c2.alpha)
     self.assertAlmostEqual(c1.actValueAlpha, c2.actValueAlpha)
     self.assertEqual(c1._patternNZHistory, c2._patternNZHistory)
-    self.assertEqual(c1._weightMatrix.keys(), c2._weightMatrix.keys())
-    for step in c1._weightMatrix.keys():
+    self.assertEqual(list(c1._weightMatrix.keys()), list(c2._weightMatrix.keys()))
+    for step in list(c1._weightMatrix.keys()):
       c1Weight = c1._weightMatrix[step]
       c2Weight = c2._weightMatrix[step]
       self.assertSequenceEqual(list(c1Weight.flatten()),
@@ -825,7 +825,7 @@ class SDRClassifierTest(unittest.TestCase):
     self.assertEqual(c1._maxBucketIdx, c2._maxBucketIdx)
     self.assertEqual(c1._maxInputIdx, c2._maxInputIdx)
     self.assertEqual(len(c1._actualValues), len(c2._actualValues))
-    for i in xrange(len(c1._actualValues)):
+    for i in range(len(c1._actualValues)):
       self.assertAlmostEqual(c1._actualValues[i], c2._actualValues[i], 5)
     self.assertEqual(c1._version, c2._version)
     self.assertEqual(c1.verbosity, c2.verbosity)
@@ -843,13 +843,13 @@ class SDRClassifierTest(unittest.TestCase):
                          classification={'bucketIdx': 4, 'actValue': 34.7},
                          learn=True, infer=True)
 
-    self.assertEqual(result1.keys(), result2.keys())
+    self.assertEqual(list(result1.keys()), list(result2.keys()))
 
-    for key in result1.keys():
+    for key in list(result1.keys()):
       self.assertEqual(len(result1[key]), len(result2[key]))
       self.assertEqual(len(result1[key]), expectedActualValuesLen)
 
-      for i in xrange(expectedActualValuesLen):
+      for i in range(expectedActualValuesLen):
         self.assertAlmostEqual(result1[key][i], result2[key][i], 5)
 
 
@@ -867,8 +867,8 @@ class SDRClassifierTest(unittest.TestCase):
 
   def test_pFormatArray(self):
     from nupic.algorithms.sdr_classifier import _pFormatArray
-    pretty = _pFormatArray(range(10))
-    self.assertIsInstance(pretty, basestring)
+    pretty = _pFormatArray(list(range(10)))
+    self.assertIsInstance(pretty, str)
     self.assertEqual(pretty[0], "[")
     self.assertEqual(pretty[-1], "]")
     self.assertEqual(len(pretty.split(" ")), 12)

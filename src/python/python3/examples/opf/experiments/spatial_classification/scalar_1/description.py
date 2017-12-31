@@ -37,22 +37,22 @@ config = \
       'encoders': {
         'field1': {
           'clipInput': True,
-          'fieldname': u'field1',
+          'fieldname': 'field1',
           'maxval': 5.0,
           'minval': 0.0,
           'n': 600,
-          'name': u'field1',
+          'name': 'field1',
           'type': 'ScalarEncoder',
           'w': 21
         },
         'classification': {
           'classifierOnly': True,
           'clipInput': True,
-          'fieldname': u'classification',
+          'fieldname': 'classification',
           'maxval': 50.0,
           'minval': 0.0,
           'n': 600,
-          'name': u'classification',
+          'name': 'classification',
           'type': 'ScalarEncoder',
           'w': 21
          },
