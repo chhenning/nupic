@@ -13,15 +13,15 @@ Reducing external dependencies and embracing modern c++ concepts. For instance, 
 ## Dependencies
 
 Removals:
-[-] apr
-[-] apr-utils
-[-] Capn Proto
+- apr
+- apr-utils
+- Capn Proto
 
 
 Additions
-[+] more modern c++, like chrono
-[+] more boost, like filesystem, string algorithm
-[+] eigen or Blaze for matrix stuff
++ more modern c++, like chrono
++ more boost, like filesystem, string algorithm
++ eigen or Blaze for matrix stuff
 
 
 ## Code changes

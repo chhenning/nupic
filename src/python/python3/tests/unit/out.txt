@@ -1,0 +1,800 @@
+============================= test session starts =============================
+platform win32 -- Python 3.6.3, pytest-3.2.5, py-1.5.2, pluggy-0.4.0
+rootdir: D:\Numenta\python3\tests\unit, inifile:
+collected 54 items / 70 errors
+
+=================================== ERRORS ====================================
+______ ERROR collecting nupic/algorithms/anomaly_likelihood_jeff_test.py ______
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\anomaly_likelihood_jeff_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\anomaly_likelihood_jeff_test.py:35: in <module>
+    from nupic.algorithms import anomaly_likelihood as an
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+________ ERROR collecting nupic/algorithms/anomaly_likelihood_test.py _________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\anomaly_likelihood_test.py", line 63
+E       print "\nSampling from distribution:", params
+E                                           ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int "\nSampling from distribution:", params)?
+______________ ERROR collecting nupic/algorithms/anomaly_test.py ______________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\anomaly_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\anomaly_test.py:29: in <module>
+    from nupic.algorithms import anomaly
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+_____ ERROR collecting nupic/algorithms/backtracking_tm_constant_test.py ______
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\backtracking_tm_constant_test.py", line 42
+E       print ''.join('1' if k != 0 else '.' for k in x)
+E              ^
+E   SyntaxError: invalid syntax
+_______ ERROR collecting nupic/algorithms/backtracking_tm_cpp2_test.py ________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\backtracking_tm_cpp2_test.py", line 149
+E       print "\n\n    ===================================\nPattern:",
+E                                                                   ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(print "\n\n    ===================================\nPattern:", end=" ")?
+________ ERROR collecting nupic/algorithms/backtracking_tm_cpp_test.py ________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\backtracking_tm_cpp_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\backtracking_tm_cpp_test.py:26: in <module>
+    from nupic.algorithms.backtracking_tm_cpp import BacktrackingTMCPP
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+__________ ERROR collecting nupic/algorithms/backtracking_tm_test.py __________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\backtracking_tm_test.py", line 167
+E       print i
+E             ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(print i)?
+____________ ERROR collecting nupic/algorithms/connections_test.py ____________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\connections_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\connections_test.py:31: in <module>
+    from nupic.algorithms.connections import Connections
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+_________ ERROR collecting nupic/algorithms/inhibition_object_test.py _________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\inhibition_object_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\inhibition_object_test.py:32: in <module>
+    from nupic.algorithms.spatial_pooler import SpatialPooler
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+__________ ERROR collecting nupic/algorithms/knn_classifier_test.py ___________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\knn_classifier_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\knn_classifier_test.py:26: in <module>
+    from nupic.algorithms.knn_classifier import KNNClassifier
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+__________ ERROR collecting nupic/algorithms/sdr_classifier_test.py ___________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\sdr_classifier_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\sdr_classifier_test.py:25: in <module>
+    import cPickle as pickle
+E   ModuleNotFoundError: No module named 'cPickle'
+________ ERROR collecting nupic/algorithms/sp_learn_inference_test.py _________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\sp_learn_inference_test.py", line 98
+E       print "Input #%d" % i
+E                       ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(print "Input #%d" % i)?
+____________ ERROR collecting nupic/algorithms/sp_overlap_test.py _____________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\sp_overlap_test.py", line 102
+E       print "\nRunning SP overlap test..."
+E                                          ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int "\nRunning SP overlap test...")?
+_______ ERROR collecting nupic/algorithms/spatial_pooler_boost_test.py ________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\spatial_pooler_boost_test.py", line 137
+E       print "SP seed set to:", self.params['seed']
+E                             ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int "SP seed set to:", self.params['seed'])?
+___ ERROR collecting nupic/algorithms/spatial_pooler_compatability_test.py ____
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\spatial_pooler_compatability_test.py", line 130
+E       if self.verbosity > 2: print "Column:",i
+E                                            ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(if self.verbosity > 2: print "Column:",i)?
+______ ERROR collecting nupic/algorithms/spatial_pooler_compute_test.py _______
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\algorithms\spatial_pooler_compute_test.py", line 97
+E       print "testBasicCompute1, SP seed set to:",params['seed']
+E                                                ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int "testBasicCompute1, SP seed set to:",params['seed'])?
+______ ERROR collecting nupic/algorithms/spatial_pooler_cpp_api_test.py _______
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\spatial_pooler_cpp_api_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\spatial_pooler_cpp_api_test.py:23: in <module>
+    from nupic.bindings.algorithms import SpatialPooler as CPPSpatialPooler
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+______ ERROR collecting nupic/algorithms/spatial_pooler_cpp_unit_test.py ______
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\spatial_pooler_cpp_unit_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\spatial_pooler_cpp_unit_test.py:26: in <module>
+    from nupic.bindings.math import GetNTAReal
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+_______ ERROR collecting nupic/algorithms/spatial_pooler_py_api_test.py _______
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\spatial_pooler_py_api_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\spatial_pooler_py_api_test.py:22: in <module>
+    from mock import Mock, patch, ANY, call
+E   ModuleNotFoundError: No module named 'mock'
+________ ERROR collecting nupic/algorithms/spatial_pooler_unit_test.py ________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\spatial_pooler_unit_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\spatial_pooler_unit_test.py:30: in <module>
+    from mock import Mock
+E   ModuleNotFoundError: No module named 'mock'
+__________ ERROR collecting nupic/algorithms/temporal_memory_test.py __________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\temporal_memory_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\temporal_memory_test.py:26: in <module>
+    from nupic.algorithms.temporal_memory import TemporalMemory
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+_______ ERROR collecting nupic/algorithms/monitor_mixin/metric_test.py ________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\monitor_mixin\metric_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\monitor_mixin\metric_test.py:23: in <module>
+    from nupic.algorithms.monitor_mixin.metric import Metric
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+________ ERROR collecting nupic/algorithms/monitor_mixin/trace_test.py ________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\algorithms\monitor_mixin\trace_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\algorithms\monitor_mixin\trace_test.py:24: in <module>
+    from nupic.algorithms.monitor_mixin.trace import IndicesTrace
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+_______________ ERROR collecting nupic/data/aggregator_test.py ________________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\data\aggregator_test.py:26: in <module>
+    from nupic.data import aggregator
+E     File "D:\Numenta\python3\nupic\data\aggregator.py", line 804
+E       print 'Waiting for %s to be fully written by another process' % \
+E                                                                   ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(print 'Waiting for %s to be fully written by another process' % \)?
+________________ ERROR collecting nupic/data/dictutils_test.py ________________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\data\dictutils_test.py:26: in <module>
+    from nupic.data import dict_utils
+E     File "D:\Numenta\python3\nupic\data\dict_utils.py", line 115
+E       print ">>> inAButNotInB: %s" % differences['inAButNotInB']
+E                                  ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int ">>> inAButNotInB: %s" % differences['inAButNotInB'])?
+___________ ERROR collecting nupic/data/file_record_stream_test.py ____________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\data\file_record_stream_test.py", line 69
+E       print 'Creating temp file:', filename
+E                                 ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int 'Creating temp file:', filename)?
+_________________ ERROR collecting nupic/data/filters_test.py _________________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\data\filters_test.py:33: in <module>
+    from nupic.regions.record_sensor import RecordSensor
+E     File "D:\Numenta\python3\nupic\regions\record_sensor.py", line 322
+E       print "RecordSensor got data: %s" % data
+E                                       ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(print "RecordSensor got data: %s" % data)?
+____________ ERROR collecting nupic/data/inference_shifter_test.py ____________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\data\inference_shifter_test.py:24: in <module>
+    from nupic.data.inference_shifter import InferenceShifter
+..\..\nupic\data\inference_shifter.py:27: in <module>
+    from nupic.frameworks.opf.opf_utils import InferenceElement, ModelResult
+..\..\nupic\frameworks\opf\opf_utils.py:33: in <module>
+    import nupic.data.json_helpers as jsonhelpers
+E     File "D:\Numenta\python3\nupic\data\json_helpers.py", line 140
+E       print "Validating schemaDict method in positive test..."
+E                                                              ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(t "Validating schemaDict method in positive test...")?
+______________ ERROR collecting nupic/data/record_stream_test.py ______________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\data\record_stream_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\data\record_stream_test.py:27: in <module>
+    import mock
+E   ModuleNotFoundError: No module named 'mock'
+__________________ ERROR collecting nupic/data/utils_test.py __________________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\data\utils_test.py:27: in <module>
+    from nupic.support.unittesthelpers.testcasebase import (TestCaseBase,
+E     File "D:\Numenta\python3\nupic\support\unittesthelpers\testcasebase.py", line 58
+E       print "###############################################################"
+E                                                                             ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int "###############################################################")?
+__________ ERROR collecting nupic/data/generators/anomalyzer_test.py __________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\data\generators\anomalyzer_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\data\generators\anomalyzer_test.py:25: in <module>
+    from mock import MagicMock, patch
+E   ModuleNotFoundError: No module named 'mock'
+_______ ERROR collecting nupic/data/generators/pattern_machine_test.py ________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\data\generators\pattern_machine_test.py:23: in <module>
+    from nupic.data.generators.pattern_machine import (PatternMachine,
+E     File "D:\Numenta\python3\nupic\data\generators\pattern_machine.py", line 152
+E       key=lambda (number, bits): len(bits),
+E                  ^
+E   SyntaxError: invalid syntax
+_______ ERROR collecting nupic/data/generators/sequence_machine_test.py _______
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\data\generators\sequence_machine_test.py:23: in <module>
+    from nupic.data.generators.pattern_machine import (
+E     File "D:\Numenta\python3\nupic\data\generators\pattern_machine.py", line 152
+E       key=lambda (number, bits): len(bits),
+E                  ^
+E   SyntaxError: invalid syntax
+___________ ERROR collecting nupic/encoders/adaptivescalar_test.py ____________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\adaptivescalar_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\adaptivescalar_test.py:28: in <module>
+    from nupic.encoders.adaptive_scalar import AdaptiveScalarEncoder
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+______________ ERROR collecting nupic/encoders/category_test.py _______________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\category_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\category_test.py:30: in <module>
+    from nupic.encoders.base import defaultDtype
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+_____________ ERROR collecting nupic/encoders/coordinate_test.py ______________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\encoders\coordinate_test.py", line 276
+E       print "Max: {0}".format(np.max(allOverlaps))
+E                      ^
+E   SyntaxError: invalid syntax
+________________ ERROR collecting nupic/encoders/date_test.py _________________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\date_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\date_test.py:27: in <module>
+    from nupic.encoders.base import defaultDtype
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+________________ ERROR collecting nupic/encoders/delta_test.py ________________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\delta_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\delta_test.py:28: in <module>
+    from nupic.encoders.delta import (DeltaEncoder,
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+________ ERROR collecting nupic/encoders/geospatial_coordinate_test.py ________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\geospatial_coordinate_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\geospatial_coordinate_test.py:26: in <module>
+    from nupic.encoders.base import defaultDtype
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+_______________ ERROR collecting nupic/encoders/logenc_test.py ________________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\logenc_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\logenc_test.py:31: in <module>
+    from nupic.encoders.logarithm import LogEncoder
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+________________ ERROR collecting nupic/encoders/multi_test.py ________________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\multi_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\multi_test.py:28: in <module>
+    from nupic.encoders.multi import MultiEncoder
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+________ ERROR collecting nupic/encoders/pass_through_encoder_test.py _________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\pass_through_encoder_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\pass_through_encoder_test.py:31: in <module>
+    from nupic.encoders import PassThroughEncoder
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+______ ERROR collecting nupic/encoders/random_distributed_scalar_test.py ______
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\random_distributed_scalar_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\random_distributed_scalar_test.py:22: in <module>
+    from cStringIO import StringIO
+E   ModuleNotFoundError: No module named 'cStringIO'
+_______________ ERROR collecting nupic/encoders/scalar_test.py ________________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\scalar_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\scalar_test.py:27: in <module>
+    from nupic.encoders.base import defaultDtype
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+_____________ ERROR collecting nupic/encoders/scalarspace_test.py _____________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\scalarspace_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\scalarspace_test.py:26: in <module>
+    from nupic.encoders.scalar_space import ScalarSpaceEncoder, DeltaEncoder
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+_____________ ERROR collecting nupic/encoders/sdrcategory_test.py _____________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\encoders\sdrcategory_test.py", line 194
+E       except RuntimeError, e:
+E                          ^
+E   SyntaxError: invalid syntax
+_____ ERROR collecting nupic/encoders/sparse_pass_through_encoder_test.py _____
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\encoders\sparse_pass_through_encoder_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\encoders\sparse_pass_through_encoder_test.py:31: in <module>
+    from nupic.encoders import SparsePassThroughEncoder
+..\..\nupic\encoders\__init__.py:22: in <module>
+    from scalar import ScalarEncoder
+E   ModuleNotFoundError: No module named 'scalar'
+________________ ERROR collecting nupic/engine/network_test.py ________________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\engine\network_test.py", line 98
+E       print "Number of regions in new network: %d" % len(n.regions)
+E                                                  ^
+E   SyntaxError: invalid syntax
+____________ ERROR collecting nupic/engine/syntactic_sugar_test.py ____________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\engine\syntactic_sugar_test.py", line 119
+E       print r.spec
+E             ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int r.spec)?
+_________ ERROR collecting nupic/engine/unified_py_parameter_test.py __________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\engine\unified_py_parameter_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\engine\unified_py_parameter_test.py:32: in <module>
+    import nupic.bindings.engine_internal
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+ ERROR collecting nupic/frameworks/opf/htmpredictionmodel_classifier_helper_test.py 
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\frameworks\opf\htmpredictionmodel_classifier_helper_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\frameworks\opf\htmpredictionmodel_classifier_helper_test.py:28: in <module>
+    from mock import Mock, patch, ANY, call
+E   ModuleNotFoundError: No module named 'mock'
+______ ERROR collecting nupic/frameworks/opf/htmpredictionmodel_test.py _______
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\frameworks\opf\htmpredictionmodel_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\frameworks\opf\htmpredictionmodel_test.py:27: in <module>
+    from nupic.frameworks.opf.htm_prediction_model import HTMPredictionModel
+..\..\nupic\frameworks\opf\htm_prediction_model.py:40: in <module>
+    from nupic.frameworks.opf.model import Model
+..\..\nupic\frameworks\opf\model.py:24: in <module>
+    import cPickle as pickle
+E   ModuleNotFoundError: No module named 'cPickle'
+__________ ERROR collecting nupic/frameworks/opf/opf_metrics_test.py __________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\frameworks\opf\opf_metrics_test.py:26: in <module>
+    from nupic.frameworks.opf.metrics import getModule, MetricSpec, MetricMulti
+E     File "D:\Numenta\python3\nupic\frameworks\opf\metrics.py", line 546
+E       print "groundTruth:\n%s\nPredictions:\n%s\n%s\n" % (groundTruth,
+E                                                      ^
+E   SyntaxError: invalid syntax
+_____ ERROR collecting nupic/frameworks/opf/previous_value_model_test.py ______
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\frameworks\opf\previous_value_model_test.py:29: in <module>
+    from nupic.data import dict_utils
+E     File "D:\Numenta\python3\nupic\data\dict_utils.py", line 115
+E       print ">>> inAButNotInB: %s" % differences['inAButNotInB']
+E                                  ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int ">>> inAButNotInB: %s" % differences['inAButNotInB'])?
+________ ERROR collecting nupic/frameworks/opf/two_gram_model_test.py _________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\frameworks\opf\two_gram_model_test.py:27: in <module>
+    from nupic.data import dict_utils
+E     File "D:\Numenta\python3\nupic\data\dict_utils.py", line 115
+E       print ">>> inAButNotInB: %s" % differences['inAButNotInB']
+E                                  ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int ">>> inAButNotInB: %s" % differences['inAButNotInB'])?
+_ ERROR collecting nupic/frameworks/opf/common_models/cluster_params_test.py __
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\frameworks\opf\common_models\cluster_params_test.py:25: in <module>
+    from nupic.support.unittesthelpers.testcasebase import TestCaseBase
+E     File "D:\Numenta\python3\nupic\support\unittesthelpers\testcasebase.py", line 58
+E       print "###############################################################"
+E                                                                             ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int "###############################################################")?
+_________________ ERROR collecting nupic/math/lgamma_test.py __________________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\math\lgamma_test.py", line 69
+E       print v, lg, lgamma(v)
+E             ^
+E   SyntaxError: invalid syntax
+________________ ERROR collecting nupic/math/topology_test.py _________________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\math\topology_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\math\topology_test.py:26: in <module>
+    from nupic.math.topology import (coordinatesFromIndex,
+..\..\nupic\math\__init__.py:31: in <module>
+    from nupic.bindings.math import (GetNTAReal,
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+______ ERROR collecting nupic/regions/anomaly_likelihood_region_test.py _______
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\regions\anomaly_likelihood_region_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\regions\anomaly_likelihood_region_test.py:36: in <module>
+    from nupic.regions.anomaly_likelihood_region import AnomalyLikelihoodRegion
+..\..\nupic\regions\anomaly_likelihood_region.py:24: in <module>
+    from nupic.algorithms.anomaly_likelihood import AnomalyLikelihood
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+____________ ERROR collecting nupic/regions/anomaly_region_test.py ____________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\regions\anomaly_region_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\regions\anomaly_region_test.py:27: in <module>
+    from nupic.regions.anomaly_region import AnomalyRegion
+..\..\nupic\regions\anomaly_region.py:26: in <module>
+    from nupic.algorithms import anomaly
+..\..\nupic\algorithms\__init__.py:27: in <module>
+    from nupic.bindings.math import NearestNeighbor
+E   ModuleNotFoundError: No module named 'nupic.bindings'
+____ ERROR collecting nupic/regions/knn_anomaly_classifier_region_test.py _____
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\regions\knn_anomaly_classifier_region_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\regions\knn_anomaly_classifier_region_test.py:32: in <module>
+    from mock import Mock, patch, ANY, call
+E   ModuleNotFoundError: No module named 'mock'
+________ ERROR collecting nupic/regions/knn_classifier_region_test.py _________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\regions\knn_classifier_region_test.py:27: in <module>
+    from nupic.regions.knn_classifier_region import KNNClassifierRegion
+E     File "D:\Numenta\python3\nupic\regions\knn_classifier_region.py", line 908
+E       print "  Warning: You have chosen to ignore the image data and instead just use the auxiliary data stream."
+E                                                                                                                 ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(print "  Warning: You have chosen to ignore the image data and instead just use the auxiliary data stream.")?
+_________ ERROR collecting nupic/regions/record_sensor_region_test.py _________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\regions\record_sensor_region_test.py:27: in <module>
+    from nupic.engine import Network
+E     File "D:\Numenta\python3\nupic\engine\__init__.py", line 127
+E       print dashes
+E                  ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int dashes)?
+________ ERROR collecting nupic/regions/sdr_classifier_region_test.py _________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\regions\sdr_classifier_region_test.py:26: in <module>
+    from nupic.engine import Network
+E     File "D:\Numenta\python3\nupic\engine\__init__.py", line 127
+E       print dashes
+E                  ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(int dashes)?
+______________ ERROR collecting nupic/regions/tm_region_test.py _______________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+<frozen importlib._bootstrap>:971: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:955: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:656: in _load_unlocked
+    ???
+<frozen importlib._bootstrap>:626: in _load_backward_compatible
+    ???
+c:\python36\lib\site-packages\_pytest\assertion\rewrite.py:212: in load_module
+    py.builtin.exec_(co, mod.__dict__)
+nupic\regions\tm_region_test.py:33: in <module>
+    from nupic.regions.tm_region import TMRegion
+E     File "D:\Numenta\python3\nupic\regions\tm_region.py", line 387
+E       print self.__class__.__name__, "contains base class member '%s'" % \
+E                ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(print self.__class__.__name__, "contains base class member '%s'" % \)?
+____________ ERROR collecting nupic/support/configuration_test.py _____________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\support\configuration_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\support\configuration_test.py:24: in <module>
+    from StringIO import StringIO
+E   ModuleNotFoundError: No module named 'StringIO'
+_________ ERROR collecting nupic/support/custom_configuration_test.py _________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\support\custom_configuration_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\support\custom_configuration_test.py:25: in <module>
+    from StringIO import StringIO
+E   ModuleNotFoundError: No module named 'StringIO'
+______________ ERROR collecting nupic/support/decorators_test.py ______________
+ImportError while importing test module 'D:\Numenta\python3\tests\unit\nupic\support\decorators_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+nupic\support\decorators_test.py:28: in <module>
+    from mock import patch, call, Mock
+E   ModuleNotFoundError: No module named 'mock'
+_____________ ERROR collecting nupic/support/object_json_test.py ______________
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\support\object_json_test.py", line 45
+E       self.assertEqual(json.loads(json.dumps(5L)), 5L)
+E                                               ^
+E   SyntaxError: invalid syntax
+__ ERROR collecting nupic/support/consoleprinter_test/consoleprinter_test.py __
+c:\python36\lib\site-packages\_pytest\python.py:395: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+c:\python36\lib\site-packages\py\_path\local.py:668: in pyimport
+    __import__(modname)
+E     File "D:\Numenta\python3\tests\unit\nupic\support\consoleprinter_test\consoleprinter_test.py", line 57
+E       print "Running with default verbosity"
+E                                            ^
+E   SyntaxError: Missing parentheses in call to 'print'. Did you mean print(print "Running with default verbosity")?
+!!!!!!!!!!!!!!!!!! Interrupted: 70 errors during collection !!!!!!!!!!!!!!!!!!!
+========================== 70 error in 2.83 seconds ===========================
