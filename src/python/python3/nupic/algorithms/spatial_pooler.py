@@ -257,13 +257,14 @@ class SpatialPooler(Serializable):
     columnDimensions = numpy.array(columnDimensions, ndmin=1)
     numColumns = columnDimensions.prod()
 
-    if not isinstance(numColumns, int) or numColumns <= 0:
+    if not isinstance(numColumns, numpy.int32) or numColumns <= 0:
       raise InvalidSPParamValueError("Invalid number of columns ({})"
                                      .format(repr(numColumns)))
+    
     inputDimensions = numpy.array(inputDimensions, ndmin=1)
     numInputs = inputDimensions.prod()
 
-    if not isinstance(numInputs, int) or numInputs <= 0:
+    if not isinstance(numInputs, numpy.int32) or numInputs <= 0:
       raise InvalidSPParamValueError("Invalid number of inputs ({}"
                                      .format(repr(numInputs)))
 

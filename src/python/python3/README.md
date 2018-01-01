@@ -8,7 +8,15 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 
 
 
-| File | python3 |
-|------|---------|
-| examples/sp/hello_sp.py | yes |
-| examples/tm/hello_tm.py | yes |
+| File | python3 | github issue |
+|------|---------|--------------|
+| examples/sp/hello_sp.py | yes ||
+| examples/tm/hello_tm.py | yes ||
+| tests/unit/nupic/algorithms/anomaly_likelihood_jeff_test.py| yes ||
+| tests/unit/nupic/algorithms/anomaly_likelihood_test.py| yes ||
+| tests/unit/nupic/algorithms/anomaly_likelihood_test.py| yes ||
+| tests/unit/nupic/algorithms/anomaly_test.py| yes ||
+| tests/unit/nupic/algorithms/backtracking_tm_constant_test.py| TypeError: getSegmentActivityLevel() | #1 |
+| tests/unit/nupic/algorithms/backtracking_tm_cpp.py| python crashes ||
+| tests/unit/nupic/algorithms/backtracking_tm_cpp2_test.py| AssertionError: False is not true ||
+| tests/unit/nupic/algorithms/connections_test.py | yes ||

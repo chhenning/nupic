@@ -28,7 +28,7 @@ import itertools
 random.seed(42)
 numpy.random.seed(42)
 
-from nupic.bindings.math import (SM32, SparseBinaryMatrix)
+from nupic.bindings.math import (SM32, SM_01_32_32 as SparseBinaryMatrix)
 
 
 

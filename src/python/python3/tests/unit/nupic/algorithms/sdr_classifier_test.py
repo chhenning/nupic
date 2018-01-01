@@ -26,7 +26,7 @@ import pickle as pickle
 import random
 import tempfile
 import types
-import unittest2 as unittest
+import unittest
 
 import numpy
 

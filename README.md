@@ -13,6 +13,7 @@ Reducing external dependencies and embracing modern c++ concepts. For instance, 
 ## Dependencies
 
 Removals:
+- Python C API
 - apr
 - apr-utils
 - Capn Proto
@@ -20,6 +21,7 @@ Removals:
 
 
 Additions
++ pybind11
 + more modern c++, like chrono
 + more boost, like filesystem, string algorithm
 + eigen or Blaze for matrix stuff

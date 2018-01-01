@@ -29,9 +29,10 @@ import datetime
 import math
 import numpy
 import pickle
-import unittest2 as unittest
+import unittest
 
-import mock
+from unittest.mock import patch
+from unittest.mock import Mock
 
 from nupic.algorithms import anomaly_likelihood as an
 from nupic.support.unittesthelpers.testcasebase import TestCaseBase
@@ -192,7 +193,7 @@ class AnomalyLikelihoodClassTest(TestCaseBase):
                                                 verbosity=verbosity)
 
 
-    estimateAnomalyLikelihoodsPatch = mock.patch(
+    estimateAnomalyLikelihoodsPatch = patch(
       "nupic.algorithms.anomaly_likelihood.estimateAnomalyLikelihoods",
       side_effect=estimateAnomalyLikelihoodsWrap, autospec=True)
     with estimateAnomalyLikelihoodsPatch as estimateAnomalyLikelihoodsMock:
@@ -225,11 +226,11 @@ class AnomalyLikelihoodClassTest(TestCaseBase):
 
 
   def testReestimationPeriodArg(self):
-    estimateAnomalyLikelihoodsWrap = mock.Mock(
+    estimateAnomalyLikelihoodsWrap = Mock(
       wraps=an.estimateAnomalyLikelihoods,
       autospec=True)
 
-    estimateAnomalyLikelihoodsPatch = mock.patch(
+    estimateAnomalyLikelihoodsPatch = patch(
       "nupic.algorithms.anomaly_likelihood.estimateAnomalyLikelihoods",
       side_effect=estimateAnomalyLikelihoodsWrap, autospec=True)
     with estimateAnomalyLikelihoodsPatch:
@@ -269,7 +270,7 @@ class AnomalyLikelihoodClassTest(TestCaseBase):
       return [0.1], avgRecordList, params
 
 
-    updateAnomalyLikelihoodsPatch = mock.patch(
+    updateAnomalyLikelihoodsPatch = patch(
       "nupic.algorithms.anomaly_likelihood.updateAnomalyLikelihoods",
       side_effect=updateAnomalyLikelihoodsWrap, autospec=True)
     with updateAnomalyLikelihoodsPatch:

@@ -397,6 +397,8 @@ class AnomalyLikelihood(Serializable):
 
     return likelihood
 
+  def getSchema():
+     raise NotImplementedError
 
 
 def estimateAnomalyLikelihoods(anomalyScores,
