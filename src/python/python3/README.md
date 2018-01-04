@@ -20,3 +20,5 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/backtracking_tm_cpp.py| python crashes ||
 | tests/unit/nupic/algorithms/backtracking_tm_cpp2_test.py| AssertionError: False is not true ||
 | tests/unit/nupic/algorithms/connections_test.py | yes ||
+| tests/unit/nupic/algorithms/inhibition_object_test.py | yes ||
+| tests/unit/nupic/algorithms/knn_classifier_test.py | python exceptions | #2 |
