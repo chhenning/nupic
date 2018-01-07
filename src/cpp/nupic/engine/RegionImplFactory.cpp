@@ -184,4 +184,145 @@ RegionImplFactory & RegionImplFactory::getInstance()
   return instance;
 }
 
+
+RegionImpl* RegionImplFactory::createRegionImpl(const std::string nodeType,
+    const std::string nodeParams,
+    Region* region)
+{
+
+    RegionImpl *impl = nullptr;
+    Spec *ns = getSpec(nodeType);
+    ValueMap vm = YAMLUtils::toValueMap(
+        nodeParams.c_str(),
+        ns->parameters,
+        nodeType,
+        region->getName());
+
+    if (cppRegions.find(nodeType) != cppRegions.end())
+    {
+        impl = cppRegions[nodeType]->createRegionImpl(vm, region);
+    }
+    //@todo
+    //else if ((nodeType.find(std::string("py.")) == 0))
+    //{
+    //    if (!pyLib_)
+    //        pyLib_ = std::shared_ptr<DynamicPythonLibrary>(new DynamicPythonLibrary());
+
+    //    impl = createPyNode(pyLib_.get(), nodeType, &vm, region);
+    //}
+    else
+    {
+        NTA_THROW << "Unsupported node type '" << nodeType << "'";
+    }
+
+    return impl;
+}
+
+
+RegionImpl* RegionImplFactory::deserializeRegionImpl(const std::string nodeType,
+    BundleIO& bundle,
+    Region* region)
+{
+
+    RegionImpl *impl = nullptr;
+
+    if (cppRegions.find(nodeType) != cppRegions.end())
+    {
+        impl = cppRegions[nodeType]->deserializeRegionImpl(bundle, region);
+    }
+    //@todo
+    //else if (StringUtils::startsWith(nodeType, "py."))
+    //{
+    //    if (!pyLib_)
+    //        pyLib_ = std::shared_ptr<DynamicPythonLibrary>(new DynamicPythonLibrary());
+
+    //    impl = deserializePyNode(pyLib_.get(), nodeType, bundle, region);
+    //}
+    else
+    {
+        NTA_THROW << "Unsupported node type '" << nodeType << "'";
+    }
+    return impl;
+
+}
+
+
+Spec * RegionImplFactory::getSpec(const std::string nodeType)
+{
+    std::map<std::string, Spec*>::iterator it;
+    // return from cache if we already have it
+    it = nodespecCache_.find(nodeType);
+    if (it != nodespecCache_.end())
+        return it->second;
+
+    // grab the nodespec and cache it
+    // one entry per supported node type
+    Spec * ns = nullptr;
+    if (cppRegions.find(nodeType) != cppRegions.end())
+    {
+        ns = cppRegions[nodeType]->createSpec();
+    }
+    //@todo
+    //else if (nodeType.find(std::string("py.")) == 0)
+    //{
+    //    if (!pyLib_)
+    //        pyLib_ = std::shared_ptr<DynamicPythonLibrary>(new DynamicPythonLibrary());
+
+    //    ns = getPySpec(pyLib_.get(), nodeType);
+    //}
+    else
+    {
+        NTA_THROW << "getSpec() -- Unsupported node type '" << nodeType << "'";
+    }
+
+    if (!ns)
+        NTA_THROW << "Unable to get node spec for: " << nodeType;
+
+    nodespecCache_[nodeType] = ns;
+    return ns;
+}
+
+void RegionImplFactory::cleanup()
+{
+    std::map<std::string, Spec*>::iterator ns;
+    // destroy all nodespecs
+    for (ns = nodespecCache_.begin(); ns != nodespecCache_.end(); ns++)
+    {
+        assert(ns->second != nullptr);
+        // PyNode node specs are destroyed by the C++ PyNode
+        if (ns->first.substr(0, 3) == "py.")
+        {
+            std::string noClass = "";
+            //@todo
+            //pyLib_->destroySpec(ns->first, noClass);
+        }
+        else
+        {
+            delete ns->second;
+        }
+
+        ns->second = nullptr;
+    }
+
+    nodespecCache_.clear();
+
+    // destroy all RegisteredRegionImpls
+    for (auto rri = cppRegions.begin(); rri != cppRegions.end(); rri++)
+    {
+        NTA_ASSERT(rri->second != nullptr);
+        delete rri->second;
+        rri->second = nullptr;
+    }
+
+    cppRegions.clear();
+    initializedRegions = false;
+
+    // Never release the Python dynamic library!
+    // This is due to cleanup issues of Python itself
+    // See: http://docs.python.org/c-api/init.html#Py_Finalize
+    //pyLib_.reset();
+}
+
+
+
 }

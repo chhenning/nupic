@@ -52,7 +52,7 @@ namespace nupic
     Path::Path(std::string path) : path_(std::move(path))
     {
     }
-
+    
 
 //    static apr_status_t getInfo(const std::string & path, apr_int32_t wanted, apr_finfo_t & info)
 //    {

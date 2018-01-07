@@ -69,7 +69,7 @@ namespace nupic
   //Contains all data needed by the callback function.
   struct allData
   {
-    OFStream* outStream;
+    std::ofstream outStream;
     std::string fileName;
     std::vector<watchData> watches;
   };
@@ -104,16 +104,39 @@ namespace nupic
 
     //returns watchID
     auto
-    watchParam(std::string regionName, 
-               std::string varName, 
-               int nodeIndex = -1,
-               bool sparseOutput = true);
+        watchParam(std::string regionName,
+            std::string varName,
+            int nodeIndex = -1,
+            bool sparseOutput = true)
+    {
+        watchData watch;
+        watch.varName = varName;
+        watch.wType = parameter;
+        watch.regionName = regionName;
+        watch.nodeIndex = nodeIndex;
+        watch.sparseOutput = sparseOutput;
+        watch.watchID = data_.watches.size() + 1;
+        data_.watches.push_back(watch);
+        return watch.watchID;
+    }
 
     //returns watchID
     auto
-    watchOutput(std::string regionName,
-                std::string varName,
-                bool sparseOutput = true);
+        watchOutput(std::string regionName,
+            std::string varName,
+            bool sparseOutput = true)
+    {
+        watchData watch;
+        watch.varName = varName;
+        watch.wType = output;
+        watch.regionName = regionName;
+        watch.nodeIndex = -1;
+        watch.isArray = false;
+        watch.sparseOutput = sparseOutput;
+        watch.watchID = data_.watches.size() + 1;
+        data_.watches.push_back(watch);
+        return watch.watchID;
+    }
 
     //callback function that will be called every time network is run
     static void

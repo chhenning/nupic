@@ -25,10 +25,15 @@
 
 #include <string>
 #include <algorithm>
+
+#include <boost/filesystem.hpp>
+
 #include <nupic/os/Directory.hpp>
 #include <nupic/os/Path.hpp>
 #include <nupic/os/OS.hpp>
 #include <nupic/utils/Log.hpp>
+
+namespace fs = boost::filesystem;
 
 namespace nupic
 {
@@ -41,67 +46,39 @@ namespace nupic
     
     std::string getCWD()
     {
-        // @todo
-        throw std::runtime_error("Not implemented");
-//
-//
-//#if defined(NTA_OS_WINDOWS)
-//      wchar_t wcwd[APR_PATH_MAX];
-//      DWORD res = ::GetCurrentDirectoryW(APR_PATH_MAX, wcwd);
-//      NTA_CHECK(res > 0) << "Couldn't get current working directory. OS msg: " 
-//        << OS::getErrorMessage();
-//      std::string cwd = Path::unicodeToUtf8(std::wstring(wcwd));
-//      return cwd;
-//    #else
-//      char cwd[APR_PATH_MAX];
-//      cwd[0] = '\0';
-//      char * res = ::getcwd(cwd, APR_PATH_MAX);
-//      NTA_CHECK(res != nullptr) << "Couldn't get current working directory. OS num: " << errno;
-//      return std::string(cwd);
-//    #endif
+        return fs::current_path().string();
     }
 
     bool empty(const std::string & path)
     {
-      Entry dummy;
-      return Iterator(path).next(dummy) == nullptr;
+        return fs::is_empty(path);
     }
     
     void setCWD(const std::string & path)
     {
-        // @todo
-        throw std::runtime_error("Not implemented");
-        //  int res = 0;
-    //#if defined(NTA_OS_WINDOWS)
-    //  std::wstring wpath(Path::utf8ToUnicode(path));
-    //  res = ::SetCurrentDirectoryW(wpath.c_str()) ? 0 : -1;
-    //#else
-    //  res = ::chdir(path.c_str());
-    //#endif
-    //
-    //  NTA_CHECK(res == 0) << "setCWD: " << OS::getErrorMessage();
+        fs::current_path(path);
     }
 
     static bool removeEmptyDir(const std::string & path, bool noThrow)
     {
         // @todo
         throw std::runtime_error("Not implemented");
-        
-    //int res = 0;
-    //#if defined(NTA_OS_WINDOWS)
-    //  std::wstring wpath(Path::utf8ToUnicode(path));
-    //  res = ::RemoveDirectoryW(wpath.c_str()) != FALSE ? 0 : -1;
-    //#else
-    //  res = ::rmdir(path.c_str());
-    //#endif
-    //  if(!noThrow) {
-    //    NTA_CHECK(res == 0) << "removeEmptyDir: " << OS::getErrorMessage();
-    //  }
-    //  return (res == 0);
-    //}
 
-    //void copyTree(const std::string & source, const std::string & destination)
-    //{
+        //int res = 0;
+        //#if defined(NTA_OS_WINDOWS)
+        //  std::wstring wpath(Path::utf8ToUnicode(path));
+        //  res = ::RemoveDirectoryW(wpath.c_str()) != FALSE ? 0 : -1;
+        //#else
+        //  res = ::rmdir(path.c_str());
+        //#endif
+        //  if(!noThrow) {
+        //    NTA_CHECK(res == 0) << "removeEmptyDir: " << OS::getErrorMessage();
+        //  }
+        //  return (res == 0);
+    }
+
+    void copyTree(const std::string & source, const std::string & destination)
+    {
     //  NTA_CHECK(Path::isDirectory(source));
     //  std::string baseSource(Path::getBasename(source));
     //  std::string dest(destination);
@@ -117,7 +94,6 @@ namespace nupic
     //    std::string fullSource(source);
     //    fullSource = Path::join(fullSource, e.path);
     //    Path::copy(fullSource, dest);
-    //  }
     }
 
     

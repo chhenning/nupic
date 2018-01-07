@@ -136,11 +136,7 @@ void svm_problem::load(std::istream &inStream) {
   nupic::binary_load(inStream, y_);
 
   for (int i = 0; i < size(); ++i) {
-#if defined(NTA_OS_WINDOWS) && defined(NTA_COMPILER_MSVC) && !(NTA_VS_2017)
-    x_[i] = (float *)_aligned_malloc(4 * n_dims(), 16);
-#else
     x_[i] = new feature_type[n_dims()];
-#endif
 
     std::fill(x_[i], x_[i] + n_dims(), (float)0);
     nupic::binary_load(inStream, x_[i], x_[i] + n_dims());
@@ -204,19 +200,9 @@ svm_model::~svm_model() {
 
   if (sv_mem == nullptr) {
     for (size_t i = 0; i != sv.size(); ++i)
-
-#if defined(NTA_OS_WINDOWS) && defined(NTA_COMPILER_MSVC) && !defined(NTA_VS_2017)
-      _aligned_free(sv[i]);
-#else
       delete[] sv[i];
-#endif
-
   } else {
-#if defined(NTA_OS_WINDOWS) && defined(NTA_COMPILER_MSVC) && !(NTA_VS_2017)
-    _aligned_free(sv_mem);
-#else
     delete[] sv_mem;
-#endif
 
     sv_mem = nullptr;
     sv.clear();
@@ -350,11 +336,7 @@ void svm_model::load(std::istream &inStream) {
     sv_mem = nullptr;
   }
 
-#if defined(NTA_OS_WINDOWS) && defined(NTA_COMPILER_MSVC) && !(NTA_VS_2017)
-  sv_mem = (float *)_aligned_malloc(4 * l * n_dims(), 16);
-#else
   sv_mem = new float[l * n_dims()];
-#endif
 
   std::fill(sv_mem, sv_mem + l * n_dims(), (float)0);
 

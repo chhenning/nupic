@@ -274,14 +274,34 @@ namespace nupic
      *
      * @returns Minimum phase
      */
-    auto getMinPhase() const;
+    auto getMinPhase() const
+    {
+        UInt32 i = 0;
+        for (; i < phaseInfo_.size(); i++)
+        {
+            if (!phaseInfo_[i].empty())
+                break;
+        }
+        return i;
+    }
 
     /**
      * Get maximum phase for regions in this network. If no regions, then max = 0.
      *
      * @returns Maximum phase
      */
-    auto getMaxPhase() const;
+    auto getMaxPhase() const
+    {
+        /*
+        * phaseInfo_ is always trimmed, so the max phase is
+        * phaseInfo_.size()-1
+        */
+
+        if (phaseInfo_.empty())
+            return (std::uint64_t) 0;
+
+        return phaseInfo_.size() - 1;
+    }
 
     /**
      * Set the minimum enabled phase for this network.

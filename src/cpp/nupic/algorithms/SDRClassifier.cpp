@@ -451,6 +451,115 @@ namespace nupic
         // Update the version number.
         version_ = sdrClassifierVersion;
       }
+
+      bool SDRClassifier::operator==(const SDRClassifier& other) const
+      {
+          if (steps_.size() != other.steps_.size())
+          {
+              return false;
+          }
+          for (UInt i = 0; i < steps_.size(); i++)
+          {
+              if (steps_.at(i) != other.steps_.at(i))
+              {
+                  return false;
+              }
+          }
+
+          if (fabs(alpha_ - other.alpha_) > 0.000001 ||
+              fabs(actValueAlpha_ - other.actValueAlpha_) > 0.000001 ||
+              maxSteps_ != other.maxSteps_)
+          {
+              return false;
+          }
+
+          if (patternNZHistory_.size() != other.patternNZHistory_.size())
+          {
+              return false;
+          }
+          for (UInt i = 0; i < patternNZHistory_.size(); i++)
+          {
+              if (patternNZHistory_.at(i).size() !=
+                  other.patternNZHistory_.at(i).size())
+              {
+                  return false;
+              }
+              for (UInt j = 0; j < patternNZHistory_.at(i).size(); j++)
+              {
+                  if (patternNZHistory_.at(i).at(j) !=
+                      other.patternNZHistory_.at(i).at(j))
+                  {
+                      return false;
+                  }
+              }
+          }
+
+          if (recordNumHistory_.size() !=
+              other.recordNumHistory_.size())
+          {
+              return false;
+          }
+          for (UInt i = 0; i < recordNumHistory_.size(); i++)
+          {
+              if (recordNumHistory_.at(i) !=
+                  other.recordNumHistory_.at(i))
+              {
+                  return false;
+              }
+          }
+
+          if (maxBucketIdx_ != other.maxBucketIdx_)
+          {
+              return false;
+          }
+
+          if (maxInputIdx_ != other.maxInputIdx_)
+          {
+              return false;
+          }
+
+          if (weightMatrix_.size() != other.weightMatrix_.size())
+          {
+              return false;
+          }
+          for (auto it = weightMatrix_.begin(); it != weightMatrix_.end(); it++)
+          {
+              Matrix thisWeights = it->second;
+              Matrix otherWeights = other.weightMatrix_.at(it->first);
+              for (UInt i = 0; i <= maxInputIdx_; ++i)
+              {
+                  for (UInt j = 0; j <= maxBucketIdx_; ++j)
+                  {
+                      if (thisWeights.at(i, j) != otherWeights.at(i, j))
+                      {
+                          return false;
+                      }
+                  }
+              }
+          }
+
+          if (actualValues_.size() != other.actualValues_.size() ||
+              actualValuesSet_.size() != other.actualValuesSet_.size())
+          {
+              return false;
+          }
+          for (UInt i = 0; i < actualValues_.size(); i++)
+          {
+              if (fabs(actualValues_[i] - other.actualValues_[i]) > 0.000001 ||
+                  actualValuesSet_[i] != other.actualValuesSet_[i])
+              {
+                  return false;
+              }
+          }
+
+          if (version_ != other.version_ ||
+              verbosity_ != other.verbosity_)
+          {
+              return false;
+          }
+
+          return true;
+      }
     }
   }
 }

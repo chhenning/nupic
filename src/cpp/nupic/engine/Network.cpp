@@ -209,33 +209,6 @@ Network::setPhases_(Region_Ptr_t r, std::set<UInt32>& phases)
 
 }
 
-auto
-Network::getMinPhase() const
-{
-    UInt32 i = 0;
-    for (; i < phaseInfo_.size(); i++)
-    {
-        if (!phaseInfo_[i].empty())
-            break;
-    }
-    return i;
-}
-
-
-auto
-Network::getMaxPhase() const
-{
-    /*
-    * phaseInfo_ is always trimmed, so the max phase is
-    * phaseInfo_.size()-1
-    */
-
-    if (phaseInfo_.empty())
-        return (std::uint64_t) 0;
-
-    return phaseInfo_.size() - 1;
-}
-
 void
 Network::resetEnabledPhases_()
 {
