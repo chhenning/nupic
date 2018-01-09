@@ -340,3 +340,8 @@ class TestTopology(unittest.TestCase):
       dimensions = (10, 1, 1),
       radius = 1,
       expected = ((4, 0, 0), (5, 0, 0), (6, 0, 0)))
+
+
+if __name__ == "__main__":
+  unittest.main()
+      
