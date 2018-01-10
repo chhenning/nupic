@@ -20,7 +20,7 @@
 # ----------------------------------------------------------------------
 
 import os
-import nupic.bindings.engine_internal as engine_internal
+import nupic.bindings.engine as engine_internal
 from nupic.support.lock_attributes import LockAttributesMixin
 import functools
 

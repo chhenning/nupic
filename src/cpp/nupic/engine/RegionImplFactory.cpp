@@ -47,11 +47,6 @@
 
 namespace nupic
 {
-  // Keys are Python modules and the values are sets of class names for the
-  // regions that have been registered in the corresponding module. E.g.
-  // pyRegions["nupic.regions.sample_region"] = "SampleRegion"
-  static std::map<const std::string, std::set<std::string>> pyRegions;
-
   // Mappings for C++ regions
   static std::map<const std::string, GenericRegisteredRegionImpl*> cppRegions;
 
@@ -60,61 +55,10 @@ namespace nupic
   // Allows the user to add custom regions
   void RegionImplFactory::registerPyRegion(const std::string module, const std::string className)
   {
-    // Verify that no regions exist with the same className in any module
-    for (auto pyRegion : pyRegions)
-    {
-      if (pyRegion.second.find(className) != pyRegion.second.end())
-      {
-        if (pyRegion.first != module)
-        {
-          // New region class name conflicts with previously registered region
-          NTA_THROW << "A pyRegion with name '" << className << "' already exists. "
-                    << "Unregister the existing region or register the new region using a "
-                    << "different name.";
-        } else {
-          // Same region registered again, ignore
-          return;
-        }
-      }
-    }
-
-    // Module hasn't been added yet
-    if (pyRegions.find(module) == pyRegions.end())
-    {
-      pyRegions[module] = std::set<std::string>();
-    }
-
-    pyRegions[module].insert(className);
   }
 
   void RegionImplFactory::registerPyBindRegion(const std::string& module, const std::string& className)
   {
-      // Verify that no regions exist with the same className in any module
-      for (auto pyRegion : pyRegions)
-      {
-          if (pyRegion.second.find(className) != pyRegion.second.end())
-          {
-              if (pyRegion.first != module)
-              {
-                  // New region class name conflicts with previously registered region
-                  NTA_THROW << "A pyRegion with name '" << className << "' already exists. "
-                      << "Unregister the existing region or register the new region using a "
-                      << "different name.";
-              }
-              else {
-                  // Same region registered again, ignore
-                  return;
-              }
-          }
-      }
-
-      // Module hasn't been added yet
-      if (pyRegions.find(module) == pyRegions.end())
-      {
-          pyRegions[module] = std::set<std::string>();
-      }
-
-      pyRegions[module].insert(className);
   }
 
   void RegionImplFactory::registerCPPRegion(const std::string name,
@@ -130,30 +74,10 @@ namespace nupic
 
   void RegionImplFactory::unregisterPyRegion(const std::string className)
   {
-    for (auto pyRegion : pyRegions)
-    {
-      if (pyRegion.second.find(className) != pyRegion.second.end())
-      {
-        pyRegions.erase(pyRegion.first);
-        return;
-      }
-    }
-    NTA_WARN << "A pyRegion with name '" << className <<
-    "' doesn't exist. Nothing to unregister...";
   }
   
   void RegionImplFactory::unregisterPyBindRegion(const std::string& className)
   {
-      for (auto pyRegion : pyRegions)
-      {
-          if (pyRegion.second.find(className) != pyRegion.second.end())
-          {
-              pyRegions.erase(pyRegion.first);
-              return;
-          }
-      }
-      NTA_WARN << "A pyRegion with name '" << className <<
-          "' doesn't exist. Nothing to unregister...";
   }
 
   void RegionImplFactory::unregisterCPPRegion(const std::string name)

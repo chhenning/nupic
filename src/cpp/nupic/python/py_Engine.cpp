@@ -13,6 +13,13 @@ using namespace nupic;
 
 namespace nupic_ext
 {
+    // Keys are Python modules and the values are sets of class names for the
+    // regions that have been registered in the corresponding module. E.g.
+    // pyRegions["nupic.regions.sample_region"] = "SampleRegion"
+    static std::map<const std::string, std::set<std::string>> pyRegions;
+
+
+
     void init_Engine(py::module& m)
     {
         ///////////////////
@@ -93,10 +100,6 @@ namespace nupic_ext
 
         static member
         getSpecFromType
-        registerPyRegion
-        unregisterPyRegion
-        //registerCPPRegion
-        //unregisterCPPRegion
         */
 
 
@@ -122,6 +125,51 @@ namespace nupic_ext
             , py::arg("linkType"), py::arg("linkParams")
             , py::arg("srcOutput") = "", py::arg("destInput") = "", py::arg("propagationDelay") = 0);
 
+
+        py_Network.def_static("registerPyRegion", [](const std::string& module, const std::string& class_name)
+        {
+            // Verify that no regions exist with the same className in any module
+            for (auto pyRegion : pyRegions)
+            {
+                if (pyRegion.second.find(class_name) != pyRegion.second.end())
+                {
+                    if (pyRegion.first != module)
+                    {
+                        // New region class name conflicts with previously registered region
+                        NTA_THROW << "A pyRegion with name '" << class_name << "' already exists. "
+                            << "Unregister the existing region or register the new region using a "
+                            << "different name.";
+                    }
+                    else {
+                        // Same region registered again, ignore
+                        return;
+                    }
+                }
+            }
+
+            // Module hasn't been added yet
+            if (pyRegions.find(module) == pyRegions.end())
+            {
+                pyRegions[module] = std::set<std::string>();
+            }
+
+            pyRegions[module].insert(class_name);
+        });
+        
+        py_Network.def_static("unregisterPyRegion", [](const std::string& class_name)
+        {
+            for (auto pyRegion : pyRegions)
+            {
+                if (pyRegion.second.find(class_name) != pyRegion.second.end())
+                {
+                    pyRegions.erase(pyRegion.first);
+                    return;
+                }
+            }
+            NTA_WARN << "A pyRegion with name '" << class_name <<
+                "' doesn't exist. Nothing to unregister...";
+
+        });
 
 
         ///////////////////
