@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\module.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Random.cpp" />
-    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\DynamicPythonLibrary.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Algorithms.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Cells4.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Domain.cpp" />
@@ -21,12 +20,10 @@
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SparseTensor.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SpatialPooler.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SVM.cpp" />
-    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\PyBindRegion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\src\cpp\nupic\python\Matrix.hpp" />
     <ClInclude Include="..\..\..\..\src\cpp\nupic\python\py_utils.hpp" />
-    <ClInclude Include="..\..\..\..\src\cpp\nupic\python\PyBindRegion.hpp" />
     <ClInclude Include="..\..\..\..\src\cpp\nupic\python\PyBindSparseTensor.hpp" />
     <ClInclude Include="..\..\..\..\src\cpp\nupic\python\SparseTensorIndex.hpp" />
   </ItemGroup>

@@ -717,8 +717,7 @@ namespace nupic
             auto m = py::module::import(nodeType);
             auto pyClass = m.attr(realClassName.c_str());
 
-            auto pyName = pyClass.attr("getName")().cast<std::string>();
-
+            //@todo Not sure these are required
             //auto pyList = pyClass.attr("getList")();
             //auto List = pyList.cast<std::vector<std::string>>();
 

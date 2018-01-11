@@ -20,7 +20,7 @@ int main()
         std::cout << "Region count is " << n.getRegions().getCount() << "" << std::endl;
 
         std::cout << "Adding a PyNode region..." << std::endl;
-        Network::registerPyBindRegion("nupic.bindings.regions", "TestNode");
+        Network::registerPyBindRegion("nupic.regions.TestNode", "TestNode");
         auto level2 = n.addRegion("level2", "py.TestNode", "{int32Param: 444}");
     }
     catch (py::error_already_set& e)
