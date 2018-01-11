@@ -240,6 +240,9 @@
     <ClCompile Include="..\..\..\..\src\cpp\nupic\ntypes\Value.cpp">
       <Filter>ntypes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\engine\PyBindRegion.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\src\cpp\nupic\algorithms\Anomaly.hpp">
@@ -550,6 +553,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\src\cpp\nupic\types\ptr_types.hpp">
       <Filter>types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\cpp\nupic\engine\PyBindRegion.hpp">
+      <Filter>engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

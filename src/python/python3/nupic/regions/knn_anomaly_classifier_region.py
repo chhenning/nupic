@@ -28,7 +28,7 @@ import copy
 import numpy
 
 from nupic.algorithms import anomaly
-from nupic.bindings.regions.PyRegion import PyRegion
+from nupic.bindings.regions import PyRegion
 from .knn_classifier_region import KNNClassifierRegion
 from nupic.bindings.math import Random
 from nupic.frameworks.opf.exceptions import (HTMPredictionModelInvalidRangeError,

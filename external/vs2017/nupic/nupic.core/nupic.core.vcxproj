@@ -83,8 +83,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\src\cpp</AdditionalIncludeDirectories>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\src\cpp;..\..\..\..\include\python36</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PreprocessorDefinitions>_MBCS;NTA_OS_WINDOWS;NTA_COMPILER_MSVC;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;BOOST_ALL_NO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -110,8 +110,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\src\cpp</AdditionalIncludeDirectories>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>..\..\..\..\include;..\..\..\..\src\cpp;..\..\..\..\include\python36</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <PreprocessorDefinitions>_MBCS;NTA_OS_WINDOWS;NTA_COMPILER_MSVC;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;BOOST_ALL_NO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -147,6 +147,7 @@
     <ClCompile Include="..\..\..\..\src\cpp\nupic\engine\Network.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\engine\NuPIC.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\engine\Output.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\engine\PyBindRegion.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\engine\Region.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\engine\RegionImpl.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\engine\RegionImplFactory.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="..\..\..\..\src\cpp\nupic\engine\Network.hpp" />
     <ClInclude Include="..\..\..\..\src\cpp\nupic\engine\NuPIC.hpp" />
     <ClInclude Include="..\..\..\..\src\cpp\nupic\engine\Output.hpp" />
+    <ClInclude Include="..\..\..\..\src\cpp\nupic\engine\PyBindRegion.hpp" />
     <ClInclude Include="..\..\..\..\src\cpp\nupic\engine\Region.hpp" />
     <ClInclude Include="..\..\..\..\src\cpp\nupic\engine\RegionImpl.hpp" />
     <ClInclude Include="..\..\..\..\src\cpp\nupic\engine\RegionImplFactory.hpp" />

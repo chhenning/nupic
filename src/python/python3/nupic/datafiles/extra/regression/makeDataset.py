@@ -99,13 +99,13 @@ def _generateFile(filename, data):
   """
   
   # Create the file
-  print("Creating %s..." % (filename))
+  print "Creating %s..." % (filename)
   numRecords, numFields = data.shape
   
   fields = [('field%d'%(i+1), 'float', '') for i in range(numFields)]
   outFile = File(filename, fields)
   
-  for i in range(numRecords):
+  for i in xrange(numRecords):
     outFile.write(data[i].tolist())
     
   outFile.close()

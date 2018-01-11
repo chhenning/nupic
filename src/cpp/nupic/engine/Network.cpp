@@ -1004,7 +1004,7 @@ void Network::registerPyRegion(const std::string module, const std::string class
 
 void Network::registerPyBindRegion(const std::string& module, const std::string& className)
 {
-    Region::registerPyRegion(module, className);
+    Region::registerPyBindRegion(module, className);
 }
 
 void Network::registerCPPRegion(const std::string name, GenericRegisteredRegionImpl* wrapper)
@@ -1019,7 +1019,7 @@ void Network::unregisterPyRegion(const std::string className)
 
 void Network::unregisterPyBindRegion(const std::string& className)
 {
-    Region::unregisterPyRegion(className);
+    Region::unregisterPyBindRegion(className);
 }
 
 

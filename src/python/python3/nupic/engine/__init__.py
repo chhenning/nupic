@@ -32,13 +32,15 @@ basicTypes = ['Byte',
               'Handle',
               'Bool']
 
-arrayTypes = ['ByteArray',
-              'Int16Array', 'UInt16Array',
-              'Int32Array', 'UInt32Array',
-              'Int64Array', 'UInt64Array',
-              'Real32Array', 'Real64Array',
-              # No 'HandleArray'
-              'BoolArray']
+
+# CHH - No need
+# arrayTypes = ['ByteArray',
+#               'Int16Array', 'UInt16Array',
+#               'Int32Array', 'UInt32Array',
+#               'Int64Array', 'UInt64Array',
+#               'Real32Array', 'Real64Array',
+#               # No 'HandleArray'
+#               'BoolArray']
 
 pyRegions = (
     ("nupic.bindings.regions.TestNode", "TestNode"),
@@ -71,8 +73,9 @@ def registerBuiltInRegions():
 
 registerBuiltInRegions()
 
-for a in arrayTypes:
-  exec('from %s import %s as %s' % (engine_internal.__name__, a, a))
+# CHH - No need
+# for a in arrayTypes:
+#   exec('from %s import %s as %s' % (engine_internal.__name__, a, a))
 
 # Intercept the default exception handling for the purposes of stripping
 # parts of the stack trace that can confuse users. If you want the original
@@ -597,14 +600,15 @@ class Network(engine_internal.Network):
     )
 
     # Attach documentation to methods and properties
-    for obj, docString in docTable:
-      if isinstance(obj, str):
-        prop = getattr(Network, obj)
-        assert isinstance(prop, property)
-        setattr(Network, obj, property(prop.fget, prop.fset, prop.fdel,
-                                       docString))
-      else:
-        obj.__func__.__doc__ = docString
+    # CHH - does not work
+    # for obj, docString in docTable:
+    #   if isinstance(obj, str):
+    #     prop = getattr(Network, obj)
+    #     assert isinstance(prop, property)
+    #     setattr(Network, obj, property(prop.fget, prop.fset, prop.fdel,
+    #                                    docString))
+    #   else:
+    #     obj.__func__.__doc__ = docString
 
   def _getRegions(self):
     """Get the collection of regions in a network

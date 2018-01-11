@@ -24,3 +24,13 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/knn_classifier_test.py | python exceptions | #2 |
 | tests/unit/nupic/math/lgamma_test.py | yes ||
 | tests/unit/nupic/math/topology_test.py | disabled by default ||
+| tests/unit/nupic/regions/anomaly_likelihood_region_test.py | yes ||
+| tests/unit/nupic/regions/anomaly_region_test.py | yes ||
+| tests/unit/nupic/regions/anomaly_region_test.py | yes ||
+| tests/unit/nupic/regions/knn_anomaly_classifier_region_test.py | Classification vector type must be either 'tpc' or 'sp_tpe', current value is 3 ||
+| tests/unit/nupic/regions/knn_classifier_region_test.py | yes ||
+
+
+
+
+

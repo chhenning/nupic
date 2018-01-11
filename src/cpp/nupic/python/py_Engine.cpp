@@ -3,6 +3,10 @@
 #include <pybind11/operators.h>
 #include <pybind11/stl.h>
 
+
+#include <nupic/os/OS.hpp>
+#include <nupic/os/Timer.hpp>
+
 #include <nupic/engine/Link.hpp>
 #include <nupic/engine/Network.hpp>
 #include <nupic/engine/Region.hpp>
@@ -13,13 +17,6 @@ using namespace nupic;
 
 namespace nupic_ext
 {
-    // Keys are Python modules and the values are sets of class names for the
-    // regions that have been registered in the corresponding module. E.g.
-    // pyRegions["nupic.regions.sample_region"] = "SampleRegion"
-    static std::map<const std::string, std::set<std::string>> pyRegions;
-
-
-
     void init_Engine(py::module& m)
     {
         ///////////////////
@@ -115,7 +112,13 @@ namespace nupic_ext
 
         py_Network.def("addRegion", &nupic::Network::addRegion)
             .def("getRegions", &nupic::Network::getRegions)
-            .def("getLinks", &nupic::Network::getLinks);
+            .def("getLinks", &nupic::Network::getLinks)
+            .def("getMinPhase", &nupic::Network::getMinPhase)
+            .def("getMaxPhase", &nupic::Network::getMaxPhase)
+            .def("setMinEnabledPhase", &nupic::Network::getMinPhase)
+            .def("setMaxEnabledPhase", &nupic::Network::getMaxPhase)
+            .def("getMinEnabledPhase", &nupic::Network::getMinPhase)
+            .def("getMaxEnabledPhase", &nupic::Network::getMaxPhase);
 
         py_Network.def("initialize", &nupic::Network::initialize);
 
@@ -126,50 +129,9 @@ namespace nupic_ext
             , py::arg("srcOutput") = "", py::arg("destInput") = "", py::arg("propagationDelay") = 0);
 
 
-        py_Network.def_static("registerPyRegion", [](const std::string& module, const std::string& class_name)
-        {
-            // Verify that no regions exist with the same className in any module
-            for (auto pyRegion : pyRegions)
-            {
-                if (pyRegion.second.find(class_name) != pyRegion.second.end())
-                {
-                    if (pyRegion.first != module)
-                    {
-                        // New region class name conflicts with previously registered region
-                        NTA_THROW << "A pyRegion with name '" << class_name << "' already exists. "
-                            << "Unregister the existing region or register the new region using a "
-                            << "different name.";
-                    }
-                    else {
-                        // Same region registered again, ignore
-                        return;
-                    }
-                }
-            }
+        py_Network.def_static("registerPyRegion", &nupic::Network::registerPyBindRegion);
+        py_Network.def_static("unregisterPyRegion", &nupic::Network::unregisterPyBindRegion);
 
-            // Module hasn't been added yet
-            if (pyRegions.find(module) == pyRegions.end())
-            {
-                pyRegions[module] = std::set<std::string>();
-            }
-
-            pyRegions[module].insert(class_name);
-        });
-        
-        py_Network.def_static("unregisterPyRegion", [](const std::string& class_name)
-        {
-            for (auto pyRegion : pyRegions)
-            {
-                if (pyRegion.second.find(class_name) != pyRegion.second.end())
-                {
-                    pyRegions.erase(pyRegion.first);
-                    return;
-                }
-            }
-            NTA_WARN << "A pyRegion with name '" << class_name <<
-                "' doesn't exist. Nothing to unregister...";
-
-        });
 
 
         ///////////////////
@@ -212,6 +174,18 @@ namespace nupic_ext
 
         // not sure we need __iter__
         //py_LinkCollection.def("__iter__", [](Link_Collection_t& coll) { return py::make_iterator(coll.begin(), coll.end()); }, py::keep_alive<0, 1>());
+
+        ///////////////////
+        // Timer
+        ///////////////////
+        py::class_<Timer> py_Timer(m, "Timer");
+
+        ///////////////////
+        // OS
+        ///////////////////
+        py::class_<OS> py_OS(m, "OS");
+        py_OS.def_static("getProcessMemoryUsage", &nupic::OS::getProcessMemoryUsage);
+
     }
 
 } // namespace nupix_ext

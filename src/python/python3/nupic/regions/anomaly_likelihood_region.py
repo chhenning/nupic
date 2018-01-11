@@ -22,13 +22,14 @@
 """Implementation of region for computing anomaly likelihoods."""
 
 from nupic.algorithms.anomaly_likelihood import AnomalyLikelihood
-from nupic.bindings.regions.PyRegion import PyRegion
+from nupic.bindings.regions import PyRegion
 
 from nupic.serializable import Serializable
 
-
-class AnomalyLikelihoodRegion(PyRegion, Serializable):
+class AnomalyLikelihoodRegion(PyRegion):
   """Region for computing the anomaly likelihoods."""
+
+  __metaclass__ = Serializable
 
 
   @classmethod
