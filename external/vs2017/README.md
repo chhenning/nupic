@@ -56,15 +56,34 @@ Debug Compile Settings:
 * No SDL checks (/sdl-)
 
 
+## nupic.python.algorithms
+## nupic.python.engine
+## nupic.python.math
 
-## nupic.python
+Python plugins which expose nupic.core functionality. All dependencies are either header only or linked statically.
 
-Output: Dynamic Lib: bindings.pyd
+Output: Dynamic Lib: xxx.pyd
 
-Interface code to be accessed by python 3. For python 2.7 have a look a nupic.python27
+* Character Set: Multi-Byte Character Set
+
+* Include Directories: ..\..\..\..\include;..\..\..\..\src\cpp;..\..\..\..\include\python36
+
+* Preprocessor Definitions: _WINDOWS;_USRDLL;NTA_OS_WINDOWS;BOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE;_SCL_SECURE_NO_WARNINGS;
+
+* Conformance Mode: No  (pybind11 doesn't work otherwise)
+
+* Additional Library Directories: ..\..\lib\debug
+
+* Additional Dependencies: Psapi.lib;zlibd.lib;libboost_system-vc141-mt-gd-x64-1_66.lib;libboost_filesystem-vc141-mt-gd-x64-1_66.lib;python36.lib;
+
+* Post-Build Event: copy /Y "$(OutDir)$(TargetName)$(TargetExt)" "..\..\..\..\src\python\python3\nupic\$(TargetName)$(TargetExt)"
+
+Interface code to be accessed by python 3. For python 2.7 have a look a nupic.python27.xxx
 
 
-## nupic.python27
+## nupic.python27.algorithms
+## nupic.python27.engine
+## nupic.python27.math
 
 Same as nupic.python but compiled with python 2.7 includes and libs.
 
