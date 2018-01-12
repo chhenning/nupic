@@ -43,13 +43,13 @@ basicTypes = ['Byte',
 #               'BoolArray']
 
 pyRegions = (
-    ("nupic.bindings.regions.TestNode", "TestNode"),
+    ("nupic.regions.TestNode", "TestNode"),
     ("nupic.regions.anomaly_likelihood_region", "AnomalyLikelihoodRegion"),
     ("nupic.regions.anomaly_region", "AnomalyRegion"),
     ("nupic.regions.knn_anomaly_classifier_region", "KNNAnomalyClassifierRegion"),
     ("nupic.regions.knn_classifier_region", "KNNClassifierRegion"),
     ("nupic.regions.pluggable_encoder_sensor", "PluggableEncoderSensor"),
-    ("nupic.regions.PyRegion", "PyRegion"),
+    # ("nupic.regions.PyRegion", "PyRegion"), CHH - not available
     ("nupic.regions.record_sensor", "RecordSensor"),
     ("nupic.regions.sdr_classifier_region", "SDRClassifierRegion"),
     ("nupic.regions.sp_region", "SPRegion"),

@@ -11,6 +11,16 @@ namespace nupic_ext {
     template<typename T> T* get_it(py::array_t<T>& a) { return (T*)a.request().ptr; }
     template<typename T> T* get_end(py::array_t<T>& a) { return ((T*)a.request().ptr) + a.size(); }
 
+    inline
+    void enable_cout()
+    {
+        py::scoped_ostream_redirect stream(
+            std::cout,                               // std::ostream&
+            py::module::import("sys").attr("stdout") // Python output
+        );
+    }
+
+
 } // namespace nupic_ext
 
 

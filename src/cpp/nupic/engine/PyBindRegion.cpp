@@ -28,18 +28,34 @@ namespace py = pybind11;
 
 extern "C"
 {
+    bool Initialized = false;
+
     // NTA_initPython() must be called by the MultinodeFactory before any call to
     // NTA_createPyNode()
     void PyBindRegion::NTA_initPython()
     {
-        py::initialize_interpreter();
+        try
+        {
+            if (Py_IsInitialized() == false)
+            {
+                Initialized = true;
+                py::initialize_interpreter();
+            }
+        }
+        catch (const std::exception& e)
+        {
+            throw Exception(__FILE__, __LINE__, e.what());
+        }
     }
 
     // NTA_finalizePython() must be called before unloading the pynode dynamic library
     // to ensure proper cleanup.
     void PyBindRegion::NTA_finalizePython()
     {
-        py::finalize_interpreter();
+        if (Initialized)
+        {
+            py::finalize_interpreter();
+        }
     }
 
     // createPyNode is used by the MultinodeFactory to create a C++ PyNode instance

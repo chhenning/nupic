@@ -1,49 +1,57 @@
+#include <iostream>
+
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
 
 
 #include <nupic/engine/Network.hpp>
+#include <nupic/engine/Region.hpp>
+
 
 using namespace nupic;
 namespace py = pybind11;
 
+void test_PyBindRegion();
+
 int main()
 {
-
     // not needed since PyBindRegion is already initializing python interpreter, via initialize_interpreter
-    //py::scoped_interpreter guard{};
+    ////py::scoped_interpreter guard{};
+    //try
+    //{
+    //    test_PyBindRegion();
+    //}
+    //catch (py::error_already_set& e)
+    //{
+    //    std::cout << e.what() << std::endl;
+    //}
+
+
+    py::scoped_interpreter guard{};
+
     try
     {
-        std::cout << "Creating network..." << std::endl;
-        Network n;
+        // Work around: AttributeError: module 'sys' has no attribute 'argv'
+        py::exec(R"(
+            import sys
+            if not hasattr(sys, 'argv'):
+              sys.argv = ['']
+        )");
 
-        std::cout << "Region count is " << n.getRegions().getCount() << "" << std::endl;
-
-        std::cout << "Adding a PyNode region..." << std::endl;
-        Network::registerPyBindRegion("nupic.regions.TestNode", "TestNode");
-        auto level2 = n.addRegion("level2", "py.TestNode", "{int32Param: 444}");
+        py::eval_file(R"(D:\nupic\src\python\python3\tests\unit\nupic\regions\record_sensor_region_test.py)");
     }
-    catch (py::error_already_set& e)
+    catch (const py::error_already_set& e)
     {
         std::cout << e.what() << std::endl;
     }
-
-
-
-    //std::cout << "Region count is " << n.getRegions().getCount() << "" << std::endl;
-    //std::cout << "Node type: " << level2->getType() << "" << std::endl;
-    //std::cout << "Nodespec is:\n" << level2->getSpec()->toString() << "" << std::endl;
-
-    //Real64 rval;
-    //std::string int64Param("int64Param");
-    //std::string real64Param("real64Param");
-
-    //// get the value of intArrayParam after the setParameter call.
-
-    //// --- Test getParameterReal64 of a PyNode
-    //rval = level2->getParameterReal64("real64Param");
-    //NTA_CHECK(rval == 64.1);
-    //std::cout << "level2 getParameterReal64() returned: " << rval << std::endl;
+    catch (const std::runtime_error& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+    catch (...)
+    {
+        std::cout << "Unexpected error." << std::endl;
+    }
 
 
     return 0;

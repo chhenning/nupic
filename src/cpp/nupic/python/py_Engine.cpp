@@ -129,7 +129,10 @@ namespace nupic_ext
             , py::arg("srcOutput") = "", py::arg("destInput") = "", py::arg("propagationDelay") = 0);
 
 
+        
         py_Network.def_static("registerPyRegion", &nupic::Network::registerPyBindRegion);
+
+
         py_Network.def_static("unregisterPyRegion", &nupic::Network::unregisterPyBindRegion);
 
 
@@ -142,6 +145,7 @@ namespace nupic_ext
         typedef Collection<std::shared_ptr<Region>> Region_Collection_t;
         py::class_<Region_Collection_t> py_RegionCollection(m, "RegionCollection");
         py_RegionCollection.def("getByName", &Region_Collection_t::getByName);
+        py_RegionCollection.def("contains", &Region_Collection_t::contains);
 
         // bare bone sequence protocol
         py_RegionCollection.def("__len__", &Region_Collection_t::getCount);
@@ -159,7 +163,8 @@ namespace nupic_ext
         typedef Collection<std::shared_ptr<Link>> Link_Collection_t;
         py::class_<Link_Collection_t> py_LinkCollection(m, "Link_Collection_t");
         py_LinkCollection.def("getByName", &Link_Collection_t::getByName);
-        
+        py_LinkCollection.def("contains", &Link_Collection_t::contains);
+
         // bare bone sequence protocol
         py_LinkCollection.def("__len__", &Link_Collection_t::getCount);
         py_LinkCollection.def("__getitem__", [](Link_Collection_t& coll, size_t i)
