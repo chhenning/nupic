@@ -31,8 +31,8 @@ import numpy
 import pickle
 import unittest
 
-from unittest.mock import patch
 from unittest.mock import Mock
+from unittest.mock import patch
 
 from nupic.algorithms import anomaly_likelihood as an
 from nupic.support.unittesthelpers.testcasebase import TestCaseBase

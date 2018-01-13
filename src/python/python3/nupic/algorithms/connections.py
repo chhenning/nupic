@@ -99,6 +99,8 @@ class Synapse(object):
 
   def __hash__(self):
     return id(self)
+          
+
 
 class CellData(object):
   # Class containing cell information. Internal to the Connections
@@ -557,7 +559,7 @@ class Connections(Serializable):
     :param other: (:class:`Connections`) Connections instance to compare to
     """
     return not self.__eq__(other)
-    
+
   def getSchema():
      raise NotImplementedError
     

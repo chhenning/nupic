@@ -204,3 +204,7 @@ class CoordinateEncoder(Encoder):
     proto.n = self.n
     proto.verbosity = self.verbosity
     proto.name = self.name
+
+  def getSchema():
+     raise NotImplementedError
+    

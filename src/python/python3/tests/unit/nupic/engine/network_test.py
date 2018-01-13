@@ -20,7 +20,7 @@
 # ----------------------------------------------------------------------
 
 import sys
-from unittest.mock import patch
+from mock import patch
 import unittest
 
 from nupic import engine

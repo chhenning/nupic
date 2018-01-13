@@ -33,7 +33,10 @@ namespace nupic_ext
     void init_SM_01_32_32(py::module& m)
     {
         py::class_<SM_01_32_32_t> sbm(m, "SM_01_32_32");
-    
+
+        // create an alias for SM_01_32_32
+        m.attr("SparseBinaryMatrix") = sbm;
+
         sbm.def(py::init<>())
            .def(py::init<nupic::UInt32>(), py::arg("ncols"))
            .def(py::init<nupic::UInt32, nupic::UInt32>(), py::arg("nrows"), py::arg("ncols"))

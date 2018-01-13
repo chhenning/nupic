@@ -231,5 +231,9 @@ namespace nupic_ext
 
             self.updateDutyCycles_(overlapsVector, get_it(activeArray));
         });
+
+        // getIterationLearnNum
+        py_SpatialPooler.def("getIterationLearnNum", &SpatialPooler::getIterationLearnNum);
+
     }
 } // namespace nupix_ext

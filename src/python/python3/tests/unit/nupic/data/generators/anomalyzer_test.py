@@ -22,7 +22,7 @@
 """Tests for the anomalyzer."""
 
 import csv
-from mock import MagicMock, patch
+from unittest.mock import MagicMock, patch
 from io import StringIO
 
 import unittest
@@ -60,9 +60,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -86,9 +86,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -112,9 +112,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -138,9 +138,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -164,9 +164,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -190,9 +190,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -222,9 +222,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -254,9 +254,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -282,9 +282,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -309,9 +309,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)
@@ -326,9 +326,9 @@ class AnomalyzerTest(unittest.TestCase):
     mockInput = MagicMock(return_value=StringIO(self.sampleInput))
     output = StringIO()
     mockOutput = MagicMock(return_value=output)
-    with patch("__builtin__.open", mockInput):
+    with patch("builtins.open", mockInput):
       inputFile = FileRecordStream("input_path")
-      with patch("__builtin__.open", mockOutput):
+      with patch("builtins.open", mockOutput):
         outputFile = FileRecordStream("output_path",
                                       fields=inputFile.getFields(),
                                       write=True)

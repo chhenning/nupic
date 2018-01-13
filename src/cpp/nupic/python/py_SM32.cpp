@@ -13,6 +13,7 @@
 namespace py = pybind11;
 
 typedef nupic::SparseMatrix<nupic::UInt32, nupic::Real32, nupic::Int32, nupic::Real64, nupic::DistanceToZero<nupic::Real32>> SparseMatrix32_t;
+
 typedef nupic::SparseMatrix<nupic::UInt32, nupic::Real64, nupic::Int32, nupic::Real64, nupic::DistanceToZero<nupic::Real64>> _SparseMatrix64;
 
 namespace nupic_ext
@@ -69,6 +70,10 @@ namespace nupic_ext
     void init_SM32(py::module& m)
     {
         py::class_<SparseMatrix32_t> sm(m, "SM32");
+
+        // create an alias for SM32
+        m.attr("SparseMatrix") = sm;
+
 
         sm.def(py::init<>())
             .def(py::init<nupic::UInt32, nupic::UInt32>(), py::arg("nrows"), py::arg("ncols"));

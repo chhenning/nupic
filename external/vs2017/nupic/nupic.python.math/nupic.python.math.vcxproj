@@ -126,7 +126,7 @@
       <AdditionalDependencies>Psapi.lib;zlibd.lib;libboost_system-vc141-mt-gd-x64-1_66.lib;libboost_filesystem-vc141-mt-gd-x64-1_66.lib;python36.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(OutDir)$(TargetName)$(TargetExt)" "..\..\..\..\src\python\python3\nupic\$(TargetName)$(TargetExt)"</Command>
+      <Command>copy /Y "$(OutDir)$(TargetName)$(TargetExt)" "..\..\..\..\src\python\python3\nupic\bindings\$(TargetName)$(TargetExt)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

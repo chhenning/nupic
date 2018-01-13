@@ -29,7 +29,7 @@ import random
 import tempfile
 
 import numpy
-from unittest.mock import Mock, patch, ANY, call
+from mock import Mock, patch, ANY, call
 
 from nupic.support.unittesthelpers.testcasebase import (unittest,
                                                         TestOptionParser)

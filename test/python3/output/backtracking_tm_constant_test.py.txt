@@ -1,0 +1,442 @@
+*** Synapse consistency checking turned on for Cells4 ***
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+Learning completed
+Running inference
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0000001192092967)
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0000001192092967)
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0000001192092967)
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0000001192092967)
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+TM: learn: False
+TM: active outputs(0): NONE
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0000001192092967)
+TMConstant basicTest ok
+.*** Synapse consistency checking turned on for Cells4 ***
+.*** Synapse consistency checking turned on for Cells4 ***
+TM: learn: True
+TM: active outputs(0): NONE
+E
+======================================================================
+ERROR: testPyTmBasic (__main__.TMConstantTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "backtracking_tm_constant_test.py", line 160, in testPyTmBasic
+    self._basicTest(self.pyTm)
+  File "backtracking_tm_constant_test.py", line 124, in _basicTest
+    tm.learn(seq)
+  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 2688, in learn
+    enableInference=enableInference)
+  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 2609, in compute
+    self._updateLearningState(activeColumns)
+  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 2539, in _updateLearningState
+    self._learnPhase2()
+  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 2407, in _learnPhase2
+    c, self.lrnActiveState['t'], minThreshold = self.activationThreshold)
+  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 3027, in _getBestMatchingCell
+    activity = self._getSegmentActivityLevel(s, activeState)
+  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 3000, in _getSegmentActivityLevel
+    self.connectedPerm)
+TypeError: getSegmentActivityLevel(): incompatible function arguments. The following argument types are supported:
+    1. (arg0: List[nupic::algorithms::Cells4::Segment], arg1: numpy.ndarray[int8], arg2: bool, arg3: float) -> int
+
+Invoked with: [[0, 0, 0.30000001], [2, 0, 0.30000001], [3, 0, 0.30000001], [4, 0, 0.30000001], [5, 0, 0.30000001], [7, 0, 0.30000001], [8, 0, 0.30000001]], array([[1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0],
+       [0]], dtype=int8), False, 0.5
+
+----------------------------------------------------------------------
+Ran 3 tests in 14.657s
+
+FAILED (errors=1)

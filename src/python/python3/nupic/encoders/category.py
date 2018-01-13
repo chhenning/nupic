@@ -252,3 +252,6 @@ class CategoryEncoder(Encoder):
     proto.name = self.name
     proto.verbosity = self.verbosity
     self.encoder.write(proto.encoder)
+
+  def getSchema():
+     raise NotImplementedError    

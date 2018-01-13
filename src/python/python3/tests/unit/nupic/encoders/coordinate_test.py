@@ -22,7 +22,7 @@
 import numpy as np
 import tempfile
 import unittest
-from mock import patch
+from unittest.mock import patch
 
 from nupic.encoders.base import defaultDtype
 from nupic.encoders.coordinate import CoordinateEncoder

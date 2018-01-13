@@ -24,7 +24,7 @@
 from datetime import datetime
 import unittest
 
-import mock
+import unittest.mock
 
 
 from nupic.data.field_meta import FieldMetaInfo, FieldMetaType, FieldMetaSpecial

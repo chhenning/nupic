@@ -750,3 +750,6 @@ class ScalarEncoder(Encoder):
     proto.name = self.name
     proto.verbosity = self.verbosity
     proto.clipInput = self.clipInput
+
+  def getSchema():
+     raise NotImplementedError    

@@ -223,3 +223,8 @@ class AdaptiveScalarEncoder(ScalarEncoder):
     super(AdaptiveScalarEncoder, self).write(proto)
     proto.recordNum = self.recordNum
     self.slidingWindow.write(proto.slidingWindow)
+
+  def getSchema():
+     raise NotImplementedError    
+    
+    

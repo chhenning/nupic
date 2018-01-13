@@ -400,7 +400,6 @@ class AnomalyLikelihood(Serializable):
   def getSchema():
      raise NotImplementedError
 
-
 def estimateAnomalyLikelihoods(anomalyScores,
                                averagingWindow=10,
                                skipRecords=0,
