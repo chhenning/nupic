@@ -7,11 +7,17 @@
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Random.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_reals.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SegmentSparseMatrix.cpp" />
-    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SM_01_32_32.cpp" />
-    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SM32.cpp" />
-    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SMC.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SparseTensor.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_NearestNeighbor.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SparseMatrix.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SparseMatrixConnections.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SparseBinaryMatrix.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_ArrayAlgo.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SparseMatrixAlgorithms.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_GraphAlgo.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_SparseRLEMatrix.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Gaussian_2D.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Set.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\src\cpp\nupic\python\Matrix.hpp" />

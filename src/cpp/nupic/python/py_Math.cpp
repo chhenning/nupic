@@ -110,6 +110,12 @@ namespace nupic_ext
 
             return py::array_t<nupic::Real32>({s.size()}, s.data());
         });
+
+        // inline nupic::Real32 l2_norm(PyObject* py_x)
+        m.def("l2_norm", [](py::array_t<nupic::Real32>& x)
+        {
+            return nupic::l2_norm(get_it(x), get_end(x));
+        });
     }
 
 

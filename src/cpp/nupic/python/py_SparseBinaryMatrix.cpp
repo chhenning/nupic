@@ -28,6 +28,7 @@ typedef nupic::SparseMatrix<nupic::UInt32, nupic::Real64, nupic::Int32, nupic::R
 
 typedef nupic::SparseBinaryMatrix<nupic::UInt32, nupic::UInt32> SM_01_32_32_t;
 
+
 namespace nupic_ext
 {
     void init_SM_01_32_32(py::module& m)

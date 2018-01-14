@@ -438,17 +438,17 @@ class ScalarEncoder(Encoder):
         # Handle the edges by computing wrap-around
         if maxbin >= self.n:
           bottombins = maxbin - self.n + 1
-          output[:bottombins] = 1
+          output[:int(bottombins)] = 1
           maxbin = self.n - 1
         if minbin < 0:
           topbins = -minbin
-          output[self.n - topbins:self.n] = 1
+          output[self.n - int(topbins):self.n] = 1
           minbin = 0
 
       assert minbin >= 0
       assert maxbin < self.n
       # set the output (except for periodic wraparound)
-      output[minbin:maxbin + 1] = 1
+      output[int(minbin):int(maxbin) + 1] = 1
 
     # Debug the decode() method
     if self.verbosity >= 2:
@@ -480,7 +480,7 @@ class ScalarEncoder(Encoder):
 
     # Search for portions of the output that have "holes"
     maxZerosInARow = self.halfwidth
-    for i in range(maxZerosInARow):
+    for i in range(int(maxZerosInARow)):
       searchStr = numpy.ones(i + 3, dtype=encoded.dtype)
       searchStr[1:-1] = 0
       subLen = len(searchStr)
@@ -656,7 +656,7 @@ class ScalarEncoder(Encoder):
 
     # The "category" is simply the bucket index
     category = buckets[0]
-    encoding = self._topDownMappingM.getRow(category)
+    encoding = self._topDownMappingM.getRow(int(category))
 
     # Which input value does this correspond to?
     if self.periodic:

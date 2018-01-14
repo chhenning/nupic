@@ -34,7 +34,6 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/spatial_pooler_py_api_test.py         | todo                                  |              |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_unit_test.py           | todo                                  |              |                                             |
 | tests/unit/nupic/algorithms/temporal_memory_test.py               | yes                                   |              |                                             |
-| 
 | nupic\src\python\python3\tests\unit\nupic\data\generators\anomalyzer_test.py  | TypeError         | #10   | |
 | nupic\src\python\python3\tests\unit\nupic\data\generators\pattern_machine_test.py | yes           |       | |
 | nupic\src\python\python3\tests\unit\nupic\data\generators\sequence_machine_test.py | yes           |       | |
@@ -110,6 +109,11 @@ Add member:
   def getSchema():
      raise NotImplementedError
 
+     
+TypeError: 'float' object cannot be interpreted as an integer
+     for i in range(maxZerosInARow):
+     to
+     
 
 
 

@@ -426,3 +426,8 @@ class DateEncoder(Encoder):
       encoder = getattr(self, name)
       if encoder:
         encoder.write(getattr(proto, name))
+
+  def getSchema():
+     raise NotImplementedError
+
+        
