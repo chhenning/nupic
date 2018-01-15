@@ -52,6 +52,30 @@ namespace nupic_ext {
         pybind11::buffer_info _bi;
     };
 
+    // Simple wrapper to mirror NumpyMatrix members
+    template<typename T = float>
+    class Numpy_Matrix2
+    {
+    public:
+        Numpy_Matrix2(const std::uint32_t nRows, const std::uint32_t nCols)
+            : _matrix({nRows, nCols})
+        {}
+
+        int nRows() const { return _matrix.shape(0); }
+        int nCols() const { return _matrix.shape(1); }
+
+        //T get(int r, int c) const
+        //{
+        //    auto p = (char*)_bi.ptr + (_bi.strides[0] * r) + (_bi.strides[1] * c);
+        //    auto element_ptr = (T*)p;
+
+        //    return *element_ptr;
+        //}
+
+    private:
+
+        pybind11::array_t<T> _matrix;
+    };
 
 } // nupic_ext
 
