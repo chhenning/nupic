@@ -32,24 +32,105 @@ namespace nupic_ext {
     class Numpy_Matrix
     {
     public:
+
+        typedef T size_type;
+
         Numpy_Matrix(const pybind11::buffer_info& bi)
             : _bi(bi.ptr, bi.itemsize, bi.format, bi.ndim, bi.shape, bi.strides)
+            , _alloc(false)
         {}
 
-        int nRows() const { return _bi.shape[0]; }
-        int nCols() const { return _bi.shape[1]; }
+        Numpy_Matrix(const std::uint32_t nRows, const std::uint32_t nCols)
+            : _matrix({ nRows, nCols })
+            , _alloc(true)
+        {}
+
+        int nRows() const 
+        { 
+            if (_alloc)
+            {
+                return _matrix.shape(0);
+            }
+            else
+            {
+                return _bi.shape[0];
+            }
+        }
+        int nCols() const 
+        { 
+            if (_alloc)
+            {
+                return _matrix.shape(1);
+            }
+            else
+            {
+                return _bi.shape[1];
+            }
+        }
 
         T get(int r, int c) const
         {
-            auto p = (char*)_bi.ptr + (_bi.strides[0] * r) + (_bi.strides[1] * c);
-            auto element_ptr = (T*)p;
+            if (_alloc)
+            {
+                return _matrix.unchecked<2>()(r,c);
+            }
+            else
+            {
+                auto p = (char*)_bi.ptr + (_bi.strides[0] * r) + (_bi.strides[1] * c);
+                auto element_ptr = (T*)p;
 
-            return *element_ptr;
+                return *element_ptr;
+            }
+        }
+
+        T* get_row(int row)
+        {
+            if (_alloc)
+            {
+                auto m_bi = _matrix.request();
+                auto p = (char*)m_bi.ptr + (m_bi.strides[0] * row);
+                return (T*)p;
+            }
+            else
+            {
+                auto p = (char*)_bi.ptr + (_bi.strides[0] * row);
+                return (T*)p;
+
+            }
+        }
+
+        void set(int r, int c, T v)
+        {
+            if (_alloc)
+            {
+                auto accessor = _matrix.mutable_unchecked<2>();
+                accessor(r, c) = v;
+            }
+            else
+            {
+                throw std::runtime_error("Not implemented");
+            }
+        }
+
+        pybind11::array_t<T> get_py_array() const
+        {
+            if (_alloc)
+            {
+                return _matrix;
+            }
+            else
+            {
+                throw std::runtime_error("Not implemented");
+            }
         }
 
     private:
 
         pybind11::buffer_info _bi;
+        pybind11::array_t<T> _matrix;
+
+        bool _alloc;
+
     };
 
     // Simple wrapper to mirror NumpyMatrix members
@@ -64,13 +145,12 @@ namespace nupic_ext {
         int nRows() const { return _matrix.shape(0); }
         int nCols() const { return _matrix.shape(1); }
 
-        //T get(int r, int c) const
-        //{
-        //    auto p = (char*)_bi.ptr + (_bi.strides[0] * r) + (_bi.strides[1] * c);
-        //    auto element_ptr = (T*)p;
+        T get(int r, int c) const
+        {
+            auto r = _matrix.unchecked<2>();
 
-        //    return *element_ptr;
-        //}
+            return r(r,c);
+        }
 
     private:
 
