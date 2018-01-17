@@ -179,18 +179,6 @@ namespace nupic_ext
 
         // not sure we need __iter__
         //py_LinkCollection.def("__iter__", [](Link_Collection_t& coll) { return py::make_iterator(coll.begin(), coll.end()); }, py::keep_alive<0, 1>());
-
-        ///////////////////
-        // Timer
-        ///////////////////
-        py::class_<Timer> py_Timer(m, "Timer");
-
-        ///////////////////
-        // OS
-        ///////////////////
-        py::class_<OS> py_OS(m, "OS");
-        py_OS.def_static("getProcessMemoryUsage", &nupic::OS::getProcessMemoryUsage);
-
     }
 
 } // namespace nupix_ext

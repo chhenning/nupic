@@ -164,3 +164,6 @@ class PassThroughEncoder(Encoder):
     proto.verbosity = self.verbosity
     proto.name = self.name
     proto.forced = self.forced
+
+  def getSchema():
+     raise NotImplementedError

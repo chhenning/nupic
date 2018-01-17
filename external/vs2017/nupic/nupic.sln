@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yaml-cpp", "yaml-cpp\yaml-c
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nupic.core_tests", "nupic.core_tests\nupic.core_tests.vcxproj", "{75418384-17A9-48B9-A1A5-C84E0227DB72}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nupic.python", "nupic.python\nupic.python.vcxproj", "{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nupic.python27", "nupic.python27\nupic.python27.vcxproj", "{AD25F469-195D-4DB8-AC5F-D312B68182FF}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "python3", "..\..\..\src\python\python3\python3.pyproj", "{89B7D929-645D-4721-B789-F0ADB71CF8AB}"
@@ -63,16 +61,6 @@ Global
 		{75418384-17A9-48B9-A1A5-C84E0227DB72}.Release|x64.Build.0 = Release|x64
 		{75418384-17A9-48B9-A1A5-C84E0227DB72}.Release|x86.ActiveCfg = Release|Win32
 		{75418384-17A9-48B9-A1A5-C84E0227DB72}.Release|x86.Build.0 = Release|Win32
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Debug|x64.ActiveCfg = Debug|x64
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Debug|x64.Build.0 = Debug|x64
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Debug|x86.ActiveCfg = Debug|Win32
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Debug|x86.Build.0 = Debug|Win32
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Release|Any CPU.ActiveCfg = Release|Win32
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Release|x64.ActiveCfg = Release|x64
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Release|x64.Build.0 = Release|x64
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Release|x86.ActiveCfg = Release|Win32
-		{5C95FF30-7C85-464A-8B1C-8A80E8EC42CE}.Release|x86.Build.0 = Release|Win32
 		{AD25F469-195D-4DB8-AC5F-D312B68182FF}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{AD25F469-195D-4DB8-AC5F-D312B68182FF}.Debug|x64.ActiveCfg = Debug|x64
 		{AD25F469-195D-4DB8-AC5F-D312B68182FF}.Debug|x64.Build.0 = Debug|x64

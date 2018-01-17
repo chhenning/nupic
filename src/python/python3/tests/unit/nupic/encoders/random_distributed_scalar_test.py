@@ -61,8 +61,8 @@ def validateEncoder(encoder, subsampling):
   Given an encoder, calculate overlaps statistics and ensure everything is ok.
   We don't check every possible combination for speed reasons.
   """
-  for i in range(encoder.minIndex, encoder.maxIndex+1, 1):
-    for j in range(i+1, encoder.maxIndex+1, subsampling):
+  for i in range(int(encoder.minIndex), int(encoder.maxIndex)+1, 1):
+    for j in range(i+1, int(encoder.maxIndex)+1, subsampling):
       if not encoder._overlapOK(i, j):
         return False
 

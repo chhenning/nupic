@@ -3,6 +3,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\engine_module.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Engine.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Timer.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_OS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\src\cpp\nupic\python\py_utils.hpp" />

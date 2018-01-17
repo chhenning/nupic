@@ -389,3 +389,6 @@ class SDRCategoryEncoder(Encoder):
     proto.name = self.name
     proto.categories = self.categories
     proto.sdrs = self.sdrs.tolist()
+
+  def getSchema():
+     raise NotImplementedError

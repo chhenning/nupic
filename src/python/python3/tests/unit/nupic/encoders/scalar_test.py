@@ -160,7 +160,7 @@ class ScalarEncoderTest(unittest.TestCase):
       bucketIndices = l.getBucketIndices(v)
       topDown = l.getBucketInfo(bucketIndices)[0]
       self.assertLessEqual(abs(topDown.value - v), l.resolution / 2)
-      self.assertEqual(topDown.value, l.getBucketValues()[bucketIndices[0]])
+      self.assertEqual(topDown.value, l.getBucketValues()[int(bucketIndices[0])])
       self.assertEqual(topDown.scalar, topDown.value)
       self.assertTrue(numpy.array_equal(topDown.encoding, output))
 

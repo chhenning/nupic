@@ -294,12 +294,12 @@ class RandomDistributedScalarEncoder(Encoder):
 
     # Now we choose a bit such that the overlap rules are satisfied.
     newBit = self.random.getUInt32(self.n)
-    newRepresentation[ri] = newBit
+    newRepresentation[int(ri)] = newBit
     while newBit in self.bucketMap[index] or \
           not self._newRepresentationOK(newRepresentation, newIndex):
       self.numTries += 1
       newBit = self.random.getUInt32(self.n)
-      newRepresentation[ri] = newBit
+      newRepresentation[int(ri)] = newBit
 
     return newRepresentation
 
@@ -328,7 +328,7 @@ class RandomDistributedScalarEncoder(Encoder):
       return False
 
     # Compute running overlaps all the way to the midpoint
-    for i in range(self.minIndex+1, midIdx+1):
+    for i in range(int(self.minIndex)+1, int(midIdx)+1):
       # This is the bit that is going to change
       newBit = (i-1)%self.w
 
@@ -344,7 +344,7 @@ class RandomDistributedScalarEncoder(Encoder):
 
     # At this point, runningOverlap contains the overlap for midIdx
     # Compute running overlaps all the way to maxIndex
-    for i in range(midIdx+1, self.maxIndex+1):
+    for i in range(int(midIdx)+1, int(self.maxIndex)+1):
       # This is the bit that is going to change
       newBit = i%self.w
 
@@ -490,3 +490,6 @@ class RandomDistributedScalarEncoder(Encoder):
     proto.maxIndex = self.maxIndex
     proto.bucketMap = [{"key": key, "value": value.tolist()}
                        for key, value in list(self.bucketMap.items())]
+
+  def getSchema():
+     raise NotImplementedError

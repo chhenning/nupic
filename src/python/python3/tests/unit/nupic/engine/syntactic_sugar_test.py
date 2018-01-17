@@ -23,7 +23,7 @@
 import sys
 import unittest
 import nupic.engine as net
-
+import time
 
 
 class NetworkSugarTest(unittest.TestCase):
@@ -143,17 +143,16 @@ class NetworkSugarTest(unittest.TestCase):
 
   def testTimer(self):
     t = net.Timer()
-    self.assertEqual(t.elapsed, 0)
-    self.assertEqual(t.startCount, 0)
+    self.assertEqual(t.elapsed(), 0)
+    self.assertEqual(t.startCount(), 0)
     self.assertEqual(str(t), "[Elapsed: 0 Starts: 0]")
     t.start()
-    # Dummy time
-    _j = 0
-    for i in range(0, 1000):
-      _j = i
+
+    time.sleep(1)
+
     t.stop()
-    self.assertTrue(t.elapsed > 0)
-    self.assertEqual(t.startCount, 1)
+    self.assertTrue(t.elapsed() > 0)
+    self.assertEqual(t.startCount(), 1)
 
 
 

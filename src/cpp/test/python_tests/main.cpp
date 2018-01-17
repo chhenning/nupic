@@ -3,6 +3,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
 
+#include <nupic/os/Timer.hpp>
 
 #include <nupic/engine/Network.hpp>
 #include <nupic/engine/Region.hpp>
@@ -15,6 +16,10 @@ void test_PyBindRegion();
 
 int main()
 {
+    auto t = Timer();
+    auto e = t.getElapsed();
+
+
     // not needed since PyBindRegion is already initializing python interpreter, via initialize_interpreter
     ////py::scoped_interpreter guard{};
     //try

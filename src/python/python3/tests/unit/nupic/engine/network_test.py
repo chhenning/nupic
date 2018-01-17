@@ -20,8 +20,8 @@
 # ----------------------------------------------------------------------
 
 import sys
-from mock import patch
 import unittest
+from unittest.mock import patch
 
 from nupic import engine
 from nupic.bindings.regions.TestNode import TestNode

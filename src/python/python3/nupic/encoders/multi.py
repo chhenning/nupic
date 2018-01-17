@@ -221,3 +221,6 @@ class MultiEncoder(Encoder):
       encoderProto.offset = offset
 
     proto.name = self.name
+
+  def getSchema():
+     raise NotImplementedError

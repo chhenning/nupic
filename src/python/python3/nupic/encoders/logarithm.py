@@ -308,3 +308,6 @@ class LogEncoder(Encoder):
     proto.maxval = self.maxval
     self.encoder.write(proto.encoder)
     proto.name = self.name
+
+  def getSchema():
+     raise NotImplementedError

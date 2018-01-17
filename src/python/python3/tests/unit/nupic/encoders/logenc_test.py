@@ -148,7 +148,7 @@ class LogEncoderTest(unittest.TestCase):
       # Verify our reconstructed value is the same as the bucket value
       bucketValues = le.getBucketValues()
       self.assertEqual(topDown.value,
-                       bucketValues[bucketIndices[0]])
+                       bucketValues[int(bucketIndices[0])])
 
       # Next value
       scaledVal += le.encoder.resolution / 4.0

@@ -28,8 +28,14 @@
     <ProjectReference Include="..\nupic.core\nupic.core.vcxproj">
       <Project>{c3a45a9f-a03f-4318-bd7f-b123a1e42cad}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\nupic.python\nupic.python.vcxproj">
-      <Project>{5c95ff30-7c85-464a-8b1c-8a80e8ec42ce}</Project>
+    <ProjectReference Include="..\nupic.python.algorithms\nupic.python.algorithms.vcxproj">
+      <Project>{ce6b6ae6-83b1-4722-bead-677e0bbee943}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\nupic.python.engine\nupic.python.engine.vcxproj">
+      <Project>{0f74bf72-b738-4a09-818e-6e05a83546af}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\nupic.python.math\nupic.python.math.vcxproj">
+      <Project>{9fdf1e19-0299-4566-9a4a-e8c6b5ad6774}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">

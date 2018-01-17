@@ -76,7 +76,7 @@ class CategoryEncoderTest(unittest.TestCase):
       self.assertEqual(topDown.value, v)
       self.assertEqual(topDown.scalar, e.getScalars(v)[0])
       self.assertTrue(numpy.array_equal(topDown.encoding, output))
-      self.assertEqual(topDown.value, e.getBucketValues()[bucketIndices[0]])
+      self.assertEqual(topDown.value, e.getBucketValues()[int(bucketIndices[0])])
 
 
 

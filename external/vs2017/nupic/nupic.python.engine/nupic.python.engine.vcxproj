@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\engine_module.cpp" />
     <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Engine.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_OS.cpp" />
+    <ClCompile Include="..\..\..\..\src\cpp\nupic\python\py_Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nupic.core\nupic.core.vcxproj">
