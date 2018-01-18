@@ -25,7 +25,7 @@ TODO: add tests for logEntryExit
 """
 
 
-from mock import patch, call, Mock
+from unittest.mock import patch, call, Mock
 
 from nupic.support.unittesthelpers.testcasebase import unittest
 from nupic.support import decorators

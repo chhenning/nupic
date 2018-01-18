@@ -29,7 +29,7 @@ import unittest
 import uuid
 from pkg_resources import resource_filename
 
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 from pkg_resources import resource_filename
 from xml.parsers.expat import ExpatError
 # ParseError not present in xml module for python2.6
@@ -41,7 +41,7 @@ except ImportError:
 import nupic
 import nupic.support.configuration_custom as configuration
 
-from . import configuration_test
+import configuration_test
 
 
 

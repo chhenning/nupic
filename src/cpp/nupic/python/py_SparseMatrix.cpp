@@ -27,9 +27,19 @@ namespace nupic_ext
         // create an alias for SM32
         m.attr("SparseMatrix") = sm;
 
-
         sm.def(py::init<>())
             .def(py::init<nupic::UInt32, nupic::UInt32>(), py::arg("nrows"), py::arg("ncols"));
+
+        sm.def(py::init([](const std::string& str)
+        {
+            SparseMatrix32_t s;
+
+            std::stringstream ss(str);
+            s.fromCSR(ss);
+
+            return s;
+        }));
+            
 
         // constructor from numpy array
         sm.def(py::init(
@@ -37,9 +47,17 @@ namespace nupic_ext
         {
             if (a.ndim() != 2) { throw std::runtime_error("Number of dimensions must be two."); }
 
-            const nupic::UInt32* it = (const nupic::UInt32*) a.request().ptr;
+            SparseMatrix32_t s(a.shape(0), a.shape(1), get_it(a));
 
-            SparseMatrix32_t s(a.shape(0), a.shape(1), it);
+            return s;
+        }));
+
+        sm.def(py::init(
+            [](py::array_t<nupic::Real32>& a)
+        {
+            if (a.ndim() != 2) { throw std::runtime_error("Number of dimensions must be two."); }
+
+            SparseMatrix32_t s(a.shape(0), a.shape(1), get_it(a));
 
             return s;
         }));
@@ -49,6 +67,16 @@ namespace nupic_ext
         sm.def("__subtract", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.subtract(val); });
         sm.def("__divide", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.divide(val); });
         
+        sm.def("__str__", [](SparseMatrix32_t& sm) 
+        {
+            auto out = py::array_t<nupic::Real32>({ sm.nRows(), sm.nCols() });
+
+            sm.toDense(get_it(out));
+
+            return out.attr("__str__")();
+        });
+
+
         sm.def("copy", [](SparseMatrix32_t& sm, SparseMatrix32_t& other) { sm.copy(other); });
 
         sm.def("isZero", &SparseMatrix32_t::isZero);
@@ -69,9 +97,8 @@ namespace nupic_ext
             [](const SparseMatrix32_t& sm)
         {
             auto out = py::array_t<nupic::UInt32>({ sm.nRows(), sm.nCols() });
-            nupic::UInt32* data = (nupic::UInt32*) out.request().ptr;
+            sm.toDense(get_it(out));
 
-            sm.toDense(data);
             return out;
         });
 
@@ -1409,8 +1436,8 @@ namespace nupic_ext
         {
             if (s.empty() == false)
             {
-                std::istringstream s;
-                sm.fromCSR(s);
+                std::istringstream ss(s);
+                sm.fromCSR(ss);
                 return true;
             }
 

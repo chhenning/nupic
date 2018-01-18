@@ -26,6 +26,7 @@
 
 # SparseMatrix is located in nupic.bindings.math, and here is the import you need:
 
+import numpy;
 from nupic.bindings.math import *
 
 
@@ -37,7 +38,7 @@ from nupic.bindings.math import *
 # floating point values of the desired precision, simply specify it as the 
 # 'dtype' parameter in the constructor:
 
-s = SparseMatrix(dtype='Float32')
+# s = SparseMatrix(dtype='Float32')
 
 
 # 2. Global Epsilon:
@@ -62,12 +63,14 @@ print('\nGlobal epsilon :', getGlobalEpsilon())
 # There are several convenient ways to create sparse matrices. 
 # You can create a SparseMatrix by passing it a 2D array:
 
-s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
+# s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
+s = SparseMatrix([[1,2],[3,4]])
 print('\nFrom array 32\n', s)
 
 # ... or by passing it a numpy.array:
 
-s = SparseMatrix(numpy.array([[1,2],[3,4]]),dtype='Float32')
+# s = SparseMatrix(numpy.array([[1,2],[3,4]]),dtype='Float32')
+s = SparseMatrix(numpy.array([[1,2],[3,4]],dtype='Float32'))
 print('\nFrom numpy array 32\n', s)
 
 # ... or by using one of the shortcuts: SM32, SM32:

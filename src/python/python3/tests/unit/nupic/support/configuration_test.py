@@ -28,7 +28,7 @@ import unittest
 import uuid
 from pkg_resources import resource_filename
 
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 from pkg_resources import resource_filename
 from xml.parsers.expat import ExpatError
 # ParseError not present in xml module for python2.6
@@ -60,14 +60,14 @@ class ConfigurationTest(unittest.TestCase):
       prefix='nupic-default.xml-unittest-', delete=False) as outp:
       self.addCleanup(os.remove, outp.name)
       with open(resource_filename(__name__, 'conf/nupic-default.xml')) as inp:
-        outp.write(inp.read())
+        outp.write(inp.read().encode())
       self.files['nupic-default.xml'] = outp.name
 
     with tempfile.NamedTemporaryFile(
       prefix='nupic-site.xml-unittest-', delete=False) as outp:
       self.addCleanup(os.remove, outp.name)
       with open(resource_filename(__name__, 'conf/nupic-site.xml')) as inp:
-        outp.write(inp.read())
+        outp.write(inp.read().encode())
       self.files['nupic-site.xml'] = outp.name
 
 

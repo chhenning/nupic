@@ -14,6 +14,8 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 |------------------------------------------------------------------|---------------------------------------|--------------|---------------------------------------------|
 | examples/sp/hello_sp.py                                          | yes                                   |              | nupic\test\python3\output\hello_sp.py.txt   |  
 | examples/tm/hello_tm.py                                          | yes                                   |              | nupic\test\python3\output\hello_tm.py.txt   |
+| tests/unit/nupic/serializable_test.py                            | yes                                   |              |                                             |
+| tests/unit/nupic/utils.py                                        | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/anomaly_likelihood_jeff_test.py      | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/anomaly_likelihood_test.py           | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/anomaly_test.py                      | yes                                   |              | nupic\test\python3\output\backtracking_tm_constant_test.py.txt |
@@ -63,14 +65,36 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests\unit\nupic\encoders\sparse_pass_through_encoder_test.py    | yes                                   |              |                                             |
 | tests\unit\nupic\engine\network_test.py                          | yes                                   |              |                                             | 
 | tests\unit\nupic\engine\syntactic_sugar_test.py                  | AttributeError                        | #20          |                                             |
-| tests\unit\nupic\engine\unified_py_parameter_test.py             |                                       |              |                                             |
-| tests\unit\nupic\math/lgamma_test.py                             | yes                                   |              |                                             |
-| tests\unit\nupic\math/topology_test.py                           | disabled by default                   |              |                                             |
-| tests\unit\nupic\regions/anomaly_likelihood_region_test.py       | yes                                   |              |                                             |
-| tests\unit\nupic\regions/anomaly_region_test.py                  | yes                                   |              |                                             |
-| tests\unit\nupic\regions/anomaly_region_test.py                  | yes                                   |              |                                             |
-| tests\unit\nupic\regions/knn_anomaly_classifier_region_test.py   | Classification vector type must be either 'tpc' or 'sp_tpe', current value is 3 |                  |
-| tests\unit\nupic\regions/knn_classifier_region_test.py           | yes                                   |              |                                             |
+| tests\unit\nupic\engine\unified_py_parameter_test.py             | AttributeError                        | #20          |                                             |
+| tests\unit\nupic\frameworks\opf\common_models\cluster_params_test.py          | AttributeError     | #20 | |
+| tests\unit\nupic\frameworks\opf\htmpredictionmodel_classifier_helper_test.py  | RuntimeError       | #21 | |
+| tests\unit\nupic\frameworks\opf\htmpredictionmodel_test.py                    | | | |
+| tests\unit\nupic\frameworks\opf\opf_metrics_test.py                           | | | |
+| tests\unit\nupic\frameworks\opf\previous_value_model_test.py                  | | | |
+| tests\unit\nupic\frameworks\opf\safe_interpreter_test.py                      | | | |
+| tests\unit\nupic\frameworks\opf\two_gram_model_test.py                        | RuntimeError | #22 | |
+| tests\unit\nupic\math\lgamma_test.py                             | yes                                   |              |                                             |
+| tests\unit\nupic\math\topology_test.py                           | disabled by default                   |              |                                             |
+| tests\unit\nupic\regions\anomaly_likelihood_region_test.py       | yes                                   |              |                                             |
+| tests\unit\nupic\regions\anomaly_region_test.py                  | yes                                   |              |                                             |
+| tests\unit\nupic\regions\anomaly_region_test.py                  | yes                                   |              |                                             |
+| tests\unit\nupic\regions\knn_anomaly_classifier_region_test.py   | RuntimeError       | #23 | | |
+| tests\unit\nupic\regions\knn_classifier_region_test.py           | yes                |     | | |
+| tests\unit\nupic\regions\record_sensor_region_test.py            | AttributeError     | #20 | | |
+| tests\unit\nupic\regions\regions_spec_test.py                    | yes                |     | | |
+| tests\unit\nupic\regions\sdr_classifier_region_test.py           | AttributeError     | #20 | | |
+| tests\unit\nupic\regions\tm_region_test.py                       | yes                |     | | |
+| tests\unit\nupic\support\configuration_test.py                   | RuntimeError       | #21 | | |
+| tests\unit\nupic\support\consoleprinter_test                     | disabled           |     | | |
+| tests\unit\nupic\support\custom_configuration_test.py            | RuntimeError       | #21 | | |
+| tests\unit\nupic\support\decorators_test.py                      | yes                |     | | |
+| tests\unit\nupic\support\group_by_test.py                        | yes                |     | | |
+| tests\unit\nupic\support\object_json_test.py                     | AssertionError     | #24 | | |
+
+
+
+
+
 
 
 # python 3 dependencies
@@ -80,6 +104,8 @@ pip install pymysql
 pip install pyproj
 pip install validictory
 pip install DBUtils
+pip install prettytable
+
 
 
 # python 3 manual changes
@@ -139,4 +165,8 @@ int_list = [int(x) for x in ranges[0]]
 self.assertTrue(numpy.array_equal(int_list, [1, 1]))
 
 
+TypeError: a bytes-like object is required, not 'str'
+outp.write(inp.read())
+to
+outp.write(inp.read().encode())
 

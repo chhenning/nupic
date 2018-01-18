@@ -16,10 +16,6 @@ void test_PyBindRegion();
 
 int main()
 {
-    auto t = Timer();
-    auto e = t.getElapsed();
-
-
     // not needed since PyBindRegion is already initializing python interpreter, via initialize_interpreter
     ////py::scoped_interpreter guard{};
     //try
@@ -38,9 +34,12 @@ int main()
     {
         // Work around: AttributeError: module 'sys' has no attribute 'argv'
         py::exec(R"(
-            import sys
-            if not hasattr(sys, 'argv'):
-              sys.argv = ['']
+            import numpy;
+            from nupic.bindings.math import *
+            
+            s = SM32()
+            s.fromDense(numpy.random.random((4,4)))
+            print('\nfromDense\n', s)
         )");
 
         py::eval_file(R"(D:\nupic\src\python\python3\tests\unit\nupic\regions\record_sensor_region_test.py)");

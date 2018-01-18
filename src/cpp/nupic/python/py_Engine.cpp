@@ -146,6 +146,7 @@ namespace nupic_ext
         py::class_<Region_Collection_t> py_RegionCollection(m, "RegionCollection");
         py_RegionCollection.def("getByName", &Region_Collection_t::getByName);
         py_RegionCollection.def("contains", &Region_Collection_t::contains);
+        py_RegionCollection.def("getCount", &Region_Collection_t::getCount);
 
         // bare bone sequence protocol
         py_RegionCollection.def("__len__", &Region_Collection_t::getCount);
@@ -164,6 +165,7 @@ namespace nupic_ext
         py::class_<Link_Collection_t> py_LinkCollection(m, "Link_Collection_t");
         py_LinkCollection.def("getByName", &Link_Collection_t::getByName);
         py_LinkCollection.def("contains", &Link_Collection_t::contains);
+        py_LinkCollection.def("getCount", &Link_Collection_t::getCount);
 
         // bare bone sequence protocol
         py_LinkCollection.def("__len__", &Link_Collection_t::getCount);

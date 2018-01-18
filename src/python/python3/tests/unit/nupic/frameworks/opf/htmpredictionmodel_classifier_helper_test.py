@@ -25,7 +25,7 @@ import sys
 import copy
 from datetime import datetime
 import numpy
-from mock import Mock, patch, ANY, call
+from unittest.mock import Mock, patch, ANY, call
 
 from nupic.support.unittesthelpers.testcasebase import (unittest,
                                                         TestOptionParser)

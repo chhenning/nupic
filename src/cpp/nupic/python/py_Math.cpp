@@ -20,6 +20,9 @@ namespace nupic_ext
 		 .def("erf", &nupic::erf<nupic::Real64>)
 		 .def("beta", &nupic::digamma<nupic::Real64>);
 
+        m.def("getGlobalEpsilon", []() {return nupic::Epsilon; });
+
+
         m.def("nearlyZeroRange", [](py::array_t<nupic::Real32>& x, nupic::Real32 eps)
         {
             if (x.ndim() != 1) { throw std::runtime_error("Number of dimensions must be one."); }

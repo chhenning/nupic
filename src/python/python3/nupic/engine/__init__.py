@@ -599,14 +599,14 @@ class Network(engine_internal.Network):
     )
 
     # Attach documentation to methods and properties
-    for obj, docString in docTable:
-      if isinstance(obj, str):
-        prop = getattr(Network, obj)
-        assert isinstance(prop, property)
-        setattr(Network, obj, property(prop.fget, prop.fset, prop.fdel,
-                                       docString))
-      else:
-        obj.__func__.__doc__ = docString
+    # for obj, docString in docTable:
+    #   if isinstance(obj, str):
+    #     prop = getattr(Network, obj)
+    #     assert isinstance(prop, property)
+    #     setattr(Network, obj, property(prop.fget, prop.fset, prop.fdel,
+    #                                    docString))
+    #   else:
+    #     obj.__func__.__doc__ = docString
 
   def _getRegions(self):
     """Get the collection of regions in a network
