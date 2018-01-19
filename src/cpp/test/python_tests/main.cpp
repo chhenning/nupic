@@ -36,10 +36,15 @@ int main()
         py::exec(R"(
             import numpy;
             from nupic.bindings.math import *
-            
-            s = SM32()
-            s.fromDense(numpy.random.random((4,4)))
-            print('\nfromDense\n', s)
+
+            # calls py::kwargs
+            s = SparseMatrix(dtype='Float32')
+
+            # calls py::args
+            s = SparseMatrix([[1,2],[3,4]])
+
+            # calls py::args && py::kwargs
+            s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
         )");
 
         py::eval_file(R"(D:\nupic\src\python\python3\tests\unit\nupic\regions\record_sensor_region_test.py)");

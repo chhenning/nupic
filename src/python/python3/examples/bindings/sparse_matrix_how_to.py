@@ -63,13 +63,13 @@ print('\nGlobal epsilon :', getGlobalEpsilon())
 # There are several convenient ways to create sparse matrices. 
 # You can create a SparseMatrix by passing it a 2D array:
 
-# s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
+# CHH s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
 s = SparseMatrix([[1,2],[3,4]])
 print('\nFrom array 32\n', s)
 
 # ... or by passing it a numpy.array:
 
-# s = SparseMatrix(numpy.array([[1,2],[3,4]]),dtype='Float32')
+# CHH s = SparseMatrix(numpy.array([[1,2],[3,4]]),dtype='Float32')
 s = SparseMatrix(numpy.array([[1,2],[3,4]],dtype='Float32'))
 print('\nFrom numpy array 32\n', s)
 
@@ -99,21 +99,21 @@ s.fromDense(numpy.random.random((4,4)))
 print('\nfromDense\n', s)
 
 # A sparse matrix can be serialized:
-schema = SM32.getSchema()
+# CHH schema = SM32.getSchema()
 
-with open("sm.bin", "w+b") as f:
-  # Save
-  proto = schema.new_message()
-  s.write(proto)
-  proto.write(f)
-
-  # Load
-  f.seek(0)
-  proto2 = schema.read(f)
-  s2 = SM32()
-  s2.read(proto2)
-
-print('\nSerializing\n', s2)
+# CHH with open("sm.bin", "w+b") as f:
+# CHH   # Save
+# CHH   proto = schema.new_message()
+# CHH   s.write(proto)
+# CHH   proto.write(f)
+# CHH 
+# CHH   # Load
+# CHH   f.seek(0)
+# CHH   proto2 = schema.read(f)
+# CHH   s2 = SM32()
+# CHH   s2.read(proto2)
+# CHH 
+# CHH print('\nSerializing\n', s2)
 
 # 4. Simple queries:
 # =================

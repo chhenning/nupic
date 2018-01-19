@@ -62,11 +62,207 @@ namespace nupic_ext
             return s;
         }));
 
+
+        // called from: s = SparseMatrix([[1,2],[3,4]])
+        //sm.def(py::init( [](py::args args)
+        //{
+        //    // ignore the arguments for now.
+
+        //    SparseMatrix32_t s;
+        //    return s;
+        //}));
+
+        // called from: s = SparseMatrix(dtype='Float32')
+        //sm.def(py::init([](py::kwargs kwargs)
+        //{
+        //    // ignore the arguments for now.
+
+        //    SparseMatrix32_t s;
+        //    return s;
+        //}));
+
+        // called from: s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
+        //sm.def(py::init([](py::args args, py::kwargs kwargs)
+        //{
+        //    // ignore the arguments for now.
+
+        //    SparseMatrix32_t s;
+        //    return s;
+        //}));
+
+        ////////////////////////////
+
+        // Simple Members
+        sm.def("isZero", &SparseMatrix32_t::isZero);
+        sm.def("getIsNearlyZeroFunction", &SparseMatrix32_t::getIsNearlyZeroFunction);
+        sm.def("isCompact", &SparseMatrix32_t::isCompact);
+        sm.def("nRows", &SparseMatrix32_t::nRows);
+        sm.def("nCols", &SparseMatrix32_t::nCols);
+        sm.def("nCols", &SparseMatrix32_t::nCols);
+        sm.def("nNonZeros", &SparseMatrix32_t::nNonZeros);
+
+        sm.def("nBytes", &SparseMatrix32_t::nBytes);
+        sm.def("nNonZerosOnRow", &SparseMatrix32_t::nNonZerosOnRow);
+        sm.def("nNonZerosOnCol", &SparseMatrix32_t::nNonZerosOnCol);
+        sm.def("nNonZeros", &SparseMatrix32_t::nNonZeros);
+        sm.def("isRowZero", &SparseMatrix32_t::isRowZero);
+        sm.def("isColZero", &SparseMatrix32_t::isColZero);
+        sm.def("nNonZeroRows", &SparseMatrix32_t::nNonZeroRows);
+        sm.def("nNonZeroCols", &SparseMatrix32_t::nNonZeroCols);
+        sm.def("nZeroRows", &SparseMatrix32_t::nZeroRows);
+        sm.def("nZeroCols", &SparseMatrix32_t::nZeroCols);
+        sm.def("firstNonZeroOnRow", &SparseMatrix32_t::firstNonZeroOnRow);
+        sm.def("lastNonZeroOnRow", &SparseMatrix32_t::lastNonZeroOnRow);
+        sm.def("rowBandwidth", &SparseMatrix32_t::rowBandwidth);
+        sm.def("firstNonZeroOnCol", &SparseMatrix32_t::firstNonZeroOnCol);
+        sm.def("lastNonZeroOnCol", &SparseMatrix32_t::lastNonZeroOnCol);
+        sm.def("colBandwidth", &SparseMatrix32_t::colBandwidth);
+        sm.def("nonZerosInRowRange", &SparseMatrix32_t::nonZerosInRowRange);
+        sm.def("nNonZerosInRowRange", &SparseMatrix32_t::nNonZerosInRowRange);
+        sm.def("nNonZerosInBox", &SparseMatrix32_t::nNonZerosInBox);
+        sm.def("isSymmetric", &SparseMatrix32_t::isSymmetric);
+        sm.def("isBinary", &SparseMatrix32_t::isBinary);
+        sm.def("equals", &SparseMatrix32_t::equals);
+        sm.def("sameRowNonZeroIndices", &SparseMatrix32_t::sameRowNonZeroIndices);
+        sm.def("sameNonZeroIndices", &SparseMatrix32_t::sameNonZeroIndices);
+        sm.def("compact", &SparseMatrix32_t::compact);
+        sm.def("decompact", &SparseMatrix32_t::decompact);
+        sm.def("CSRSize", &SparseMatrix32_t::CSRSize);
+        sm.def("fromCSR", &SparseMatrix32_t::fromCSR, py::arg("inStreamParam"), py::arg("zero_permissive") = false);
+        sm.def("toCSR", &SparseMatrix32_t::toCSR);
+        sm.def("fromBinary", &SparseMatrix32_t::fromBinary);
+        sm.def("toBinary", &SparseMatrix32_t::toBinary);
+        sm.def("resize", &SparseMatrix32_t::resize, py::arg("new_nrows"), py::arg("new_ncols"), py::arg("setToZero") = false);
+        sm.def("reshape", &SparseMatrix32_t::reshape);
+        sm.def("deleteRow", &SparseMatrix32_t::deleteRow);
+        sm.def("deleteCol", &SparseMatrix32_t::deleteCol);
+        sm.def("append", &SparseMatrix32_t::append, py::arg("other"), py::arg("zero_permissive") = false);
+        sm.def("duplicateRow", &SparseMatrix32_t::duplicateRow);
+        sm.def("setZero", &SparseMatrix32_t::setZero, py::arg("row"), py::arg("col"), py::arg("resizeYesNo") = false);
+        sm.def("setDiagonalToZero", &SparseMatrix32_t::setDiagonalToZero);
+        sm.def("setDiagonalToVal", &SparseMatrix32_t::setDiagonalToVal);
+        sm.def("setNonZero", &SparseMatrix32_t::setNonZero, py::arg("i"), py::arg("j"), py::arg("val"), py::arg("resizeYesNo") = false);
+        sm.def("set", &SparseMatrix32_t::set, py::arg("i"), py::arg("j"), py::arg("val"), py::arg("resizeYesNo") = false);
+        sm.def("setBoxToZero", &SparseMatrix32_t::setBoxToZero);
+        sm.def("setBox", &SparseMatrix32_t::setBox);
+        sm.def("increment", &SparseMatrix32_t::increment, py::arg("i"), py::arg("j"), py::arg("delta") = 1, py::arg("resizeYesNo") = false);
+        sm.def("incrementWNZ", &SparseMatrix32_t::incrementWNZ, py::arg(""), py::arg(""));
+        sm.def("get", &SparseMatrix32_t::get);
+        sm.def("row_nz_index_begin", &SparseMatrix32_t::row_nz_index_begin);
+        sm.def("row_nz_index_end", &SparseMatrix32_t::row_nz_index_end);
+        sm.def("row_nz_value_begin", &SparseMatrix32_t::row_nz_value_begin);
+        sm.def("row_nz_value_end", &SparseMatrix32_t::row_nz_value_end);
+        sm.def("setRowToZero", &SparseMatrix32_t::setRowToZero);
+        sm.def("setRowToVal", &SparseMatrix32_t::setRowToVal);
+        sm.def("setColToZero", &SparseMatrix32_t::setColToZero);
+        sm.def("setColToVal", &SparseMatrix32_t::setColToVal);
+        sm.def("setToZero", &SparseMatrix32_t::setToZero);
+        sm.def("setFromOuter", &SparseMatrix32_t::setFromOuter, py::arg("x"), py::arg("y"), py::arg("keepMemory") = false);
+        sm.def("setFromElementMultiplyWithOuter", &SparseMatrix32_t::setFromElementMultiplyWithOuter);
+        sm.def("setRowFromDense", &SparseMatrix32_t::setRowFromDense);
+        sm.def("getRowToDense", &SparseMatrix32_t::getRowToDense);
+        sm.def("copyRow", &SparseMatrix32_t::copyRow);
+        sm.def("getColToDense", &SparseMatrix32_t::getColToDense);
+        sm.def("setColFromDense", &SparseMatrix32_t::setColFromDense);
+        sm.def("shiftRows", &SparseMatrix32_t::shiftRows);
+        sm.def("shiftCols", &SparseMatrix32_t::shiftCols);
+        sm.def("clipRow", &SparseMatrix32_t::clipRow, py::arg("row"), py::arg("val"), py::arg("above") = true);
+        sm.def("clipRowBelowAndAbove", &SparseMatrix32_t::clipRowBelowAndAbove);
+        sm.def("clipCol", &SparseMatrix32_t::clipCol, py::arg("col"), py::arg("val"), py::arg("above") = true);
+        sm.def("clipColBelowAndAbove", &SparseMatrix32_t::clipColBelowAndAbove);
+        sm.def("clip", &SparseMatrix32_t::clip, py::arg("val"), py::arg("above") = true);
+        sm.def("clipBelowAndAbove", &SparseMatrix32_t::clipBelowAndAbove);
+        sm.def("countWhereEqual", &SparseMatrix32_t::countWhereEqual);
+        sm.def("countWhereGreater", &SparseMatrix32_t::countWhereGreater);
+        sm.def("countWhereGreaterEqual", &SparseMatrix32_t::countWhereGreaterEqual);
+        sm.def("argmax", &SparseMatrix32_t::argmax);
+        sm.def("argmin", &SparseMatrix32_t::argmin);
+        sm.def("normalizeRow", &SparseMatrix32_t::normalizeRow, py::arg("row"), py::arg("val") = 1.0, py::arg("exact") = false);
+        sm.def("normalizeCol", &SparseMatrix32_t::normalizeCol, py::arg(""), py::arg("val") = 1.0, py::arg("exact") = false);
+        sm.def("normalizeRows", &SparseMatrix32_t::normalizeRows, py::arg("val") = 1.0, py::arg("exact") = false);
+        sm.def("normalizeCols", &SparseMatrix32_t::normalizeCols, py::arg("val") = 1.0, py::arg("exact") = false);
+        sm.def("normalize", &SparseMatrix32_t::normalize, py::arg("val") = 1.0, py::arg("exact") = false);
+        sm.def("normalize_max", &SparseMatrix32_t::normalize_max, py::arg("val") = 1.0);
+        sm.def("rowSum", &SparseMatrix32_t::rowSum);
+        sm.def("rowProd", &SparseMatrix32_t::rowProd);
+        sm.def("colSum", &SparseMatrix32_t::colSum);
+        sm.def("colProd", &SparseMatrix32_t::colProd);
+        sm.def("sum", &SparseMatrix32_t::sum);
+        sm.def("prod", &SparseMatrix32_t::prod);
+        sm.def("lerp", &SparseMatrix32_t::lerp);
+        sm.def("addTwoRows", &SparseMatrix32_t::addTwoRows);
+        sm.def("addTwoCols", &SparseMatrix32_t::addTwoCols);
+        sm.def("map", &SparseMatrix32_t::map);
+        sm.def("incrementWithOuterProduct", &SparseMatrix32_t::incrementWithOuterProduct);
+        sm.def("incrementOnOuterProductVal", &SparseMatrix32_t::incrementOnOuterProductVal, py::arg(""), py::arg("")); // def incrementOnOuterProductVal(self, rows, cols, val=1.0):
+        sm.def("sortRowsAscendingNNZ", &SparseMatrix32_t::sortRowsAscendingNNZ);
+        sm.def("replaceNZ", &SparseMatrix32_t::replaceNZ, py::arg(""), py::arg("")); // def replaceNZ(self, val=1.0):
+        sm.def("diagNZProd", &SparseMatrix32_t::diagNZProd);
+        sm.def("diagSum", &SparseMatrix32_t::diagSum);
+        sm.def("diagNZLogSum", &SparseMatrix32_t::diagNZLogSum);
+        sm.def("rowNegate", &SparseMatrix32_t::rowNegate);
+        sm.def("colNegate", &SparseMatrix32_t::colNegate);
+        sm.def("negate", &SparseMatrix32_t::negate);
+        sm.def("rowAbs", &SparseMatrix32_t::rowAbs);
+        sm.def("colAbs", &SparseMatrix32_t::colAbs);
+        sm.def("abs", &SparseMatrix32_t::abs);
+        sm.def("elementRowSquare", &SparseMatrix32_t::elementRowSquare);
+        sm.def("elementColSquare", &SparseMatrix32_t::elementColSquare);
+        sm.def("elementSquare", &SparseMatrix32_t::elementSquare);
+        sm.def("elementRowCube", &SparseMatrix32_t::elementRowCube);
+        sm.def("elementColCube", &SparseMatrix32_t::elementColCube);
+        sm.def("elementCube", &SparseMatrix32_t::elementCube);
+        sm.def("elementRowNZInverse", &SparseMatrix32_t::elementRowNZInverse);
+        sm.def("elementColNZInverse", &SparseMatrix32_t::elementColNZInverse);
+        sm.def("elementNZInverse", &SparseMatrix32_t::elementNZInverse);
+        sm.def("elementRowSqrt", &SparseMatrix32_t::elementRowSqrt);
+        sm.def("elementColSqrt", &SparseMatrix32_t::elementColSqrt);
+        sm.def("elementSqrt", &SparseMatrix32_t::elementSqrt);
+        sm.def("elementRowNZLog", &SparseMatrix32_t::elementRowNZLog);
+        sm.def("elementColNZLog", &SparseMatrix32_t::elementColNZLog);
+        sm.def("elementNZLog", &SparseMatrix32_t::elementNZLog);
+        sm.def("elementRowNZExp", &SparseMatrix32_t::elementRowNZExp);
+        sm.def("elementColNZExp", &SparseMatrix32_t::elementColNZExp);
+        sm.def("elementNZExp", &SparseMatrix32_t::elementNZExp);
+        sm.def("divide", &SparseMatrix32_t::divide);
+        sm.def("elementRowNZPow", &SparseMatrix32_t::elementRowNZPow);
+        sm.def("elementColNZPow", &SparseMatrix32_t::elementColNZPow);
+        sm.def("elementNZPow", &SparseMatrix32_t::elementNZPow);
+        sm.def("elementRowNZLogk", &SparseMatrix32_t::elementRowNZLogk);
+        sm.def("elementColNZLogk", &SparseMatrix32_t::elementColNZLogk);
+        sm.def("elementNZLogk", &SparseMatrix32_t::elementNZLogk);
+        sm.def("rowAdd", &SparseMatrix32_t::rowAdd);
+        sm.def("colAdd", &SparseMatrix32_t::colAdd);
+        sm.def("elementNZAdd", &SparseMatrix32_t::elementNZAdd);
+        sm.def("rowSubtract", &SparseMatrix32_t::rowSubtract);
+        sm.def("colSubtract", &SparseMatrix32_t::colSubtract);
+        sm.def("elementNZMultiply", &SparseMatrix32_t::elementNZMultiply);
+        sm.def("elementNZDivide", &SparseMatrix32_t::elementNZDivide);
+
+        //sm.def("nonZeroIndicesIncluded", &SparseMatrix32_t::);
+        sm.def("write", [](const SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Cap'n Proto is not available."); });
+        sm.def("read", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Cap'n Proto is not available."); });
+        sm.def("getSchema", [](const SparseMatrix32_t& sm) { throw std::runtime_error("Cap'n Proto schema is not available."); });
+
+        sm.def("nonZeroIndicesIncluded", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
+        sm.def("transpose", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
+        sm.def("addToTranspose", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
+        sm.def("thresholdRow", [](SparseMatrix32_t& sm, py::args args, py::kwargs kwargs) { throw std::runtime_error("Not implemented."); });
+        sm.def("thresholdCol", [](SparseMatrix32_t& sm, py::args args, py::kwargs kwargs) { throw std::runtime_error("Not implemented."); });
+        sm.def("multiply", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
+        sm.def("add", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
+        sm.def("subtract", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
+
+
+        
+        ////////////////////////////
+
         sm.def("__add", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.add(val); });
         sm.def("__multiply", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.multiply(val); });
         sm.def("__subtract", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.subtract(val); });
         sm.def("__divide", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.divide(val); });
         
+
         sm.def("__str__", [](SparseMatrix32_t& sm) 
         {
             auto out = py::array_t<nupic::Real32>({ sm.nRows(), sm.nCols() });
@@ -77,13 +273,8 @@ namespace nupic_ext
         });
 
 
+
         sm.def("copy", [](SparseMatrix32_t& sm, SparseMatrix32_t& other) { sm.copy(other); });
-
-        sm.def("isZero", &SparseMatrix32_t::isZero);
-
-        sm.def("nRows", &SparseMatrix32_t::nRows);
-        sm.def("nCols", &SparseMatrix32_t::nCols);
-
 
         sm.def("fromDense",
             [](SparseMatrix32_t& sm, py::array_t<nupic::Real>& matrix)
