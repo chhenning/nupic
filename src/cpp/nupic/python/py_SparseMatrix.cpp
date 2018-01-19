@@ -42,15 +42,15 @@ namespace nupic_ext
             
 
         // constructor from numpy array
-        sm.def(py::init(
-            [](py::array_t<nupic::UInt32>& a)
-        {
-            if (a.ndim() != 2) { throw std::runtime_error("Number of dimensions must be two."); }
+        //sm.def(py::init(
+        //    [](py::array_t<nupic::UInt32>& a)
+        //{
+        //    if (a.ndim() != 2) { throw std::runtime_error("Number of dimensions must be two."); }
 
-            SparseMatrix32_t s(a.shape(0), a.shape(1), get_it(a));
+        //    SparseMatrix32_t s(a.shape(0), a.shape(1), get_it(a));
 
-            return s;
-        }));
+        //    return s;
+        //}));
 
         sm.def(py::init(
             [](py::array_t<nupic::Real32>& a)
@@ -146,7 +146,7 @@ namespace nupic_ext
         sm.def("setBoxToZero", &SparseMatrix32_t::setBoxToZero);
         sm.def("setBox", &SparseMatrix32_t::setBox);
         sm.def("increment", &SparseMatrix32_t::increment, py::arg("i"), py::arg("j"), py::arg("delta") = 1, py::arg("resizeYesNo") = false);
-        sm.def("incrementWNZ", &SparseMatrix32_t::incrementWNZ, py::arg(""), py::arg(""));
+        sm.def("incrementWNZ", &SparseMatrix32_t::incrementWNZ, py::arg("i"), py::arg("j"), py::arg("delta") = 1, py::arg("resizeYesNo") = false);
         sm.def("get", &SparseMatrix32_t::get);
         sm.def("row_nz_index_begin", &SparseMatrix32_t::row_nz_index_begin);
         sm.def("row_nz_index_end", &SparseMatrix32_t::row_nz_index_end);
@@ -194,9 +194,9 @@ namespace nupic_ext
         sm.def("addTwoCols", &SparseMatrix32_t::addTwoCols);
         sm.def("map", &SparseMatrix32_t::map);
         sm.def("incrementWithOuterProduct", &SparseMatrix32_t::incrementWithOuterProduct);
-        sm.def("incrementOnOuterProductVal", &SparseMatrix32_t::incrementOnOuterProductVal, py::arg(""), py::arg("")); // def incrementOnOuterProductVal(self, rows, cols, val=1.0):
+        sm.def("incrementOnOuterProductVal", &SparseMatrix32_t::incrementOnOuterProductVal, py::arg("rows"), py::arg("cols"), py::arg("val") = 1.0);
         sm.def("sortRowsAscendingNNZ", &SparseMatrix32_t::sortRowsAscendingNNZ);
-        sm.def("replaceNZ", &SparseMatrix32_t::replaceNZ, py::arg(""), py::arg("")); // def replaceNZ(self, val=1.0):
+        sm.def("replaceNZ", &SparseMatrix32_t::replaceNZ, py::arg("val") = 1.0);
         sm.def("diagNZProd", &SparseMatrix32_t::diagNZProd);
         sm.def("diagSum", &SparseMatrix32_t::diagSum);
         sm.def("diagNZLogSum", &SparseMatrix32_t::diagNZLogSum);
@@ -239,20 +239,35 @@ namespace nupic_ext
         sm.def("elementNZMultiply", &SparseMatrix32_t::elementNZMultiply);
         sm.def("elementNZDivide", &SparseMatrix32_t::elementNZDivide);
 
-        //sm.def("nonZeroIndicesIncluded", &SparseMatrix32_t::);
         sm.def("write", [](const SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Cap'n Proto is not available."); });
         sm.def("read", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Cap'n Proto is not available."); });
         sm.def("getSchema", [](const SparseMatrix32_t& sm) { throw std::runtime_error("Cap'n Proto schema is not available."); });
 
-        sm.def("nonZeroIndicesIncluded", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
-        sm.def("transpose", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
-        sm.def("addToTranspose", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
-        sm.def("thresholdRow", [](SparseMatrix32_t& sm, py::args args, py::kwargs kwargs) { throw std::runtime_error("Not implemented."); });
-        sm.def("thresholdCol", [](SparseMatrix32_t& sm, py::args args, py::kwargs kwargs) { throw std::runtime_error("Not implemented."); });
-        sm.def("multiply", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
-        sm.def("add", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
-        sm.def("subtract", [](SparseMatrix32_t& sm, py::args args) { throw std::runtime_error("Not implemented."); });
+        // member functions which are overloaded
 
+        sm.def("nonZeroIndicesIncluded", py::overload_cast<nupic::UInt32, const SparseMatrix32_t&>(&SparseMatrix32_t::nonZeroIndicesIncluded, py::const_));
+        sm.def("nonZeroIndicesIncluded", py::overload_cast<const SparseMatrix32_t&>(&SparseMatrix32_t::nonZeroIndicesIncluded, py::const_));
+
+        sm.def("transpose", py::overload_cast<>(&SparseMatrix32_t::transpose));
+        sm.def("transpose", py::overload_cast<SparseMatrix32_t&>(&SparseMatrix32_t::transpose, py::const_));
+        
+        sm.def("addToTranspose", py::overload_cast<>(&SparseMatrix32_t::addToTranspose));
+        sm.def("addToTranspose", py::overload_cast<SparseMatrix32_t&>(&SparseMatrix32_t::addToTranspose, py::const_));
+
+
+        // overloaded functions with different return types seems to be problem
+        // (void (SparseMatrix32_t::*)(nupic::UInt32, const nupic::Real32&)) &SparseMatrix32_t::thresholdRow
+        sm.def("thresholdRow", (void (SparseMatrix32_t::*)(nupic::UInt32, const nupic::Real32&)) &SparseMatrix32_t::thresholdRow, "", py::arg("row"), py::arg("threshold") = nupic::Epsilon);
+        sm.def("thresholdRow", [](SparseMatrix32_t& sm, nupic::UInt32 row, const nupic::Real32& threshold
+            , py::array_t<nupic::UInt32>& cut_j, py::array_t<nupic::UInt32>& cut_nz)
+        {
+            return sm.thresholdRow(row, threshold, get_it(cut_j), get_it(cut_nz));
+        }, "", py::arg("row"), py::arg("threshold"), py::arg("cut_j"), py::arg("cut_nz"));
+
+        sm.def("thresholdCol", &SparseMatrix32_t::thresholdCol);
+
+        sm.def("multiply", py::overload_cast<const nupic::Real32&>(&SparseMatrix32_t::multiply));
+        sm.def("multiply", py::overload_cast<const SparseMatrix32_t&, SparseMatrix32_t&>(&SparseMatrix32_t::multiply, py::const_));
 
         
         ////////////////////////////

@@ -89,8 +89,10 @@ namespace nupic_ext
         sbm.def(py::init([](const SM_01_32_32_t& o) { return new SM_01_32_32_t(o); }));
 
         // getter members
-        sbm.def("nRows", &SM_01_32_32_t::nRows)
-            .def("nCols", py::overload_cast<>(&SM_01_32_32_t::nCols, py::const_));
+        sbm.def("nRows", &SM_01_32_32_t::nRows);
+        
+        sbm.def("nCols", py::overload_cast<>(&SM_01_32_32_t::nCols, py::const_));
+        //sbm.def("nCols", (void (SM_01_32_32_t::*)(nupic::UInt32)) &SM_01_32_32_t::nCols); // private
 
         sbm.def("capacity", &SM_01_32_32_t::capacity);
     
