@@ -126,12 +126,7 @@ print('\nfromDense\n', s)
 # even if the internal storage is CSR.
 
 s = SM32(numpy.random.random((4,4)))
-bb = s.toPyString()
-
 s.threshold(.5)
-
-cc = s.toPyString()
-
 
 print('\nPrint\n', s)
 print('\nNumber of rows ', s.nRows())

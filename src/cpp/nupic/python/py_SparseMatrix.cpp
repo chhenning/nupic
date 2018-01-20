@@ -244,6 +244,7 @@ namespace nupic_ext
         sm.def("getSchema", [](const SparseMatrix32_t& sm) { throw std::runtime_error("Cap'n Proto schema is not available."); });
 
         // member functions which are overloaded
+        sm.def("add", py::overload_cast<const nupic::Real32&>(&SparseMatrix32_t::add));
 
         sm.def("nonZeroIndicesIncluded", py::overload_cast<nupic::UInt32, const SparseMatrix32_t&>(&SparseMatrix32_t::nonZeroIndicesIncluded, py::const_));
         sm.def("nonZeroIndicesIncluded", py::overload_cast<const SparseMatrix32_t&>(&SparseMatrix32_t::nonZeroIndicesIncluded, py::const_));
@@ -276,7 +277,51 @@ namespace nupic_ext
         sm.def("__multiply", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.multiply(val); });
         sm.def("__subtract", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.subtract(val); });
         sm.def("__divide", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.divide(val); });
-        
+
+        // allows Matrix + 3
+        sm.def("__add__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            SparseMatrix32_t result(sm);
+            result.add(val);
+
+            return result;
+        });
+
+        // allows 3 + Matrix
+        sm.def("__radd__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            SparseMatrix32_t result(sm);
+            result.add(val);
+
+            return result;
+        });
+
+
+        sm.def("__sub__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            SparseMatrix32_t result(sm);
+            result.subtract(val);
+
+            return result;
+        });
+
+        sm.def("__rsub__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            SparseMatrix32_t result(sm);
+            result.subtract(val);
+
+            return result;
+        });
+
+
+        sm.def("__mul__", [](const SparseMatrix32_t& a, const SparseMatrix32_t& b)
+        {
+            SparseMatrix32_t result;
+
+            a.multiply(b, result);
+
+            return result;
+        });
 
         sm.def("__str__", [](SparseMatrix32_t& sm) 
         {
@@ -287,6 +332,46 @@ namespace nupic_ext
             return out.attr("__str__")();
         });
 
+        sm.def("__getitem__", [](const SparseMatrix32_t& sm, const std::vector<nupic::UInt32>& indices)
+        {
+            if (indices.size() != 2)
+            {
+                throw std::runtime_error("Indices must be two values.");
+            }
+
+            return sm.get(indices[0], indices[1]);
+        });
+
+        sm.def("__setitem__", [](SparseMatrix32_t& sm, const std::vector<nupic::UInt32>& indices, nupic::Real32 value)
+        {
+            if (indices.size() != 2)
+            {
+                throw std::runtime_error("Indices must be two values.");
+            }
+
+            sm.set(indices[0], indices[1], value);
+        });
+
+        sm.def("__neg__", [](const SparseMatrix32_t& sm)
+        {
+            SparseMatrix32_t result(sm);
+
+            result.negate();
+
+            return result;
+        });
+
+        sm.def("__abs__", [](const SparseMatrix32_t& sm)
+        {
+            SparseMatrix32_t result(sm);
+
+            result.abs();
+
+            return result;
+        });
+
+
+        ///////////
 
 
         sm.def("copy", [](SparseMatrix32_t& sm, SparseMatrix32_t& other) { sm.copy(other); });
@@ -516,10 +601,10 @@ namespace nupic_ext
         //void setOuter(PyObject* py_i, PyObject* py_j, PyObject* py_v)
         sm.def("setOuter", [](SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& i, py::array_t<nupic::UInt32>& j, py::array_t<nupic::Real32>& v)
         {
-            throw std::runtime_error("Not implemented.");
+            Numpy_Matrix<nupic::Real32> m(v.request());
 
             // setOuter cannot deal with py::array_t
-            //sm.setOuter(get_it(i), get_end(i), get_it(j), get_end(j), v);
+            sm.setOuter(get_it(i), get_end(i), get_it(j), get_end(j), m);
         
         }, "Sets on the outer product of the passed ranges.");
 
@@ -1670,7 +1755,23 @@ namespace nupic_ext
         }, "Initialize a sparse matrix with a fixed number of non-zeros on each row."
             , py::arg("nnzr"), py::arg("v") = 1.0, py::arg("mode") = 0, py::arg("seed") = 42);
 
+        sm.def("nNonZerosPerRow", [](const SparseMatrix32_t self) 
+        {
+            py::array_t<nupic::UInt32> x(self.nRows());
 
+            self.nNonZerosPerRow(get_it(x));
+
+            return x;
+        });
+
+        sm.def("nNonZerosPerCol", [](const SparseMatrix32_t self)
+        {
+            py::array_t<nupic::UInt32> x(self.nCols());
+
+            self.nNonZerosPerRow(get_it(x));
+
+            return x;
+        });
     }
 
 } // namespace nupix_ext
