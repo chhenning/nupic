@@ -279,13 +279,44 @@ namespace nupic_ext
         sm.def("__divide", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.divide(val); });
 
         // allows Matrix + 3
-        sm.def("__add__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        //sm.def("__add__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        //{
+        //    SparseMatrix32_t result(sm);
+        //    result.add(val);
+
+        //    return result;
+        //});
+
+        sm.def("__add__", [](const SparseMatrix32_t& sm, py::args args)
         {
+            auto arg = args[0];
+
             SparseMatrix32_t result(sm);
-            result.add(val);
+
+            if (py::isinstance<py::int_>(arg))
+            {
+                auto val = static_cast<nupic::Real32>(arg.cast<int>());
+
+                result.add(val);
+            }
+            else if (py::isinstance<py::float_>(arg))
+            {
+                auto val = arg.cast<float>();
+                result.add(val);
+            }
+            else if (py::isinstance<SparseMatrix32_t>(arg))
+            {
+                auto other = arg.cast<SparseMatrix32_t>();
+                result.add(other);
+            }
+            else
+            {
+                throw std::runtime_error("Not supported.");
+            }
 
             return result;
         });
+
 
         // allows 3 + Matrix
         sm.def("__radd__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
@@ -297,10 +328,32 @@ namespace nupic_ext
         });
 
 
-        sm.def("__sub__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        sm.def("__sub__", [](const SparseMatrix32_t& sm, py::args args)
         {
+            auto arg = args[0];
+
             SparseMatrix32_t result(sm);
-            result.subtract(val);
+
+            if (py::isinstance<py::int_>(arg))
+            {
+                auto val = static_cast<nupic::Real32>(arg.cast<int>());
+
+                result.subtract(val);
+            }
+            else if (py::isinstance<py::float_>(arg))
+            {
+                auto val = arg.cast<float>();
+                result.subtract(val);
+            }
+            else if (py::isinstance<SparseMatrix32_t>(arg))
+            {
+                auto other = arg.cast<SparseMatrix32_t>();
+                result.subtract(other);
+            }
+            else
+            {
+                throw std::runtime_error("Not supported.");
+            }
 
             return result;
         });
@@ -314,14 +367,86 @@ namespace nupic_ext
         });
 
 
-        sm.def("__mul__", [](const SparseMatrix32_t& a, const SparseMatrix32_t& b)
+        sm.def("__mul__", [](const SparseMatrix32_t& sm, py::args args)
         {
-            SparseMatrix32_t result;
+            auto arg = args[0];
 
-            a.multiply(b, result);
+            SparseMatrix32_t result(sm);
+
+            if (py::isinstance<py::int_>(arg))
+            {
+                auto val = static_cast<nupic::Real32>(arg.cast<int>());
+
+                result.multiply(val);
+            }
+            else if (py::isinstance<py::float_>(arg))
+            {
+                auto val = arg.cast<float>();
+                result.multiply(val);
+            }
+            else if (py::isinstance<SparseMatrix32_t>(arg))
+            {
+                auto other = arg.cast<SparseMatrix32_t>();
+
+                sm.multiply(other, result);
+            }
+            else
+            {
+                throw std::runtime_error("Not supported.");
+            }
 
             return result;
         });
+
+        sm.def("__rmul__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            SparseMatrix32_t result(sm);
+            result.multiply(val);
+
+            return result;
+        });
+
+        sm.def("__truediv__", [](const SparseMatrix32_t& sm, py::args args)
+        {
+            auto arg = args[0];
+
+            SparseMatrix32_t result(sm);
+
+            if (py::isinstance<py::int_>(arg))
+            {
+                auto val = static_cast<nupic::Real32>(arg.cast<int>());
+
+                result.divide(val);
+            }
+            else if (py::isinstance<py::float_>(arg))
+            {
+                auto val = arg.cast<float>();
+                result.divide(val);
+            }
+            else
+            {
+                throw std::runtime_error("Not supported.");
+            }
+
+            return result;
+        });
+
+        sm.def("__idiv__", [](SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            sm.divide(val);
+            return sm;
+        });
+
+
+        sm.def("__rdiv__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            SparseMatrix32_t result(sm);
+            result.divide(val);
+
+            return result;
+        });
+
+
 
         sm.def("__str__", [](SparseMatrix32_t& sm) 
         {

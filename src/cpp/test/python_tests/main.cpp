@@ -37,6 +37,10 @@ int main()
             import numpy;
             from nupic.bindings.math import *
 
+            s = SM32(numpy.random.random((4,4)))
+            t = SM32(numpy.random.random((4,4)))
+            print('\ns / 3.1\n', s / 3)
+
             # calls py::kwargs
             #s = SparseMatrix(dtype='Float32')
 
@@ -50,7 +54,7 @@ int main()
             s.threshold(.5)
         )");
 
-        py::eval_file(R"(D:\nupic\src\python\python3\tests\unit\nupic\regions\record_sensor_region_test.py)");
+        //py::eval_file(R"(D:\nupic\src\python\python3\tests\unit\nupic\regions\record_sensor_region_test.py)");
     }
     catch (const py::error_already_set& e)
     {
@@ -66,5 +70,5 @@ int main()
     }
 
 
-    return 0;
+        return 0;
 }
