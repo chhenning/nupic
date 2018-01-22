@@ -61,8 +61,10 @@ def simple():
     print("Problem dimensionality:", problem.n_dims())
     print("Problem samples:")
     s = numpy.zeros((problem.size(), problem.n_dims()+1), dtype=type)
-    problem.get_samples(s)
-    print(s)
+
+    # CHH Not sure were get_samples is defined.
+    # problem.get_samples(s)
+    # print(s)
 
     if do_plot:
         pylab.ion()

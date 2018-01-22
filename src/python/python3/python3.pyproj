@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{89b7d929-645d-4721-b789-f0adb71cf8ab}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>examples\bindings\sparse_matrix_how_to.py</StartupFile>
+    <StartupFile>examples\bindings\svm_how_to.py</StartupFile>
     <SearchPath>nupic;..\python3</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -752,6 +752,16 @@
     <InterpreterReference Include="Global|PythonCore|3.6" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\external\vs2017\nupic\nupic.python.algorithms\nupic.python.algorithms.vcxproj">
+      <Name>nupic.python.algorithms</Name>
+      <Project>{ce6b6ae6-83b1-4722-bead-677e0bbee943}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\vs2017\nupic\nupic.python.engine\nupic.python.engine.vcxproj">
+      <Name>nupic.python.engine</Name>
+      <Project>{0f74bf72-b738-4a09-818e-6e05a83546af}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\external\vs2017\nupic\nupic.python.math\nupic.python.math.vcxproj">
       <Name>nupic.python.math</Name>
       <Project>{9fdf1e19-0299-4566-9a4a-e8c6b5ad6774}</Project>

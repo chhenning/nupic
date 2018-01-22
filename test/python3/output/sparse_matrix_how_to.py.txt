@@ -1,0 +1,461 @@
+Global epsilon : 9.999999974752427e-07
+
+From array 32
+ [[ 1.  2.]
+ [ 3.  4.]]
+
+From numpy array 32
+ [[ 1.  2.]
+ [ 3.  4.]]
+
+With shortcut 32
+ [[ 1.  2.]
+ [ 3.  4.]]
+
+Empty sparse matrix
+ []
+
+Sparse matrix from string
+ [[ 1.  2.]
+ [ 3.  4.]]
+
+toDense
+ [[1 2]
+ [3 4]]
+
+fromDense
+ [[ 0.80925184  0.21618025  0.16020538  0.49169272]
+ [ 0.67246693  0.65335935  0.24625863  0.50548697]
+ [ 0.38199961  0.28010032  0.84603572  0.5891251 ]
+ [ 0.04159161  0.37620735  0.04471665  0.17645091]]
+
+Print
+ [[ 0.          0.          0.          0.62226963]
+ [ 0.57717985  0.91406798  0.60318863  0.        ]
+ [ 0.          0.77512753  0.78318381  0.97871804]
+ [ 0.59682286  0.85663426  0.61205786  0.        ]]
+
+Number of rows  4
+Number of columns  4
+Is matrix zero?  False
+Total number of non zeros  10
+Sum of all values  7.319250106811523
+Prod of non-zeros  0.036817073822021484
+Maximum value and its location  (2, 3, 0.9787180423736572)
+Minimum value and its location  (1, 0, 0.5771798491477966)
+Number of non-zeros on row 0  1
+If first row zero?  False
+Number of non-zeros on each row  [1 3 3 3]
+Minimum on row 0  (3, 0.6222696304321289)
+Minimum values and locations for all rows (array([3, 0, 1, 0], dtype=uint32), array([ 0.62226963,  0.57717985,  0.77512753,  0.59682286], dtype=float32))
+Maximum on row 0  (3, 0.6222696304321289)
+Maximum values and locations for all rows (array([3, 1, 3, 1], dtype=uint32), array([ 0.62226963,  0.91406798,  0.97871804,  0.85663426], dtype=float32))
+Sum of values on row 0  0.6222696304321289
+Sum of each row  [ 0.62226963  2.09443665  2.53702927  2.06551504]
+Product of non-zeros on row 1 0.3182312548160553
+Product of each row  [ 0.62226963  0.31823125  0.59414774  0.31292003]
+Number of non-zeros on col 0  2
+If first col zero?  False
+Number of non-zeros on each col  [2 3 3 2]
+Minimum on col 0  (1, 0.5771798491477966)
+Minimum values and locations for all cols (array([1, 2, 1, 0], dtype=uint32), array([ 0.57717985,  0.77512753,  0.60318863,  0.62226963], dtype=float32))
+Maximum on col 0  (3, 0.5968228578567505)
+Maximum values and locations for all cols (array([3, 1, 2, 2], dtype=uint32), array([ 0.59682286,  0.91406798,  0.78318381,  0.97871804], dtype=float32))
+Sum of values on col 0  1.1740026473999023
+Sum of each col  [ 1.17400265  2.54582977  1.99843025  1.60098767]
+Product of non-zeros on col 1 0.6069418787956238
+Product of each col  [ 0.34447414  0.60694188  0.28914076  0.60902649]
+
+ [[ 0.          0.          0.          0.62226963]
+ [ 0.57717985  0.91406798  0.60318863  0.        ]
+ [ 0.          0.77512753  0.78318381  0.97871804]
+ [ 0.59682286  0.85663426  0.61205786  0.        ]]
+
+s[0,0] =  0.0 s[1,1] =  0.9140679836273193
+Set [0,0] to 3.5  3.5
+
+getOuter
+ [[ 3.5         0.        ]
+ [ 0.          0.78318381]]
+
+setOuter
+ [[ 1.          0.          2.          0.62226963]
+ [ 0.57717985  0.91406798  0.60318863  0.        ]
+ [ 3.          0.77512753  4.          0.97871804]
+ [ 0.59682286  0.85663426  0.61205786  0.        ]]
+
+setElements
+ [[ 1.          0.          2.          0.62226963]
+ [ 0.57717985  1.          0.60318863  0.        ]
+ [ 3.          0.77512753  1.          0.97871804]
+ [ 0.59682286  0.85663426  0.61205786  0.        ]]
+
+getElements
+ [ 1.  1.  1.]
+
+getSlice
+ [[ 1.          0.          2.        ]
+ [ 0.57717985  1.          0.60318863]]
+
+setSlice
+ [[ 1.          0.          2.          0.62226963]
+ [ 0.57717985  1.          0.          2.        ]
+ [ 3.          0.57717985  1.          0.60318863]
+ [ 0.59682286  0.85663426  0.61205786  0.        ]]
+
+setRowToZero
+ [[ 1.          0.          2.          0.62226963]
+ [ 0.          0.          0.          0.        ]
+ [ 3.          0.57717985  1.          0.60318863]
+ [ 0.59682286  0.85663426  0.61205786  0.        ]]
+
+setColToZero
+ [[ 1.          0.          2.          0.62226963]
+ [ 0.          0.          0.          0.        ]
+ [ 3.          0.          1.          0.60318863]
+ [ 0.59682286  0.          0.61205786  0.        ]]
+
+rowNonZeros  (array([0, 2, 3], dtype=uint32), array([  1.00000000e+00,   2.00000000e+00,   6.22269630e-01,
+         9.18368975e-41], dtype=float32))
+colNonZeros  (array([0, 2, 3], dtype=uint32), array([ 1.        ,  3.        ,  0.59682286], dtype=float32))
+getRow  [ 1.          0.          2.          0.62226963]
+getCol  [ 1.          0.          3.          0.59682286]
+
+ [[ 1.          0.          2.          0.62226963]
+ [ 0.          0.          0.          0.        ]
+ [ 3.          0.          1.          0.60318863]
+ [ 0.59682286  0.          0.61205786  0.        ]]
+
+reshape 2 8
+ [[ 1.          0.          2.          0.62226963  0.          0.          0.
+   0.        ]
+ [ 3.          0.          1.          0.60318863  0.59682286  0.
+   0.61205786  0.        ]]
+
+reshape 8 2
+ [[ 1.          0.        ]
+ [ 2.          0.62226963]
+ [ 0.          0.        ]
+ [ 0.          0.        ]
+ [ 3.          0.        ]
+ [ 1.          0.60318863]
+ [ 0.59682286  0.        ]
+ [ 0.61205786  0.        ]]
+
+reshape 1 16
+ [[ 1.          0.          2.          0.62226963  0.          0.          0.
+   0.          3.          0.          1.          0.60318863  0.59682286
+   0.          0.61205786  0.        ]]
+
+reshape 4 4
+ [[ 1.          0.          2.          0.62226963]
+ [ 0.          0.          0.          0.        ]
+ [ 3.          0.          1.          0.60318863]
+ [ 0.59682286  0.          0.61205786  0.        ]]
+
+resize 5 5
+ [[ 1.          0.          2.          0.62226963  0.        ]
+ [ 0.          0.          0.          0.          0.        ]
+ [ 3.          0.          1.          0.60318863  0.        ]
+ [ 0.59682286  0.          0.61205786  0.          0.        ]
+ [ 0.          0.          0.          0.          0.        ]]
+
+resize 3 3
+ [[ 1.  0.  2.]
+ [ 0.  0.  0.]
+ [ 3.  0.  1.]]
+
+resize 4 4
+ [[ 1.  0.  2.  0.]
+ [ 0.  0.  0.  0.]
+ [ 3.  0.  1.  0.]
+ [ 0.  0.  0.  0.]]
+
+delete row 3
+ [[ 1.  0.  2.  0.]
+ [ 0.  0.  0.  0.]
+ [ 3.  0.  1.  0.]]
+
+delete col 1
+ [[ 1.  2.  0.]
+ [ 0.  0.  0.]
+ [ 3.  1.  0.]]
+
+add row 1 2 3
+ [[ 1.  2.  0.]
+ [ 0.  0.  0.]
+ [ 3.  1.  0.]]
+
+add col 1 2 3 4
+ [[ 1.  2.  0.  1.]
+ [ 0.  0.  0.  2.]
+ [ 3.  1.  0.  3.]]
+
+delete rows 0 and 3
+ [[ 0.  0.  0.  2.]
+ [ 3.  1.  0.  3.]]
+
+delete cols 1 and 2
+ [[ 0.  2.]
+ [ 3.  3.]]
+
+ [[ 0.     0.25 ]
+ [ 0.375  0.375]]
+
+threshold row 0 .1
+ [[ 0.     0.25 ]
+ [ 0.375  0.375]]
+
+threshold col 1 .1
+ [[ 0.     0.25 ]
+ [ 0.375  0.375]]
+
+threshold .1
+ [[ 0.     0.25 ]
+ [ 0.375  0.375]]
+
+ [[ 0.33700204  0.94794881  0.42290679  0.014694  ]
+ [ 0.33207077  0.08476874  0.09918329  0.65200329]
+ [ 0.03591895  0.93405259  0.30778593  0.10487293]
+ [ 0.49145883  0.30520806  0.621454    0.4235236 ]]
+
+elementNZInverse
+ [[  2.96734118   1.05490923   2.36458731  68.05497742]
+ [  3.01140618  11.79680157  10.0823431    1.53373456]
+ [ 27.8404541    1.07060349   3.24901152   9.53534889]
+ [  2.03475833   3.2764535    1.60912955   2.36114359]]
+
+elementNZLog
+ [[ 1.08766627  0.05345472  0.86060351  4.22031593]
+ [ 1.1024071   2.46782851  2.31078577  0.42770565]
+ [ 3.32649016  0.0682225   1.17835081  2.25500584]
+ [ 0.71037704  1.18676162  0.47569337  0.85914606]]
+
+abs
+ [[ 1.08766627  0.05345472  0.86060351  4.22031593]
+ [ 1.1024071   2.46782851  2.31078577  0.42770565]
+ [ 3.32649016  0.0682225   1.17835081  2.25500584]
+ [ 0.71037704  1.18676162  0.47569337  0.85914606]]
+
+elementSqrt
+ [[ 1.04291236  0.23120278  0.92768717  2.05434084]
+ [ 1.04995573  1.57093239  1.52012694  0.65399206]
+ [ 1.82386684  0.26119438  1.08551872  1.50166774]
+ [ 0.8428387   1.08938587  0.68970525  0.92690134]]
+
+add 4
+ [[ 5.04291248  4.2312026   4.92768717  6.05434084]
+ [ 5.04995584  5.57093239  5.52012682  4.65399218]
+ [ 5.82386684  4.26119423  5.08551884  5.50166798]
+ [ 4.84283876  5.08938599  4.68970537  4.92690134]]
+
+normalizeRow 1 10
+ [[ 5.04291248  4.2312026   4.92768717  6.05434084]
+ [ 2.42844653  2.67897606  2.65454459  2.23803353]
+ [ 5.82386684  4.26119423  5.08551884  5.50166798]
+ [ 4.84283876  5.08938599  4.68970537  4.92690134]]
+sum row 1 =  10.000000953674316
+
+normalizeCol 0 3
+ [[ 0.83408773  4.2312026   4.92768717  6.05434084]
+ [ 0.40166023  2.67897606  2.65454459  2.23803353]
+ [ 0.963256    4.26119423  5.08551884  5.50166798]
+ [ 0.80099595  5.08938599  4.68970537  4.92690134]]
+sum col 0 =  3.0
+
+normalize to 5
+ [[ 0.07536145  0.38229737  0.4452261   0.54702145]
+ [ 0.03629078  0.24205068  0.23984325  0.20221066]
+ [ 0.08703205  0.38500717  0.45948648  0.49708638]
+ [ 0.07237154  0.45983589  0.42372397  0.44515508]]
+sum =  5.000000476837158
+
+normalize
+ [[ 0.01507229  0.07645947  0.08904521  0.10940428]
+ [ 0.00725816  0.04841013  0.04796865  0.04044213]
+ [ 0.01740641  0.07700143  0.09189729  0.09941727]
+ [ 0.01447431  0.09196717  0.08474479  0.08903101]]
+sum =  1.0000001192092896
+
+transpose
+ [[ 0.01507229  0.00725816  0.01740641  0.01447431]
+ [ 0.07645947  0.04841013  0.07700143  0.09196717]
+ [ 0.08904521  0.04796865  0.09189729  0.08474479]
+ [ 0.10940428  0.04044213  0.09941727  0.08903101]]
+
+ [[ 0.6205588   0.46107984  0.1544039   0.76313496]
+ [ 0.71073902  0.39020523  0.42243519  0.43307483]
+ [ 0.62245238  0.01274912  0.98693961  0.67897463]]
+
+transpose rectangular
+ [[ 0.6205588   0.71073902  0.62245238]
+ [ 0.46107984  0.39020523  0.01274912]
+ [ 0.1544039   0.42243519  0.98693961]
+ [ 0.76313496  0.43307483  0.67897463]]
+
+transpose rectangular again
+ [[ 0.6205588   0.46107984  0.1544039   0.76313496]
+ [ 0.71073902  0.39020523  0.42243519  0.43307483]
+ [ 0.62245238  0.01274912  0.98693961  0.67897463]]
+
+x =  [1 2 3 4]
+Product on the right:
+ [ 0.13970505  0.77215278  0.79965353  0.84466439]
+Product on the left:
+ [ 0.87274396  0.40975288  0.84477019  0.80876708]
+Product of x elements corresponding to nz on each row:
+ [ 24.  24.  24.  24.]
+Product of x elements and nz:
+ [  6.61490560e-07   6.29086571e-04   7.98353110e-04   9.39902326e-04]
+Max of x elements corresponding to nz:
+ [ 4.  4.  4.  4.]
+Max of products of x elements and nz:
+ [ 0.05789723  0.36786869  0.33897915  0.35612404]
+Max of elements of x corresponding to nz:
+ [ 4.  4.  4.  4.]
+
+axby 0 1.5 1.5
+ [[ 1.5226084   3.01088715  4.5261097   6.02171135]
+ [ 0.07645947  0.04841013  0.07700143  0.09196717]
+ [ 0.08904521  0.04796865  0.09189729  0.08474479]
+ [ 0.10940428  0.04044213  0.09941727  0.08903101]]
+
+axby 1.5 1.5
+ [[  3.78391266   7.51633072  11.28916454  15.03256702]
+ [  1.61468923   3.07261515   4.61550236   6.1379509 ]
+ [  1.63356781   3.07195306   4.63784599   6.12711716]
+ [  1.66410637   3.06066322   4.64912605   6.13354635]]
+
+Inner product:  [[ 30.]]
+
+Outer product:
+ [[  1.   2.   3.   4.]
+ [  2.   4.   6.   8.]
+ [  3.   6.   9.  12.]
+ [  4.   8.  12.  16.]]
+
+matrix matrix multiplication
+ [[ 1.48816228  1.64410913  1.12851512  1.50522137]
+ [ 1.11898434  1.18796206  0.93569505  1.07143772]
+ [ 0.55786079  1.25529313  0.82907087  0.38593233]
+ [ 1.18860006  1.53143644  1.04603362  1.34532285]]
+[[   5.  355.]
+ [  17.  313.]
+ [  29.  231.]
+ [  41.  109.]]
+[[  1.   2.   3.   4.]
+ [  5.   6.   7.   8.]
+ [  9.  10.  11.  12.]
+ [ 13.  14.  15.  16.]]
+[[ 0.  1.  0.  0.]
+ [ 0.  0.  1.  1.]
+ [ 1.  0.  1.  0.]
+ [ 0.  0.  0.  0.]]
+[[  0.   2.   0.   0.]
+ [  0.   0.   7.   8.]
+ [  9.   0.  11.   0.]
+ [  0.   0.   0.   0.]]
+
+s + 3
+ [[  6.78391266  10.51633072  14.28916454  18.03256607]
+ [  4.61468935   6.07261515   7.61550236   9.1379509 ]
+ [  4.63356781   6.07195282   7.63784599   9.12711716]
+ [  4.66410637   6.06066322   7.64912605   9.13354683]]
+
+3 + s
+ [[  6.78391266  10.51633072  14.28916454  18.03256607]
+ [  4.61468935   6.07261515   7.61550236   9.1379509 ]
+ [  4.63356781   6.07195282   7.63784599   9.12711716]
+ [  4.66410637   6.06066322   7.64912605   9.13354683]]
+
+s - 1
+ [[  2.78391266   6.51633072  10.28916454  14.03256702]
+ [  0.61468923   2.07261515   3.61550236   5.1379509 ]
+ [  0.63356781   2.07195306   3.63784599   5.12711716]
+ [  0.66410637   2.06066322   3.64912605   5.13354635]]
+
+1 - s
+ [[  2.78391266   6.51633072  10.28916454  14.03256702]
+ [  0.61468923   2.07261515   3.61550236   5.1379509 ]
+ [  0.63356781   2.07195306   3.63784599   5.12711716]
+ [  0.66410637   2.06066322   3.64912605   5.13354635]]
+
+s + s
+ [[  7.56782532  15.03266144  22.57832909  30.06513405]
+ [  3.22937846   6.14523029   9.23100471  12.27590179]
+ [  3.26713562   6.14390612   9.27569199  12.25423431]
+ [  3.32821274   6.12132645   9.29825211  12.2670927 ]]
+
+s * 3
+ [[ 11.35173798  22.54899216  33.86749268  45.09770203]
+ [  4.84406757   9.21784592  13.84650707  18.41385269]
+ [  4.90070343   9.21585941  13.91353798  18.38135147]
+ [  4.99231911   9.18198967  13.94737816  18.40063858]]
+
+3 * s
+ [[ 11.35173798  22.54899216  33.86749268  45.09770203]
+ [  4.84406757   9.21784592  13.84650707  18.41385269]
+ [  4.90070343   9.21585941  13.91353798  18.38135147]
+ [  4.99231911   9.18198967  13.94737816  18.40063858]]
+
+s * s
+ [[  69.91194153  132.2253418   199.65457153  264.38977051]
+ [  28.82509995   54.54231262   82.35225677  109.05961609]
+ [  28.91393661   54.71765137   82.6155777   109.40979767]
+ [  29.04039001   54.96683121   82.99043274  109.90812683]]
+
+s / 3.1
+ [[ 1.22061706  2.42462277  3.64166617  4.84921551]
+ [ 0.52086753  0.99116623  1.48887181  1.97998416]
+ [ 0.52695739  0.99095261  1.49607944  1.97648942]
+ [ 0.53680855  0.98731077  1.49971807  1.97856343]]
+
+s1 + 2 * s - s2 / 3.1
+ [[  8.02802658  15.53913307  22.74558449  30.99435616]
+ [  3.81507587   6.24387932   9.46888161  12.9087553 ]
+ [  3.96069407   6.58740091   9.18476009  12.08965492]
+ [  3.64805627   6.46094561   9.89509678  12.63170242]]
+
++= 3.5
+ [[  7.28391266  11.01633072  14.78916454  18.53256607]
+ [  5.11468935   6.57261515   8.11550236   9.6379509 ]
+ [  5.13356781   6.57195282   8.13784599   9.62711716]
+ [  5.16410637   6.56066322   8.14912605   9.63354683]]
+
+-= 3.2
+ [[  4.08391285   7.81633091  11.58916473  15.33256626]
+ [  1.9146893    3.3726151    4.91550255   6.43795109]
+ [  1.93356776   3.37195277   4.93784618   6.42711735]
+ [  1.96410632   3.36066318   4.94912624   6.43354702]]
+
+*= 3.1
+ [[ 12.66012955  24.23062515  35.92641068  47.53095245]
+ [  5.93553686  10.45510674  15.23805714  19.95764732]
+ [  5.99406004  10.45305347  15.3073225   19.92406273]
+ [  6.08872938  10.41805553  15.34229088  19.94399452]]
+
+/= -1.5
+ [[ -8.44008636 -16.15374947 -23.95094109 -31.68730164]
+ [ -3.95702457  -6.97007132 -10.15870476 -13.30509853]
+ [ -3.99604011  -6.96870232 -10.20488167 -13.28270817]
+ [ -4.05915308  -6.9453702  -10.22819424 -13.29599667]]
+
+The matrix is now:
+ [[ 2.  2.  1.  1.  1.]
+ [ 1.  1.  0.  1.  2.]
+ [ 1.  1.  2.  1.  0.]
+ [ 1.  2.  1.  0.  1.]
+ [ 1.  2.  0.  0.  1.]]
+
+Number of elements equal to 0= 5
+Number of elements equal to 1= 14
+Number of elements equal to 2= 6
+
+Indices of the elements == 0: ((1, 2), (2, 4), (3, 3), (4, 2), (4, 3))
+
+Indices of the elements == 1: ((0, 2), (0, 3), (0, 4), (1, 0), (1, 1), (1, 3), (2, 0), (2, 1), (2, 3), (3, 0), (3, 2), (3, 4), (4, 0), (4, 4))
+
+Indices of the elements == 2: ((0, 0), (0, 1), (1, 4), (2, 2), (3, 1), (4, 1))
+
+All 315 methods:
+ ['CSRSize', '__abs__', '__add', '__add__', '__class__', '__delattr__', '__dir__', '__divide', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__idiv__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__mul__', '__multiply', '__ne__', '__neg__', '__new__', '__radd__', '__rdiv__', '__reduce__', '__reduce_ex__', '__repr__', '__rmul__', '__rsub__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__subtract', '__truediv__', '_nNonZerosPerRow_allRows', 'abs', 'add', 'addCol', 'addColNZ', 'addListOfRows', 'addRow', 'addRowNZ', 'addRows', 'addToTranspose', 'addTwoCols', 'addTwoRows', 'append', 'argmax', 'argmin', 'axby', 'binaryLoadFromFile', 'binarySaveToFile', 'blockRightVecProd', 'boxMax', 'boxMin', 'clip', 'clipBelowAndAbove', 'clipCol', 'clipColBelowAndAbove', 'clipRow', 'clipRowBelowAndAbove', 'clipRowsBelowAndAbove', 'colAbs', 'colAdd', 'colBandwidth', 'colBandwidths', 'colMax', 'colMin', 'colNegate', 'colNonZeros', 'colProd', 'colProds', 'colSubtract', 'colSum', 'colSums', 'compact', 'copy', 'copyRow', 'countWhereEqual', 'countWhereGreater', 'countWhereGreaterEqual', 'countWhereGreaterOrEqual', 'decompact', 'deleteCol', 'deleteCols', 'deleteRow', 'deleteRows', 'denseMatExtract', 'diagNZLogSum', 'diagNZProd', 'diagSum', 'divide', 'duplicateRow', 'elementColAdd', 'elementColCube', 'elementColDivide', 'elementColMultiply', 'elementColNZExp', 'elementColNZInverse', 'elementColNZLog', 'elementColNZLogk', 'elementColNZPow', 'elementColSqrt', 'elementColSquare', 'elementColSubtract', 'elementCube', 'elementMultiply', 'elementNZAdd', 'elementNZDivide', 'elementNZExp', 'elementNZInverse', 'elementNZLog', 'elementNZLogk', 'elementNZMultiply', 'elementNZPow', 'elementRowAdd', 'elementRowCube', 'elementRowDivide', 'elementRowMultiply', 'elementRowNZExp', 'elementRowNZInverse', 'elementRowNZLog', 'elementRowNZLogk', 'elementRowNZPow', 'elementRowSqrt', 'elementRowSquare', 'elementRowSubtract', 'elementSqrt', 'elementSquare', 'equals', 'firstNonZeroOnCol', 'firstNonZeroOnRow', 'fromBinary', 'fromCSR', 'fromDense', 'fromPyString', 'get', 'getAllNonZeros', 'getCol', 'getColToDense', 'getDiagonal', 'getElements', 'getIsNearlyZeroFunction', 'getNonZerosInBox', 'getNonZerosSorted', 'getOuter', 'getRow', 'getRowToDense', 'getSchema', 'getSlice', 'getSlice2', 'increaseRowNonZeroCountsOnOuterTo', 'increment', 'incrementNonZerosOnOuter', 'incrementNonZerosOnRowsExcludingCols', 'incrementOnOuterProductVal', 'incrementOnOuterWNZ', 'incrementOnOuterWNZWThreshold', 'incrementWNZ', 'incrementWithOuterProduct', 'initializeWithFixedNNZR', 'isBinary', 'isColZero', 'isCompact', 'isRowZero', 'isSymmetric', 'isZero', 'lastNonZeroOnCol', 'lastNonZeroOnRow', 'leftDenseMatMaxAtNZ', 'leftDenseMatProd', 'leftDenseMatProdAtNZ', 'leftDenseMatSumAtNZ', 'leftVecProd', 'leftVecProdAtNZ', 'leftVecProd_binary', 'leftVecSumAtNZ', 'leftVecSumAtNZ_fast', 'lerp', 'logColSums', 'logRowSums', 'map', 'max', 'min', 'multiply', 'nBytes', 'nCols', 'nNonZeroCols', 'nNonZeroRows', 'nNonZeros', 'nNonZerosInBox', 'nNonZerosInRowRange', 'nNonZerosOnCol', 'nNonZerosOnRow', 'nNonZerosPerBox', 'nNonZerosPerCol', 'nNonZerosPerRow', 'nNonZerosPerRowOnCols', 'nRows', 'nZeroCols', 'nZeroRows', 'negate', 'nonZeroCols', 'nonZeroIndicesIncluded', 'nonZeroRows', 'nonZerosInRowRange', 'normalize', 'normalizeBlockByRows', 'normalizeBlockByRows_binary', 'normalizeCol', 'normalizeCols', 'normalizeRow', 'normalizeRows', 'normalize_max', 'permuteCols', 'permuteRows', 'prod', 'read', 'replaceNZ', 'reshape', 'resize', 'rightDenseMatMaxAtNZ', 'rightDenseMatProd', 'rightDenseMatProdAtNZ', 'rightDenseMatSumAtNZ', 'rightVecProd', 'rightVecProdAtNZ', 'rightVecProd_fast', 'rightVecSumAtNZ', 'rightVecSumAtNZGtThreshold', 'rightVecSumAtNZGtThresholdSparse', 'rightVecSumAtNZGteThreshold', 'rightVecSumAtNZGteThresholdSparse', 'rightVecSumAtNZSparse', 'rowAbs', 'rowAdd', 'rowBandwidth', 'rowBandwidths', 'rowMax', 'rowMin', 'rowNegate', 'rowNonZeroIndices', 'rowNonZeros', 'rowProd', 'rowProds', 'rowSubtract', 'rowSum', 'rowSums', 'rowVecProd', 'row_nz_index_begin', 'row_nz_index_end', 'row_nz_value_begin', 'row_nz_value_end', 'sameNonZeroIndices', 'sameRowNonZeroIndices', 'scaleCols', 'scaleRows', 'set', 'setAllNonZeros', 'setBox', 'setBoxToZero', 'setColFromDense', 'setColToVal', 'setColToZero', 'setColsToZero', 'setDiagonal', 'setDiagonalToVal', 'setDiagonalToZero', 'setElements', 'setFromElementMultiplyWithOuter', 'setFromOuter', 'setNonZero', 'setOuter', 'setRandomZerosOnOuter', 'setRowFromDense', 'setRowFromSparse', 'setRowToVal', 'setRowToZero', 'setRowsToZero', 'setSlice', 'setToZero', 'setZero', 'setZerosOnOuter', 'shiftCols', 'shiftRows', 'sortRowsAscendingNNZ', 'sum', 'threshold', 'thresholdCol', 'thresholdRow', 'toBinary', 'toCSR', 'toDense', 'toPyString', 'tolist', 'transpose', 'vecArgMaxAtNZ', 'vecArgMaxProd', 'vecMaxAtNZ', 'vecMaxProd', 'whereEqual', 'whereGreater', 'whereGreaterEqual', 'write', 'zeroCols', 'zeroRowAndCol', 'zeroRows']

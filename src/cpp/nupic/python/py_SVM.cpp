@@ -18,6 +18,28 @@ namespace nupic_ext
     void init_SVM(py::module& m)
     {
         /////////////////////
+        // sample_type
+        /////////////////////
+        typedef nupic::algorithms::svm::svm_problem::sample_type sample_t;
+        
+        py::class_<sample_t> py_sample_type(m, "sample_type");
+
+        py_sample_type.def("__str__", [](const sample_t& self)
+        {
+            std::ostringstream ss;
+            ss.precision(15);
+            ss << "n: " << self.n_ << ";"
+                << "y: " << self.y_ << ";"
+                << "x: " << *self.x_ << ";";
+
+            return ss.str();
+        });
+
+
+
+
+
+        /////////////////////
         // svm_problem
         /////////////////////
         typedef nupic::algorithms::svm::svm_problem svm_problem_t;
@@ -33,10 +55,26 @@ namespace nupic_ext
 
         py_svm_problem.def("resize", &svm_problem_t::resize);
 
+        // set_sample
+
+        // get_sample
+        py_svm_problem.def("get_sample", &svm_problem_t::get_sample);
+
+        // dense
+        // persistent_size
+        //save
+        //load
+        //read
+        //write
+
+        //get_samples
+
+        // add_sample
         py_svm_problem.def("add_sample", [](svm_problem_t& self, float y_val, py::array_t<float>& x_vector)
         {
             self.add_sample(y_val, get_it(x_vector));
         });
+
 
 
         /////////////////////
@@ -79,6 +117,9 @@ namespace nupic_ext
         );
 
         py_svm_dense.def("persistent_size", &svm_dense_t::persistent_size);
+        py_svm_dense.def("get_problem", &svm_dense_t::get_problem, py::return_value_policy::reference);
+        py_svm_dense.def("get_model", &svm_dense_t::get_model, py::return_value_policy::reference);
+
 
         py_svm_dense.def("add_sample", [](svm_dense_t& self, float y_val, py::array_t<float>& x_vector)
         {
@@ -187,7 +228,7 @@ namespace nupic_ext
 #endif
 
         /////////////////////
-        // svm_dense
+        // svm_01
         /////////////////////
         typedef nupic::algorithms::svm::svm_01 svm_01_t;
 
@@ -296,6 +337,37 @@ namespace nupic_ext
         }
         ));
 #endif
+
+        /////////////////////
+        // svm_model
+        /////////////////////
+        typedef nupic::algorithms::svm::svm_model svm_model_t;
+
+        py::class_<svm_model_t> py_svm_model(m, "svm_model");
+
+        //py_svm_model.def(py::init<>());
+
+        py_svm_model.def("size", &svm_model_t::size);
+        py_svm_model.def("n_dims", &svm_model_t::n_dims);
+        py_svm_model.def("n_class", &svm_model_t::n_class);
+        py_svm_model.def("persistent_size", &svm_model_t::persistent_size);
+
+        py_svm_model.def("get_support_vectors", [](const svm_model_t& self, py::array_t<nupic::Real32>& svIn)
+        {
+            if (svIn.ndim() != 2) { throw std::runtime_error("Number of dimensions must be two."); }
+            
+            auto buffer_info = svIn.request();
+
+            for (int i = 0; i < self.size(); ++i)
+            {
+                nupic::Real32* row_it = get_row_it(svIn, i);
+
+                for (int j = 0; j < self.n_dims(); ++j, ++row_it)
+                {
+                    *row_it = self.sv[i][j];
+                }
+            }
+        });
 
     }
 
