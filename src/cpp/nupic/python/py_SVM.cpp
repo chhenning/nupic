@@ -120,6 +120,8 @@ namespace nupic_ext
         py_svm_dense.def("get_problem", &svm_dense_t::get_problem, py::return_value_policy::reference);
         py_svm_dense.def("get_model", &svm_dense_t::get_model, py::return_value_policy::reference);
 
+        py_svm_dense.def("discard_problem", &svm_dense_t::discard_problem);
+
 
         py_svm_dense.def("add_sample", [](svm_dense_t& self, float y_val, py::array_t<float>& x_vector)
         {
@@ -369,6 +371,45 @@ namespace nupic_ext
             }
         });
 
+        py_svm_model.def("get_support_vector_coefficients", [](const svm_model_t& self, py::array_t<nupic::Real32>& svCoeffIn)
+        {
+            if (svCoeffIn.ndim() != 2) { throw std::runtime_error("Number of dimensions must be two."); }
+
+            auto buffer_info = svCoeffIn.request();
+
+            for (int i = 0; i < self.sv_coef.size(); ++i)
+            {
+                nupic::Real32* row_it = get_row_it(svCoeffIn, i);
+
+                for (int j = 0; j < self.n_dims(); ++j, ++row_it)
+                {
+                    *row_it = self.sv_coef[i][j];
+                }
+            }
+        });
+
+        py_svm_model.def("get_hyperplanes", [](const svm_model_t& self)
+        {
+            if (self.n_class() == 1)
+            {
+                return py::array_t<nupic::Real32>();
+            }
+
+            size_t m = self.w.size(), n = self.w[0].size();
+
+            py::array_t<nupic::Real32> out({ int(m), int(n) });
+            auto accessor = out.mutable_unchecked<2>();
+
+            for (size_t i = 0; i != m; ++i)
+            {
+                for (size_t j = 0; j != n; ++j)
+                {
+                    accessor(i, j) = self.w[i][j];
+                }
+            }
+
+            return out;
+        });
     }
 
 } // namespace nupix_ext

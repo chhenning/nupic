@@ -15,7 +15,7 @@ namespace nupic_ext {
     { 
         auto buffer_info = a.request();
 
-        return (T*)((char*)buffer_info.ptr + (buffer_info.strides[0] * row);
+        return (T*)((char*)buffer_info.ptr + (buffer_info.strides[0] * row));
     }
 
     inline

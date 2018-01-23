@@ -15,6 +15,7 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | examples/sp/hello_sp.py                                          | yes                                   |              | nupic\test\python3\output\hello_sp.py.txt             |  
 | examples/tm/hello_tm.py                                          | yes                                   |              | nupic\test\python3\output\hello_tm.py.txt             |
 | examples/tm/sparse_matrix_how_to.py                              | yes (some modifications)              |              | nupic\test\python3\output\sparse_matrix_how_to.py.txt |
+| examples/tm/svm_how_to.py                                        | yes (some modifications)              |              | nupic\test\python3\output\svm_how_to.py.txt |
 | tests/unit/nupic/serializable_test.py                            | yes                                   |              |                                             |
 | tests/unit/nupic/utils.py                                        | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/anomaly_likelihood_jeff_test.py      | yes                                   |              |                                             |
@@ -106,6 +107,7 @@ pip install pyproj
 pip install validictory
 pip install DBUtils
 pip install prettytable
+pip install psutil
 
 
 

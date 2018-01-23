@@ -91,6 +91,53 @@ namespace nupic_ext
             .def("getDimensions", &Region::getDimensions)
             .def("setDimensions", &Region::setDimensions);
         
+        py_Region.def("__setattr__", [](Region& r, py::args args)
+        {
+            auto num_args = args.size();
+
+            for (int i = 0; i < args.size(); ++i)
+            {
+                auto arg = args[i];
+                std::string as_string = py::str(arg.get_type());
+
+                if (py::isinstance<py::str>(arg))
+                {
+                    auto str = arg.cast<std::string>();
+                }
+                else if (py::isinstance<py::dict>(arg))
+                {
+                    auto dict = arg.cast<std::map<std::string, std::string>>();
+                }
+            }
+        });
+
+        py_Region.def("__getattr__", [](const Region& r, py::args args)
+        {
+            auto num_args = args.size();
+
+            for (int i = 0; i < args.size(); ++i)
+            {
+                auto arg = args[i];
+                std::string as_string = py::str(arg.get_type());
+
+                if (py::isinstance<py::str>(arg))
+                {
+                    auto str = arg.cast<std::string>();
+                }
+                else if (py::isinstance<py::dict>(arg))
+                {
+                    auto dict = arg.cast<std::map<std::string, std::string>>();
+                }
+            }
+        });
+
+
+
+        //py_Region.def("__setattr__", [](Region& r, py::kwargs kwargs, py::args args)
+        //{
+        //    int ii = 9;
+        //});
+
         /*
         
         getSpec

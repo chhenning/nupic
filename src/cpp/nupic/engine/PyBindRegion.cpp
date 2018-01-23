@@ -744,7 +744,7 @@ namespace nupic
             auto pyNodeSpec = pyClass.attr("getSpec")();
             ns.description = pyNodeSpec["description"].cast<std::string>();
             ns.singleNodeOnly = pyNodeSpec["singleNodeOnly"].cast<bool>();
-            
+
             auto inputs = pyNodeSpec["inputs"];
             auto outputs = pyNodeSpec["outputs"];
             auto parameters = pyNodeSpec["parameters"];

@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{89b7d929-645d-4721-b789-f0adb71cf8ab}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>examples\bindings\svm_how_to.py</StartupFile>
+    <StartupFile>test.py</StartupFile>
     <SearchPath>nupic;..\python3</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -343,6 +343,7 @@
     <Compile Include="scripts\run_swarm.py" />
     <Compile Include="scripts\temporal_memory_performance_benchmark.py" />
     <Compile Include="setup.py" />
+    <Compile Include="test.py" />
     <Compile Include="tests\chhenning\test.py" />
     <Compile Include="tests\external\asteval_test.py" />
     <Compile Include="tests\external\testfixture_test.py" />

@@ -21,6 +21,7 @@
 
 from random import *
 import numpy
+import pickle
 import pylab
 import nupic.bindings.algorithms as algo
 from nupic.bindings.math import GetNumpyDataType
@@ -170,17 +171,18 @@ def persistence():
 
     print("Serializing dense classifier")
 
-    schema = classifier.getSchema()
-    with open("test", "w+b") as f:
-        # Save
-        proto = schema.new_message()
-        classifier.write(proto)
-        proto.write(f)
-
-        # Load
-        f.seek(0)
-        proto2 = schema.read(f)
-        classifier = algo.svm_dense.read(proto2)
+    # CHH proto is not supported
+    # schema = classifier.getSchema()
+    # with open("test", "w+b") as f:
+    #     # Save
+    #     proto = schema.new_message()
+    #     classifier.write(proto)
+    #     proto.write(f)
+    # 
+    #     # Load
+    #     f.seek(0)
+    #     proto2 = schema.read(f)
+    #     classifier = algo.svm_dense.read(proto2)
 
     print("Training dense classifier")
     classifier.train(gamma = 1, C = 10, eps=1e-1)
@@ -200,17 +202,19 @@ def persistence():
     classifier01.train(gamma = 1./3., C = 100, eps=1e-1)
 
     print("Serializing 0/1 classifier")
-    schema = classifier01.getSchema()
-    with open("test", "w+b") as f:
-        # Save
-        proto = schema.new_message()
-        classifier01.write(proto)
-        proto.write(f)
-
-        # Load
-        f.seek(0)
-        proto2 = schema.read(f)
-        classifier01 = algo.svm_01.read(proto2)
+    
+    # CHH proto is not supported
+    # schema = classifier01.getSchema()
+    # with open("test", "w+b") as f:
+    #     # Save
+    #     proto = schema.new_message()
+    #     classifier01.write(proto)
+    #     proto.write(f)
+    # 
+    #     # Load
+    #     f.seek(0)
+    #     proto2 = schema.read(f)
+    #     classifier01 = algo.svm_01.read(proto2)
 
     print("Predicting with 0/1 classifier")
     print(classifier01.predict(numpy.array(samples[0], dtype=type)))
@@ -218,7 +222,7 @@ def persistence():
 
 
 def cross_validation():
-    return
+    #return
     print("Cross validation")
     numpy.random.seed(42)
     labels = [0, 1, 1, 2, 1, 2]
@@ -230,8 +234,8 @@ def cross_validation():
         x = numpy.array(x_list, dtype=type)
         classifier.add_sample(float(y), x)
 
-    cPickle.dump(classifier, open('test', 'wb'))
-    classifier = cPickle.load(open('test', 'rb'))
+    pickle.dump(classifier, open('test', 'wb'))
+    classifier = pickle.load(open('test', 'rb'))
 
     print("Training")
     classifier.train(gamma = 1./3., C = 100, eps=1e-1)

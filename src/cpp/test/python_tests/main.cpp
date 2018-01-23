@@ -33,28 +33,28 @@ int main()
     try
     {
         // Work around: AttributeError: module 'sys' has no attribute 'argv'
-        py::exec(R"(
-            import numpy;
-            from nupic.bindings.math import *
+        //py::exec(R"(
+        //    import numpy;
+        //    from nupic.bindings.math import *
 
-            s = SM32(numpy.random.random((4,4)))
-            t = SM32(numpy.random.random((4,4)))
-            print('\ns / 3.1\n', s / 3)
+        //    s = SM32(numpy.random.random((4,4)))
+        //    t = SM32(numpy.random.random((4,4)))
+        //    print('\ns / 3.1\n', s / 3)
 
-            # calls py::kwargs
-            #s = SparseMatrix(dtype='Float32')
+        //    # calls py::kwargs
+        //    #s = SparseMatrix(dtype='Float32')
 
-            # calls py::args
-            #s = SparseMatrix([[1,2],[3,4]])
+        //    # calls py::args
+        //    #s = SparseMatrix([[1,2],[3,4]])
 
-            # calls py::args && py::kwargs
-            #s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
+        //    # calls py::args && py::kwargs
+        //    #s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
 
-            s = SM32(numpy.random.random((4,4)))
-            s.threshold(.5)
-        )");
+        //    s = SM32(numpy.random.random((4,4)))
+        //    s.threshold(.5)
+        //)");
 
-        //py::eval_file(R"(D:\nupic\src\python\python3\tests\unit\nupic\regions\record_sensor_region_test.py)");
+        py::eval_file(R"(D:\nupic\src\python\python3\test.py)");
     }
     catch (const py::error_already_set& e)
     {
