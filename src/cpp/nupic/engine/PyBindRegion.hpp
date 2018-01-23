@@ -84,7 +84,7 @@ namespace nupic
         virtual UInt64 getParameterUInt64(const std::string& name, Int64 index) override;
         virtual Real32 getParameterReal32(const std::string& name, Int64 index) override;
         virtual Real64 getParameterReal64(const std::string& name, Int64 index) override;
-        virtual Handle getParameterHandle(const std::string& name, Int64 index) override;
+        virtual pybind11::object getParameterHandle(const std::string& name, Int64 index) override;
         virtual bool getParameterBool(const std::string& name, Int64 index) override;
         virtual std::string getParameterString(const std::string& name, Int64 index) override;
 

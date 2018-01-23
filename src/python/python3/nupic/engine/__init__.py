@@ -639,6 +639,7 @@ class Network(engine_internal.Network):
     @doc:place_holder(Network.addRegion)
     """
     engine_internal.Network.addRegion(self, name, nodeType, nodeParams)
+
     return self._getRegions()[name]
 
   def addRegionFromBundle(self, name, nodeType, dimensions, bundlePath, label):

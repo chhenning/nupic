@@ -10,7 +10,16 @@ from nupic.encoders import DateEncoder
 network = Network()
 
 params = json.dumps({'n': 120,'w': 21,'minValue': 0.0,'maxValue': 100.0,'clipInput': True})
-consumptionSensor = network.addRegion('consumptionSensor', 'ScalarSensor', params)
+cpp_sensor = network.addRegion('consumptionSensor', 'ScalarSensor', params)
 
-timestampSensor = network.addRegion("timestampSensor",'py.PluggableEncoderSensor', "")
+# sensor_name = sensor.name
+# self = sensor.getSelf()
+
+py_sensor = network.addRegion("timestampSensor", 'py.PluggableEncoderSensor', "")
+self = py_sensor.getSelf()
+print(type(self))
+# print(help(self))
+
+en = self.encoder
+en = DateEncoder(timeOfDay=(21, 9.5), name="timestamp_timeOfDay")
 

@@ -506,9 +506,12 @@ namespace nupic
         return getParameterT<Real64>(name, index);
     }
 
-    Handle PyBindRegion::getParameterHandle(const std::string& name, Int64 index)
+    pybind11::object PyBindRegion::getParameterHandle(const std::string& name, Int64 index)
     {
-        throw std::runtime_error("Not implemented");
+        if (name == "self")
+        {
+            return node_;
+        }
     }
 
 
@@ -745,239 +748,258 @@ namespace nupic
             ns.description = pyNodeSpec["description"].cast<std::string>();
             ns.singleNodeOnly = pyNodeSpec["singleNodeOnly"].cast<bool>();
 
-            auto inputs = pyNodeSpec["inputs"];
-            auto outputs = pyNodeSpec["outputs"];
-            auto parameters = pyNodeSpec["parameters"];
-            auto commands = pyNodeSpec["commands"];
-
-            // Add inputs
-            for (auto it = inputs.begin(); it != inputs.end(); ++it)
+            if (pyNodeSpec.contains("inputs"))
             {
-                auto name = it->cast<std::string>();
-                auto input = inputs[*it];
+                auto inputs = pyNodeSpec["inputs"];
 
-                // Add an InputSpec object for each input spec dict
-                std::ostringstream inputMessagePrefix;
-                inputMessagePrefix << "Region " << realClassName
-                    << " spec has missing key for input section " << name << ": ";
-                
-                NTA_ASSERT(input.contains("description"))
-                    << inputMessagePrefix.str() << "description";
-                auto description = input["description"].cast<std::string>();
-
-                NTA_ASSERT(input.contains("dataType"))
-                    << inputMessagePrefix.str() << "dataType";
-                auto dt = input["dataType"].cast<std::string>();
-
-                NTA_BasicType dataType;
-                try {
-                    dataType = BasicType::parse(dt);
-                }
-                catch (Exception &) {
-                    std::stringstream stream;
-                    stream << "Invalid 'dataType' specificed for input '" << name
-                        << "' when getting spec for region '" << realClassName << "'.";
-                    throw Exception(__FILE__, __LINE__, stream.str());
-                }
-
-                NTA_ASSERT(input.contains("count") != nullptr)
-                    << inputMessagePrefix.str() << "count";
-                auto count = input["count"].cast<UInt32>();
-
-                NTA_ASSERT(input.contains("required"))
-                    << inputMessagePrefix.str() << "required";
-                auto required = input["required"].cast<bool>();
-
-                // make regionLevel optional and default to true.
-                bool regionLevel = true;
-                if (input.contains("regionLevel"))
+                // Add inputs
+                for (auto it = inputs.begin(); it != inputs.end(); ++it)
                 {
-                    regionLevel = input["regionLevel"].cast<bool>();
+                    auto name = it->cast<std::string>();
+                    auto input = inputs[*it];
+
+                    // Add an InputSpec object for each input spec dict
+                    std::ostringstream inputMessagePrefix;
+                    inputMessagePrefix << "Region " << realClassName
+                        << " spec has missing key for input section " << name << ": ";
+
+                    NTA_ASSERT(input.contains("description"))
+                        << inputMessagePrefix.str() << "description";
+                    auto description = input["description"].cast<std::string>();
+
+                    NTA_ASSERT(input.contains("dataType"))
+                        << inputMessagePrefix.str() << "dataType";
+                    auto dt = input["dataType"].cast<std::string>();
+
+                    NTA_BasicType dataType;
+                    try {
+                        dataType = BasicType::parse(dt);
+                    }
+                    catch (Exception &) {
+                        std::stringstream stream;
+                        stream << "Invalid 'dataType' specificed for input '" << name
+                            << "' when getting spec for region '" << realClassName << "'.";
+                        throw Exception(__FILE__, __LINE__, stream.str());
+                    }
+
+                    NTA_ASSERT(input.contains("count") != nullptr)
+                        << inputMessagePrefix.str() << "count";
+                    auto count = input["count"].cast<UInt32>();
+
+                    NTA_ASSERT(input.contains("required"))
+                        << inputMessagePrefix.str() << "required";
+                    auto required = input["required"].cast<bool>();
+
+                    // make regionLevel optional and default to true.
+                    bool regionLevel = true;
+                    if (input.contains("regionLevel"))
+                    {
+                        regionLevel = input["regionLevel"].cast<bool>();
+                    }
+
+                    NTA_ASSERT(input.contains("isDefaultInput"))
+                        << inputMessagePrefix.str() << "isDefaultInput";
+                    auto isDefaultInput = input["isDefaultInput"].cast<bool>();
+
+                    // make requireSplitterMap optional and default to false.
+                    bool requireSplitterMap = false;
+                    if (input.contains("requireSplitterMap"))
+                    {
+                        requireSplitterMap = input["requireSplitterMap"].cast<bool>();
+                    }
+
+                    ns.inputs.add(
+                        name,
+                        InputSpec(
+                            description,
+                            dataType,
+                            count,
+                            required,
+                            regionLevel,
+                            isDefaultInput,
+                            requireSplitterMap));
                 }
-
-                NTA_ASSERT(input.contains("isDefaultInput"))
-                    << inputMessagePrefix.str() << "isDefaultInput";
-                auto isDefaultInput = input["isDefaultInput"].cast<bool>();
-
-                // make requireSplitterMap optional and default to false.
-                bool requireSplitterMap = false;
-                if (input.contains("requireSplitterMap"))
-                {
-                    requireSplitterMap = input["requireSplitterMap"].cast<bool>();
-                }
-
-                ns.inputs.add(
-                    name,
-                    InputSpec(
-                        description,
-                        dataType,
-                        count,
-                        required,
-                        regionLevel,
-                        isDefaultInput,
-                        requireSplitterMap));
             }
 
-            // Add outputs
-            for (auto it = outputs.begin(); it != outputs.end(); ++it)
+            if (pyNodeSpec.contains("outputs"))
             {
-                auto name = it->cast<std::string>();
-                auto output = outputs[*it];
+                auto outputs = pyNodeSpec["outputs"];
 
-                // Add an OutputSpec object for each output spec dict
-                std::ostringstream outputMessagePrefix;
-                outputMessagePrefix << "Region " << realClassName
-                    << " spec has missing key for output section " << name << ": ";
-
-                NTA_ASSERT(output.contains("description"))
-                    << outputMessagePrefix.str() << "description";
-                auto description = output["description"].cast<std::string>();
-
-                NTA_ASSERT(output.contains("dataType"))
-                    << outputMessagePrefix.str() << "dataType";
-                auto dt = output["dataType"].cast<std::string>();
-                NTA_BasicType dataType;
-                try {
-                    dataType = BasicType::parse(dt);
-                }
-                catch (Exception &) {
-                    std::stringstream stream;
-                    stream << "Invalid 'dataType' specificed for output '" << name
-                        << "' when getting spec for region '" << realClassName << "'.";
-                    throw Exception(__FILE__, __LINE__, stream.str());
-                }
-
-                NTA_ASSERT(output.contains("count"))
-                    << outputMessagePrefix.str() << "count";
-                auto count = output["count"].cast<UInt32>();
-
-                // make regionLevel optional and default to true.
-                bool regionLevel = true;
-                if (output.contains("regionLevel"))
+                // Add outputs
+                for (auto it = outputs.begin(); it != outputs.end(); ++it)
                 {
-                    regionLevel = output["regionLevel"].cast<bool>();
+                    auto name = it->cast<std::string>();
+                    auto output = outputs[*it];
+
+                    // Add an OutputSpec object for each output spec dict
+                    std::ostringstream outputMessagePrefix;
+                    outputMessagePrefix << "Region " << realClassName
+                        << " spec has missing key for output section " << name << ": ";
+
+                    NTA_ASSERT(output.contains("description"))
+                        << outputMessagePrefix.str() << "description";
+                    auto description = output["description"].cast<std::string>();
+
+                    NTA_ASSERT(output.contains("dataType"))
+                        << outputMessagePrefix.str() << "dataType";
+                    auto dt = output["dataType"].cast<std::string>();
+                    NTA_BasicType dataType;
+                    try {
+                        dataType = BasicType::parse(dt);
+                    }
+                    catch (Exception &) {
+                        std::stringstream stream;
+                        stream << "Invalid 'dataType' specificed for output '" << name
+                            << "' when getting spec for region '" << realClassName << "'.";
+                        throw Exception(__FILE__, __LINE__, stream.str());
+                    }
+
+                    NTA_ASSERT(output.contains("count"))
+                        << outputMessagePrefix.str() << "count";
+                    auto count = output["count"].cast<UInt32>();
+
+                    // make regionLevel optional and default to true.
+                    bool regionLevel = true;
+                    if (output.contains("regionLevel"))
+                    {
+                        regionLevel = output["regionLevel"].cast<bool>();
+                    }
+
+                    NTA_ASSERT(output.contains("isDefaultOutput"))
+                        << outputMessagePrefix.str() << "isDefaultOutput";
+                    bool isDefaultOutput = output["isDefaultOutput"].cast<bool>();
+
+                    ns.outputs.add(
+                        name,
+                        OutputSpec(
+                            description,
+                            dataType,
+                            count,
+                            regionLevel,
+                            isDefaultOutput));
                 }
-
-                NTA_ASSERT(output.contains("isDefaultOutput"))
-                    << outputMessagePrefix.str() << "isDefaultOutput";
-                bool isDefaultOutput = output["isDefaultOutput"].cast<bool>();
-
-                ns.outputs.add(
-                    name,
-                    OutputSpec(
-                        description,
-                        dataType,
-                        count,
-                        regionLevel,
-                        isDefaultOutput));
             }
 
-            // Add parameters
-            for (auto it = parameters.begin(); it != parameters.end(); ++it)
+            if (pyNodeSpec.contains("parameters"))
             {
-                auto name = it->cast<std::string>();
-                auto parameter = parameters[*it];
+                auto parameters = pyNodeSpec["parameters"];
 
-                // Add an ParameterSpec object for each output spec dict
-                std::ostringstream parameterMessagePrefix;
-                parameterMessagePrefix << "Region " << realClassName
-                    << " spec has missing key for parameter section " << name << ": ";
-
-                NTA_ASSERT(parameter.contains("description"))
-                    << parameterMessagePrefix.str() << "description";
-                auto description = parameter["description"].cast<std::string>();
-
-                NTA_ASSERT(parameter.contains("dataType"))
-                    << parameterMessagePrefix.str() << "dataType";
-                auto dt = parameter["dataType"].cast<std::string>();
-                NTA_BasicType dataType;
-                try {
-                    dataType = BasicType::parse(dt);
-                }
-                catch (Exception &) {
-                    std::stringstream stream;
-                    stream << "Invalid 'dataType' specificed for parameter '" << name
-                        << "' when getting spec for region '" << realClassName << "'.";
-                    throw Exception(__FILE__, __LINE__, stream.str());
-                }
-
-                NTA_ASSERT(parameter.contains("count"))
-                    << parameterMessagePrefix.str() << "count";
-                auto count = parameter["count"].cast<UInt32>();
-
-                std::string constraints = "";
-                // This parameter is optional
-                if (parameter.contains("constraints")) {
-                    constraints = parameter["constraints"].cast<std::string>();
-                }
-
-                NTA_ASSERT(parameter.contains("accessMode"))
-                    << parameterMessagePrefix.str() << "accessMode";
-                ParameterSpec::AccessMode accessMode;
-                auto am = parameter["accessMode"].cast<std::string>();
-                if (am == "Create")
-                    accessMode = ParameterSpec::CreateAccess;
-                else if (am == "Read")
-                    accessMode = ParameterSpec::ReadOnlyAccess;
-                else if (am == "ReadWrite")
-                    accessMode = ParameterSpec::ReadWriteAccess;
-                else
-                    NTA_THROW << "Invalid access mode: " << am;
-
-                // Get default value as a string if it's a create parameter
-                std::string defaultValue;
-                if (am == "Create")
+                // Add parameters
+                for (auto it = parameters.begin(); it != parameters.end(); ++it)
                 {
-                    NTA_ASSERT(parameter.getItem("defaultValue") != nullptr)
-                        << parameterMessagePrefix.str() << "defaultValue";
-                    auto dv = parameter["defaultValue"];
-                    defaultValue = dv.attr("__str__").cast<std::string>();
-                }
-                if (defaultValue == "None")
-                    defaultValue = "";
+                    auto name = it->cast<std::string>();
+                    auto parameter = parameters[*it];
 
+                    // Add an ParameterSpec object for each output spec dict
+                    std::ostringstream parameterMessagePrefix;
+                    parameterMessagePrefix << "Region " << realClassName
+                        << " spec has missing key for parameter section " << name << ": ";
+
+                    NTA_ASSERT(parameter.contains("description"))
+                        << parameterMessagePrefix.str() << "description";
+                    auto description = parameter["description"].cast<std::string>();
+
+                    NTA_ASSERT(parameter.contains("dataType"))
+                        << parameterMessagePrefix.str() << "dataType";
+                    auto dt = parameter["dataType"].cast<std::string>();
+                    NTA_BasicType dataType;
+                    try {
+                        dataType = BasicType::parse(dt);
+                    }
+                    catch (Exception &) {
+                        std::stringstream stream;
+                        stream << "Invalid 'dataType' specificed for parameter '" << name
+                            << "' when getting spec for region '" << realClassName << "'.";
+                        throw Exception(__FILE__, __LINE__, stream.str());
+                    }
+
+                    NTA_ASSERT(parameter.contains("count"))
+                        << parameterMessagePrefix.str() << "count";
+                    auto count = parameter["count"].cast<UInt32>();
+
+                    std::string constraints = "";
+                    // This parameter is optional
+                    if (parameter.contains("constraints")) {
+                        constraints = parameter["constraints"].cast<std::string>();
+                    }
+
+                    NTA_ASSERT(parameter.contains("accessMode"))
+                        << parameterMessagePrefix.str() << "accessMode";
+                    ParameterSpec::AccessMode accessMode;
+                    auto am = parameter["accessMode"].cast<std::string>();
+                    if (am == "Create")
+                        accessMode = ParameterSpec::CreateAccess;
+                    else if (am == "Read")
+                        accessMode = ParameterSpec::ReadOnlyAccess;
+                    else if (am == "ReadWrite")
+                        accessMode = ParameterSpec::ReadWriteAccess;
+                    else
+                        NTA_THROW << "Invalid access mode: " << am;
+
+                    // Get default value as a string if it's a create parameter
+                    std::string defaultValue;
+                    if (am == "Create")
+                    {
+                        NTA_ASSERT(parameter.getItem("defaultValue") != nullptr)
+                            << parameterMessagePrefix.str() << "defaultValue";
+                        auto dv = parameter["defaultValue"];
+                        defaultValue = dv.attr("__str__").cast<std::string>();
+                    }
+                    if (defaultValue == "None")
+                        defaultValue = "";
+
+                    ns.parameters.add(
+                        name,
+                        ParameterSpec(
+                            description,
+                            dataType,
+                            count,
+                            constraints,
+                            defaultValue,
+                            accessMode));
+                }
+
+                // Add the automatic "self" parameter
                 ns.parameters.add(
-                    name,
+                    "self",
                     ParameterSpec(
-                        description,
-                        dataType,
-                        count,
-                        constraints,
-                        defaultValue,
-                        accessMode));
+                        "The PyObject * of the region's Python classd",
+                        NTA_BasicType_Handle,
+                        1,
+                        "",
+                        "",
+                        ParameterSpec::ReadOnlyAccess));
             }
 
-            // Add the automatic "self" parameter
-            ns.parameters.add(
-                "self",
-                ParameterSpec(
-                    "The PyObject * of the region's Python classd",
-                    NTA_BasicType_Handle,
-                    1,
-                    "",
-                    "",
-                    ParameterSpec::ReadOnlyAccess));
-
-            // Add commands
-            for (auto it = commands.begin(); it != commands.end(); ++it)
+            if (pyNodeSpec.contains("commands"))
             {
-                auto name = it->cast<std::string>();
-                auto command = commands[*it];
+                auto commands = pyNodeSpec["commands"];
 
-                std::ostringstream commandsMessagePrefix;
-                commandsMessagePrefix << "Region " << realClassName
-                    << " spec has missing key for commands section " << name << ": ";
+                // Add commands
+                for (auto it = commands.begin(); it != commands.end(); ++it)
+                {
+                    auto name = it->cast<std::string>();
+                    auto command = commands[*it];
 
-                NTA_ASSERT(command.contains("description"))
-                    << commandsMessagePrefix.str() << "description";
-                auto description = command["description"].cast<std::string>();
+                    std::ostringstream commandsMessagePrefix;
+                    commandsMessagePrefix << "Region " << realClassName
+                        << " spec has missing key for commands section " << name << ": ";
 
-                ns.commands.add(
-                    name,
-                    CommandSpec(description));
+                    NTA_ASSERT(command.contains("description"))
+                        << commandsMessagePrefix.str() << "description";
+                    auto description = command["description"].cast<std::string>();
+
+                    ns.commands.add(
+                        name,
+                        CommandSpec(description));
+                }
             }
         }
         catch (const py::error_already_set& e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        catch (const py::cast_error& e)
         {
             std::cout << e.what() << std::endl;
         }

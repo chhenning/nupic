@@ -1,11 +1,14 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/iostream.h>
 #include <pybind11/operators.h>
+#include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 
 
 #include <nupic/os/OS.hpp>
 #include <nupic/os/Timer.hpp>
+
+#include <nupic/ntypes/ArrayRef.hpp>
 
 #include <nupic/engine/Link.hpp>
 #include <nupic/engine/Network.hpp>
@@ -90,7 +93,7 @@ namespace nupic_ext
             .def("getType", &Region::getType)
             .def("getDimensions", &Region::getDimensions)
             .def("setDimensions", &Region::setDimensions);
-        
+                
         py_Region.def("__setattr__", [](Region& r, py::args args)
         {
             auto num_args = args.size();
@@ -122,29 +125,45 @@ namespace nupic_ext
 
                 if (py::isinstance<py::str>(arg))
                 {
-                    auto str = arg.cast<std::string>();
+                    std::stringstream ss;
+                    ss << "Attribute " << arg.cast<std::string>() << " not found";
+
+                    throw std::runtime_error(ss.str());
                 }
-                else if (py::isinstance<py::dict>(arg))
+                else
                 {
-                    auto dict = arg.cast<std::map<std::string, std::string>>();
+                    throw std::runtime_error("Unknown attribute.");
                 }
             }
         });
 
 
-
-        //py_Region.def("__setattr__", [](Region& r, py::kwargs kwargs, py::args args)
-        //{
-        //    int ii = 9;
-        //});
-
         /*
-        
+
         getSpec
 
         static member
         getSpecFromType
         */
+
+        py_Region.def("getSelf", [](const Region& self)
+        {
+            return self.getParameterHandle("self");
+        });
+
+        py_Region.def("getInputArray", [](const Region& self, const std::string& name)
+        {
+            auto array_ref = self.getInputData(name);
+
+            return py::array_t<nupic::Byte>();
+        });
+
+        py_Region.def("getOutputArray", [](const Region& self, const std::string& name)
+        {
+            auto array_ref = self.getInputData(name);
+
+            return py::array_t<nupic::Byte>();
+        });
 
 
         ///////////////////

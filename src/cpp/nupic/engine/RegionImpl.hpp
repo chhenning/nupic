@@ -40,6 +40,8 @@
 
 #include <nupic/ntypes/ObjectModel.hpp> // IWriteBuffer
 
+#include <pybind11/pybind11.h>
+
 namespace nupic
 {
 
@@ -84,7 +86,7 @@ namespace nupic
     virtual UInt64 getParameterUInt64(const std::string& name, Int64 index);
     virtual Real32 getParameterReal32(const std::string& name, Int64 index);
     virtual Real64 getParameterReal64(const std::string& name, Int64 index);
-    virtual Handle getParameterHandle(const std::string& name, Int64 index);
+    virtual pybind11::object getParameterHandle(const std::string& name, Int64 index);
     virtual bool getParameterBool(const std::string& name, Int64 index);
 
     virtual void setParameterInt32(const std::string& name, Int64 index, Int32 value);

@@ -35,6 +35,8 @@
 #include <map>
 #include <set>
 
+#include <pybind11/pybind11.h>
+
 // We need the full definitions because these
 // objects are returned by value.
 #include <nupic/ntypes/Dimensions.hpp>
@@ -256,7 +258,7 @@ namespace nupic
      *
      * @returns The value of the parameter
      */
-    Handle
+    pybind11::object
     getParameterHandle(const std::string& name) const;
 
     /**

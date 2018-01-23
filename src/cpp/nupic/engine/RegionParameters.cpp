@@ -111,7 +111,7 @@ Real64 Region::getParameterReal64(const std::string& name) const
   return impl_->getParameterReal64(name, (Int64)-1);
 }
 
-Handle Region::getParameterHandle(const std::string& name) const
+pybind11::object Region::getParameterHandle(const std::string& name) const
 {
   return impl_->getParameterHandle(name, (Int64)-1);
 }
