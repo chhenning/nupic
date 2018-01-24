@@ -1,0 +1,1811 @@
+--- D:\nupic\python_migration\input\bindings\py\setup.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\setup.py	(refactored)
+@@ -206,7 +206,7 @@
+       "..", "..", "src", "nupic", "proto", "*.capnp"))):
+     shutil.copy(protoPath, destDir)
+ 
+-  print "\nSetup SWIG Python module"
++  print("\nSetup SWIG Python module")
+   setup(
+     name="nupic.bindings",
+     version=getVersion(),
+--- D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\check.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\check.py	(refactored)
+@@ -53,7 +53,7 @@
+   except ImportError as e:
+     print ("Could not import nupic.bindings. It must be installed before use. "
+            "Error message:")
+-    print e.message
++    print(e.message)
+     return
+ 
+   try:
+@@ -61,7 +61,7 @@
+   except ImportError as e:
+     print ("Could not import C extensions for nupic.bindings. Make sure that "
+            "the package was properly installed. Error message:")
+-    print e.message
++    print(e.message)
+     return
+ 
+-  print "Successfully imported nupic.bindings."
++  print("Successfully imported nupic.bindings.")
+--- D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\PyRegion.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\PyRegion.py	(refactored)
+@@ -47,7 +47,7 @@
+   def __getitem__(self, key):
+     return self._d[key]
+ 
+-class PyRegion(object):
++class PyRegion(object, metaclass=ABCMeta):
+   """
+   PyRegion provides services to its sub-classes (the actual regions):
+ 
+@@ -97,8 +97,6 @@
+   * :meth:`~nupic.bindings.regions.PyRegion.PyRegion.executeMethod`
+ 
+   """
+-
+-  __metaclass__ = ABCMeta
+ 
+ 
+   @classmethod
+--- D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\TestNode.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\TestNode.py	(refactored)
+@@ -170,7 +170,7 @@
+       commands=dict()
+     )
+ 
+-    print result
++    print(result)
+     return result
+ 
+ 
+@@ -208,7 +208,7 @@
+     self.outputElementCount = 2 # used for computation
+     self._delta = 1
+     self._iter = 0
+-    for i in xrange(0,4):
++    for i in range(0,4):
+       self.parameters["int64ArrayParam"][i] = i*64
+ 
+ 
+@@ -223,7 +223,7 @@
+ 
+ 
+   def initialize(self):
+-    print 'TestNode.initialize() here.'
++    print('TestNode.initialize() here.')
+ 
+ 
+   def compute(self, inputs, outputs):
+@@ -238,7 +238,7 @@
+ 
+   def getParameterArrayCount(self, name, index):
+     assert name.endswith('ArrayParam')
+-    print 'len(self.parameters[%s]) = %d' % (name, len(self.parameters[name]))
++    print('len(self.parameters[%s]) = %d' % (name, len(self.parameters[name])))
+     return len(self.parameters[name])
+ 
+ 
+--- D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\cyclical_serialization_perf.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\cyclical_serialization_perf.py	(refactored)
+@@ -66,7 +66,7 @@
+   # Measure serialization
+   startSerializationTime = time.time()
+ 
+-  for i in xrange(_SERIALIZATION_LOOPS):
++  for i in range(_SERIALIZATION_LOOPS):
+     # NOTE pycapnp's builder.from_dict (used in nupic.bindings) leaks
+     # memory if called on the same builder more than once, so we construct a
+     # fresh builder here
+@@ -92,7 +92,7 @@
+ 
+     numReads = min(_DESERIALIZATION_LOOPS - deserializationCount,
+                    _MAX_DESERIALIZATION_LOOPS_PER_READER)
+-    for _ in xrange(numReads):
++    for _ in range(numReads):
+       engine.Network.read(readerProto)
+ 
+     deserializationCount += numReads
+@@ -100,13 +100,13 @@
+   elapsedDeserializationTime = time.time() - startDeserializationTime
+ 
+   # Print report
+-  print _SERIALIZATION_LOOPS, "Serialization loops in", \
+-        elapsedSerializationTime, "seconds."
+-  print "\t", elapsedSerializationTime/_SERIALIZATION_LOOPS, "seconds per loop."
++  print(_SERIALIZATION_LOOPS, "Serialization loops in", \
++        elapsedSerializationTime, "seconds.")
++  print("\t", elapsedSerializationTime/_SERIALIZATION_LOOPS, "seconds per loop.")
+ 
+-  print deserializationCount, "Deserialization loops in", \
+-        elapsedDeserializationTime, "seconds."
+-  print "\t", elapsedDeserializationTime/deserializationCount, "seconds per loop."
++  print(deserializationCount, "Deserialization loops in", \
++        elapsedDeserializationTime, "seconds.")
++  print("\t", elapsedDeserializationTime/deserializationCount, "seconds per loop.")
+ 
+ 
+ 
+--- D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\random_serialization_perf.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\random_serialization_perf.py	(refactored)
+@@ -59,7 +59,7 @@
+   # Measure serialization
+   startSerializationTime = time.time()
+ 
+-  for i in xrange(_SERIALIZATION_LOOPS):
++  for i in range(_SERIALIZATION_LOOPS):
+     # NOTE pycapnp's builder.from_dict (used in nupic.bindings) leaks
+     # memory if called on the same builder more than once, so we construct a
+     # fresh builder here
+@@ -86,7 +86,7 @@
+ 
+     numReads = min(_DESERIALIZATION_LOOPS - deserializationCount,
+                      _MAX_DESERIALIZATION_LOOPS_PER_READER)
+-    for _ in xrange(numReads):
++    for _ in range(numReads):
+       r.read(readerProto)
+ 
+     deserializationCount += numReads
+@@ -94,13 +94,13 @@
+   elapsedDeserializationTime = time.time() - startDeserializationTime
+ 
+   # Print report
+-  print _SERIALIZATION_LOOPS, "Serialization loops in", \
+-        elapsedSerializationTime, "seconds."
+-  print "\t", elapsedSerializationTime/_SERIALIZATION_LOOPS, "seconds per loop."
++  print(_SERIALIZATION_LOOPS, "Serialization loops in", \
++        elapsedSerializationTime, "seconds.")
++  print("\t", elapsedSerializationTime/_SERIALIZATION_LOOPS, "seconds per loop.")
+ 
+-  print deserializationCount, "Deserialization loops in", \
+-        elapsedDeserializationTime, "seconds."
+-  print "\t", elapsedDeserializationTime/deserializationCount, "seconds per loop."
++  print(deserializationCount, "Deserialization loops in", \
++        elapsedDeserializationTime, "seconds.")
++  print("\t", elapsedDeserializationTime/deserializationCount, "seconds per loop.")
+ 
+ if __name__ == "__main__":
+   main()
+--- D:\nupic\python_migration\input\bindings\py\tests\connections_test.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\tests\connections_test.py	(refactored)
+@@ -341,7 +341,7 @@
+       firstResult = None
+       differingResults = False
+ 
+-      for _ in xrange(20):
++      for _ in range(20):
+         connections = SparseMatrixConnections(2048, 2048)
+ 
+         segments = connections.createSegments(cells)
+@@ -432,7 +432,7 @@
+       firstResult = None
+       differingResults = False
+ 
+-      for _ in xrange(20):
++      for _ in range(20):
+         connections = SparseMatrixConnections(2048, 2048)
+ 
+         segments = connections.createSegments(cells)
+--- D:\nupic\python_migration\input\bindings\py\tests\nupic_random_test.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\tests\nupic_random_test.py	(refactored)
+@@ -22,7 +22,7 @@
+ 
+ """NuPIC random module tests."""
+ 
+-import cPickle as pickle
++import pickle as pickle
+ import tempfile
+ import unittest
+ 
+@@ -56,11 +56,11 @@
+     r.write(builderProto)
+     readerProto = RandomProto.from_bytes(builderProto.to_bytes())
+ 
+-    test1 = [r.getUInt32() for _ in xrange(10)]
++    test1 = [r.getUInt32() for _ in range(10)]
+     r = Random(1);
+     r.read(readerProto)
+     self.assertEqual(r.getSeed(), 99)
+-    test2 = [r.getUInt32() for _ in xrange(10)]
++    test2 = [r.getUInt32() for _ in range(10)]
+ 
+     self.assertEqual(test1, test2,
+                      "Simple NuPIC random capnp serialization check failed.")
+@@ -73,11 +73,11 @@
+     r.write(builderProto)
+     readerProto = RandomProto.from_bytes(builderProto.to_bytes())
+ 
+-    test3 = [r.getUInt32() for _ in xrange(10)]
++    test3 = [r.getUInt32() for _ in range(10)]
+     r = Random();
+     r.read(readerProto)
+     self.assertEqual(r.getSeed(), 99)
+-    test4 = [r.getUInt32() for _ in xrange(10)]
++    test4 = [r.getUInt32() for _ in range(10)]
+ 
+     self.assertEqual(
+       test3, test4,
+@@ -96,9 +96,9 @@
+     r = Random(42)
+     pickledR = pickle.dumps(r)
+ 
+-    test1 = [r.getUInt32() for _ in xrange(10)]
++    test1 = [r.getUInt32() for _ in range(10)]
+     r = pickle.loads(pickledR)
+-    test2 = [r.getUInt32() for _ in xrange(10)]
++    test2 = [r.getUInt32() for _ in range(10)]
+ 
+     self.assertEqual(test1, test2,
+                      "Simple NuPIC random pickle/unpickle failed.")
+@@ -109,9 +109,9 @@
+     # saving the initial seed...
+     pickledR = pickle.dumps(r)
+ 
+-    test3 = [r.getUInt32() for _ in xrange(10)]
++    test3 = [r.getUInt32() for _ in range(10)]
+     r = pickle.loads(pickledR)
+-    test4 = [r.getUInt32() for _ in xrange(10)]
++    test4 = [r.getUInt32() for _ in range(10)]
+ 
+     self.assertEqual(
+         test3, test4,
+--- D:\nupic\python_migration\input\bindings\py\tests\segment_sparse_matrix_test.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\tests\segment_sparse_matrix_test.py	(refactored)
+@@ -47,7 +47,7 @@
+     ssm.destroySegments([created[1], created[2], created[3]])
+     ssm.createSegments([50, 51, 52, 53])
+ 
+-    self.assertEquals(6, ssm.matrix.nRows())
++    self.assertEqual(6, ssm.matrix.nRows())
+ 
+ 
+   def testGetSegmentCounts(self):
+--- D:\nupic\python_migration\input\bindings\py\tests\sparse_binary_matrix_test.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\tests\sparse_binary_matrix_test.py	(refactored)
+@@ -22,7 +22,7 @@
+ 
+ """Unit tests for sparse binary matrix."""
+ 
+-import cPickle
++import pickle
+ import os
+ 
+ import numpy
+@@ -35,7 +35,7 @@
+ 
+ 
+ def error(str):
+-  print 'Error:', str
++  print('Error:', str)
+ 
+ 
+ 
+@@ -101,7 +101,7 @@
+     x[m/2] = 0
+     a = self.Matrix.__class__(n)
+ 
+-    print a.getVersion(), a.getVersion(True)
++    print(a.getVersion(), a.getVersion(True))
+ 
+     if a.nRows() != 0:
+       error('nRows 1')
+@@ -1042,9 +1042,9 @@
+            [0,0,0,0,0,0,0]])
+ 
+     a.logicalOr(b)
+-    if show: print a
++    if show: print(a)
+     a.logicalOr(a)
+-    if show: print a
++    if show: print(a)
+ 
+     a = self.Matrix.__class__(1)
+     a.fromDense([[0,0,1,1,1,0,0],
+@@ -1059,9 +1059,9 @@
+            [0,0,0,0,0,0,0]])
+ 
+     b.logicalNot()
+-    if show: print b
++    if show: print(b)
+     b.logicalOr(a)
+-    if show: print b
++    if show: print(b)
+ 
+     a = self.Matrix.__class__([[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+                 ,[1,1,1,1,1,0,0,0,0,0,0,0,0,0,1]
+@@ -1079,12 +1079,12 @@
+                 ,[1,0,0,0,0,0,0,1,1,1,0,0,0,0,1]
+                 ,[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]])
+     a.logicalNot()
+-    if show: print a
++    if show: print(a)
+     b = self.Matrix.__class__(a)
+     b.inside()
+-    if show: print b
++    if show: print(b)
+     a.logicalOr(b)
+-    if show: print a
++    if show: print(a)
+ 
+ 
+   def testLogicalAnd(self):
+@@ -1103,9 +1103,9 @@
+            [0,0,0,0,0,0,0]])
+ 
+     a.logicalAnd(b)
+-    if show: print a
++    if show: print(a)
+     a.logicalAnd(a)
+-    if show: print a
++    if show: print(a)
+ 
+     a = self.Matrix.__class__(1)
+     a.fromDense([[0,0,1,1,1,0,0],
+@@ -1120,9 +1120,9 @@
+            [0,0,0,0,0,0,0]])
+ 
+     b.logicalNot()
+-    if show: print b
++    if show: print(b)
+     b.logicalAnd(a)
+-    if show: print b
++    if show: print(b)
+ 
+ 
+   def testOverlap(self):
+@@ -1206,8 +1206,8 @@
+         line += ' -> '
+         for j in range(before.nCols()):
+           line += '#' if after.get(i,j) == 1 else '.'
+-        print line
+-      print
++        print(line)
++      print()
+ 
+ 
+     def sideBySide(a, edges=False):
+@@ -1458,9 +1458,9 @@
+       y = a.rightVecArgMaxAtNZ(x)
+ 
+       answer = numpy.zeros(m)
+-      for i in xrange(m):
++      for i in range(m):
+         a = 0
+-        for j in xrange(n):
++        for j in range(n):
+           if mat[i,j] > 0:
+             if x[j] > a:
+               a = x[j]
+@@ -1523,8 +1523,8 @@
+     a = self.Matrix.__class__(1)
+     a.fromDense(mat)
+ 
+-    cPickle.dump(a, open('test.bin', 'wb'))
+-    b = cPickle.load(open('test.bin'))
++    pickle.dump(a, open('test.bin', 'wb'))
++    b = pickle.load(open('test.bin'))
+ 
+     if (a.toDense() != b.toDense()).any():
+       error('pickling')
+@@ -1631,10 +1631,10 @@
+       c = m.leftDenseMatSumAtNZ(b)
+       d = numpy.dot(b,a)
+       if (c != d).any():
+-        print m
+-        print a
+-        print c
+-        print d
++        print(m)
++        print(a)
++        print(c)
++        print(d)
+         error('leftDenseMatSumAtNZ')
+ 
+ 
+@@ -1744,7 +1744,7 @@
+     if (a.toDense() != b.toDense()).any():
+       error('scalability 1')
+ 
+-    print 'Preparing'
++    print('Preparing')
+     n = 10000
+     a = self.Matrix.__class__(n)
+     mat = _RGEN.randint(0,100,(20000,n))
+@@ -1752,10 +1752,10 @@
+     for row in mat:
+       x += [numpy.where(row > 90)[0]]
+ 
+-    print 'Evaluating'
++    print('Evaluating')
+     for i in range(len(x)):
+       if i % 100 == 0:
+-        print i
++        print(i)
+       if a.findRowSparse(x[i]) == a.nRows():
+         a.appendSparseRow(x[i])
+ 
+--- D:\nupic\python_migration\input\bindings\py\tests\sparse_matrix_test.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\tests\sparse_matrix_test.py	(refactored)
+@@ -27,7 +27,7 @@
+ from numpy import *
+ import math
+ import os
+-import cPickle
++import pickle
+ import copy
+ import time
+ import unittest
+@@ -41,7 +41,7 @@
+ 
+ def error(str):
+ 
+-  print 'Error:', str
++  print('Error:', str)
+   assert(False)
+ 
+ 
+@@ -51,7 +51,7 @@
+ 
+   def test_construction(self):
+ 
+-    print 'Testing constructors'
++    print('Testing constructors')
+ 
+     s1 = SparseMatrix(3,3)
+     if s1.nRows() != 3 or s1.nCols() != 3 or s1.nNonZeros() != 0:
+@@ -83,7 +83,7 @@
+ 
+   def test_getAllNonZeros(self):
+ 
+-    print 'Testing getAllNonZeros'
++    print('Testing getAllNonZeros')
+ 
+     for i in range(5):
+ 
+@@ -118,7 +118,7 @@
+ 
+   def test_setAllNonZeros(self):
+ 
+-    print 'Testing setAllNonZeros'
++    print('Testing setAllNonZeros')
+ 
+     for i in range(5):
+ 
+@@ -247,7 +247,7 @@
+ 
+   def test_nNonZerosPerBox(self):
+ 
+-    print 'Testing nNonZerosPerBox'
++    print('Testing nNonZerosPerBox')
+ 
+     for i in range(5):
+ 
+@@ -274,7 +274,7 @@
+ 
+   def test_getCol(self):
+ 
+-    print 'Testing getCol'
++    print('Testing getCol')
+ 
+     for i in range(5):
+ 
+@@ -297,7 +297,7 @@
+ 
+   def test_setSlice(self):
+ 
+-    print 'Testing setSlice'
++    print('Testing setSlice')
+ 
+     # With a sparse matrix
+     for i in range(5):
+@@ -360,7 +360,7 @@
+ 
+   def test_kthroot_product(self):
+ 
+-    print 'Testing k-root product'
++    print('Testing k-root product')
+ 
+     def algo(s, x, seg_size, small_val):
+ 
+@@ -437,7 +437,7 @@
+ 
+   def test_transpose(self):
+ 
+-    print 'Testing transpose'
++    print('Testing transpose')
+ 
+     for k in range(5):
+       nrows = rgen.randint(1,5)
+@@ -462,7 +462,7 @@
+       if (a != m.toDense()).any():
+         error('transpose 2')
+ 
+-    for k in xrange(5):
++    for k in range(5):
+       nrows = rgen.randint(1,5)
+       ncols = rgen.randint(5,12)
+       a = rgen.randint(0,100,size=(nrows,ncols))
+@@ -478,7 +478,7 @@
+ 
+     return
+ 
+-    print 'Testing aX_plus_bXY'
++    print('Testing aX_plus_bXY')
+ 
+     x0 = SM64([[10, 20, 30], [40, 50, 60]])
+     x = SM64(x0)
+@@ -502,7 +502,7 @@
+ 
+   def test_mat_prod(self):
+ 
+-    print 'Testing mat_prod'
++    print('Testing mat_prod')
+ 
+     for i in range(5):
+       a = rgen.randint(0,2,(6,8))
+@@ -522,7 +522,7 @@
+ 
+   def test_leftDenseMatMaxAtNZ(self):
+ 
+-    print 'Testing leftDenseMatMaxAtNZ'
++    print('Testing leftDenseMatMaxAtNZ')
+ 
+     for i in range(5):
+ 
+@@ -538,16 +538,16 @@
+ 
+       d = SM32(a).leftDenseMatMaxAtNZ(b).astype(int32)
+       if (c != d).any():
+-        print a
+-        print b
+-        print c
+-        print d
++        print(a)
++        print(b)
++        print(c)
++        print(d)
+         error('leftDenseMatMaxAtNZ')
+ 
+ 
+   def test_rightDenseMatProdAtNZ(self):
+ 
+-    print 'Testing rightDenseMatProdAtNZ'
++    print('Testing rightDenseMatProdAtNZ')
+ 
+     for i in range(5):
+       a = rgen.randint(0,2,(6,8))
+@@ -560,7 +560,7 @@
+ 
+   def test_denseMatExtract(self):
+ 
+-    print 'Testing denseMatExtract'
++    print('Testing denseMatExtract')
+ 
+     a = numpy.zeros((4,4))
+     a[1,0] = 1; a[2,1] = 1; a[3,2] = 1
+@@ -573,7 +573,7 @@
+ 
+   def test_threshold(self):
+ 
+-    print 'Testing threshold'
++    print('Testing threshold')
+ 
+     for k in range(5):
+       a = rgen.randint(0,100,(4,4))
+@@ -596,7 +596,7 @@
+ 
+   def test_clip(self):
+ 
+-    print 'Testing clip'
++    print('Testing clip')
+ 
+     # clip calls clipRow
+ 
+@@ -626,7 +626,7 @@
+         error('clip below')
+ 
+ 
+-    print 'Testing clipCol'
++    print('Testing clipCol')
+ 
+     # clip col above
+     for k in range(5):
+@@ -656,7 +656,7 @@
+         error('clipCol below')
+ 
+ 
+-    print 'Testing clip above and below'
++    print('Testing clip above and below')
+ 
+     # clip whole matrix below and above (calls clipRowBelowAndAbove)
+     for k in range(5):
+@@ -699,7 +699,7 @@
+ 
+   def test_increment(self):
+ 
+-    print 'Testing increment'
++    print('Testing increment')
+ 
+     a = rgen.randint(0,100,(4,4))
+     a[numpy.where(a < 75)] = 0
+@@ -713,7 +713,7 @@
+ 
+   def test_incrementOnOuterWNZ(self):
+ 
+-    print 'Testing incrementOnOuterWNZ'
++    print('Testing incrementOnOuterWNZ')
+ 
+     a = rgen.randint(0,100,(4,4))
+     a[numpy.where(a < 75)] = 0
+@@ -728,7 +728,7 @@
+ 
+   def test_incrementNonZerosOnOuter(self):
+ 
+-    print "Testing incrementNonZerosOnOuter"
++    print("Testing incrementNonZerosOnOuter")
+ 
+     for name, start, rows, cols, delta, expected in (
+         ("Test 1",
+@@ -779,7 +779,7 @@
+ 
+   def test_incrementNonZerosOnRowsExcludingCols(self):
+ 
+-    print "Testing incrementNonZerosOnRowsExcludingCols"
++    print("Testing incrementNonZerosOnRowsExcludingCols")
+ 
+     for name, start, rows, cols, delta, expected in (
+         ("Test 1",
+@@ -830,7 +830,7 @@
+ 
+   def test_setZerosOnOuter(self):
+ 
+-    print "Testing setZerosOnOuter"
++    print("Testing setZerosOnOuter")
+ 
+     for name, start, rows, cols, value, expected in (
+         ("Test 1",
+@@ -872,7 +872,7 @@
+ 
+   def test_setRandomZerosOnOuter_single(self):
+ 
+-    print "Testing setRandomZerosOnOuter with a numerical numNewNonzeros"
++    print("Testing setRandomZerosOnOuter with a numerical numNewNonzeros")
+ 
+     rng = Random()
+ 
+@@ -926,8 +926,8 @@
+                       ("Every value that was nonzero should not have changed."
+                        "%s != %s" % (nonzeroBeforeUpdated, nonzeroBefore)))
+ 
+-      otherRows = [x for x in xrange(numRows) if x not in rows]
+-      otherCols = [x for x in xrange(numCols) if x not in cols]
++      otherRows = [x for x in range(numRows) if x not in rows]
++      otherCols = [x for x in range(numCols) if x not in cols]
+       if len(otherRows) > 0 and len(otherCols) > 0:
+         unselectedBefore = before[numpy.ix_(otherRows, otherCols)]
+         unselectedAfter = after[numpy.ix_(otherRows, otherCols)]
+@@ -963,7 +963,7 @@
+          2, 42),
+     ):
+       success = False
+-      for _ in xrange(5):
++      for _ in range(5):
+         m2 = SparseMatrix(before)
+         m2.setRandomZerosOnOuter(rows, cols, numNew, value, rng)
+         if m2 != m:
+@@ -974,7 +974,7 @@
+ 
+   def test_setRandomZerosOnOuter_multi(self):
+ 
+-    print "Testing setRandomZerosOnOuter with multiple numNewNonzeros"
++    print("Testing setRandomZerosOnOuter with multiple numNewNonzeros")
+ 
+     rng = Random()
+ 
+@@ -1028,8 +1028,8 @@
+                       ("Every value that was nonzero should not have changed."
+                        "%s != %s" % (nonzeroBeforeUpdated, nonzeroBefore)))
+ 
+-      otherRows = [x for x in xrange(numRows) if x not in rows]
+-      otherCols = [x for x in xrange(numCols) if x not in cols]
++      otherRows = [x for x in range(numRows) if x not in rows]
++      otherCols = [x for x in range(numCols) if x not in cols]
+       if len(otherRows) > 0 and len(otherCols) > 0:
+         unselectedBefore = before[numpy.ix_(otherRows, otherCols)]
+         unselectedAfter = after[numpy.ix_(otherRows, otherCols)]
+@@ -1065,7 +1065,7 @@
+          [2, 2, 2, 2, 2, 2], 42),
+     ):
+       success = False
+-      for _ in xrange(5):
++      for _ in range(5):
+         m2 = SparseMatrix(before)
+         m2.setRandomZerosOnOuter(rows, cols, numNewByRow, value, rng)
+         if m2 != m:
+@@ -1076,7 +1076,7 @@
+ 
+   def test_increaseRowNonZeroCountsOnOuterTo(self):
+ 
+-    print "Testing increaseRowNonZeroCountsOnOuterTo"
++    print("Testing increaseRowNonZeroCountsOnOuterTo")
+ 
+     rng = Random()
+ 
+@@ -1135,8 +1135,8 @@
+                       ("Every value that was nonzero should not have changed."
+                        "%s != %s" % (nonzeroBeforeUpdated, nonzeroBefore)))
+ 
+-      otherRows = [x for x in xrange(numRows) if x not in rows]
+-      otherCols = [x for x in xrange(numCols) if x not in cols]
++      otherRows = [x for x in range(numRows) if x not in rows]
++      otherCols = [x for x in range(numCols) if x not in cols]
+       if len(otherRows) > 0 and len(otherCols) > 0:
+         unselectedBefore = before[numpy.ix_(otherRows, otherCols)]
+         unselectedAfter = after[numpy.ix_(otherRows, otherCols)]
+@@ -1173,7 +1173,7 @@
+          4, 42),
+     ):
+       success = False
+-      for _ in xrange(5):
++      for _ in range(5):
+         m2 = SparseMatrix(before)
+         m2.increaseRowNonZeroCountsOnOuterTo(rows, cols, numDesiredNonzeros,
+                                              value, rng)
+@@ -1203,7 +1203,7 @@
+ 
+   def test_boxMin_boxMax(self):
+ 
+-    print 'Testing boxMin, boxMax'
++    print('Testing boxMin, boxMax')
+ 
+     a = rgen.randint(0,100,(11,8))
+     a[numpy.where(a < 75)] = 0
+@@ -1236,7 +1236,7 @@
+ 
+   def test_getSlice(self):
+ 
+-    print 'Testing getSlice'
++    print('Testing getSlice')
+ 
+     a = rgen.randint(0,100,(11,8))
+     a[numpy.where(a < 75)] = 0
+@@ -1263,7 +1263,7 @@
+ 
+   def test_addTwoRows(self):
+ 
+-    print 'Testing addTwoRows'
++    print('Testing addTwoRows')
+ 
+     a = rgen.randint(0,100,(11,8))
+     a[numpy.where(a < 75)] = 0
+@@ -1279,7 +1279,7 @@
+ 
+   def test_setRowFromDense(self):
+ 
+-    print 'Testing setRowFromDense'
++    print('Testing setRowFromDense')
+ 
+     a = rgen.randint(0,100,(11,8))
+     a[numpy.where(a < 75)] = 0
+@@ -1295,7 +1295,7 @@
+ 
+   def test_setRowFromSparse(self):
+ 
+-    print 'Testing setRowFromSparse'
++    print('Testing setRowFromSparse')
+ 
+     a = rgen.randint(0,100,(11,8))
+     a[numpy.where(a < 75)] = 0
+@@ -1315,7 +1315,7 @@
+ 
+   def test_copyRow(self):
+ 
+-    print 'Testing copyRow'
++    print('Testing copyRow')
+ 
+     a = rgen.randint(0,100,(11,8))
+     a[numpy.where(a < 75)] = 0
+@@ -1333,7 +1333,7 @@
+ 
+   def test_zeroRowAndCol(self):
+ 
+-    print 'Testing zeroRowAndCol'
++    print('Testing zeroRowAndCol')
+ 
+     for k in range(5):
+       a = rgen.randint(0,100,(11,11))
+@@ -1350,7 +1350,7 @@
+ 
+   def test_setColsToZero(self):
+ 
+-    print 'Testing setColsToZero'
++    print('Testing setColsToZero')
+ 
+     for k in range(5):
+ 
+@@ -1367,7 +1367,7 @@
+ 
+   def test_leftDenseMatSumAtNZ(self):
+ 
+-    print 'Testing leftDenseMatSumAtNZ'
++    print('Testing leftDenseMatSumAtNZ')
+ 
+     for i in range(5):
+       a = rgen.randint(0,100,(12,13))
+@@ -1387,7 +1387,7 @@
+ 
+   def test_elementRowMultiply(self):
+ 
+-    print 'Testing elementRowMultiply'
++    print('Testing elementRowMultiply')
+ 
+     a = rgen.randint(0,100,(11,12))
+     a[numpy.where(a < 75)] = 0
+@@ -1403,7 +1403,7 @@
+ 
+   def test_elementColMultiply(self):
+ 
+-    print 'Testing elementColMultiply'
++    print('Testing elementColMultiply')
+ 
+     a = rgen.randint(0,100,(11,12))
+     a[numpy.where(a < 75)] = 0
+@@ -1419,7 +1419,7 @@
+ 
+   def test_scaleRows(self):
+ 
+-    print 'Testing scaleRows'
++    print('Testing scaleRows')
+ 
+     a = rgen.randint(0,100,(11,12))
+     a[numpy.where(a < 75)] = 0
+@@ -1435,7 +1435,7 @@
+ 
+   def test_scaleCols(self):
+ 
+-    print 'Testing scaleCols'
++    print('Testing scaleCols')
+ 
+     a = rgen.randint(0,100,(11,12))
+     a[numpy.where(a < 75)] = 0
+@@ -1451,7 +1451,7 @@
+ 
+   def test_setDiagonalToZero(self):
+ 
+-    print 'Testing setDiagonalToZero'
++    print('Testing setDiagonalToZero')
+ 
+     for i in range(5):
+       m = rgen.randint(1,10)
+@@ -1467,7 +1467,7 @@
+ 
+   def test_setDiagonalToVal(self):
+ 
+-    print 'Testing setDiagonalToVal'
++    print('Testing setDiagonalToVal')
+ 
+     for i in range(5):
+       m = rgen.randint(1,10)
+@@ -1483,7 +1483,7 @@
+ 
+   def test_setDiagonal(self):
+ 
+-    print 'Testing setDiagonal'
++    print('Testing setDiagonal')
+ 
+     for i in range(5):
+       m = rgen.randint(1,10)
+@@ -1500,7 +1500,7 @@
+ 
+   def test_rightVecProd(self):
+ 
+-    print 'Testing rightVecProd'
++    print('Testing rightVecProd')
+ 
+     # Right vec prod is the traditional matrix vector product, on the right side.
+     # The argument vector has the same number of elements as the number of columns
+@@ -1538,7 +1538,7 @@
+ 
+   def test_rightVecProd_fast(self):
+ 
+-    print 'Testing rightVecProd_fast'
++    print('Testing rightVecProd_fast')
+ 
+     # Right vec prod is the traditional matrix vector product, on the right side.
+     # The argument vector has the same number of elements as the number of columns
+@@ -1564,7 +1564,7 @@
+ 
+   def test_leftVecProd(self):
+ 
+-    print 'Testing leftVecProd'
++    print('Testing leftVecProd')
+ 
+     # Left vec prod is a matrix vector multiplication where the argument x vector
+     # has as many elements as there are rows in the matrix, and the result vector
+@@ -1598,7 +1598,7 @@
+ 
+   def test_rightVecSumAtNZ(self):
+ 
+-    print 'Testing rightVecSumAtNZ'
++    print('Testing rightVecSumAtNZ')
+ 
+     # This is like rightVecProd, except that we assume that the values stored
+     # in the sparse matrix are 1 (even if they are not), so that we can skip
+@@ -1630,7 +1630,7 @@
+ 
+   def test_rightVecSumAtNZSparse(self):
+ 
+-    print 'Testing rightVecSumAtNZSparse'
++    print('Testing rightVecSumAtNZSparse')
+ 
+     # This is like rightVecSumAtNZ, but the right vector is described as a list
+     # of indices of the value 1.0.
+@@ -1660,7 +1660,7 @@
+ 
+   def test_rightVecSumAtNZGtThreshold(self):
+ 
+-    print 'Testing rightVecSumAtNZGtThreshold'
++    print('Testing rightVecSumAtNZGtThreshold')
+ 
+     for name, matrix, rightVec, threshold, expected in (
+         ("Test 1",
+@@ -1695,7 +1695,7 @@
+ 
+   def test_rightVecSumAtNZGtThresholdSparse(self):
+ 
+-    print 'Testing rightVecSumAtNZGtThresholdSparse'
++    print('Testing rightVecSumAtNZGtThresholdSparse')
+ 
+     for name, matrix, sparseRightVec, threshold, expected in (
+         ("Test 1",
+@@ -1731,7 +1731,7 @@
+ 
+   def test_rightVecSumAtNZGteThreshold(self):
+ 
+-    print 'Testing rightVecSumAtNZGteThreshold'
++    print('Testing rightVecSumAtNZGteThreshold')
+ 
+     for name, matrix, rightVec, threshold, expected in (
+         ("Test 1",
+@@ -1766,7 +1766,7 @@
+ 
+   def test_rightVecSumAtNZGteThresholdSparse(self):
+ 
+-    print 'Testing rightVecSumAtNZGteThresholdSparse'
++    print('Testing rightVecSumAtNZGteThresholdSparse')
+ 
+     for name, matrix, sparseRightVec, threshold, expected in (
+         ("Test 1",
+@@ -1802,7 +1802,7 @@
+ 
+   def test_leftVecSumAtNZ(self):
+ 
+-    print 'Testing leftVecSumAtNZ'
++    print('Testing leftVecSumAtNZ')
+ 
+     # This is like leftVecProd, except that we assume that the values stored
+     # in the sparse matrix are 1 (even if they are not), so that we can skip
+@@ -1834,7 +1834,7 @@
+ 
+   def test_multiply(self):
+ 
+-    print 'Testing multiply'
++    print('Testing multiply')
+ 
+     # Multiply is the multiplication of two sparse matrices. The result is a third
+     # sparse matrix.
+@@ -1859,7 +1859,7 @@
+ 
+   def test_elementMultiply(self):
+ 
+-    print 'Testing elementMultiply'
++    print('Testing elementMultiply')
+ 
+     # This multiplies elements at the same positions in matrices a and b. The
+     # result is another matrix.
+@@ -1884,7 +1884,7 @@
+ 
+   def test_incrementWithOuterProduct(self):
+ 
+-    print 'Testing incrementWithOuterProduct'
++    print('Testing incrementWithOuterProduct')
+ 
+     for i in range(5):
+       m = rgen.randint(2,10)
+@@ -1907,7 +1907,7 @@
+ 
+   def test_incrementOnOuterProductVal(self):
+ 
+-    print 'Testing incrementOnOuterProductVal'
++    print('Testing incrementOnOuterProductVal')
+ 
+     for i in range(5):
+       m = rgen.randint(2,10)
+@@ -1933,7 +1933,7 @@
+ 
+   def test_setFromOuter(self):
+ 
+-    print 'Testing setFromOuter with variable amount of memory'
++    print('Testing setFromOuter with variable amount of memory')
+ 
+     for i in range(5):
+       m = rgen.randint(1,10)
+@@ -1950,7 +1950,7 @@
+       if (a.toDense() != r).any():
+         error('setFromOuter 1')
+ 
+-    print 'Testing setFromOuter with fixed amount of memory'
++    print('Testing setFromOuter with fixed amount of memory')
+ 
+     for i in range(5):
+       m = rgen.randint(2,10)
+@@ -1971,7 +1971,7 @@
+ 
+   def test_setFromElementMultiplyWithOuter(self):
+ 
+-    print 'Testing setFromElementMultiplyWithOuter'
++    print('Testing setFromElementMultiplyWithOuter')
+ 
+     for i in range(5):
+       m = rgen.randint(1,10)
+@@ -1992,7 +1992,7 @@
+ 
+   def test_add(self):
+ 
+-    print 'Testing add'
++    print('Testing add')
+ 
+     for i in range(5):
+       m = rgen.randint(2,10)
+@@ -2014,7 +2014,7 @@
+ 
+   def test_vecMaxAtNZ(self):
+ 
+-    print 'Testing vecMaxAtNZ'
++    print('Testing vecMaxAtNZ')
+ 
+     for i in range(5):
+ 
+@@ -2047,7 +2047,7 @@
+ 
+   def test_vecArgMaxAtNZ(self):
+ 
+-    print 'Testing vecArgMaxAtNZ'
++    print('Testing vecArgMaxAtNZ')
+ 
+     for i in range(5):
+ 
+@@ -2080,7 +2080,7 @@
+ 
+   def test_vecArgMaxProd(self):
+ 
+-    print 'Testing vecArgMaxProd'
++    print('Testing vecArgMaxProd')
+ 
+     for i in range(5):
+ 
+@@ -2114,7 +2114,7 @@
+ 
+   def test_setBoxToZero(self):
+ 
+-    print 'Testing setBoxToZero'
++    print('Testing setBoxToZero')
+ 
+     for i in range(5):
+       m = rgen.randint(2,10)
+@@ -2136,7 +2136,7 @@
+ 
+   def test_setBox(self):
+ 
+-    print 'Testing setBox'
++    print('Testing setBox')
+ 
+     for i in range(5):
+       m = rgen.randint(2,10)
+@@ -2159,7 +2159,7 @@
+ 
+   def test_nNonZerosInRowRange(self):
+ 
+-    print 'Testing nNonZerosInRowRange'
++    print('Testing nNonZerosInRowRange')
+ 
+     for i in range(5):
+       m = rgen.randint(2,20)
+@@ -2183,7 +2183,7 @@
+ 
+   def test_nNonZerosInBox(self):
+ 
+-    print 'Testing nNonZerosInBox'
++    print('Testing nNonZerosInBox')
+ 
+     for i in range(5):
+       m = rgen.randint(4,20)
+@@ -2211,7 +2211,7 @@
+ 
+   def test_getNonZerosInBox(self):
+ 
+-    print 'Testing getNonZerosInBox'
++    print('Testing getNonZerosInBox')
+ 
+     for i in range(5):
+       m = rgen.randint(4,20)
+@@ -2244,7 +2244,7 @@
+ 
+   def test_getNonZerosSorted(self):
+ 
+-    print 'Testing getNonZerosSorted'
++    print('Testing getNonZerosSorted')
+ 
+     for i in range(5):
+ 
+@@ -2266,7 +2266,7 @@
+ 
+   def test_smoothVecMaxProd(self):
+ 
+-    print 'Testing smoothVecMaxProd'
++    print('Testing smoothVecMaxProd')
+ 
+     for i in range(5):
+ 
+@@ -2292,7 +2292,7 @@
+ 
+   def test_smoothVecArgMaxProd(self):
+ 
+-    print 'Testing smoothVecArgMaxProd'
++    print('Testing smoothVecArgMaxProd')
+ 
+     for i in range(5):
+ 
+@@ -2313,20 +2313,20 @@
+       y0 = numpy.argmax(d, axis=1)
+ 
+       if (y != y0).any():
+-        print k
+-        print x
+-        print A
+-        print d
+-        print y
+-        print y0
++        print(k)
++        print(x)
++        print(A)
++        print(d)
++        print(y)
++        print(y0)
+         error('smoothVecArgMaxProd')
+ 
+ 
+   def test_shiftRows(self):
+ 
+-   print 'Testing shiftRows'
+-
+-   for test in xrange(5):
++   print('Testing shiftRows')
++
++   for test in range(5):
+     r, c = rgen.randint(10, size=2)
+     m = rgen.randint(5, size=(r, c))
+     sm = SM32(m)
+@@ -2343,23 +2343,23 @@
+ 
+   def test_shiftCols(self):
+ 
+-   print 'Testing shiftCols'
+-
+-   for test in xrange(5):
++   print('Testing shiftCols')
++
++   for test in range(5):
+     r, c = rgen.randint(10, size=2)
+     m = rgen.randint(5, size=(r, c))
+     sm = SM32(m)
+     sm2 = SM32(sm)
+     s = rgen.randint(-c, c+1)
+-    shifted = sorted(set(xrange(c)).intersection(xrange(-s, c-s)))
+-    rotated = sorted(set(xrange(c)).difference(shifted))
++    shifted = sorted(set(range(c)).intersection(range(-s, c-s)))
++    rotated = sorted(set(range(c)).difference(shifted))
+     if s > 0:
+      permutation = rotated + shifted
+-     zero = range(0, s)
++     zero = list(range(0, s))
+      m2 = numpy.hstack((numpy.zeros((r, s)), m[..., 0:(c-s)]))
+     else:
+      permutation = shifted + rotated
+-     zero = range(c+s, c)
++     zero = list(range(c+s, c))
+      m2 = numpy.hstack((m[..., (-s):], numpy.zeros((r, -s))))
+ 
+     start = time.time()
+@@ -2381,7 +2381,7 @@
+   def test_logRowSums(self):
+ 
+     return # precision issue, function almost obsolete
+-    print 'Testing logRowSums'
++    print('Testing logRowSums')
+ 
+     for i in range(5):
+ 
+@@ -2404,7 +2404,7 @@
+   def test_logColSums(self):
+ 
+     return # precision issue, function almost obsolete
+-    print 'Testing logColSums'
++    print('Testing logColSums')
+ 
+     for i in range(5):
+ 
+@@ -2426,7 +2426,7 @@
+ 
+   def test_addRows(self):
+ 
+-    print 'Testing addRows'
++    print('Testing addRows')
+ 
+     for i in range(5):
+ 
+@@ -2453,7 +2453,7 @@
+ 
+ 
+   def test_CSRSize(self):
+-    print 'Testing CSRSize'
++    print('Testing CSRSize')
+ 
+     for i in range(5):
+ 
+@@ -2472,7 +2472,7 @@
+ 
+   def test_getstate_setstate(self):
+ 
+-    print 'Testing __getstate__/__setstate__'
++    print('Testing __getstate__/__setstate__')
+ 
+     for i in range(5):
+ 
+@@ -2494,7 +2494,7 @@
+ 
+   def test_sameRowNonZeroIndices(self):
+ 
+-    print 'Testing sameRowNonZeroIndices'
++    print('Testing sameRowNonZeroIndices')
+ 
+     m = rgen.randint(5,10)
+     n = rgen.randint(5,10)
+@@ -2519,9 +2519,9 @@
+ 
+     for i in range(m):
+       if A.sameRowNonZeroIndices(i, B) != False:
+-        print A
+-        print B
+-        print i
++        print(A)
++        print(B)
++        print(i)
+         error('sameRowNonZeroIndices 2')
+ 
+     if A.sameNonZeroIndices(B) != False:
+@@ -2537,7 +2537,7 @@
+ 
+   def test_nonZeroIndicesIncluded(self):
+ 
+-    print 'Testing nonZeroIndicesIncluded'
++    print('Testing nonZeroIndicesIncluded')
+ 
+     m = rgen.randint(2,10)
+     n = rgen.randint(2,10)
+@@ -2588,7 +2588,7 @@
+ 
+   def test_subtractNoAlloc(self):
+ 
+-    print 'Testing subtractNoAlloc'
++    print('Testing subtractNoAlloc')
+ 
+     # A can have more non-zeros than B, but the non-zeros of B are followed
+ 
+@@ -2619,7 +2619,7 @@
+ 
+   def test_addToNZOnly(self):
+ 
+-    print 'Testing addToNZOnly'
++    print('Testing addToNZOnly')
+ 
+     for k in range(3):
+ 
+@@ -2669,7 +2669,7 @@
+ 
+   def test_assignNoAlloc(self):
+ 
+-    print 'Testing assignNoAlloc'
++    print('Testing assignNoAlloc')
+ 
+     # Should update A only where and B have a non-zero in the same location
+     for i in range(5):
+@@ -2701,7 +2701,7 @@
+ 
+   def test_assignNoAllocFromBinary(self):
+ 
+-    print 'Testing assignNoAllocFromBinary'
++    print('Testing assignNoAllocFromBinary')
+ 
+     # Should update A only where and B have a non-zero in the same location
+     for i in range(5):
+@@ -2731,7 +2731,7 @@
+   def test_binaryLoadSave(self):
+ 
+       return # doesn't work on win32
+-      print 'Testing binary load and save'
++      print('Testing binary load and save')
+ 
+       _kNumRows = 1000
+       _kNumCols = 1000
+@@ -2739,7 +2739,7 @@
+       _kTempFileToSaveTo = "sm_save_test.bin"
+ 
+       a = SM32(_kNumRows, _kNumCols)
+-      for i in xrange(_kNumActive):
++      for i in range(_kNumActive):
+           x = random.randint(0, _kNumCols-1)
+           y = random.randint(0, _kNumRows-1)
+           a.set(y, x, random.random())
+@@ -2759,7 +2759,7 @@
+   def test_logSumNoAlloc(self):
+ 
+     return # precision issue, function almost obsolete
+-    print 'Testing logSumNoAlloc'
++    print('Testing logSumNoAlloc')
+ 
+     for min_floor in [0, .76]:
+ 
+@@ -2844,7 +2844,7 @@
+   def test_logAddValNoAlloc(self):
+ 
+     return # precision issue, function almost obsolete
+-    print 'Testing logAddValNoAlloc'
++    print('Testing logAddValNoAlloc')
+ 
+     for min_floor in [0, .76]:
+ 
+@@ -2876,7 +2876,7 @@
+   def test_logDiffNoAlloc(self):
+ 
+     return # precision issue, function almost obsolete
+-    print 'Testing logDiffNoAlloc'
++    print('Testing logDiffNoAlloc')
+ 
+     for min_floor in [0, 3.45]:
+ 
+@@ -2970,7 +2970,7 @@
+ 
+   def test_addToNZDownCols(self):
+ 
+-    print 'Testing addToNZDownCols'
++    print('Testing addToNZDownCols')
+ 
+     # Testing with min_floor = 0
+     for k in range(5):
+@@ -3035,7 +3035,7 @@
+ 
+   def test_addToNZAcrossRows(self):
+ 
+-    print 'Testing addToNZAcrossRows'
++    print('Testing addToNZAcrossRows')
+ 
+     # Testing with min_floor = 0
+     for k in range(5):
+@@ -3101,7 +3101,7 @@
+   def test_LBP_piPrime(self):
+ 
+     return # obsolete
+-    print 'Testing LBP_piPrime'
++    print('Testing LBP_piPrime')
+ 
+     m = rgen.randint(5, 10)
+     n = rgen.randint(5, 10)
+@@ -3130,7 +3130,7 @@
+ 
+   def test_matrix_entropy(self):
+ 
+-    print 'Testing matrix_entropy'
++    print('Testing matrix_entropy')
+ 
+     def ent(tam, s = 1):
+ 
+@@ -3169,8 +3169,8 @@
+       H_rows2, H_cols2 = matrix_entropy(a, .5)
+ 
+       if (abs(H_rows1 - array(H_rows2)) > 1e-5).any():
+-        print H_rows1
+-        print H_rows2
++        print(H_rows1)
++        print(H_rows2)
+         error('matrix_entropy, rows, with smoothing != 1')
+       if (abs(H_cols1 - array(H_cols2)) > 1e-5).any():
+         error('matrix_entropy, cols, with smoothing != 1')
+@@ -3179,7 +3179,7 @@
+   @unittest.skip("Doesn't play nicely with py.test.")
+   def test_LogSumApprox(self):
+ 
+-    print 'Testing LogSumApprox'
++    print('Testing LogSumApprox')
+ 
+     # On darwin86:
+     # Sum of logs table: 20000000 -28 28 5.6e-06 76MB
+@@ -3216,7 +3216,7 @@
+ 
+   def test_LogDiffApprox(self):
+ 
+-    print 'Testing LogDiffApprox'
++    print('Testing LogDiffApprox')
+ 
+     # On darwin86:
+     # Diff of logs table: 20000000 1e-06 28 1.4e-06 76MB
+@@ -3257,7 +3257,7 @@
+ 
+   def test_binarize_with_threshold(self):
+ 
+-    print 'Testing binarize_with_threshold'
++    print('Testing binarize_with_threshold')
+ 
+     for i in range(5):
+ 
+@@ -3276,7 +3276,7 @@
+ 
+   def test_nonZeroRowsIndicator_01(self):
+ 
+-    print 'Testing nonZeroRowsIndicator_01'
++    print('Testing nonZeroRowsIndicator_01')
+ 
+     for i in range(10):
+ 
+@@ -3300,7 +3300,7 @@
+ 
+   def test_nonZeroColsIndicator_01(self):
+ 
+-    print 'Testing nonZeroColsIndicator_01'
++    print('Testing nonZeroColsIndicator_01')
+ 
+     for i in range(10):
+ 
+@@ -3324,7 +3324,7 @@
+ 
+   def test_nNonZeroRows_01(self):
+ 
+-    print 'Testing nNonZeroRows_01'
++    print('Testing nNonZeroRows_01')
+ 
+     for i in range(10):
+ 
+@@ -3348,7 +3348,7 @@
+ 
+   def test_nNonZeroCols_01(self):
+ 
+-    print 'Testing nNonZeroCols_01'
++    print('Testing nNonZeroCols_01')
+ 
+     for i in range(10):
+ 
+@@ -3372,7 +3372,7 @@
+ 
+   def test_logicalAnd(self):
+ 
+-    print 'Testing logicalAnd'
++    print('Testing logicalAnd')
+ 
+     # To make sure SSE works (it requires 16 bytes alignment)
+     # Test with variable length vectors whose size is not a multiple of 16
+@@ -3403,7 +3403,7 @@
+ 
+   def test_logicalAnd2(self):
+ 
+-    print 'Testing logicalAnd2'
++    print('Testing logicalAnd2')
+ 
+     # To make sure SSE works (it requires 16 bytes alignment)
+     # Test with variable length vectors whose size is not a multiple of 16
+@@ -3438,7 +3438,7 @@
+ 
+   def test_isZero_01(self):
+ 
+-    print 'Testing isZero_01'
++    print('Testing isZero_01')
+ 
+     # To make sure SSE works (it requires 16 bytes alignment)
+     # Test with variable length vectors whose size is not a multiple of 16
+@@ -3467,13 +3467,13 @@
+         r = isZero_01(x[1:])
+ 
+       if r != ans:
+-        print i, r, ans
++        print(i, r, ans)
+         error('isZero_01')
+ 
+ 
+   def test_sum(self):
+ 
+-    print 'Testing sum'
++    print('Testing sum')
+ 
+     # To make sure SSE works (it requires 16 bytes alignment)
+     # Test with variable length vectors whose size is not a multiple of 16
+@@ -3515,22 +3515,22 @@
+         max_rel_error = rel_error
+ 
+       if max_abs_error > 1e-1 or max_rel_error > 1e-5:
+-        print v, ans
+-        print max_abs_error
+-        print max_rel_error
++        print(v, ans)
++        print(max_abs_error)
++        print(max_rel_error)
+         error('sum')
+ 
+-    print "\tnumpy=", t1, 's'
+-    print "\tvDSP (darwin86)=", t2, 's'
++    print("\tnumpy=", t1, 's')
++    print("\tvDSP (darwin86)=", t2, 's')
+     if t2 > 0:
+-      print "\tspeed-up=", (t1 / t2)
+-    print "\tmax abs error=", max_abs_error
+-    print "\tmax rel error=", max_rel_error
++      print("\tspeed-up=", (t1 / t2))
++    print("\tmax abs error=", max_abs_error)
++    print("\tmax rel error=", max_rel_error)
+ 
+ 
+   def test_initialize_random_01(self):
+ 
+-    print 'Testing initialize_random_01'
++    print('Testing initialize_random_01')
+ 
+     # Initializes a sparse matrix with random 0s and 1s.
+ 
+@@ -3561,7 +3561,7 @@
+ 
+   def test_partial_argsort(self):
+ 
+-    print 'Testing partial_argsort'
++    print('Testing partial_argsort')
+ 
+     # In C++, the ties are controlled by prefering the values stored at
+     # lower indices.
+@@ -3594,15 +3594,15 @@
+         if (ans_vals != x_vals).any():
+           error('partial_argsort')
+ 
+-    print "\tnumpy time=", t1
+-    print "\tC++ time=", t2
++    print("\tnumpy time=", t1)
++    print("\tC++ time=", t2)
+     if t2 > 0:
+-      print "\tspeed-up=", t1/t2
++      print("\tspeed-up=", t1/t2)
+ 
+ 
+   def test_count_gt(self):
+ 
+-    print 'Testing count_gt'
++    print('Testing count_gt')
+ 
+     # Counts the number of elements greater than a given threshold in a vector.
+     # Checking with slicing and odd number of elements, to make sure asm code
+@@ -3627,18 +3627,18 @@
+       t2 += time.time() - t0
+ 
+       if ans != res:
+-        print threshold, ans, res, (res - ans)
++        print(threshold, ans, res, (res - ans))
+         error('count_gt')
+ 
+-    print "\tnumpy time=", t1
+-    print "\tC++ time=", t2
++    print("\tnumpy time=", t1)
++    print("\tC++ time=", t2)
+     if t2 > 0:
+-      print "\tspeed-up=", t1/t2
++      print("\tspeed-up=", t1/t2)
+ 
+ 
+   def test_count_lt(self):
+ 
+-    print 'Testing count_lt'
++    print('Testing count_lt')
+ 
+     # Counts the number of elements less than a given threshold in a vector.
+ 
+@@ -3661,15 +3661,15 @@
+       if ans != res:
+         error('count_gt')
+ 
+-    print "\tnumpy time=", t1
+-    print "\tC++ time=", t2
++    print("\tnumpy time=", t1)
++    print("\tC++ time=", t2)
+     if t2 > 0:
+-      print "\tspeed-up=", t1/t2
++      print("\tspeed-up=", t1/t2)
+ 
+ 
+   def test_test_nta_set(self):
+ 
+-      print 'Testing nta set'
++      print('Testing nta set')
+       # Mac PowerBook 2.8 GHz Core 2 Duo, 10.6.3, -O3 -DNDEBUG, gcc 4.2.1 (Apple 5659)
+       # m = 50000, n1 = 40, n2 = 10000: 0.00274658203125 0.00162267684937 1.69262415516
+       # m = 50000, n1 = 80, n2 = 10000: 0.00458002090454 0.00179862976074 2.54639448568
+@@ -3697,7 +3697,7 @@
+ 
+       T_py = 0; T_cpp = 0
+ 
+-      for i in xrange(100):
++      for i in range(100):
+ 
+           t0 = time.time()
+           nr = ss2.intersection(a, r_cpp)
+@@ -3707,14 +3707,14 @@
+           T_py = T_py + time.time() - t0
+           rs = set(r_cpp[:nr])
+           if rs != r:
+-              print a
+-              print b
+-              print r
+-              print rs
++              print(a)
++              print(b)
++              print(r)
++              print(rs)
+               error('set intersection')
+ 
+       if T_cpp != 0:
+-          print T_py, T_cpp, T_py/T_cpp
++          print(T_py, T_cpp, T_py/T_cpp)
+ 
+       if 0:
+           f = open('/Users/frank/Desktop/h1.txt')
+@@ -3727,7 +3727,7 @@
+           for n1,ncalls in ll:
+ 
+               T_cpp = 0
+-              for i in xrange(10):
++              for i in range(10):
+                   a = rgen.permutation(m)[:n1].astype('uint32')
+                   s1 = set(a)
+                   t0 = time.time()
+@@ -3737,7 +3737,7 @@
+               T_cpp = T_cpp / 10
+               avg_T = avg_T + T_cpp * ncalls
+               total_calls = total_calls + ncalls
+-          print avg_T, total_calls, avg_T / float(total_calls)
++          print(avg_T, total_calls, avg_T / float(total_calls))
+ 
+ 
+ 
+--- D:\nupic\python_migration\input\bindings\py\tests\algorithms\cells4_test.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\tests\algorithms\cells4_test.py	(refactored)
+@@ -21,7 +21,7 @@
+ 
+ """Unit tests for Cells4."""
+ 
+-import cPickle as pickle
++import pickle as pickle
+ import os
+ 
+ import numpy
+@@ -43,26 +43,26 @@
+     result = True
+ 
+     # Check that each cell has the same number of segments and synapses
+-    for c in xrange(cell1.nColumns()):
++    for c in range(cell1.nColumns()):
+       if not result:
+         break
+-      for i in xrange(cell1.nCellsPerCol()):
++      for i in range(cell1.nCellsPerCol()):
+         if cell1.nSegmentsOnCell(c, i) != cell2.nSegmentsOnCell(c, i):
+-          print "Num segments different in cell:", c, i,
+-          print "numbers = ", cell1.nSegmentsOnCell(c, i), \
+-              cell2.nSegmentsOnCell(c, i)
++          print("Num segments different in cell:", c, i, end=' ')
++          print("numbers = ", cell1.nSegmentsOnCell(c, i), \
++              cell2.nSegmentsOnCell(c, i))
+           result = False
+           break
+         else:
+           c1 = cell1.getCell(c, i)
+           c2 = cell2.getCell(c, i)
+-          for j in xrange(cell1.nSegmentsOnCell(c, i)):
++          for j in range(cell1.nSegmentsOnCell(c, i)):
+             seg1 = c1.getSegment(j)
+             seg2 = c2.getSegment(j)
+             if seg1.size() != seg2.size():
+               result = False
+               break
+-            for k in xrange(seg1.size()):
++            for k in range(seg1.size()):
+               sourceCellIdx1 = seg1.getSrcCellIdx(k)
+               sourceCellIdx2 = seg1.getSrcCellIdx(k)
+               if sourceCellIdx1 != sourceCellIdx2:
+@@ -75,7 +75,7 @@
+                 break
+ 
+     if result == True:
+-      print "TP's match"
++      print("TP's match")
+ 
+     return result
+ 
+@@ -182,24 +182,24 @@
+     cells.setMaxInfBacktrack(4)
+     cells.setVerbosity(4)
+ 
+-    for i in xrange(nCols):
+-      for j in xrange(nCellsPerCol):
+-        print "Adding segment: ", i, j, [((i + 1) % nCols,
+-                                          (j + 1) % nCellsPerCol)]
++    for i in range(nCols):
++      for j in range(nCellsPerCol):
++        print("Adding segment: ", i, j, [((i + 1) % nCols,
++                                          (j + 1) % nCellsPerCol)])
+         cells.addNewSegment(i, j, True if j % 2 == 0 else False,
+                             [((i + 1) % nCols, (j + 1) % nCellsPerCol)])
+ 
+-    for i in xrange(10):
++    for i in range(10):
+       x = numpy.zeros(nCols, dtype="uint32")
+       _RGEN.initializeUInt32Array(x, 2)
+-      print "Input:", x
++      print("Input:", x)
+       cells.compute(x, True, True)
+ 
+     cells.rebuildOutSynapses()
+ 
+     self._testPersistence(cells)
+ 
+-    for i in xrange(100):
++    for i in range(100):
+       x = numpy.zeros(nCols, dtype="uint32")
+       _RGEN.initializeUInt32Array(x, 2)
+       cells.compute(x, True, False)
+--- D:\nupic\python_migration\input\bindings\py\tests\algorithms\svm_test.py	(original)
++++ D:\nupic\python_migration\input\bindings\py\tests\algorithms\svm_test.py	(refactored)
+@@ -21,7 +21,7 @@
+ 
+ """Unit tests for the SVM classifiers."""
+ 
+-import cPickle as pickle
++import pickle as pickle
+ import hashlib
+ import os
+ 
+@@ -107,8 +107,8 @@
+       classifier.cross_validate(2, gamma=0.5, C=10, eps=1e-3)
+ 
+       s = classifier.__getstate__()
+-      print "nDims=", nDims, "nClass=", nClass, "n_vectors=", size,
+-      print "dense:", len(s), classifier.persistent_size(),
++      print("nDims=", nDims, "nClass=", nClass, "n_vectors=", size, end=' ')
++      print("dense:", len(s), classifier.persistent_size(), end=' ')
+       self.assertEqual(len(s), classifier.persistent_size())
+ 
+       classifier01 = svm_01(0, nDims, seed=_SEED, probability=True)
+@@ -121,7 +121,7 @@
+       classifier01.cross_validate(2, gamma=0.5, C=10, eps=1e-3)
+ 
+       s = classifier01.__getstate__()
+-      print "0/1", len(s), classifier01.persistent_size()
++      print("0/1", len(s), classifier01.persistent_size())
+       self.assertEqual(len(s), classifier01.persistent_size())
+ 
+ 
+@@ -141,8 +141,8 @@
+       x = np.array(xList, dtype=_DTYPE)
+       classifier.add_sample(float(y), x)
+ 
+-    print "training"
++    print("training")
+     classifier.train(gamma=1.0/3.0, C=100, eps=1e-1)
+ 
+-    print "cross validation"
++    print("cross validation")
+     classifier.cross_validate(2, gamma=0.5, C=10, eps=1e-3)

@@ -7,6 +7,8 @@ All *.pyd and *.pyc files been removed manually. As well as, Swig generated file
 
 
 python c:\Python36\Tools\scripts\2to3.py --output-dir D:\nupic\python_migration\output -W -n D:\nupic\python_migration\input > D:\nupic\python_migration\2to3_output.txt
+python c:\Python36\Tools\scripts\2to3.py --output-dir D:\nupic\python_migration\output\bindings -W -n D:\nupic\python_migration\input\bindings > D:\nupic\python_migration\2to3_output__bindings.txt
+
 
 # Console output
 
@@ -1555,3 +1557,96 @@ RefactoringTool: Line 326: could not convert: raise "Not implemented for more th
 RefactoringTool: Python 3 does not support string exceptions
 RefactoringTool: There was 1 error:
 RefactoringTool: Can't parse D:\nupic\python_migration\input\examples\opf\experiments\multistep\base\permutations_simple_3.py: ParseError: bad input: type=22, value='=', context=(' ', (61, 15))
+
+
+# Console output for migrating bindings/
+
+Microsoft Windows [Version 10.0.16299.192]
+(c) 2017 Microsoft Corporation. All rights reserved.
+
+C:\Users\chhenning>python c:\Python36\Tools\scripts\2to3.py --output-dir D:\nupic\python_migration\output\bindings -W -n D:\nupic\python_migration\input\bindings > D:\nupic\python_migration\2to3_output__bindings.txt
+WARNING: --write-unchanged-files/-W implies -w.
+lib2to3.main: Output in 'D:\\nupic\\python_migration\\output\\bindings' will mirror the input directory 'D:\\nupic\\python_migration\\input\\bindings' layout.
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\setup.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\setup.py to D:\nupic\python_migration\output\bindings\py\setup.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\src\nupic\__init__.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\__init__.py to D:\nupic\python_migration\output\bindings\py\src\nupic\__init__.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\__init__.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\__init__.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\__init__.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\check.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\check.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\check.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\PyRegion.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\PyRegion.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\regions\PyRegion.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\TestNode.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\TestNode.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\regions\TestNode.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\__init__.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\__init__.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\regions\__init__.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\__init__.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\__init__.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\tools\__init__.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\cyclical_serialization_perf.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\cyclical_serialization_perf.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\tools\cyclical_serialization_perf.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\random_serialization_perf.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\random_serialization_perf.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\tools\random_serialization_perf.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\serialization_test_py_region.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\serialization_test_py_region.py to D:\nupic\python_migration\output\bindings\py\src\nupic\bindings\tools\serialization_test_py_region.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\src\nupic\proto\__init__.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\src\nupic\proto\__init__.py to D:\nupic\python_migration\output\bindings\py\src\nupic\proto\__init__.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\tests\__init__.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\__init__.py to D:\nupic\python_migration\output\bindings\py\tests\__init__.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\tests\array_algorithms_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\array_algorithms_test.py to D:\nupic\python_migration\output\bindings\py\tests\array_algorithms_test.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\tests\cast_mode_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\cast_mode_test.py to D:\nupic\python_migration\output\bindings\py\tests\cast_mode_test.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\tests\check_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\check_test.py to D:\nupic\python_migration\output\bindings\py\tests\check_test.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\tests\connections_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\connections_test.py to D:\nupic\python_migration\output\bindings\py\tests\connections_test.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\tests\network_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\network_test.py to D:\nupic\python_migration\output\bindings\py\tests\network_test.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\tests\nupic_random_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\nupic_random_test.py to D:\nupic\python_migration\output\bindings\py\tests\nupic_random_test.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\tests\pyregion_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\pyregion_test.py to D:\nupic\python_migration\output\bindings\py\tests\pyregion_test.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\tests\segment_sparse_matrix_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\segment_sparse_matrix_test.py to D:\nupic\python_migration\output\bindings\py\tests\segment_sparse_matrix_test.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\tests\sparse_binary_matrix_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\sparse_binary_matrix_test.py to D:\nupic\python_migration\output\bindings\py\tests\sparse_binary_matrix_test.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\tests\sparse_matrix_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\sparse_matrix_test.py to D:\nupic\python_migration\output\bindings\py\tests\sparse_matrix_test.py.
+RefactoringTool: No changes to D:\nupic\python_migration\input\bindings\py\tests\temporal_memory_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\temporal_memory_test.py to D:\nupic\python_migration\output\bindings\py\tests\temporal_memory_test.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\tests\algorithms\cells4_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\algorithms\cells4_test.py to D:\nupic\python_migration\output\bindings\py\tests\algorithms\cells4_test.py.
+RefactoringTool: Refactored D:\nupic\python_migration\input\bindings\py\tests\algorithms\svm_test.py
+RefactoringTool: Writing converted D:\nupic\python_migration\input\bindings\py\tests\algorithms\svm_test.py to D:\nupic\python_migration\output\bindings\py\tests\algorithms\svm_test.py.
+RefactoringTool: Files that were modified:
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\setup.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\__init__.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\__init__.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\check.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\PyRegion.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\TestNode.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\regions\__init__.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\__init__.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\cyclical_serialization_perf.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\random_serialization_perf.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\bindings\tools\serialization_test_py_region.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\src\nupic\proto\__init__.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\__init__.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\array_algorithms_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\cast_mode_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\check_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\connections_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\network_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\nupic_random_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\pyregion_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\segment_sparse_matrix_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\sparse_binary_matrix_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\sparse_matrix_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\temporal_memory_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\algorithms\cells4_test.py
+RefactoringTool: D:\nupic\python_migration\input\bindings\py\tests\algorithms\svm_test.py
