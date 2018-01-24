@@ -29,6 +29,8 @@ Implementation of the Network class
 #include <sstream>
 #include <stdexcept>
 
+#include <nupic/types/ptr_types.hpp>
+
 #include <nupic/engine/Network.hpp>
 #include <nupic/engine/Region.hpp>
 #include <nupic/engine/Spec.hpp>
@@ -44,8 +46,11 @@ Implementation of the Network class
 #include <yaml-cpp/yaml.h>
 
 
+
+
 namespace nupic
 {
+
 class GenericRegisteredRegionImpl;
 
 Network::Network()
@@ -87,14 +92,14 @@ Network::~Network()
   // 1. uninitialize
   for (size_t i = 0; i < regions_.getCount(); i++)
   {
-    auto r = regions_.getByIndex(i).second;
+      Region_Ptr_t r = regions_.getByIndex(i).second;
     r->uninitialize();
   }
 
   // 2. remove all links
   for (size_t i = 0; i < regions_.getCount(); i++)
   {
-    auto r = regions_.getByIndex(i).second;
+      Region_Ptr_t r = regions_.getByIndex(i).second;
     r->removeAllIncomingLinks();
   }
 
@@ -102,7 +107,6 @@ Network::~Network()
   for (size_t i = 0; i < regions_.getCount(); i++)
   {
     std::pair<std::string, Region_Ptr_t>& item =  regions_.getByIndex(i);
-
     item.second.reset();
   }
 }
@@ -116,7 +120,6 @@ Region_Ptr_t Network::addRegion(const std::string& name,
     NTA_THROW << "Region with name '" << name << "' already exists in network";
 
   auto r = std::make_shared<Region>(name, nodeType, nodeParams, this);
-  
   regions_.add(name, r);
   initialized_ = false;
 
@@ -126,7 +129,7 @@ Region_Ptr_t Network::addRegion(const std::string& name,
 
 void Network::setDefaultPhase_(Region_Ptr_t region)
 {
-  UInt32 newphase = static_cast<UInt32>(phaseInfo_.size());
+  UInt32 newphase = phaseInfo_.size();
   std::set<UInt32> phases;
   phases.insert(newphase);
   setPhases_(region, phases);
@@ -150,7 +153,6 @@ Region_Ptr_t Network::addRegionFromBundle(const std::string& name,
 
   BundleIO bundle(bundlePath, label, name, /* isInput: */ true );
   auto r = std::make_shared<Region>(name, nodeType, dimensions, bundle, this);
-  
   regions_.add(name, r);
   initialized_ = false;
 
@@ -162,7 +164,6 @@ Region_Ptr_t Network::addRegionFromBundle(const std::string& name,
   return r;
 }
 
-
 void
 Network::setPhases_(Region_Ptr_t r, std::set<UInt32>& phases)
 {
@@ -170,7 +171,7 @@ Network::setPhases_(Region_Ptr_t r, std::set<UInt32>& phases)
     NTA_THROW << "Attempt to set empty phase list for region " << r->getName();
 
   UInt32 maxNewPhase = *(phases.rbegin());
-  auto nextPhase = phaseInfo_.size();
+  UInt32 nextPhase = phaseInfo_.size();
   if (maxNewPhase >= nextPhase)
   {
     // It is very unlikely that someone would add a region
@@ -213,8 +214,8 @@ void
 Network::resetEnabledPhases_()
 {
   // min/max enabled phases based on what is in the network
-  minEnabledPhase_ = static_cast<nupic::UInt32>(getMinPhase());
-  maxEnabledPhase_ = static_cast<nupic::UInt32>(getMaxPhase());
+  minEnabledPhase_ = getMinPhase();
+  maxEnabledPhase_ = getMaxPhase();
 }
 
 
@@ -224,7 +225,7 @@ Network::setPhases(const std::string& name, std::set<UInt32>& phases)
   if (! regions_.contains(name))
     NTA_THROW << "setPhases -- no region exists with name '" << name << "'";
 
-  auto r = regions_.getByName(name);
+  Region_Ptr_t r = regions_.getByName(name);
   setPhases_(r, phases);
 }
 
@@ -234,7 +235,7 @@ Network::getPhases(const std::string& name) const
   if (! regions_.contains(name))
     NTA_THROW << "setPhases -- no region exists with name '" << name << "'";
 
-  auto r = regions_.getByName(name);
+  Region_Ptr_t r = regions_.getByName(name);
 
   std::set<UInt32> phases;
   // construct the set of phases enabled for this region
@@ -255,7 +256,7 @@ Network::removeRegion(const std::string& name)
   if (! regions_.contains(name))
     NTA_THROW << "removeRegion: no region named '" << name << "'";
 
-  auto r = regions_.getByName(name);
+  Region_Ptr_t r = regions_.getByName(name);
   if (r->hasOutgoingLinks())
     NTA_THROW << "Unable to remove region '" << name << "' because it has one or more outgoing links";
 
@@ -303,11 +304,11 @@ Network::link(const std::string& srcRegionName, const std::string& destRegionNam
   // Find the regions
   if (! regions_.contains(srcRegionName))
     NTA_THROW << "Network::link -- source region '" << srcRegionName << "' does not exist";
-  auto srcRegion = regions_.getByName(srcRegionName);
+  Region_Ptr_t srcRegion = regions_.getByName(srcRegionName);
 
   if (! regions_.contains(destRegionName))
     NTA_THROW << "Network::link -- dest region '" << destRegionName << "' does not exist";
-  auto destRegion = regions_.getByName(destRegionName);
+  Region_Ptr_t destRegion = regions_.getByName(destRegionName);
 
   // Find the inputs/outputs
   const Spec* srcSpec = srcRegion->getSpec();
@@ -349,11 +350,11 @@ Network::removeLink(const std::string& srcRegionName, const std::string& destReg
   // Find the regions
   if (! regions_.contains(srcRegionName))
     NTA_THROW << "Network::unlink -- source region '" << srcRegionName << "' does not exist";
-  auto srcRegion =  regions_.getByName(srcRegionName);
+  Region_Ptr_t srcRegion =  regions_.getByName(srcRegionName);
 
   if (! regions_.contains(destRegionName))
     NTA_THROW << "Network::unlink -- dest region '" << destRegionName << "' does not exist";
-  auto destRegion = regions_.getByName(destRegionName);
+  Region_Ptr_t destRegion = regions_.getByName(destRegionName);
 
   // Find the inputs
   const Spec *srcSpec = srcRegion->getSpec();
@@ -374,7 +375,7 @@ Network::removeLink(const std::string& srcRegionName, const std::string& destReg
   std::string outputName = srcOutputName;
   if (outputName == "")
     outputName = srcSpec->getDefaultOutputName();
-  auto link = destInput->findLink(srcRegionName, outputName);
+  Link_Ptr_t link = destInput->findLink(srcRegionName, outputName);
 
   if (link == nullptr)
     NTA_THROW << "Network::unlink -- no link exists from region " << srcRegionName
@@ -424,7 +425,7 @@ Network::run(int n)
     // data in delayed links appears to change atomically between iterations
     for (size_t i = 0; i < regions_.getCount(); i++)
     {
-      const auto r = regions_.getByIndex(i).second;
+      const Region_Ptr_t r = regions_.getByIndex(i).second;
 
       for (const auto & inputTuple: r->getInputs())
       {
@@ -482,7 +483,7 @@ Network::initialize()
       // evaluateLinks returns the number
       // of links which still need to be
       // evaluated.
-      auto r = regions_.getByIndex(i).second;
+      Region_Ptr_t r = regions_.getByIndex(i).second;
       nLinksRemaining += r->evaluateLinks();
     }
   }
@@ -495,7 +496,7 @@ Network::initialize()
        << "The following links could not be evaluated:\n";
     for (size_t i = 0; i < regions_.getCount(); i++)
     {
-      auto r = regions_.getByIndex(i).second;
+      Region_Ptr_t r = regions_.getByIndex(i).second;
       std::string errors = r->getLinkErrors();
       if (errors.size() == 0)
         continue;
@@ -508,7 +509,7 @@ Network::initialize()
   // Make sure all regions now have dimensions
   for (size_t i = 0; i < regions_.getCount(); i++)
   {
-    auto r = regions_.getByIndex(i).second;
+    Region_Ptr_t r = regions_.getByIndex(i).second;
     const Dimensions& d = r->getDimensions();
     if (d.isUnspecified())
     {
@@ -532,7 +533,7 @@ Network::initialize()
    */
   for (size_t i = 0; i < regions_.getCount(); i++)
   {
-    auto r = regions_.getByIndex(i).second;
+    Region_Ptr_t r = regions_.getByIndex(i).second;
     r->initOutputs();
   }
 
@@ -542,7 +543,7 @@ Network::initialize()
    */
   for (size_t i = 0; i < regions_.getCount(); i++)
   {
-    auto r = regions_.getByIndex(i).second;
+    Region_Ptr_t r = regions_.getByIndex(i).second;
     r->initInputs();
   }
 
@@ -551,7 +552,7 @@ Network::initialize()
    */
   for (size_t i = 0; i < regions_.getCount(); i++)
   {
-    auto r = regions_.getByIndex(i).second;
+    Region_Ptr_t r = regions_.getByIndex(i).second;
     r->initialize();
   }
 
@@ -602,10 +603,6 @@ Collection<Network::callbackItem>& Network::getCallbacks()
 {
   return callbacks_;
 }
-
-
-
-
 
 void
 Network::setMinEnabledPhase(UInt32 minPhase)
@@ -697,7 +694,7 @@ void Network::saveToBundle(const std::string& name)
     for (size_t regionIndex = 0; regionIndex < regions_.getCount(); regionIndex++)
     {
       std::pair<std::string, Region_Ptr_t>& info = regions_.getByIndex(regionIndex);
-      auto r = info.second;
+      Region_Ptr_t r = info.second;
       // Network serializes the region directly because it is actually easier
       // to do here than inside the region, and we don't have the RegionImpl data yet.
       out << YAML::BeginMap;
@@ -725,21 +722,21 @@ void Network::saveToBundle(const std::string& name)
 
     for (size_t regionIndex = 0; regionIndex < regions_.getCount(); regionIndex++)
     {
-      auto r = regions_.getByIndex(regionIndex).second;
+      Region_Ptr_t r = regions_.getByIndex(regionIndex).second;
       const std::map<const std::string, Input*> inputs = r->getInputs();
       for (const auto & inputs_input : inputs)
       {
         const std::vector<Link_Ptr_t>& links = inputs_input.second->getLinks();
         for (const auto & links_link : links)
         {
-          Link& l = *(links_link);
+          auto l = links_link;
           out << YAML::BeginMap;
-          out << YAML::Key << "type" << YAML::Value << l.getLinkType();
-          out << YAML::Key << "params" << YAML::Value << l.getLinkParams();
-          out << YAML::Key << "srcRegion" << YAML::Value << l.getSrcRegionName();
-          out << YAML::Key << "srcOutput" << YAML::Value << l.getSrcOutputName();
-          out << YAML::Key << "destRegion" << YAML::Value << l.getDestRegionName();
-          out << YAML::Key << "destInput" << YAML::Value << l.getDestInputName();
+          out << YAML::Key << "type" << YAML::Value << l->getLinkType();
+          out << YAML::Key << "params" << YAML::Value << l->getLinkParams();
+          out << YAML::Key << "srcRegion" << YAML::Value << l->getSrcRegionName();
+          out << YAML::Key << "srcOutput" << YAML::Value << l->getSrcOutputName();
+          out << YAML::Key << "destRegion" << YAML::Value << l->getDestRegionName();
+          out << YAML::Key << "destInput" << YAML::Value << l->getDestInputName();
           out << YAML::EndMap;
         }
 
@@ -759,7 +756,7 @@ void Network::saveToBundle(const std::string& name)
   for (size_t regionIndex = 0; regionIndex < regions_.getCount(); regionIndex++)
   {
     std::pair<std::string, Region_Ptr_t>& info = regions_.getByIndex(regionIndex);
-    auto r = info.second;
+    Region_Ptr_t r = info.second;
     std::string label = getLabel(regionIndex);
     BundleIO bundle(fullPath, label, info.first, /* isInput: */ false);
     r->serializeImpl(bundle);
@@ -786,19 +783,13 @@ void Network::loadFromBundle(const std::string& name)
   if (! StringUtils::endsWith(name, ".nta"))
     NTA_THROW << "loadFromBundle: bundle extension must be \".nta\"";
 
-  std::string fullPath = Path::normalize(Path::makeAbsolute(name));
+  const std::string fullPath = Path::normalize(Path::makeAbsolute(name));
 
   if (! Path::exists(fullPath))
     NTA_THROW << "Path " << fullPath << " does not exist";
 
-  std::string networkStructureFilename = Path::join(fullPath, "network.yaml");
-  std::ifstream f(networkStructureFilename.c_str());
-  YAML::Parser parser(f);
-  YAML::Node doc;
-  bool success = parser.GetNextDocument(doc);
-  if (!success)
-    NTA_THROW << "Unable to find YAML document in network structure file "
-              << networkStructureFilename;
+  const std::string networkStructureFilename = Path::join(fullPath, "network.yaml");
+  const YAML::Node doc = YAML::LoadFile(networkStructureFilename);
 
   if (doc.Type() != YAML::NodeType::Map)
     NTA_THROW << "Invalid network structure file -- does not contain a map";
@@ -809,160 +800,134 @@ void Network::loadFromBundle(const std::string& name)
               << doc.size() << " elements";
 
   // Extra version
-  const YAML::Node *node = doc.FindValue("Version");
-  if (node == nullptr)
-    NTA_THROW << "Invalid network structure file -- no version";
+  auto node = doc["Version"];
 
-  int version;
-  *node >> version;
+  const int version = node.as<int>();
   if (version != 2)
     NTA_THROW << "Invalid network structure file -- only version 2 supported";
 
   // Regions
-  const YAML::Node *regions = doc.FindValue("Regions");
-  if (regions == nullptr)
-    NTA_THROW << "Invalid network structure file -- no regions";
+  const auto regions = doc["Regions"];
 
-  if (regions->Type() != YAML::NodeType::Sequence)
+  if (regions.Type() != YAML::NodeType::Sequence)
     NTA_THROW << "Invalid network structure file -- regions element is not a list";
 
-  for (YAML::Iterator region = regions->begin(); region != regions->end(); region++)
+  for (const auto & region : regions)
   {
     // Each region is a map -- extract the 5 values in the map
-    if ((*region).Type() != YAML::NodeType::Map)
+    if (region.Type() != YAML::NodeType::Map)
       NTA_THROW << "Invalid network structure file -- bad region (not a map)";
 
-    if ((*region).size() != 5)
+    if (region.size() != 5)
       NTA_THROW << "Invalid network structure file -- bad region (wrong size)";
 
     // 1. name
-    node = (*region).FindValue("name");
-    if (node == nullptr)
-      NTA_THROW << "Invalid network structure file -- region has no name";
-    std::string name;
-    *node >> name;
+    node = region["name"];
+    const std::string name  = node.as<std::string>();
 
     // 2. nodeType
-    node = (*region).FindValue("nodeType");
-    if (node == nullptr)
-      NTA_THROW << "Invalid network structure file -- region "
-                << name << " has no node type";
-    std::string nodeType;
-    *node >> nodeType;
+    node = region["nodeType"];
+    const std::string nodeType = node.as<std::string>();;
 
     // 3. dimensions
-    node = (*region).FindValue("dimensions");
-    if (node == nullptr)
-      NTA_THROW << "Invalid network structure file -- region "
-                << name << " has no dimensions";
-    if ((*node).Type() != YAML::NodeType::Sequence)
+    node = region["dimensions"];
+    if (node.Type() != YAML::NodeType::Sequence)
       NTA_THROW << "Invalid network structure file -- region "
                 << name << " dimensions specified incorrectly";
     Dimensions dimensions;
-    for (YAML::Iterator valiter = (*node).begin(); valiter != (*node).end(); valiter++)
+    for (const auto & valiter : node)
     {
-      size_t val;
-      (*valiter) >> val;
+      const size_t val = valiter.as<size_t>();
       dimensions.push_back(val);
     }
 
     // 4. phases
-    node = (*region).FindValue("phases");
-    if (node == nullptr)
-      NTA_THROW << "Invalid network structure file -- region"
-                << name << "has no phases";
-    if ((*node).Type() != YAML::NodeType::Sequence)
+    node = region["phases"];
+    if (node.Type() != YAML::NodeType::Sequence)
       NTA_THROW << "Invalid network structure file -- region "
                 << name << " phases specified incorrectly";
 
     std::set<UInt32> phases;
-    for (YAML::Iterator valiter = (*node).begin(); valiter != (*node).end(); valiter++)
+    for (const auto & valiter : node)
     {
-      UInt32 val;
-      (*valiter) >> val;
+      UInt32 val = valiter.as<UInt32>();
       phases.insert(val);
     }
 
     // 5. label
-    node = (*region).FindValue("label");
-    if (node == nullptr)
+    node = region["label"];
+    if (node.size() == 0)
       NTA_THROW << "Invalid network structure file -- region"
                 << name << "has no label";
-    std::string label;
-    *node >> label;
+    const std::string label = node.as<std::string>();
 
-    auto r = addRegionFromBundle(name, nodeType, dimensions, fullPath, label);
+    Region_Ptr_t r = addRegionFromBundle(name, nodeType, dimensions, fullPath, label);
     setPhases_(r, phases);
 
 
   }
 
-  const YAML::Node *links = doc.FindValue("Links");
-  if (links == nullptr)
+  const auto links = doc["Links"];
+  if (links.size() == 0)
     NTA_THROW << "Invalid network structure file -- no links";
 
-  if (links->Type() != YAML::NodeType::Sequence)
+  if (links.Type() != YAML::NodeType::Sequence)
     NTA_THROW << "Invalid network structure file -- links element is not a list";
 
-  for (YAML::Iterator link = links->begin(); link != links->end(); link++)
+  for (const auto & link : links)
   {
     // Each link is a map -- extract the 5 values in the map
-    if ((*link).Type() != YAML::NodeType::Map)
+    if (link.Type() != YAML::NodeType::Map)
       NTA_THROW << "Invalid network structure file -- bad link (not a map)";
 
-    if ((*link).size() != 6)
+    if (link.size() != 6)
       NTA_THROW << "Invalid network structure file -- bad link (wrong size)";
 
     // 1. type
-    node = (*link).FindValue("type");
-    if (node == nullptr)
+    node = link["type"];
+    if (node.size() == 0)
       NTA_THROW << "Invalid network structure file -- link does not have a type";
-    std::string linkType;
-    *node >> linkType;
+    const std::string linkType = node.as<std::string>();
+
 
     // 2. params
-    node = (*link).FindValue("params");
-    if (node == nullptr)
+    node = link["params"];
+    if (node.size() == 0)
       NTA_THROW << "Invalid network structure file -- link does not have params";
-    std::string params;
-    *node >> params;
+    const std::string params = node.as<std::string>();
 
     // 3. srcRegion (name)
-    node = (*link).FindValue("srcRegion");
-    if (node == nullptr)
+    node = link["srcRegion"];
+    if (node.size() == 0)
       NTA_THROW << "Invalid network structure file -- link does not have a srcRegion";
-    std::string srcRegionName;
-    *node >> srcRegionName;
+    const std::string srcRegionName = node.as<std::string>();
 
 
     // 4. srcOutput
-    node = (*link).FindValue("srcOutput");
-    if (node == nullptr)
+    node = link["srcOutput"];
+    if (node.size() == 0)
       NTA_THROW << "Invalid network structure file -- link does not have a srcOutput";
-    std::string srcOutputName;
-    *node >> srcOutputName;
+    const std::string srcOutputName = node.as<std::string>();
 
     // 5. destRegion
-    node = (*link).FindValue("destRegion");
-    if (node == nullptr)
+    node = link["destRegion"];
+    if (node.size() == 0)
       NTA_THROW << "Invalid network structure file -- link does not have a destRegion";
-    std::string destRegionName;
-    *node >> destRegionName;
+    const std::string destRegionName = node.as<std::string>();
 
     // 6. destInput
-    node = (*link).FindValue("destInput");
-    if (node == nullptr)
+    node = link["destInput"];
+    if (node.size() == 0)
       NTA_THROW << "Invalid network structure file -- link does not have a destInput";
-    std::string destInputName;
-    *node >> destInputName;
+    const std::string destInputName = node.as<std::string>();
 
     if (!regions_.contains(srcRegionName))
       NTA_THROW << "Invalid network structure file -- link specifies source region '" << srcRegionName << "' but no such region exists";
-    auto srcRegion = regions_.getByName(srcRegionName);
+    Region_Ptr_t srcRegion = regions_.getByName(srcRegionName);
 
     if (!regions_.contains(destRegionName))
       NTA_THROW << "Invalid network structure file -- link specifies destination region '" << destRegionName << "' but no such region exists";
-    auto destRegion = regions_.getByName(destRegionName);
+    Region_Ptr_t destRegion = regions_.getByName(destRegionName);
 
     Output* srcOutput = srcRegion->getOutput(srcOutputName);
     if (srcOutput == nullptr)
@@ -977,7 +942,9 @@ void Network::loadFromBundle(const std::string& name)
 
     destInput->addLink(newLink, srcOutput);
   } // links
+
 }
+
 
 void Network::enableProfiling()
 {
@@ -1002,11 +969,6 @@ void Network::registerPyRegion(const std::string module, const std::string class
   Region::registerPyRegion(module, className);
 }
 
-void Network::registerPyBindRegion(const std::string& module, const std::string& className)
-{
-    Region::registerPyBindRegion(module, className);
-}
-
 void Network::registerCPPRegion(const std::string name, GenericRegisteredRegionImpl* wrapper)
 {
   Region::registerCPPRegion(name, wrapper);
@@ -1016,12 +978,6 @@ void Network::unregisterPyRegion(const std::string className)
 {
   Region::unregisterPyRegion(className);
 }
-
-void Network::unregisterPyBindRegion(const std::string& className)
-{
-    Region::unregisterPyBindRegion(className);
-}
-
 
 void Network::unregisterCPPRegion(const std::string name)
 {

@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nupic.core", "nupic.core\nupic.core.vcxproj", "{C3A45A9F-A03F-4318-BD7F-B123A1E42CAD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yaml-cpp", "yaml-cpp\yaml-cpp.vcxproj", "{8AF98F3B-59B2-4F82-8445-AAD481B24360}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nupic.core_tests", "nupic.core_tests\nupic.core_tests.vcxproj", "{75418384-17A9-48B9-A1A5-C84E0227DB72}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nupic.python27", "nupic.python27\nupic.python27.vcxproj", "{AD25F469-195D-4DB8-AC5F-D312B68182FF}"
@@ -20,6 +18,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nupic.python.engine", "nupic.python.engine\nupic.python.engine.vcxproj", "{0F74BF72-B738-4A09-818E-6E05A83546AF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nupic.python.math", "nupic.python.math\nupic.python.math.vcxproj", "{9FDF1E19-0299-4566-9A4A-E8C6B5AD6774}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yaml-cpp", "yaml-cpp\yaml-cpp.vcxproj", "{8AF98F3B-59B2-4F82-8445-AAD481B24360}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,16 +41,6 @@ Global
 		{C3A45A9F-A03F-4318-BD7F-B123A1E42CAD}.Release|x64.Build.0 = Release|x64
 		{C3A45A9F-A03F-4318-BD7F-B123A1E42CAD}.Release|x86.ActiveCfg = Release|Win32
 		{C3A45A9F-A03F-4318-BD7F-B123A1E42CAD}.Release|x86.Build.0 = Release|Win32
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x64.ActiveCfg = Debug|x64
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x64.Build.0 = Debug|x64
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x86.ActiveCfg = Debug|Win32
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x86.Build.0 = Debug|Win32
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|Any CPU.ActiveCfg = Release|Win32
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x64.ActiveCfg = Release|x64
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x64.Build.0 = Release|x64
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x86.ActiveCfg = Release|Win32
-		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x86.Build.0 = Release|Win32
 		{75418384-17A9-48B9-A1A5-C84E0227DB72}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{75418384-17A9-48B9-A1A5-C84E0227DB72}.Debug|x64.ActiveCfg = Debug|x64
 		{75418384-17A9-48B9-A1A5-C84E0227DB72}.Debug|x64.Build.0 = Debug|x64
@@ -117,6 +107,20 @@ Global
 		{9FDF1E19-0299-4566-9A4A-E8C6B5AD6774}.Release|x64.Build.0 = Release|x64
 		{9FDF1E19-0299-4566-9A4A-E8C6B5AD6774}.Release|x86.ActiveCfg = Release|Win32
 		{9FDF1E19-0299-4566-9A4A-E8C6B5AD6774}.Release|x86.Build.0 = Release|Win32
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x64.ActiveCfg = Debug|x64
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x64.Build.0 = Debug|x64
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x64.Deploy.0 = Debug|x64
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x86.ActiveCfg = Debug|Win32
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x86.Build.0 = Debug|Win32
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Debug|x86.Deploy.0 = Debug|Win32
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|Any CPU.ActiveCfg = Release|Win32
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x64.ActiveCfg = Release|x64
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x64.Build.0 = Release|x64
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x64.Deploy.0 = Release|x64
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x86.ActiveCfg = Release|Win32
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x86.Build.0 = Release|Win32
+		{8AF98F3B-59B2-4F82-8445-AAD481B24360}.Release|x86.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
