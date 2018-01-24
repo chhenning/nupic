@@ -142,4 +142,4 @@ def runNetwork(network):
 
 if __name__ == "__main__":
   network = createNetwork()
-  runNetwork(network)
+  # runNetwork(network)
