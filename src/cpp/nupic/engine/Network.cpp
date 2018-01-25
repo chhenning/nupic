@@ -45,9 +45,6 @@ Implementation of the Network class
 #include <nupic/ntypes/BundleIO.hpp>
 #include <yaml-cpp/yaml.h>
 
-
-
-
 namespace nupic
 {
 
@@ -76,8 +73,6 @@ void Network::commonInit()
   // have to call NuPIC::initialize
   NuPIC::init();
 }
-
-
 
 Network::~Network()
 {
@@ -969,6 +964,11 @@ void Network::registerPyRegion(const std::string module, const std::string class
   Region::registerPyRegion(module, className);
 }
 
+void Network::registerPyBindRegion(const std::string& module, const std::string& className)
+{
+    Region::registerPyBindRegion(module, className);
+}
+
 void Network::registerCPPRegion(const std::string name, GenericRegisteredRegionImpl* wrapper)
 {
   Region::registerCPPRegion(name, wrapper);
@@ -977,6 +977,11 @@ void Network::registerCPPRegion(const std::string name, GenericRegisteredRegionI
 void Network::unregisterPyRegion(const std::string className)
 {
   Region::unregisterPyRegion(className);
+}
+
+void Network::unregisterPyBindRegion(const std::string& className)
+{
+    Region::unregisterPyBindRegion(className);
 }
 
 void Network::unregisterCPPRegion(const std::string name)

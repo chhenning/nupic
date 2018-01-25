@@ -15,11 +15,25 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | examples/sp/hello_sp.py                                          | yes                                   |              | nupic\test\python3\output\hello_sp.py.txt             |  
 | examples/tm/hello_tm.py                                          | yes                                   |              | nupic\test\python3\output\hello_tm.py.txt             |
 | examples/tm/sparse_matrix_how_to.py                              | yes (some modifications)              |              | nupic\test\python3\output\sparse_matrix_how_to.py.txt |
-| examples/tm/svm_how_to.py                                        | yes (some modifications)              |              | nupic\test\python3\output\svm_how_to.py.txt |
-| tests/unit/nupic/serializable_test.py                            | yes                                   |              |                                             |
-| tests/unit/nupic/utils.py                                        | yes                                   |              |                                             |
-| tests/unit/nupic/algorithms/anomaly_likelihood_jeff_test.py      | yes                                   |              |                                             |
-| tests/unit/nupic/algorithms/anomaly_likelihood_test.py           | yes                                   |              |                                             |
+| examples/tm/svm_how_to.py                                        | yes (some modifications)              |              | nupic\test\python3\output\svm_how_to.py.txt           |
+| tests/bindings/                                                  | yes                                   |              |                                                       |
+| tests/bindings/array_algorithms_test.py                          | yes                                   |              |                                                       |
+| tests/bindings/cast_mode_test.py                                 | yes                                   |              |                                                       |
+| tests/bindings/check_test.py                                     | yes                                   |              |                                                       |
+| tests/bindings/connections_test.py                               | yes                                   |              |                                                       |
+| tests/bindings/network_test.py                                   | yes                                   |              |                                                       |
+| tests/bindings/nupic_random_test.py                              | yes (some modifications)              |              |                                                       |
+| tests/bindings/pyregion_test.py                                  | yes                                   |              |                                                       |
+| tests/bindings/segment_sparse_matrix_test.py                     | yes                                   |              |                                                       |
+| tests/bindings/sparse_binary_matrix_test.py                      | yes                                   |              |                                                       |
+| tests/bindings/sparse_matrix_test.py                             |                                       |              |                                                       |
+| tests/bindings/temporal_memory_test.py                           |                                       |              |                                                       |
+| tests/bindings/algorithms/cells4_test.py                         |                                       |              |                                                       |
+| tests/bindings/algorithms/svm_test.py                            |                                       |              |                                                       |
+| tests/unit/nupic/serializable_test.py                            | yes                                   |              |                                                       |
+| tests/unit/nupic/utils.py                                        | yes                                   |              |                                                       |
+| tests/unit/nupic/algorithms/anomaly_likelihood_jeff_test.py      | yes                                   |              |                                                       |
+| tests/unit/nupic/algorithms/anomaly_likelihood_test.py           | yes                                   |              |                                                       |
 | tests/unit/nupic/algorithms/anomaly_test.py                      | yes                                   |              | nupic\test\python3\output\backtracking_tm_constant_test.py.txt |
 | tests/unit/nupic/algorithms/backtracking_tm_constant_test.py     | TypeError: getSegmentActivityLevel()  | #1           |                                             |
 | tests/unit/nupic/algorithms/backtracking_tm_cpp.py               | python crashes                        | #5           |                                             |
@@ -172,4 +186,12 @@ TypeError: a bytes-like object is required, not 'str'
 outp.write(inp.read())
 to
 outp.write(inp.read().encode())
+
+
+ResourceWarning: unclosed file <_io.TextIOWrapper name='test.bin' mode='r' encoding='cp1252'>
+pickle.dump(a, open('test.bin', 'wb'))
+to
+with open('test.bin', 'wb') as f:
+  pickle.dump(a, f)
+
 

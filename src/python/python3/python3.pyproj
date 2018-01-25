@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{89b7d929-645d-4721-b789-f0adb71cf8ab}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>examples\network\core_encoders_demo.py</StartupFile>
+    <StartupFile>tests\bindings\sparse_binary_matrix_test.py</StartupFile>
     <SearchPath>nupic;..\python3</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -344,6 +344,20 @@
     <Compile Include="scripts\temporal_memory_performance_benchmark.py" />
     <Compile Include="setup.py" />
     <Compile Include="test.py" />
+    <Compile Include="tests\bindings\algorithms\cells4_test.py" />
+    <Compile Include="tests\bindings\algorithms\svm_test.py" />
+    <Compile Include="tests\bindings\array_algorithms_test.py" />
+    <Compile Include="tests\bindings\cast_mode_test.py" />
+    <Compile Include="tests\bindings\check_test.py" />
+    <Compile Include="tests\bindings\connections_test.py" />
+    <Compile Include="tests\bindings\network_test.py" />
+    <Compile Include="tests\bindings\nupic_random_test.py" />
+    <Compile Include="tests\bindings\pyregion_test.py" />
+    <Compile Include="tests\bindings\segment_sparse_matrix_test.py" />
+    <Compile Include="tests\bindings\sparse_binary_matrix_test.py" />
+    <Compile Include="tests\bindings\sparse_matrix_test.py" />
+    <Compile Include="tests\bindings\temporal_memory_test.py" />
+    <Compile Include="tests\bindings\__init__.py" />
     <Compile Include="tests\chhenning\test.py" />
     <Compile Include="tests\external\asteval_test.py" />
     <Compile Include="tests\external\testfixture_test.py" />
@@ -682,6 +696,8 @@
     <Folder Include="scripts" />
     <Folder Include="scripts\profiling" />
     <Folder Include="tests" />
+    <Folder Include="tests\bindings\" />
+    <Folder Include="tests\bindings\algorithms\" />
     <Folder Include="tests\chhenning\" />
     <Folder Include="tests\external" />
     <Folder Include="tests\integration" />
