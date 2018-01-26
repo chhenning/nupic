@@ -2499,14 +2499,21 @@ class SparseMatrixTest(unittest.TestCase):
       A.setRowToZero(m//2)
       A.setColToZero(n//2)
       A.normalize()
-      s1 = A.__getstate__()
-      B = SM32()
-      B.__setstate__(s1)
-      s2 = B.__getstate__()
+      
+      # CHH - use pickle
+      # s1 = A.__getstate__()
+      # B = SM32()
+      # B.__setstate__(s1)
+      # s2 = B.__getstate__()
+      # 
+      # if s1 != s2:
+      #   error('__getstate__/__setstate__')
+      s1 = pickle.dumps(A, 2)
+      B = pickle.loads(s1)
 
+      s2 = pickle.dumps(B, 2)
       if s1 != s2:
         error('__getstate__/__setstate__')
-
 
   def test_sameRowNonZeroIndices(self):
 

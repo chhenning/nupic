@@ -200,6 +200,7 @@ with open('test.bin', 'wb') as f:
 
 There is definately some magic going on!
 
+## Overloading
 A cpp function can be overloaded with several instanciations via lamda functions. For instance
 
 A swig definition:
@@ -250,9 +251,14 @@ The later also defines the name of parameter so that kwargs are working as well.
 mat.rightVecSumAtNZ(x, out=y2)
 ```
 
+## Properties
 
+To an a nonexisting property to a class, like SM32 do the following. It defines a readonly property with a getter lambda.
 
+```
+sm.def_property_readonly("shape", [](const SparseMatrix32_t& sm)
+{
+    return py::make_tuple(sm.nRows(), sm.nCols());
+});
 
-
-  
-  
+```

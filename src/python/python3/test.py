@@ -15,22 +15,17 @@ rgen = numpy.random.RandomState(37)
 
 from nupic.bindings.math import *
 
-nRows = rgen.randint(1,10)
-nCols = rgen.randint(1,10)
-a = rgen.randint(0,100,(nRows,nCols))
-a[numpy.where(a < 75)] = 0
-a[rgen.randint(0, nRows)] = 0
-a[:,rgen.randint(0, nCols)] = 0
-mat = SM32(a)
 
-x = rgen.randint(2, size=nCols).astype(float32)
 
-aNonzero = array(a)
-aNonzero[where(aNonzero > 0)] = 1
-expected = dot(aNonzero, x)
+a = rgen.randint(0,2,(6,8))
+b = rgen.randint(0,10,(8,4))
+c = numpy.dot(a,b)
+d = SM32(a).rightDenseMatProd(b)
+if (c != d).any():
+    error('rightDenseMatProd')
 
-y = mat.rightVecSumAtNZ(x)
-numpy.testing.assert_equal(y, expected, 'rightVecSumAtNZ')
-y2 = zeros((nRows)).astype(float32)
-mat.rightVecSumAtNZ(x, out=y2)
-numpy.testing.assert_equal(y2, expected, 'rightVecSumAtNZ with out')
+a = rgen.randint(0,2,(6,4))
+b = rgen.randint(0,10,(8,6))
+c = numpy.dot(b,a)
+d = SM32(a).leftDenseMatProd(b)
+

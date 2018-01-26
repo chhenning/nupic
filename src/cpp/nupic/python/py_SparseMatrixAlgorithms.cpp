@@ -260,14 +260,14 @@ namespace nupic_ext
 
 
         //inline nupic::Real32 logDiff(nupic::Real32 x, nupic::Real32 y) const
-        m.def("logDiff", [](const nupic::LogDiffApprox& self, nupic::Real32 x, nupic::Real32 y)
+        py_LogDiffApprox.def("logDiff", [](const nupic::LogDiffApprox& self, nupic::Real32 x, nupic::Real32 y)
         {
             return self.diff_of_logs(x, y);
         });
 
 
         //inline nupic::Real32 fastLogDiff(nupic::Real32 x, nupic::Real32 y) const
-        m.def("fastLogDiff", [](const nupic::LogDiffApprox& self, nupic::Real32 x, nupic::Real32 y)
+        py_LogDiffApprox.def("fastLogDiff", [](const nupic::LogDiffApprox& self, nupic::Real32 x, nupic::Real32 y)
         {
             return self.fast_diff_of_logs(x, y);
         });

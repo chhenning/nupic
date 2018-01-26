@@ -65,6 +65,14 @@ namespace nupic_ext
         }));
 
         ////////////////////////////
+        // Properties
+        sm.def_property_readonly("shape", [](const SparseMatrix32_t& sm)
+        {
+            return py::make_tuple(sm.nRows(), sm.nCols());
+        });
+
+
+        ////////////////////////////
 
         // Simple Members
         sm.def("isZero", &SparseMatrix32_t::isZero);
@@ -426,7 +434,7 @@ namespace nupic_ext
 
 
 
-        sm.def("__str__", [](SparseMatrix32_t& sm) 
+        sm.def("__str__", [](const SparseMatrix32_t& sm) 
         {
             auto out = py::array_t<nupic::Real32>({ sm.nRows(), sm.nCols() });
 
@@ -454,6 +462,49 @@ namespace nupic_ext
 
             sm.set(indices[0], indices[1], value);
         });
+
+        //////////////////////
+        // 
+
+        sm.def(py::pickle(
+            [](const SparseMatrix32_t& sm)
+        {
+            std::stringstream s;
+
+            sm.toCSR(s);
+
+            return s.str();
+        },
+            [](std::string& s)
+        {
+            std::istringstream ss(s);
+            SparseMatrix32_t sm;
+            sm.fromCSR(ss);
+
+            return sm;
+        }));
+
+        //sm.def("__getstate__", [](const SparseMatrix32_t& sm)
+        //{
+        //    std::stringstream s;
+
+        //    sm.toCSR(s);
+
+        //    return s.str();
+        //});
+
+        //sm.def("__setstate__", [](SparseMatrix32_t& sm, std::string& s)
+        //{
+        //    if (s.empty() == false)
+        //    {
+        //        std::istringstream ss(s);
+        //        sm.fromCSR(ss);
+        //        return true;
+        //    }
+
+        //    throw std::runtime_error("Failed to read SparseMatrix state from string.");
+        //    return false;
+        //});
 
         sm.def("__neg__", [](const SparseMatrix32_t& sm)
         {
@@ -895,42 +946,26 @@ namespace nupic_ext
             sm.setZerosOnOuter(get_it(rows), get_end(rows), get_it(cols), get_end(cols), value);
         });
 
-        ////void _setRandomZerosOnOuter_singleCount(PyObject* py_rows, PyObject* py_cols, nupic::Int32 numNewNonZeros, nupic::Real32 value, nupic::Random& rng)
+        ///////////////////////////////////
+        // setRandomZerosOnOuter
+
         sm.def("setRandomZerosOnOuter", [](SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& rows, py::array_t<nupic::UInt32>& cols
             , nupic::Int32 numNewNonZeros, nupic::Real32 value, nupic::Random& rng)
         {
-            // @todo incorporate python code
-
-            //if isinstance(numNewNonZeros, numbers.Number) :
-            //    self._setRandomZerosOnOuter_singleCount(
-            //        numpy.asarray(rows, dtype = "uint32"),
-            //        numpy.asarray(cols, dtype = "uint32"),
-            //        numNewNonZeros,
-            //        value,
-            //        rng)
-            //else:
-            //self._setRandomZerosOnOuter_multipleCounts(
-            //    numpy.asarray(rows, dtype = "uint32"),
-            //    numpy.asarray(cols, dtype = "uint32"),
-            //    numpy.asarray(numNewNonZeros, dtype = "int32"),
-            //    value,
-            //    rng)
-
             // _setRandomZerosOnOuter_singleCount
             sm.setRandomZerosOnOuter(get_it(rows), get_end(rows), get_it(cols), get_end(cols), numNewNonZeros, value, rng);
 
-            //_setRandomZerosOnOuter_multipleCounts
-            //nupic::NumpyVectorWeakRefT<nupic::UInt32> rows(py_rows);
-            //nupic::NumpyVectorWeakRefT<nupic::UInt32> cols(py_cols);
-            //nupic::NumpyVectorWeakRefT<nupic::Int32>
-            //    newNonZeroCounts(py_newNonZeroCounts);
-
-            //sm.setRandomZerosOnOuter(rows.begin(), rows.end(),
-            //    cols.begin(), cols.end(),
-            //    newNonZeroCounts.begin(),
-            //    newNonZeroCounts.end(),
-            //    value, rng);
         });
+
+        sm.def("setRandomZerosOnOuter", [](SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& rows, py::array_t<nupic::UInt32>& cols
+            , py::array_t<nupic::Int32>& newNonZeroCounts, nupic::Real32 value, nupic::Random& rng)
+        {
+            //_setRandomZerosOnOuter_multipleCounts
+            sm.setRandomZerosOnOuter(get_it(rows), get_end(rows), get_it(cols), get_end(cols), get_it(newNonZeroCounts), get_end(newNonZeroCounts), value, rng);
+        });
+
+
+        ///////////////////////////////////
 
         //void _increaseRowNonZeroCountsOnOuterTo(PyObject* py_rows, PyObject* py_cols, nupic::Int32 numDesiredNonZeros, nupic::Real32 initialValue, nupic::Random& rng)
         sm.def("increaseRowNonZeroCountsOnOuterTo", [](SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& rows, py::array_t<nupic::UInt32>& cols
@@ -1490,7 +1525,7 @@ namespace nupic_ext
         sm.def("leftDenseMatProd", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& mIn)
         {
             Numpy_Matrix<nupic::Real32> m(mIn.request());
-            Numpy_Matrix<nupic::Real32> r(sm.nRows(), m.nCols());
+            Numpy_Matrix<nupic::Real32> r(m.nRows(), sm.nCols());
 
             for (int i = 0; i != m.nRows(); ++i)
                 sm.leftVecProd(m.get_row(i), r.get_row(i));
@@ -1979,7 +2014,6 @@ namespace nupic_ext
             self.initializeWithFixedNNZR(nnzr, v, mode, seed);
         }, "Initialize a sparse matrix with a fixed number of non-zeros on each row."
             , py::arg("nnzr"), py::arg("v") = 1.0, py::arg("mode") = 0, py::arg("seed") = 42);
-
     }
 
 } // namespace nupix_ext
