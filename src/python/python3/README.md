@@ -195,3 +195,64 @@ with open('test.bin', 'wb') as f:
   pickle.dump(a, f)
 
 
+
+# Notes from dealing with pybind11
+
+There is definately some magic going on!
+
+A cpp function can be overloaded with several instanciations via lamda functions. For instance
+
+A swig definition:
+
+```
+%pythoncode %{
+def rightVecSumAtNZ(self, denseArray, out=None):
+  denseArray = numpy.asarray(denseArray, dtype="float32")
+
+  if out is None:
+    out = numpy.empty(self.nRows(), dtype="float32")
+  else:
+    assert out.dtype == "float32"
+
+  self._rightVecSumAtNZ(denseArray, out)
+
+  return out
+
+
+def rightVecSumAtNZ_fast(self, denseArray, out):
+  """
+  Deprecated. Use rightVecSumAtNZ with an 'out' specified.
+  """
+  self.rightVecSumAtNZ(denseArray, out)
+%}
+
+inline void _rightVecSumAtNZ(PyObject* py_denseArray, PyObject* py_out) const
+{
+    nupic::NumpyVectorWeakRefT<nupic::Real ## N2> denseArray(py_denseArray);
+    nupic::NumpyVectorWeakRefT<nupic::Real ## N2> out(py_out);
+
+    NTA_ASSERT(out.size() >= self->nRows());
+
+    self->rightVecSumAtNZ(denseArray.begin(), out.begin());
+}
+```
+
+can be defined in cpp via:
+
+```
+sm.def("rightVecSumAtNZ", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray) { ... });
+sm.def("rightVecSumAtNZ", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray, py::array_t<nupic::Real32>& out) { ... }, "", py::arg("denseArray"), py::arg("out"));
+```
+
+The later also defines the name of parameter so that kwargs are working as well.
+
+```
+mat.rightVecSumAtNZ(x, out=y2)
+```
+
+
+
+
+
+  
+  

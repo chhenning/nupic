@@ -1,25 +1,36 @@
-import csv
-import json
-from datetime import datetime
 
-from pkg_resources import resource_filename
 
-from nupic.engine import Network
-from nupic.encoders import DateEncoder
+import sys
+import numpy
+from numpy import *
+import math
+import os
+import pickle
+import copy
+import time
+import unittest
 
-network = Network()
+rgen = numpy.random.RandomState(37)
 
-params = json.dumps({'n': 120,'w': 21,'minValue': 0.0,'maxValue': 100.0,'clipInput': True})
-cpp_sensor = network.addRegion('consumptionSensor', 'ScalarSensor', params)
 
-# sensor_name = sensor.name
-# self = sensor.getSelf()
+from nupic.bindings.math import *
 
-py_sensor = network.addRegion("timestampSensor", 'py.PluggableEncoderSensor', "")
-self = py_sensor.getSelf()
-print(type(self))
-# print(help(self))
+nRows = rgen.randint(1,10)
+nCols = rgen.randint(1,10)
+a = rgen.randint(0,100,(nRows,nCols))
+a[numpy.where(a < 75)] = 0
+a[rgen.randint(0, nRows)] = 0
+a[:,rgen.randint(0, nCols)] = 0
+mat = SM32(a)
 
-en = self.encoder
-en = DateEncoder(timeOfDay=(21, 9.5), name="timestamp_timeOfDay")
+x = rgen.randint(2, size=nCols).astype(float32)
 
+aNonzero = array(a)
+aNonzero[where(aNonzero > 0)] = 1
+expected = dot(aNonzero, x)
+
+y = mat.rightVecSumAtNZ(x)
+numpy.testing.assert_equal(y, expected, 'rightVecSumAtNZ')
+y2 = zeros((nRows)).astype(float32)
+mat.rightVecSumAtNZ(x, out=y2)
+numpy.testing.assert_equal(y2, expected, 'rightVecSumAtNZ with out')

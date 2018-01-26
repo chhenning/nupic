@@ -27,8 +27,12 @@ namespace nupic_ext
         // create an alias for SM32
         m.attr("SparseMatrix") = sm;
 
-        sm.def(py::init<>())
-            .def(py::init<nupic::UInt32, nupic::UInt32>(), py::arg("nrows"), py::arg("ncols"));
+        ////////////////////
+        // Constructors
+
+        sm.def(py::init<>());
+        
+        sm.def(py::init<nupic::UInt32, nupic::UInt32>(), py::arg("nrows"), py::arg("ncols"));
 
         sm.def(py::init([](const std::string& str)
         {
@@ -39,21 +43,8 @@ namespace nupic_ext
 
             return s;
         }));
-            
 
-        // constructor from numpy array
-        //sm.def(py::init(
-        //    [](py::array_t<nupic::UInt32>& a)
-        //{
-        //    if (a.ndim() != 2) { throw std::runtime_error("Number of dimensions must be two."); }
-
-        //    SparseMatrix32_t s(a.shape(0), a.shape(1), get_it(a));
-
-        //    return s;
-        //}));
-
-        sm.def(py::init(
-            [](py::array_t<nupic::Real32>& a)
+        sm.def(py::init([](py::array_t<nupic::Real32>& a)
         {
             if (a.ndim() != 2) { throw std::runtime_error("Number of dimensions must be two."); }
 
@@ -62,33 +53,16 @@ namespace nupic_ext
             return s;
         }));
 
+        sm.def(py::init([](const SparseMatrix32_t& other)
+        {
+            return SparseMatrix32_t(other);
+        }));
 
-        // called from: s = SparseMatrix([[1,2],[3,4]])
-        //sm.def(py::init( [](py::args args)
-        //{
-        //    // ignore the arguments for now.
 
-        //    SparseMatrix32_t s;
-        //    return s;
-        //}));
-
-        // called from: s = SparseMatrix(dtype='Float32')
-        //sm.def(py::init([](py::kwargs kwargs)
-        //{
-        //    // ignore the arguments for now.
-
-        //    SparseMatrix32_t s;
-        //    return s;
-        //}));
-
-        // called from: s = SparseMatrix([[1,2],[3,4]], dtype='Float32')
-        //sm.def(py::init([](py::args args, py::kwargs kwargs)
-        //{
-        //    // ignore the arguments for now.
-
-        //    SparseMatrix32_t s;
-        //    return s;
-        //}));
+        sm.def(py::init([](const SparseMatrix32_t& other, py::array_t<nupic::UInt32>& data, int rowCol)
+        {
+            return SparseMatrix32_t(other, get_it(data), get_end(data), rowCol);
+        }));
 
         ////////////////////////////
 
@@ -278,45 +252,34 @@ namespace nupic_ext
         sm.def("__subtract", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.subtract(val); });
         sm.def("__divide", [](SparseMatrix32_t& sm, nupic::Real32 val) { sm.divide(val); });
 
+        /////////////////////
+        // __add__
+
         // allows Matrix + 3
-        //sm.def("__add__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
-        //{
-        //    SparseMatrix32_t result(sm);
-        //    result.add(val);
 
-        //    return result;
-        //});
-
-        sm.def("__add__", [](const SparseMatrix32_t& sm, py::args args)
+        sm.def("__add__", [](const SparseMatrix32_t& sm, int val) 
         {
-            auto arg = args[0];
-
             SparseMatrix32_t result(sm);
-
-            if (py::isinstance<py::int_>(arg))
-            {
-                auto val = static_cast<nupic::Real32>(arg.cast<int>());
-
-                result.add(val);
-            }
-            else if (py::isinstance<py::float_>(arg))
-            {
-                auto val = arg.cast<float>();
-                result.add(val);
-            }
-            else if (py::isinstance<SparseMatrix32_t>(arg))
-            {
-                auto other = arg.cast<SparseMatrix32_t>();
-                result.add(other);
-            }
-            else
-            {
-                throw std::runtime_error("Not supported.");
-            }
-
+            result.add(val);
             return result;
         });
 
+        sm.def("__add__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            SparseMatrix32_t result(sm);
+            result.add(val);
+            return result;
+        });
+
+        sm.def("__add__", [](const SparseMatrix32_t& sm, const SparseMatrix32_t& other)
+        {
+            SparseMatrix32_t result(sm);
+            result.add(other);
+            return result;
+        });
+
+        /////////////////////
+        // __radd__
 
         // allows 3 + Matrix
         sm.def("__radd__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
@@ -366,37 +329,55 @@ namespace nupic_ext
             return result;
         });
 
+        ////////////////////////////
+        // __mul__
 
-        sm.def("__mul__", [](const SparseMatrix32_t& sm, py::args args)
+        sm.def("__mul__", [](const SparseMatrix32_t& sm, int val)
         {
-            auto arg = args[0];
-
             SparseMatrix32_t result(sm);
-
-            if (py::isinstance<py::int_>(arg))
-            {
-                auto val = static_cast<nupic::Real32>(arg.cast<int>());
-
-                result.multiply(val);
-            }
-            else if (py::isinstance<py::float_>(arg))
-            {
-                auto val = arg.cast<float>();
-                result.multiply(val);
-            }
-            else if (py::isinstance<SparseMatrix32_t>(arg))
-            {
-                auto other = arg.cast<SparseMatrix32_t>();
-
-                sm.multiply(other, result);
-            }
-            else
-            {
-                throw std::runtime_error("Not supported.");
-            }
-
+            result.multiply(val);
             return result;
         });
+
+        sm.def("__mul__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
+        {
+            SparseMatrix32_t result(sm);
+            result.multiply(val);
+            return result;
+        });
+
+        sm.def("__mul__", [](const SparseMatrix32_t& sm, const SparseMatrix32_t& other)
+        {
+            SparseMatrix32_t result(sm);
+            sm.multiply(other, result);
+            return result;
+        });
+        
+        sm.def("__mul__", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32> a)
+        {
+            if (a.ndim() == 1)
+            {
+                //@todo not sure this is correct
+                py::array_t<nupic::Real32> y(sm.nRows());
+
+                sm.rightVecProd(get_it(a), get_it(y));
+
+                return SparseMatrix32_t(y.shape(0), 0, get_it(y));
+            }
+            else if (a.ndim() == 2)
+            {
+                SparseMatrix32_t result(sm);
+                SparseMatrix32_t other(a.shape(0), a.shape(1), get_it(a));
+                sm.multiply(other, result);
+                return result;
+            }
+
+            throw std::runtime_error("Incorrect number of dimensions.");
+        });
+
+
+        ////////////////////////////
+        // __rmul__
 
         sm.def("__rmul__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
         {
@@ -406,30 +387,25 @@ namespace nupic_ext
             return result;
         });
 
-        sm.def("__truediv__", [](const SparseMatrix32_t& sm, py::args args)
+        ////////////////////////////
+        // __truediv__
+
+        sm.def("__truediv__", [](const SparseMatrix32_t& sm, int val) 
         {
-            auto arg = args[0];
-
             SparseMatrix32_t result(sm);
-
-            if (py::isinstance<py::int_>(arg))
-            {
-                auto val = static_cast<nupic::Real32>(arg.cast<int>());
-
-                result.divide(val);
-            }
-            else if (py::isinstance<py::float_>(arg))
-            {
-                auto val = arg.cast<float>();
-                result.divide(val);
-            }
-            else
-            {
-                throw std::runtime_error("Not supported.");
-            }
-
+            result.divide(val);
             return result;
         });
+        
+        sm.def("__truediv__", [](const SparseMatrix32_t& sm, nupic::Real32 val) 
+        {
+            SparseMatrix32_t result(sm);
+            result.divide(val);
+            return result;
+        });
+
+        ////////////////////////////
+        // __idiv__
 
         sm.def("__idiv__", [](SparseMatrix32_t& sm, nupic::Real32 val)
         {
@@ -437,6 +413,8 @@ namespace nupic_ext
             return sm;
         });
 
+        ////////////////////////////
+        // __rdiv__
 
         sm.def("__rdiv__", [](const SparseMatrix32_t& sm, nupic::Real32 val)
         {
@@ -889,10 +867,7 @@ namespace nupic_ext
         //void incrementOnOuterWNZ(PyObject* py_i, PyObject* py_j, nupic::Real32 delta = 1)
         sm.def("incrementOnOuterWNZ", [](SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& i, py::array_t<nupic::UInt32>& j, nupic::Real32 delta)
         {
-            throw std::runtime_error("Not implemented.");
-
-            // incrementOnOuterWNZ cannot deal with py::array_t
-            //sm.incrementOnOuterWNZ(i.begin(), i.end(), j.begin(), j.end(), delta);
+            sm.incrementOnOuterWNZ(get_it(i), get_end(i), get_it(j), get_end(j), delta);
         }, "", py::arg("i"), py::arg("j"), py::arg("delta") = 1);
 
         //void incrementOnOuterWNZWThreshold(PyObject* py_i, PyObject* py_j, nupic::Real32 threshold, nupic::Real32 delta = 1)
@@ -900,7 +875,7 @@ namespace nupic_ext
             , nupic::Real32 threshold, nupic::Real32 delta)
         {
             sm.incrementOnOuterWNZWThreshold(get_it(i), get_end(i), get_it(j), get_end(j), threshold, delta);
-        }, "", py::arg("i"), py::arg("j"), py::arg("threshold"), py::arg("delta"));
+        }, "", py::arg("i"), py::arg("j"), py::arg("threshold"), py::arg("delta") = 1);
 
         //void _incrementNonZerosOnOuter(PyObject* py_rows, PyObject* py_cols, nupic::Real32 delta)
         sm.def("incrementNonZerosOnOuter", [](SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& rows, py::array_t<nupic::UInt32>& cols, nupic::Real32 delta)
@@ -972,29 +947,70 @@ namespace nupic_ext
             sm.clipRowsBelowAndAbove(get_it(rows), get_end(rows), a, b);
         });
 
-        //PyObject* _nNonZerosPerRow_allRows() const
-        sm.def("_nNonZerosPerRow_allRows", [](const SparseMatrix32_t& sm)
+        sm.def("nNonZerosPerRow", [](const SparseMatrix32_t& sm, py::args args)
         {
-            // @todo incorporate python code
-            //if rows is None :
-            //return self._nNonZerosPerRow_allRows()
-            //else:
-            //return self._nNonZerosPerRow(numpy.asarray(rows, dtype = "uint32"))
+            if (args.size() == 0)
+            {
+                // _nNonZerosPerRow_allRows
 
-            // _nNonZerosPerRow_allRows
-            py::array_t<nupic::UInt32> nnzpr(sm.nRows());
-            
-            sm.nNonZerosPerRow(get_it(nnzpr));
-            
-            return nnzpr;
+                py::array_t<nupic::UInt32> nnzpr(sm.nRows());
 
-            // _nNonZerosPerRow
-            //nupic::NumpyVectorWeakRefT<nupic::UInt32> rows(py_rows);
+                sm.nNonZerosPerRow(get_it(nnzpr));
 
-            //py::array_t<nupic::UInt32> out(rows.size());
-            //sm.nNonZerosPerRow(rows.begin(), rows.end(), out.begin());
+                return nnzpr;
+            }
+            else if (args.size() == 1)
+            {
+                // _nNonZerosPerRow
 
-            //return out.forPython();
+                auto arg = args[0];
+                std::string as_string = py::str(arg.get_type());
+                
+                if (py::isinstance<py::array_t<nupic::UInt32>>(arg))
+                {
+                    auto rows = arg.cast<py::array_t<nupic::UInt32>>();
+
+                    py::array_t<nupic::UInt32> nnzpr(rows.size());
+
+                    sm.nNonZerosPerRow(get_it(rows), get_end(rows), get_it(nnzpr));
+
+                    return nnzpr;
+                }
+                if (py::isinstance<py::list>(arg))
+                {
+                    try
+                    {
+                        auto rows = arg.cast<std::vector<nupic::UInt32>>();
+
+                        py::array_t<nupic::UInt32> nnzpr(rows.size());
+
+                        sm.nNonZerosPerRow(rows.begin(), rows.end(), get_it(nnzpr));
+
+                        return nnzpr;
+                    }
+                    catch (...)
+                    {
+                        throw std::runtime_error("Cannot apply list.");
+                    }
+                }
+
+                else
+                {
+                    throw std::runtime_error("Incorrect parameter.");
+                }
+            }
+
+            throw std::runtime_error("Too many arguments.");
+        });
+
+
+        sm.def("nNonZerosPerCol", [](const SparseMatrix32_t self)
+        {
+            py::array_t<nupic::UInt32> x(self.nCols());
+
+            self.nNonZerosPerCol(get_it(x));
+
+            return x;
         });
 
 
@@ -1530,11 +1546,29 @@ namespace nupic_ext
             sm.elementColDivide(i, get_it(xIn));
         });
 
-        //void elementMultiply(PyObject* mIn)
+        ////////////////////////
+        // elementMultiply
+
         sm.def("elementMultiply", [](SparseMatrix32_t& sm, py::array_t<nupic::Real32>& mIn)
         {
             sm.elementMultiply(get_it(mIn));
         });
+
+        sm.def("elementMultiply", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& mIn, SparseMatrix32_t& result)
+        {
+            sm.elementMultiply(get_it(mIn), result);
+        });
+
+        sm.def("elementMultiply", [](SparseMatrix32_t& sm, const SparseMatrix32_t& m)
+        {
+            sm.elementMultiply(m);
+        });
+
+        sm.def("elementMultiply", [](const SparseMatrix32_t& sm, const SparseMatrix32_t& m, SparseMatrix32_t& result)
+        {
+            sm.elementMultiply(m, result);
+        });
+
 
         //////--------------------------------------------------------------------------------
         ////// AtNZ operations, i.e. considering the sparse matrix as a 0/1 sparse matrix.
@@ -1560,7 +1594,9 @@ namespace nupic_ext
             return y;
         });
 
+        ///////////////////////////////
         // rightVecSumAtNZ
+
         sm.def("rightVecSumAtNZ", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray)
         {
             py::array_t<nupic::Real32> out(sm.nRows());
@@ -1570,37 +1606,65 @@ namespace nupic_ext
             return out;
         });
 
-        //inline void _rightVecSumAtNZSparse(PyObject* py_sparseBinaryArray, PyObject* py_out) const
-        sm.def("rightVecSumAtNZSparse", [](const SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& sparseBinaryArray, py::array_t<nupic::Int32>& out)
+        sm.def("rightVecSumAtNZ", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray, py::array_t<nupic::Real32>& out)
         {
-            //if out is None :
-            //out = numpy.empty(self.nRows(), dtype = "int32")
-            //else:
-            //assert out.dtype == "int32"
+            if (out.size() < sm.nRows())
+            {
+                throw std::runtime_error("Array is to small.");
+            }
 
-            //    self._rightVecSumAtNZSparse(sparseBinaryArray, out)
+            sm.rightVecSumAtNZ(get_it(denseArray), get_it(out));
 
-            // _rightVecSumAtNZSparse
+            return out;
+        }, "", py::arg("denseArray"), py::arg("out"));
 
-            NTA_ASSERT(out.size() >= sm.nRows());
+
+        ///////////////////////////////////
+        // rightVecSumAtNZSparse
+
+        sm.def("rightVecSumAtNZSparse", [](const SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& sparseBinaryArray)
+        {
+            py::array_t<nupic::Int32> out(sm.nRows());
 
             sm.rightVecSumAtNZSparse(get_it(sparseBinaryArray), get_it(sparseBinaryArray), get_it(out));
 
             return out;
         });
 
-        //inline void _rightVecSumAtNZGtThreshold(PyObject* py_denseArray, nupic::Real32 threshold, PyObject* py_out) const
-        sm.def("rightVecSumAtNZGtThreshold", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray, nupic::Real32 threshold
-            , py::array_t<nupic::Real32>& out)
+        sm.def("rightVecSumAtNZSparse", [](const SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& sparseBinaryArray, py::array_t<nupic::Int32>& out)
         {
             NTA_ASSERT(out.size() >= sm.nRows());
+
+            sm.rightVecSumAtNZSparse(get_it(sparseBinaryArray), get_it(sparseBinaryArray), get_it(out));
+
+            return out;
+        }, "", py::arg("sparseBinaryArray"), py::arg("out"));
+
+
+        ////////////////////////////
+        // rightVecSumAtNZGtThreshold
+
+        sm.def("rightVecSumAtNZGtThreshold", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray, nupic::Real32 threshold)
+        {
+            py::array_t<nupic::Real32> out({ sm.nRows() });
 
             sm.rightVecSumAtNZGtThreshold(get_it(denseArray), get_it(out), threshold);
 
             return out;
         }, "Deprecated. Use rightVecSumAtNZGtThreshold with an 'out' specified.");
 
-        //inline void _rightVecSumAtNZGtThresholdSparse(PyObject* py_sparseBinaryArray, nupic::Real32 threshold, PyObject* py_out) const
+        sm.def("rightVecSumAtNZGtThreshold", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray, nupic::Real32 threshold
+            , py::array_t<nupic::Real32>& out)
+        {
+            NTA_ASSERT(out.size() >= sm.nRows());
+
+            sm.rightVecSumAtNZGtThreshold(get_it(denseArray), get_it(out), threshold);
+        });
+
+
+        ////////////////////////////
+        // rightVecSumAtNZGtThresholdSparse
+
         sm.def("rightVecSumAtNZGtThresholdSparse", [](const SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& sparseBinaryArray, nupic::Real32 threshold
             , py::array_t<nupic::Int32>& out)
         {
@@ -1611,7 +1675,18 @@ namespace nupic_ext
             return out;
         });
 
-        //inline void _rightVecSumAtNZGteThreshold(PyObject* py_denseArray, nupic::Real32 threshold, PyObject* py_out) const
+        sm.def("rightVecSumAtNZGtThresholdSparse", [](const SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& sparseBinaryArray, nupic::Real32 threshold)
+        {
+            py::array_t<nupic::Int32> out({ sm.nRows() });
+
+            sm.rightVecSumAtNZGtThresholdSparse(get_it(sparseBinaryArray), get_end(sparseBinaryArray), get_it(out), threshold);
+
+            return out;
+        });
+
+        ////////////////////////////
+        // rightVecSumAtNZGteThreshold
+
         sm.def("rightVecSumAtNZGteThreshold", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray, nupic::Real32 threshold
             , py::array_t<nupic::Real32>& out)
         {
@@ -1622,7 +1697,18 @@ namespace nupic_ext
             return out;
         });
 
-        //inline void _rightVecSumAtNZGteThresholdSparse(PyObject* py_sparseBinaryArray, nupic::Real32 threshold, PyObject* py_out) const
+        sm.def("rightVecSumAtNZGteThreshold", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& denseArray, nupic::Real32 threshold)
+        {
+            py::array_t<nupic::Real32> out({ sm.nRows() });
+
+            sm.rightVecSumAtNZGteThreshold(get_it(denseArray), get_it(out), threshold);
+
+            return out;
+        });
+
+        /////////////////////////////
+        // rightVecSumAtNZGteThresholdSparse
+
         sm.def("rightVecSumAtNZGteThresholdSparse", [](const SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& sparseBinaryArray, nupic::Real32 threshold
             , py::array_t<nupic::Int32>& out)
         {
@@ -1632,6 +1718,20 @@ namespace nupic_ext
 
             return out;
         });
+
+        sm.def("rightVecSumAtNZGteThresholdSparse", [](const SparseMatrix32_t& sm, py::array_t<nupic::UInt32>& sparseBinaryArray, nupic::Real32 threshold)
+        {
+            py::array_t<nupic::Int32> out({ sm.nRows() });
+
+            sm.rightVecSumAtNZGteThresholdSparse(get_it(sparseBinaryArray), get_end(sparseBinaryArray), get_it(out), threshold);
+
+            return out;
+        });
+
+
+        ////////////////////////////////////
+        // 
+
 
         //inline PyObject* leftVecSumAtNZ(PyObject* xIn) const
         sm.def("leftVecSumAtNZ", [](const SparseMatrix32_t& sm, py::array_t<nupic::Real32>& xIn)
@@ -1880,23 +1980,6 @@ namespace nupic_ext
         }, "Initialize a sparse matrix with a fixed number of non-zeros on each row."
             , py::arg("nnzr"), py::arg("v") = 1.0, py::arg("mode") = 0, py::arg("seed") = 42);
 
-        sm.def("nNonZerosPerRow", [](const SparseMatrix32_t self) 
-        {
-            py::array_t<nupic::UInt32> x(self.nRows());
-
-            self.nNonZerosPerRow(get_it(x));
-
-            return x;
-        });
-
-        sm.def("nNonZerosPerCol", [](const SparseMatrix32_t self)
-        {
-            py::array_t<nupic::UInt32> x(self.nCols());
-
-            self.nNonZerosPerRow(get_it(x));
-
-            return x;
-        });
     }
 
 } // namespace nupix_ext
