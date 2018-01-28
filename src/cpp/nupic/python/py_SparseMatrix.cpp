@@ -2016,7 +2016,7 @@ namespace nupic_ext
             return sm == other;
         });
 
-        sm.def("__eq__", [](const SparseMatrix32_t& sm, const SparseMatrix32_t& other)
+        sm.def("__ne__", [](const SparseMatrix32_t& sm, const SparseMatrix32_t& other)
         {
             return sm != other;
         });
