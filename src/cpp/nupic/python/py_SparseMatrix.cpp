@@ -234,6 +234,14 @@ namespace nupic_ext
         sm.def("transpose", py::overload_cast<>(&SparseMatrix32_t::transpose));
         sm.def("transpose", py::overload_cast<SparseMatrix32_t&>(&SparseMatrix32_t::transpose, py::const_));
         
+        sm.def("getTransposed", [](const SparseMatrix32_t& sm)
+        {
+            SparseMatrix32_t result;
+            sm.transpose(result);
+
+            return result;
+        });
+
         sm.def("addToTranspose", py::overload_cast<>(&SparseMatrix32_t::addToTranspose));
         sm.def("addToTranspose", py::overload_cast<SparseMatrix32_t&>(&SparseMatrix32_t::addToTranspose, py::const_));
 
@@ -542,6 +550,7 @@ namespace nupic_ext
             [](const SparseMatrix32_t& sm)
         {
             auto out = py::array_t<nupic::UInt32>({ sm.nRows(), sm.nCols() });
+
             sm.toDense(get_it(out));
 
             return out;
@@ -862,6 +871,9 @@ namespace nupic_ext
             return py::make_tuple(ind_list, vals);
         });
 
+        ///////////////////////////
+        // setSlice
+
         //void setSlice(nupic::UInt32 i_begin, nupic::UInt32 j_begin, const SparseMatrix32& other)
         sm.def("setSlice", [](SparseMatrix32_t& sm, nupic::UInt32 i_begin, nupic::UInt32 j_begin, const SparseMatrix32_t& other)
         {
@@ -871,11 +883,13 @@ namespace nupic_ext
         //void setSlice(nupic::UInt32 i_begin, nupic::UInt32 j_begin, PyObject* py_other)
         sm.def("setSlice", [](SparseMatrix32_t& sm, nupic::UInt32 i_begin, nupic::UInt32 j_begin, py::array_t<nupic::Real32>& other)
         {
-            throw std::runtime_error("Not implemented.");
+            Numpy_Matrix<nupic::Real32> m(other.request());
 
-            // setSlice cannot deal with py::array_t
-            //sm.setSlice(i_begin, j_begin, other);
+            sm.setSlice(i_begin, j_begin, m);
         });
+
+        ///////////////////////////
+        // getSlice
 
         //SparseMatrix32 getSlice(nupic::UInt32 i_begin, nupic::UInt32 i_end, nupic::UInt32 j_begin, nupic::UInt32 j_end) const
         sm.def("getSlice", [](const SparseMatrix32_t& sm, nupic::UInt32 i_begin, nupic::UInt32 i_end, nupic::UInt32 j_begin, nupic::UInt32 j_end)
@@ -1661,7 +1675,7 @@ namespace nupic_ext
         {
             py::array_t<nupic::Int32> out(sm.nRows());
 
-            sm.rightVecSumAtNZSparse(get_it(sparseBinaryArray), get_it(sparseBinaryArray), get_it(out));
+            sm.rightVecSumAtNZSparse(get_it(sparseBinaryArray), get_end(sparseBinaryArray), get_it(out));
 
             return out;
         });
@@ -1670,7 +1684,7 @@ namespace nupic_ext
         {
             NTA_ASSERT(out.size() >= sm.nRows());
 
-            sm.rightVecSumAtNZSparse(get_it(sparseBinaryArray), get_it(sparseBinaryArray), get_it(out));
+            sm.rightVecSumAtNZSparse(get_it(sparseBinaryArray), get_end(sparseBinaryArray), get_it(out));
 
             return out;
         }, "", py::arg("sparseBinaryArray"), py::arg("out"));

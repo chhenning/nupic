@@ -21,6 +21,15 @@ namespace nupic_ext
         py::class_<Set_t> py_Set(m, "Set");
 
         py_Set.def(py::init<>());
+        py_Set.def(py::init<>([](nupic::UInt32 m, py::array_t<nupic::UInt32>& a)
+        {
+            return Set_t(m, static_cast<nupic::UInt32>(a.shape(0)), get_it(a));
+        }));
+
+        py_Set.def("n_elements", &Set_t::n_elements);
+        py_Set.def("max_index", &Set_t::max_index);
+        py_Set.def("n_bytes", &Set_t::n_bytes);
+
 
         // inline void construct(nupic::UInt32 m, PyObject* py_a)
         py_Set.def("construct", [](Set_t& self, nupic::UInt32 m, py::array_t<nupic::UInt32>& a)

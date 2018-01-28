@@ -15,17 +15,34 @@ rgen = numpy.random.RandomState(37)
 
 from nupic.bindings.math import *
 
+m = rgen.randint(2,10)
+n = rgen.randint(1,10)
+a = rgen.randint(0,100,(m,n))
+a[numpy.where(a < 75)] = 0
+a[rgen.randint(0,m)] = 0
+a[:,rgen.randint(0,n)] = 0
+x = list(set(rgen.randint(0,m,(4))))
+y = list(set(rgen.randint(0,n,(3))))
+b = copy.deepcopy(a)
+for j in x:
+  for k in y:
+    b[j,k] += 2
+c = SM32(a)
+
+x = [int(o) for o in x]
+y = [int(o) for o in y]
+
+print(c)
+c.incrementOnOuterProductVal(x, y, -2)
+print()
+print(c)
+print()
+print(c.toDense())
 
 
-a = rgen.randint(0,2,(6,8))
-b = rgen.randint(0,10,(8,4))
-c = numpy.dot(a,b)
-d = SM32(a).rightDenseMatProd(b)
-if (c != d).any():
-    error('rightDenseMatProd')
+print((c.toDense() != b))
 
-a = rgen.randint(0,2,(6,4))
-b = rgen.randint(0,10,(8,6))
-c = numpy.dot(b,a)
-d = SM32(a).leftDenseMatProd(b)
 
+
+if (c.toDense() != b).any():
+  assert(false)

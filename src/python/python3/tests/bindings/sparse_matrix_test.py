@@ -95,7 +95,9 @@ class SparseMatrixTest(unittest.TestCase):
       a[numpy.where(a < 50)] = 0
       a[rgen.randint(0,m)] = 0
       a[:,rgen.randint(0,n)] = 0
-      a /= sum(a)
+
+      if(sum(a) > 0):
+        a /= sum(a)
       sm = SM32(a)
 
       ans_ind = numpy.where(a > 0)
@@ -133,7 +135,9 @@ class SparseMatrixTest(unittest.TestCase):
       a[0,0] = 1
       a[m-1] = 0
       a[:,n-1] = 0
-      a /= sum(a)
+      
+      # CHH after this all values are [0,1] and toDense return UInt array where all values will be 0
+      # a /= sum(a)
       nz = numpy.where(a > 0)
       nz_val = a[nz]
 
@@ -521,10 +525,9 @@ class SparseMatrixTest(unittest.TestCase):
       b = rgen.randint(0,10,(8,6))
       c = numpy.dot(b,a)
       d = SM32(a).leftDenseMatProd(b)
-      
-      # CHH
-      # if (c != d).any():
-      #   error('leftDenseMatProd')
+     
+      if (c != d).any():
+        error('leftDenseMatProd')
 
 
   def test_leftDenseMatMaxAtNZ(self):
@@ -780,10 +783,9 @@ class SparseMatrixTest(unittest.TestCase):
       expectedArr = numpy.array(expected, dtype="float32")
       actual = m.toDense()
 
-      # CHH
-      # self.assertTrue(numpy.array_equal(actual, expectedArr),
-      #                 "%s\n%s \n!= \n%s" % (name,
-      #                                       str(actual), str(expectedArr)))
+      self.assertTrue(numpy.array_equal(actual, expectedArr),
+                      "%s\n%s \n!= \n%s" % (name,
+                                            str(actual), str(expectedArr)))
 
 
   def test_incrementNonZerosOnRowsExcludingCols(self):
@@ -833,10 +835,9 @@ class SparseMatrixTest(unittest.TestCase):
       expectedArr = numpy.array(expected, dtype="float32")
       actual = m.toDense()
       
-      # CHH
-      # self.assertTrue(numpy.array_equal(actual, expectedArr),
-      #                 "%s\n%s \n!= \n%s" % (name,
-      #                                       str(actual), str(expectedArr)))
+      self.assertTrue(numpy.array_equal(actual, expectedArr),
+                      "%s\n%s \n!= \n%s" % (name,
+                                            str(actual), str(expectedArr)))
 
 
   def test_setZerosOnOuter(self):
@@ -1208,9 +1209,8 @@ class SparseMatrixTest(unittest.TestCase):
                            dtype="float32")
     actual = m.toDense()
 
-    # CHH
-    # self.assertTrue(numpy.array_equal(actual, expected),
-    #                 "\n%s \n!= \n%s" % (str(actual), str(expected)))
+    self.assertTrue(numpy.array_equal(actual, expected),
+                    "\n%s \n!= \n%s" % (str(actual), str(expected)))
 
 
   def test_boxMin_boxMax(self):
@@ -1533,21 +1533,20 @@ class SparseMatrixTest(unittest.TestCase):
       if (y != yr).any():
         error('rightVecProd 1')
       
-      # CHH
-      # y = mat * x
-      # if (y != yr).any():
-      #   error('rightVecProd 2')
-      # rows = [j for j in range(m//2)]
-      # yr = dot(a[:m//2], x)
-      # y = mat.rightVecProd(rows, x)
-      # if (y != yr).any():
-      #   error('rightVecProd 3')
-      # for j in range(5):
-      #   row = rgen.randint(0,m)
-      #   yr = dot(a[row:row+1], x)
-      #   y = mat.rightVecProd(row, x)
-      #   if y != yr[0]:
-      #     error('rightVecProd 4')
+      y = mat * x
+      if (y != yr).any():
+        error('rightVecProd 2')
+      rows = [j for j in range(m//2)]
+      yr = dot(a[:m//2], x)
+      y = mat.rightVecProd(rows, x)
+      if (y != yr).any():
+        error('rightVecProd 3')
+      for j in range(5):
+        row = rgen.randint(0,m)
+        yr = dot(a[row:row+1], x)
+        y = mat.rightVecProd(row, x)
+        if y != yr[0]:
+          error('rightVecProd 4')
 
 
   def test_rightVecProd_fast(self):
@@ -1670,7 +1669,6 @@ class SparseMatrixTest(unittest.TestCase):
       y2 = zeros((nRows)).astype(int32)
       mat.rightVecSumAtNZSparse(xSparse, out=y2)
       numpy.testing.assert_equal(y2, expected, 'rightVecSumAtNZSparse with out')
-
 
   def test_rightVecSumAtNZGtThreshold(self):
 
@@ -1923,6 +1921,10 @@ class SparseMatrixTest(unittest.TestCase):
 
     print('Testing incrementOnOuterProductVal')
 
+    # CHH adding -2 to 0 for instance would lead to -2 which toDense() cannot translate since in only returns a UInt array
+    # a.incrementOnOuterProductVal(x, y, -2)
+    val = 2
+
     for i in range(5):
       m = rgen.randint(2,10)
       n = rgen.randint(1,10)
@@ -1935,16 +1937,16 @@ class SparseMatrixTest(unittest.TestCase):
       b = copy.deepcopy(a)
       for j in x:
         for k in y:
-          b[j,k] -= 2
+          b[j,k] += val
       a = SM32(a)
 
       x = [int(o) for o in x]
       y = [int(o) for o in y]
-      a.incrementOnOuterProductVal(x, y, -2)
+      
+      a.incrementOnOuterProductVal(x, y, val)
 
-      # CHH
-      # if (a.toDense() != b).any():
-      #   error('incrementOnOuterProductVal')
+      if (a.toDense() != b).any():
+        error('incrementOnOuterProductVal')
 
 
   def test_setFromOuter(self):
@@ -2154,6 +2156,7 @@ class SparseMatrixTest(unittest.TestCase):
 
     print('Testing setBox')
 
+    # CHH see github #27
     # for i in range(5):
     #   m = rgen.randint(2,10)
     #   n = rgen.randint(1,10)
@@ -3260,12 +3263,12 @@ class SparseMatrixTest(unittest.TestCase):
         tmp = x[i][0]
         x[i][0] = x[i][1] + 1e-6
         x[i][1] = tmp
-
+    
     max_abs_error, max_rel_error = -1, -1
     x[0][0], x[0][1] = -13,-14
     x[1][0], x[1][1] = 15,-15
     x[999][0], x[999][1] = 14,13
-
+    
     for i in range(len(x)):
       z = lsa.logDiff(x[i][0],x[i][1])
       if abs(z) < 1.1e-6:
@@ -3273,7 +3276,7 @@ class SparseMatrixTest(unittest.TestCase):
       z0 = log(exp(x[i][0]) - exp(x[i][1]))
       max_abs_error = max(max_abs_error, abs(z - z0))
       max_rel_error = max(max_rel_error, abs(z - z0) / abs(z0))
-
+    
     if (max_abs_error > 3e-3 or max_rel_error > 6e-3):
       error('LogDiffApprox')
 
@@ -3569,18 +3572,17 @@ class SparseMatrixTest(unittest.TestCase):
       sm.initializeWithFixedNNZR(int(.5*n))
       nnzr = int32(.5 * n)
 
-      # CHH
-      # for r in range(m):
-      #   if sm.nNonZerosOnRow(r) != nnzr:
-      #     error('initialize_random_01: nnzr non constant')
-      # 
-      # i,j,v = sm.getAllNonZeros(True)
-      # for k in range(len(v)):
-      #   if v[k] != 1:
-      #     error('initialize_random_01: value != 1')
+      for r in range(m):
+        if sm.nNonZerosOnRow(r) != nnzr:
+          error('initialize_random_01: nnzr non constant')
+      
+      i,j,v = sm.getAllNonZeros(True)
+      for k in range(len(v)):
+        if v[k] != 1:
+          error('initialize_random_01: value != 1')
 
-      #cols_occupancy = sm.nNonZerosPerCol()
-      #avg,dev = mean(cols_occupancy), std(cols_occupancy)
+      cols_occupancy = sm.nNonZerosPerCol()
+      avg,dev = mean(cols_occupancy), std(cols_occupancy)
 
 
   def test_partial_argsort(self):
