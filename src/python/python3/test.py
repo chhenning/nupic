@@ -1,32 +1,22 @@
+import csv
+import json
+from datetime import datetime
+
+from pkg_resources import resource_filename
+
+from nupic.engine import Network
+from nupic.encoders import DateEncoder
+
+from pprint import pprint
 
 
-import sys
-import numpy
-from numpy import *
-import math
-import os
-import pickle
-import copy
-import time
-import unittest
+# Create network
+network = Network()
 
-rgen = numpy.random.RandomState(37)
+# Create cpp region
+consumptionSensor = network.addRegion('consumptionSensor', 'ScalarSensor', json.dumps({'n': 120, 'w': 21, 'minValue': 0.0, 'maxValue': 100.0, 'clipInput': True}))
 
-from nupic.bindings.math import *
+print(type(consumptionSensor))
+pprint(vars(consumptionSensor))
 
-m = rgen.randint(1,10)
-n = rgen.randint(1,10)
-a = rgen.randint(0,100,(m,n))
-a[numpy.where(a < 75)] = 0
-a[rgen.randint(0,m)] = 0
-a[:,rgen.randint(0,n)] = 0
-x = rgen.randint(0,100,(n)).astype(float32)
-yr = dot(a,x)
-mat = SM32(a)
-y = mat.rightVecProd(x)
-
-aa = (y != yr)
-
-if (y != yr).any():
-  error('rightVecProd 1')
-
+consumptionEncoderN = consumptionSensor.getParameter('n')

@@ -549,14 +549,14 @@ namespace nupic_ext
         sm.def("toDense",
             [](const SparseMatrix32_t& sm)
         {
-            auto out = py::array_t<nupic::UInt32>({ sm.nRows(), sm.nCols() });
+            auto out = py::array_t<nupic::Real32>({ sm.nRows(), sm.nCols() });
 
             sm.toDense(get_it(out));
 
             return out;
         });
 
-        sm.def("setRowFromDense", [](SparseMatrix32_t& sm, nupic::UInt row, py::array_t<nupic::Real> r)
+        sm.def("setRowFromDense", [](SparseMatrix32_t& sm, nupic::UInt row, py::array_t<nupic::Real32> r)
         {
             sm.setRowFromDense(row, get_it(r));
         });

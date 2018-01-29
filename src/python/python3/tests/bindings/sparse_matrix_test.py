@@ -135,9 +135,7 @@ class SparseMatrixTest(unittest.TestCase):
       a[0,0] = 1
       a[m-1] = 0
       a[:,n-1] = 0
-      
-      # CHH after this all values are [0,1] and toDense return UInt array where all values will be 0
-      # a /= sum(a)
+      a /= sum(a)
       nz = numpy.where(a > 0)
       nz_val = a[nz]
 
@@ -1920,11 +1918,7 @@ class SparseMatrixTest(unittest.TestCase):
   def test_incrementOnOuterProductVal(self):
 
     print('Testing incrementOnOuterProductVal')
-
-    # CHH adding -2 to 0 for instance would lead to -2 which toDense() cannot translate since in only returns a UInt array
-    # a.incrementOnOuterProductVal(x, y, -2)
-    val = 2
-
+    
     for i in range(5):
       m = rgen.randint(2,10)
       n = rgen.randint(1,10)
@@ -1937,13 +1931,13 @@ class SparseMatrixTest(unittest.TestCase):
       b = copy.deepcopy(a)
       for j in x:
         for k in y:
-          b[j,k] += val
+          b[j,k] -= 2
       a = SM32(a)
 
       x = [int(o) for o in x]
       y = [int(o) for o in y]
       
-      a.incrementOnOuterProductVal(x, y, val)
+      a.incrementOnOuterProductVal(x, y, -2)
 
       if (a.toDense() != b).any():
         error('incrementOnOuterProductVal')
