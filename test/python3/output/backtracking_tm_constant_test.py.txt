@@ -311,132 +311,314 @@ TMConstant basicTest ok
 .*** Synapse consistency checking turned on for Cells4 ***
 TM: learn: True
 TM: active outputs(0): NONE
-E
-======================================================================
-ERROR: testPyTmBasic (__main__.TMConstantTest)
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+TM: learn: True
+TM: active outputs(0): NONE
+Learning completed
+Running inference
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 0: [ 0, ]  Col 1: [ 0, ]  Col 2: [ 0, ]  Col 3: [ 0, ]  Col 4: [ 0, ]  Col 5: [ 0, ]  Col 6: [ 0, ]  Col 7: [ 0, ]  Col 8: [ 0, ]  Col 9: [ 0, ]
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0)
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 10: [ 0, ]  Col 11: [ 0, ]  Col 12: [ 0, ]  Col 13: [ 0, ]  Col 14: [ 0, ]  Col 15: [ 0, ]  Col 16: [ 0, ]  Col 17: [ 0, ]  Col 18: [ 0, ]  Col 19: [ 0, ]
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0)
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 20: [ 0, ]  Col 21: [ 0, ]  Col 22: [ 0, ]  Col 23: [ 0, ]  Col 24: [ 0, ]  Col 25: [ 0, ]  Col 26: [ 0, ]  Col 27: [ 0, ]  Col 28: [ 0, ]  Col 29: [ 0, ]
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0)
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 30: [ 0, ]  Col 31: [ 0, ]  Col 32: [ 0, ]  Col 33: [ 0, ]  Col 34: [ 0, ]  Col 35: [ 0, ]  Col 36: [ 0, ]  Col 37: [ 0, ]  Col 38: [ 0, ]  Col 39: [ 0, ]
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0)
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+TM: learn: False
+TM: active outputs(10): Col 40: [ 0, ]  Col 41: [ 0, ]  Col 42: [ 0, ]  Col 43: [ 0, ]  Col 44: [ 0, ]  Col 45: [ 0, ]  Col 46: [ 0, ]  Col 47: [ 0, ]  Col 48: [ 0, ]  Col 49: [ 0, ]
+("tm.getStats()['predictionScoreAvg2'] = ", 1.0)
+TMConstant basicTest ok
+.
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "backtracking_tm_constant_test.py", line 160, in testPyTmBasic
-    self._basicTest(self.pyTm)
-  File "backtracking_tm_constant_test.py", line 124, in _basicTest
-    tm.learn(seq)
-  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 2688, in learn
-    enableInference=enableInference)
-  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 2609, in compute
-    self._updateLearningState(activeColumns)
-  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 2539, in _updateLearningState
-    self._learnPhase2()
-  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 2407, in _learnPhase2
-    c, self.lrnActiveState['t'], minThreshold = self.activationThreshold)
-  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 3027, in _getBestMatchingCell
-    activity = self._getSegmentActivityLevel(s, activeState)
-  File "D:\nupic\src\python\python3\nupic\algorithms\backtracking_tm.py", line 3000, in _getSegmentActivityLevel
-    self.connectedPerm)
-TypeError: getSegmentActivityLevel(): incompatible function arguments. The following argument types are supported:
-    1. (arg0: List[nupic::algorithms::Cells4::Segment], arg1: numpy.ndarray[int8], arg2: bool, arg3: float) -> int
+Ran 3 tests in 14.988s
 
-Invoked with: [[0, 0, 0.30000001], [2, 0, 0.30000001], [3, 0, 0.30000001], [4, 0, 0.30000001], [5, 0, 0.30000001], [7, 0, 0.30000001], [8, 0, 0.30000001]], array([[1],
-       [1],
-       [1],
-       [1],
-       [1],
-       [1],
-       [1],
-       [1],
-       [1],
-       [1],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0],
-       [0]], dtype=int8), False, 0.5
-
-----------------------------------------------------------------------
-Ran 3 tests in 14.657s
-
-FAILED (errors=1)
+OK

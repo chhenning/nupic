@@ -26,7 +26,7 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/bindings/pyregion_test.py                                  | yes                                   |              |                                                       |
 | tests/bindings/segment_sparse_matrix_test.py                     | yes                                   |              |                                                       |
 | tests/bindings/sparse_binary_matrix_test.py                      | yes                                   |              |                                                       |
-| tests/bindings/sparse_matrix_test.py                             | some AssertionErrors                  | #27, #28     |                                                       |
+| tests/bindings/sparse_matrix_test.py                             | some AssertionErrors                  | #27          |                                                       |
 | tests/bindings/temporal_memory_test.py                           | yes                                   |              |                                                       |
 | tests/bindings/algorithms/cells4_test.py                         | yes                                   |              |                                                       |
 | tests/bindings/algorithms/svm_test.py                            | yes                                   |              |                                                       |
@@ -34,8 +34,8 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/utils.py                                        | yes                                   |              |                                                       |
 | tests/unit/nupic/algorithms/anomaly_likelihood_jeff_test.py      | yes                                   |              |                                                       |
 | tests/unit/nupic/algorithms/anomaly_likelihood_test.py           | yes                                   |              |                                                       |
-| tests/unit/nupic/algorithms/anomaly_test.py                      | yes                                   |              | nupic\test\python3\output\backtracking_tm_constant_test.py.txt |
-| tests/unit/nupic/algorithms/backtracking_tm_constant_test.py     | TypeError: getSegmentActivityLevel()  | #1           |                                             |
+| tests/unit/nupic/algorithms/anomaly_test.py                      | yes                                   |              |                                                                |
+| tests/unit/nupic/algorithms/backtracking_tm_constant_test.py     | yes                                   |              | nupic\test\python3\output\backtracking_tm_constant_test.py.txt |
 | tests/unit/nupic/algorithms/backtracking_tm_cpp.py               | python crashes                        | #5           |                                             |
 | tests/unit/nupic/algorithms/backtracking_tm_cpp2_test.py         | AssertionError: False is not true     |              |                                             |
 | tests/unit/nupic/algorithms/connections_test.py                  | yes                                   |              |                                             |

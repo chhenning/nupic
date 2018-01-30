@@ -17,8 +17,7 @@ namespace nupic_ext
     {
         typedef nupic::algorithms::Cells4::Segment Segment_t;
 
-        // defines some functions
-        m.def("getSegmentActivityLevel", [](std::vector<Segment_t>& seg
+        m.def("getSegmentActivityLevel", [](py::list seg
             , py::array_t<nupic::Byte>& py_state
             , bool connectedSynapsesOnly
             , nupic::Real32 connectedPerm)
@@ -31,13 +30,16 @@ namespace nupic_ext
             // see algorithms.i[748]
             if (connectedSynapsesOnly)
             {
-                for (int i = 0; seg.size(); ++i)
+                for (py::size_t i = 0; i < seg.size(); ++i)
                 {
-                    auto p = seg[i][2].permanence();
+                    py::list syn = seg[i];
+
+                    nupic::Real32 p = syn[2].cast<nupic::Real32>();
+
                     if (p >= connectedPerm)
                     {
-                        nupic::UInt32 c = seg[i][0].srcCellIdx();
-                        nupic::UInt32 j = seg[i][1].srcCellIdx();
+                        nupic::UInt32 c = syn[0].cast<nupic::UInt32>();
+                        nupic::UInt32 j = syn[1].cast<nupic::UInt32>();
 
                         activity += state[c * stride0 + j];
                     }
@@ -45,10 +47,12 @@ namespace nupic_ext
             }
             else
             {
-                for (int i = 0; seg.size(); ++i)
+                for (py::size_t i = 0; i < seg.size(); ++i)
                 {
-                    nupic::UInt32 c = seg[i][0].srcCellIdx();
-                    nupic::UInt32 j = seg[i][1].srcCellIdx();
+                    py::list syn = seg[i];
+
+                    nupic::UInt32 c = syn[0].cast<nupic::UInt32>();
+                    nupic::UInt32 j = syn[1].cast<nupic::UInt32>();
 
                     activity += state[c * stride0 + j];
                 }
@@ -57,17 +61,42 @@ namespace nupic_ext
             return activity;
         });
 
-        m.def("isSegmentActive", [](std::vector<Segment_t>& seg, py::array_t<nupic::Byte>& py_state,
+        m.def("isSegmentActive", [](py::list seg, py::array_t<nupic::Byte>& py_state,
             nupic::Real32 connectedPerm,
             nupic::UInt32 activationThreshold)
         {
-            throw std::runtime_error("Not implemented.");
+            auto state = get_it(py_state);
 
-            // see algorithms.i[785]
+            auto stride0 = py_state.request().strides[0];
 
+            nupic::UInt32 activity = 0;
+
+            nupic::UInt32 n = static_cast<nupic::UInt32>(seg.size());
+
+            if (n < activationThreshold)
+            {
+                return false;
+            }
+
+            for (py::size_t i = 0; i < seg.size(); ++i)
+            {
+                py::list syn = seg[i];
+
+                nupic::Real32 p = syn[2].cast<nupic::Real32>();
+                if (p >= connectedPerm)
+                {
+                    nupic::UInt32 c = syn[0].cast<nupic::UInt32>();
+                    nupic::UInt32 j = syn[1].cast<nupic::UInt32>();
+
+                    activity += state[c * stride0 + j];
+                    if (activity >= activationThreshold)
+                    {
+                        return true;
+                    }
+                }
+            }
 
             return false;
-
         });
 
 
