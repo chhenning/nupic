@@ -1911,6 +1911,7 @@ void Cells4::reset()
   _learnActiveStateT1.resetAll();
   _learnPredictedStateT.resetAll();
   _learnPredictedStateT1.resetAll();
+
   memset(_cellConfidenceT, 0, _nCells * sizeof(_cellConfidenceT[0]));
   memset(_cellConfidenceT1, 0, _nCells * sizeof(_cellConfidenceT1[0]));
   memset(_colConfidenceT, 0, _nColumns * sizeof(_colConfidenceT[0]));

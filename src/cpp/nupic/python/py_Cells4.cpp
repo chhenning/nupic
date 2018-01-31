@@ -119,6 +119,8 @@ namespace nupic_ext
 
         py_cells4.def("nSynapsesInCell", &Cells4_t::nSynapsesInCell, "Total number of synapses in a given cell (at at given point, changes all the time).");
 
+        //py_cells4.def("getNonEmptySegList", &Cells4_t::getNonEmptySegList);
+
 
         /////////////////
 
@@ -150,10 +152,10 @@ namespace nupic_ext
         ));
 
         py_cells4.def("setStatePointers", [](Cells4_t& self
-            , py::array_t<nupic::UInt32>& py_infActiveStateT
-            , py::array_t<nupic::UInt32>& py_infActiveStateT1
-            , py::array_t<nupic::UInt32>& py_infPredictedStateT
-            , py::array_t<nupic::UInt32>& py_infPredictedStateT1
+            , py::array_t<nupic::Byte>& py_infActiveStateT
+            , py::array_t<nupic::Byte>& py_infActiveStateT1
+            , py::array_t<nupic::Byte>& py_infPredictedStateT
+            , py::array_t<nupic::Byte>& py_infPredictedStateT1
             , py::array_t<nupic::Real32>& py_colConfidenceT
             , py::array_t<nupic::Real32>& py_colConfidenceT1
             , py::array_t<nupic::Real32>& py_cellConfidenceT
@@ -226,6 +228,7 @@ namespace nupic_ext
         });
 
 
+        //py_cells4.def("reset", &Cells4_t::reset);
         py_cells4.def("reset", &Cells4_t::reset);
 
         py_cells4.def("addNewSegment", &Cells4_t::addNewSegment);

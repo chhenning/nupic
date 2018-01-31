@@ -42,7 +42,7 @@ from nupic.algorithms.backtracking_tm import BacktrackingTM
 
 COL_SET = set(range(500))
 
-VERBOSITY = 0
+VERBOSITY = 10
 
 
 

@@ -30,7 +30,7 @@ from nupic.algorithms import fdrutilities as fdrutils
 from nupic.algorithms.backtracking_tm import BacktrackingTM
 from nupic.algorithms.backtracking_tm_cpp import BacktrackingTMCPP
 
-VERBOSITY = 0  # how chatty the unit tests should be
+VERBOSITY = 10  # how chatty the unit tests should be
 INFERENCE_VERBOSITY = 0  # Chattiness during inference test
 SEED = 12
 _RGEN = Random(SEED)

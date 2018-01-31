@@ -36,8 +36,9 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/anomaly_likelihood_test.py           | yes                                   |              |                                                       |
 | tests/unit/nupic/algorithms/anomaly_test.py                      | yes                                   |              |                                                                |
 | tests/unit/nupic/algorithms/backtracking_tm_constant_test.py     | yes                                   |              | nupic\test\python3\output\backtracking_tm_constant_test.py.txt |
-| tests/unit/nupic/algorithms/backtracking_tm_cpp.py               | python crashes                        | #5           |                                             |
+| tests/unit/nupic/algorithms/backtracking_tm_cpp.py               | not yet                               |              |                                             |
 | tests/unit/nupic/algorithms/backtracking_tm_cpp2_test.py         | AssertionError: False is not true     |              |                                             |
+| tests/unit/nupic/algorithms/backtracking_tm_test.py              |                                       |              |                                             |
 | tests/unit/nupic/algorithms/connections_test.py                  | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/inhibition_object_test.py            | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/knn_classifier_test.py               | exceptions                            | #2           |                                             |
@@ -261,4 +262,39 @@ sm.def_property_readonly("shape", [](const SparseMatrix32_t& sm)
     return py::make_tuple(sm.nRows(), sm.nCols());
 });
 
+```
+
+## Embedding python in cpp
+
+Work around: AttributeError: module 'sys' has no attribute 'argv'
+
+```
+py::scoped_interpreter guard{};
+
+try
+{
+    // Work around: AttributeError: module 'sys' has no attribute 'argv'
+    py::exec(R"(
+        import sys
+        
+        if not hasattr(sys, 'argv'):
+            sys.argv = ['']
+
+    )");
+
+    // run some python code
+    // py::eval_file(R"(D:\nupic\src\python\python3\test.py)");
+}
+catch (const py::error_already_set& e)
+{
+    std::cout << e.what() << std::endl;
+}
+catch (const std::runtime_error& e)
+{
+    std::cout << e.what() << std::endl;
+}
+catch (...)
+{
+    std::cout << "Unexpected error." << std::endl;
+}
 ```
