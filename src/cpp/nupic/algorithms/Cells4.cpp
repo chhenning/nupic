@@ -2005,15 +2005,23 @@ void Cells4::save(std::ostream& outStream) const
  */
 void Cells4::saveToFile(std::string filePath) const
 {
-  OFStream outStream(filePath.c_str(), std::ios_base::out | std::ios_base::binary);
-  // Request std::ios_base::failure exception upon logical or physical i/o error
-  outStream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    std::ofstream out(filePath.c_str(), std::ios_base::out | std::ios_base::binary);
+    out.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    out.precision(std::numeric_limits<double>::digits10 + 1);
 
-  outStream.precision(std::numeric_limits<double>::digits10 + 1);
-  save(outStream);
+    save(out);
 
-  // Explicitly close the stream so that we may get an exception on error
-  outStream.close();
+    out.close();
+
+  //OFStream outStream(filePath.c_str(), std::ios_base::out | std::ios_base::binary);
+  //// Request std::ios_base::failure exception upon logical or physical i/o error
+  //outStream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+
+  //outStream.precision(std::numeric_limits<double>::digits10 + 1);
+  //save(outStream);
+
+  //// Explicitly close the stream so that we may get an exception on error
+  //outStream.close();
 }
 
 //----------------------------------------------------------------------
@@ -2022,8 +2030,11 @@ void Cells4::saveToFile(std::string filePath) const
  */
 void Cells4::loadFromFile(std::string filePath)
 {
-  IFStream outStream(filePath.c_str(), std::ios_base::in | std::ios_base::binary);
-  load(outStream);
+    std::ifstream in(filePath.c_str(), std::ios_base::in | std::ios_base::binary);
+    load(in);
+
+    //IFStream outStream(filePath.c_str(), std::ios_base::in | std::ios_base::binary);
+  //load(outStream);
 }
 
 

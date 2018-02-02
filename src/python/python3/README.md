@@ -36,7 +36,7 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/anomaly_likelihood_test.py           | yes                                   |              |                                                       |
 | tests/unit/nupic/algorithms/anomaly_test.py                      | yes                                   |              |                                                                |
 | tests/unit/nupic/algorithms/backtracking_tm_constant_test.py     | yes                                   |              | nupic\test\python3\output\backtracking_tm_constant_test.py.txt |
-| tests/unit/nupic/algorithms/backtracking_tm_cpp.py               | not yet                               |              |                                             |
+| tests/unit/nupic/algorithms/backtracking_tm_cpp.py               | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/backtracking_tm_cpp2_test.py         | AssertionError: False is not true     |              |                                             |
 | tests/unit/nupic/algorithms/backtracking_tm_test.py              |                                       |              |                                             |
 | tests/unit/nupic/algorithms/connections_test.py                  | yes                                   |              |                                             |
