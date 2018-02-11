@@ -38,10 +38,10 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/backtracking_tm_constant_test.py     | yes                                   |              | nupic\test\python3\output\backtracking_tm_constant_test.py.txt |
 | tests/unit/nupic/algorithms/backtracking_tm_cpp.py               | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/backtracking_tm_cpp2_test.py         | AssertionError: False is not true     |              |                                             |
-| tests/unit/nupic/algorithms/backtracking_tm_test.py              |                                       |              |                                             |
+| tests/unit/nupic/algorithms/backtracking_tm_test.py              | yes                                   |              | nupic\test\python3\output\backtracking_tm_test.py.txt.py.txt |
 | tests/unit/nupic/algorithms/connections_test.py                  | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/inhibition_object_test.py            | yes                                   |              |                                             |
-| tests/unit/nupic/algorithms/knn_classifier_test.py               | exceptions                            | #2           |                                             |
+| tests/unit/nupic/algorithms/knn_classifier_test.py               | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/sdr_classifier_test.py               | AssertionError                        | #6           |                                             |
 | tests/unit/nupic/algorithms/sp_learn_inference.py                | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/sp_overlap_test.py                   | cpp argument errors                   | #7           |                                             |
@@ -53,60 +53,60 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/spatial_pooler_py_api_test.py        | todo                                  |              |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_unit_test.py          | todo                                  |              |                                             |
 | tests/unit/nupic/algorithms/temporal_memory_test.py              | yes                                   |              |                                             |
-| tests\unit\nupic\data\generators\anomalyzer_test.py              | TypeError                             | #10          |                                             |
-| tests\unit\nupic\data\generators\pattern_machine_test.py         | yes                                   |              |                                             |
-| tests\unit\nupic\data\generators\sequence_machine_test.py        | yes                                   |              |                                             |
-| tests\unit\nupic\data\aggregator_test.py                         | AssertionError                        | #11          |                                             |
-| tests\unit\nupic\data\dictutils_test.py                          | yes                                   |              |                                             |
-| tests\unit\nupic\data\fieldmeta_test.py                          | yes                                   |              |                                             |
-| tests\unit\nupic\data\file_record_stream_test.py                 | TypeError                             | #10          |                                             |
-| tests\unit\nupic\data\filters_test.py                            | yes                                   |              |                                             |
-| tests\unit\nupic\data\functionsource_test.py                     | yes                                   |              |                                             |
-| tests\unit\nupic\data\inference_shifter_test.py                  | yes                                   |              |                                             |
-| tests\unit\nupic\data\record_stream_test.py                      | TypeError                             | #10          |                                             |
-| tests\unit\nupic\data\utils_test.py                              | yes                                   |              |                                             |
-| tests\unit\nupic\docs\examples_test.py                           | ModuleNotFoundError                   | #10          |                                             |
-| tests\unit\nupic\encoders\adaptivescalar_test.py                 | TypeError                             | #13          |                                             |
-| tests\unit\nupic\encoders\category_test.py                       | yes                                   |              |                                             |
-| tests\unit\nupic\encoders\coordinate_test.py                     | yes                                   |              |                                             |
-| tests\unit\nupic\encoders\date_test.py                           | AssertionError                        | #16          |                                             |
-| tests\unit\nupic\encoders\delta_test.py                          | yes                                   |              |                                             |
-| tests\unit\nupic\encoders\geospatial_coordinate_test.py          | AssertionError                        | #17          |                                             |
-| tests\unit\nupic\encoders\logenc_test.py                         | AssertionError                        | #18          |                                             |
-| tests\unit\nupic\encoders\multi_test.py                          | AssertionError                        | #18          |                                             |
-| tests\unit\nupic\encoders\pass_through_encoder_test.py           | yes                                   |              |                                             |
-| tests\unit\nupic\encoders\random_distributed_scalar_test.py      | AssertionError                        | #18          |                                             |
-| tests\unit\nupic\encoders\scalarspace_test.py                    | yes                                   |              |                                             |
-| tests\unit\nupic\encoders\scalar_test.py                         | AssertionError                        | #18          |                                             |
-| tests\unit\nupic\encoders\sdrcategory_test.py                    | RuntimeError                          | #19          |                                             |
-| tests\unit\nupic\encoders\sparse_pass_through_encoder_test.py    | yes                                   |              |                                             |
-| tests\unit\nupic\engine\network_test.py                          | yes                                   |              |                                             | 
-| tests\unit\nupic\engine\syntactic_sugar_test.py                  | AttributeError                        | #20          |                                             |
-| tests\unit\nupic\engine\unified_py_parameter_test.py             | AttributeError                        | #20          |                                             |
-| tests\unit\nupic\frameworks\opf\common_models\cluster_params_test.py          | AttributeError     | #20 | |
-| tests\unit\nupic\frameworks\opf\htmpredictionmodel_classifier_helper_test.py  | RuntimeError       | #21 | |
-| tests\unit\nupic\frameworks\opf\htmpredictionmodel_test.py                    | | | |
-| tests\unit\nupic\frameworks\opf\opf_metrics_test.py                           | | | |
-| tests\unit\nupic\frameworks\opf\previous_value_model_test.py                  | | | |
-| tests\unit\nupic\frameworks\opf\safe_interpreter_test.py                      | | | |
-| tests\unit\nupic\frameworks\opf\two_gram_model_test.py                        | RuntimeError | #22 | |
-| tests\unit\nupic\math\lgamma_test.py                             | yes                                   |              |                                             |
-| tests\unit\nupic\math\topology_test.py                           | disabled by default                   |              |                                             |
-| tests\unit\nupic\regions\anomaly_likelihood_region_test.py       | yes                                   |              |                                             |
-| tests\unit\nupic\regions\anomaly_region_test.py                  | yes                                   |              |                                             |
-| tests\unit\nupic\regions\anomaly_region_test.py                  | yes                                   |              |                                             |
-| tests\unit\nupic\regions\knn_anomaly_classifier_region_test.py   | RuntimeError       | #23 | | |
-| tests\unit\nupic\regions\knn_classifier_region_test.py           | yes                |     | | |
-| tests\unit\nupic\regions\record_sensor_region_test.py            | AttributeError     | #20 | | |
-| tests\unit\nupic\regions\regions_spec_test.py                    | yes                |     | | |
-| tests\unit\nupic\regions\sdr_classifier_region_test.py           | AttributeError     | #20 | | |
-| tests\unit\nupic\regions\tm_region_test.py                       | yes                |     | | |
-| tests\unit\nupic\support\configuration_test.py                   | RuntimeError       | #21 | | |
-| tests\unit\nupic\support\consoleprinter_test                     | disabled           |     | | |
-| tests\unit\nupic\support\custom_configuration_test.py            | RuntimeError       | #21 | | |
-| tests\unit\nupic\support\decorators_test.py                      | yes                |     | | |
-| tests\unit\nupic\support\group_by_test.py                        | yes                |     | | |
-| tests\unit\nupic\support\object_json_test.py                     | AssertionError     | #24 | | |
+| tests/unit/nupic/data\generators\anomalyzer_test.py              | TypeError                             | #10          |                                             |
+| tests/unit/nupic/data\generators\pattern_machine_test.py         | yes                                   |              |                                             |
+| tests/unit/nupic/data\generators\sequence_machine_test.py        | yes                                   |              |                                             |
+| tests/unit/nupic/data\aggregator_test.py                         | AssertionError                        | #11          |                                             |
+| tests/unit/nupic/data\dictutils_test.py                          | yes                                   |              |                                             |
+| tests/unit/nupic/data\fieldmeta_test.py                          | yes                                   |              |                                             |
+| tests/unit/nupic/data\file_record_stream_test.py                 | TypeError                             | #10          |                                             |
+| tests/unit/nupic/data\filters_test.py                            | yes                                   |              |                                             |
+| tests/unit/nupic/data\functionsource_test.py                     | yes                                   |              |                                             |
+| tests/unit/nupic/data\inference_shifter_test.py                  | yes                                   |              |                                             |
+| tests/unit/nupic/data\record_stream_test.py                      | TypeError                             | #10          |                                             |
+| tests/unit/nupic/data\utils_test.py                              | yes                                   |              |                                             |
+| tests/unit/nupic/docs\examples_test.py                           | ModuleNotFoundError                   | #10          |                                             |
+| tests/unit/nupic/encoders\adaptivescalar_test.py                 | TypeError                             | #13          |                                             |
+| tests/unit/nupic/encoders\category_test.py                       | yes                                   |              |                                             |
+| tests/unit/nupic/encoders\coordinate_test.py                     | yes                                   |              |                                             |
+| tests/unit/nupic/encoders\date_test.py                           | AssertionError                        | #16          |                                             |
+| tests/unit/nupic/encoders\delta_test.py                          | yes                                   |              |                                             |
+| tests/unit/nupic/encoders\geospatial_coordinate_test.py          | AssertionError                        | #17          |                                             |
+| tests/unit/nupic/encoders\logenc_test.py                         | AssertionError                        | #18          |                                             |
+| tests/unit/nupic/encoders\multi_test.py                          | AssertionError                        | #18          |                                             |
+| tests/unit/nupic/encoders\pass_through_encoder_test.py           | yes                                   |              |                                             |
+| tests/unit/nupic/encoders\random_distributed_scalar_test.py      | AssertionError                        | #18          |                                             |
+| tests/unit/nupic/encoders\scalarspace_test.py                    | yes                                   |              |                                             |
+| tests/unit/nupic/encoders\scalar_test.py                         | AssertionError                        | #18          |                                             |
+| tests/unit/nupic/encoders\sdrcategory_test.py                    | RuntimeError                          | #19          |                                             |
+| tests/unit/nupic/encoders\sparse_pass_through_encoder_test.py    | yes                                   |              |                                             |
+| tests/unit/nupic/engine\network_test.py                          | yes                                   |              |                                             | 
+| tests/unit/nupic/engine\syntactic_sugar_test.py                  | AttributeError                        | #20          |                                             |
+| tests/unit/nupic/engine\unified_py_parameter_test.py             | AttributeError                        | #20          |                                             |
+| tests/unit/nupic/frameworks\opf\common_models\cluster_params_test.py          | AttributeError     | #20 | |
+| tests/unit/nupic/frameworks\opf\htmpredictionmodel_classifier_helper_test.py  | RuntimeError       | #21 | |
+| tests/unit/nupic/frameworks\opf\htmpredictionmodel_test.py                    | | | |
+| tests/unit/nupic/frameworks\opf\opf_metrics_test.py                           | | | |
+| tests/unit/nupic/frameworks\opf\previous_value_model_test.py                  | | | |
+| tests/unit/nupic/frameworks\opf\safe_interpreter_test.py                      | | | |
+| tests/unit/nupic/frameworks\opf\two_gram_model_test.py                        | RuntimeError | #22 | |
+| tests/unit/nupic/math/lgamma_test.py                             | yes                                   |              |                                             |
+| tests/unit/nupic/math/topology_test.py                           | disabled by default                   |              |                                             |
+| tests/unit/nupic/regions/anomaly_likelihood_region_test.py       | yes                                   |              |                                             |
+| tests/unit/nupic/regions/anomaly_region_test.py                  | yes                                   |              |                                             |
+| tests/unit/nupic/regions/anomaly_region_test.py                  | yes                                   |              |                                             |
+| tests/unit/nupic/regions/knn_anomaly_classifier_region_test.py   | RuntimeError       | #23 | | |
+| tests/unit/nupic/regions/knn_classifier_region_test.py           | yes                |     | | |
+| tests/unit/nupic/regions/record_sensor_region_test.py            | AttributeError     | #20 | | |
+| tests/unit/nupic/regions/regions_spec_test.py                    | yes                |     | | |
+| tests/unit/nupic/regions/sdr_classifier_region_test.py           | AttributeError     | #20 | | |
+| tests/unit/nupic/regions/tm_region_test.py                       | yes                |     | | |
+| tests/unit/nupic/support/configuration_test.py                   | RuntimeError       | #21 | | |
+| tests/unit/nupic/support/consoleprinter_test                     | disabled           |     | | |
+| tests/unit/nupic/support/custom_configuration_test.py            | RuntimeError       | #21 | | |
+| tests/unit/nupic/support/decorators_test.py                      | yes                |     | | |
+| tests/unit/nupic/support/group_by_test.py                        | yes                |     | | |
+| tests/unit/nupic/support/object_json_test.py                     | AssertionError     | #24 | | |
 
 
 
@@ -196,6 +196,10 @@ with open('test.bin', 'wb') as f:
   pickle.dump(a, f)
 
 
+unittest doesn't have assertItemsEqual()
+* use assertCountEqual() instead
+
+  
 
 # Notes from dealing with pybind11
 
@@ -298,3 +302,4 @@ catch (...)
     std::cout << "Unexpected error." << std::endl;
 }
 ```
+

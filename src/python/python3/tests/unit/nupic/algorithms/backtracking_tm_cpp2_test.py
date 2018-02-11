@@ -137,7 +137,7 @@ class BacktrackingTMCPP2Test(unittest.TestCase):
                                             activity=activity)
     for r in range(numRepetitions):
       for i in range(sequence.nRows()):
-
+        
         #if i > 11:
         #  setVerbosity(6, tm, tmPy)
 

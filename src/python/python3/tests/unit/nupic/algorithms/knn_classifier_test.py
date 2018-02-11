@@ -351,25 +351,25 @@ class KNNClassifierTest(unittest.TestCase):
     self.assertEqual(classifier.getPartitionId(4), 413)
 
     # Test getPatternIndicesWithPartitionId
-    self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(433),
+    self.assertCountEqual(classifier.getPatternIndicesWithPartitionId(433),
                           [0, 3])
-    self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(666),
+    self.assertCountEqual(classifier.getPatternIndicesWithPartitionId(666),
                           [])
-    self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(413),
+    self.assertCountEqual(classifier.getPatternIndicesWithPartitionId(413),
                           [4])
 
     self.assertEqual(classifier.getNumPartitionIds(), 3)
 
     # Check that the full set of partition ids is what we expect
-    self.assertItemsEqual(classifier.getPartitionIdList(),
+    self.assertCountEqual(classifier.getPartitionIdList(),
                           [433, 213, np.inf, 433, 413])
-    self.assertItemsEqual(classifier.getPartitionIdKeys(), [433, 413, 213])
+    self.assertCountEqual(classifier.getPartitionIdKeys(), [433, 413, 213])
 
     # Remove two rows - all indices shift down
     self.assertEqual(classifier._removeRows([0,2]), 2)
-    self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(433),
+    self.assertCountEqual(classifier.getPatternIndicesWithPartitionId(433),
                           [1])
-    self.assertItemsEqual(classifier.getPatternIndicesWithPartitionId(413),
+    self.assertCountEqual(classifier.getPatternIndicesWithPartitionId(413),
                           [2])
 
     # Remove another row and check number of partitions have decreased
@@ -377,8 +377,8 @@ class KNNClassifierTest(unittest.TestCase):
     self.assertEqual(classifier.getNumPartitionIds(), 2)
 
     # Check that the full set of partition ids is what we expect
-    self.assertItemsEqual(classifier.getPartitionIdList(), [433, 413])
-    self.assertItemsEqual(classifier.getPartitionIdKeys(), [433, 413])
+    self.assertCountEqual(classifier.getPartitionIdList(), [433, 413])
+    self.assertCountEqual(classifier.getPartitionIdKeys(), [433, 413])
 
 
 

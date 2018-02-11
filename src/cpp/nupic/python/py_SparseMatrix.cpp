@@ -566,18 +566,18 @@ namespace nupic_ext
             sm.setRowFromSparse(row, get_it(ind), get_end(ind), get_it(nz));
         });
 
-        sm.def("addRow", [](SparseMatrix32_t self, py::array_t<nupic::Real32>& row)
+        sm.def("addRow", [](SparseMatrix32_t& self, py::array_t<nupic::Real32>& row)
         {
             self.addRow(get_it(row));
         });
 
-        sm.def("addRowNZ", [](SparseMatrix32_t self, py::array_t<nupic::UInt32>& ind, py::array_t<nupic::Real32>& nz, bool zero_permissive)
+        sm.def("addRowNZ", [](SparseMatrix32_t& self, py::array_t<nupic::UInt32>& ind, py::array_t<nupic::Real32>& nz, bool zero_permissive)
         {
             self.addRow(get_it(ind), get_end(ind), get_it(nz), zero_permissive);
         }, "", py::arg("ind"), py::arg("nz"), py::arg("zero_permissive") = false);
 
 
-        sm.def("rowSums", [](const SparseMatrix32_t self)
+        sm.def("rowSums", [](const SparseMatrix32_t& self)
         {
             py::array_t<nupic::Real32> m(self.nRows());
 
@@ -1053,7 +1053,7 @@ namespace nupic_ext
         });
 
 
-        sm.def("nNonZerosPerCol", [](const SparseMatrix32_t self)
+        sm.def("nNonZerosPerCol", [](const SparseMatrix32_t& self)
         {
             py::array_t<nupic::UInt32> x(self.nCols());
 
@@ -2023,7 +2023,7 @@ namespace nupic_ext
 
         //////////////////////
 
-        sm.def("initializeWithFixedNNZR", [](SparseMatrix32_t self, nupic::UInt32 nnzr, nupic::Real32 v, nupic::UInt32 mode, nupic::UInt32 seed)
+        sm.def("initializeWithFixedNNZR", [](SparseMatrix32_t& self, nupic::UInt32 nnzr, nupic::Real32 v, nupic::UInt32 mode, nupic::UInt32 seed)
         {
             self.initializeWithFixedNNZR(nnzr, v, mode, seed);
         }, "Initialize a sparse matrix with a fixed number of non-zeros on each row."
