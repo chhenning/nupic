@@ -17,14 +17,14 @@ namespace nupic_ext
     {
         py::class_<SpatialPooler> py_SpatialPooler(m, "SpatialPooler");
 
-        // default constructor
-        py_SpatialPooler.def(py::init<>([]() 
-        {
-            vector<UInt> inputDimensions = { 32, 32 };
-            vector<UInt> columnDimensions = { 64, 64 };
+        //// default constructor
+        //py_SpatialPooler.def(py::init<>([]() 
+        //{
+        //    vector<UInt> inputDimensions = { 32, 32 };
+        //    vector<UInt> columnDimensions = { 64, 64 };
 
-            return SpatialPooler(inputDimensions, columnDimensions);
-        }));
+        //    return SpatialPooler(inputDimensions, columnDimensions);
+        //}));
 
         py_SpatialPooler.def(
             py::init<vector<UInt>
@@ -44,13 +44,13 @@ namespace nupic_ext
             , Int
             , UInt
             , bool>()
-            , py::arg("inputDimensions")
-            , py::arg("columnDimensions")
+            , py::arg("inputDimensions") = vector<UInt>({ 32, 32 })
+            , py::arg("columnDimensions") = vector<UInt>({ 64, 64 })
             , py::arg("potentialRadius") = 16
             , py::arg("potentialPct") = 0.5
             , py::arg("globalInhibition") = false
             , py::arg("localAreaDensity") = -1.0
-            , py::arg("numActiveColumnsPerInhArea") = 10.0
+            , py::arg("numActiveColumnsPerInhArea") = 10
             , py::arg("stimulusThreshold") = 0
             , py::arg("synPermInactiveDec") = 0.01
             , py::arg("synPermActiveInc") = 0.1

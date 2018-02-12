@@ -107,7 +107,7 @@ class TestSPFrequency(unittest.TestCase):
     spImpl = SpatialPooler(
                            columnDimensions=(columnDimensions, 1),
                            inputDimensions=(1, n),
-                           potentialRadius=n/2,
+                           potentialRadius=n//2,
                            numActiveColumnsPerInhArea=numActiveColumnsPerInhArea,
                            spVerbosity=spVerbosity,
                            stimulusThreshold=stimulusThreshold,
