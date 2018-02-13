@@ -199,7 +199,18 @@ with open('test.bin', 'wb') as f:
 unittest doesn't have assertItemsEqual()
 * use assertCountEqual() instead
 
-  
+
+self.assertIsInstance(value, (type(None), bytes))
+to
+self.assertIsInstance(value, (type(None), str))
+
+checking for int on a numpy integer does not work:
+isinstance(numColumns, int)
+to
+isinstance(numColumns, numpy.integer)
+
+
+
 
 # Notes from dealing with pybind11
 

@@ -55,7 +55,7 @@ namespace nupic_ext
             , py::arg("synPermInactiveDec") = 0.01
             , py::arg("synPermActiveInc") = 0.1
             , py::arg("synPermConnected") = 0.1
-            , py::arg("minPctOverlapDutyCycles") = 0.001
+            , py::arg("minPctOverlapDutyCycle") = 0.001
             , py::arg("dutyCyclePeriod") = 1000
             , py::arg("boostStrength") = 0.0
             , py::arg("seed") = -1
