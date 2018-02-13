@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{cc4a65d8-0db3-4e12-bdef-ce4fc6730ef1}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>algorithms\sdr_classifier_test.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>Global|PythonCore|2.7</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="algorithms\anomaly_likelihood_jeff_test.py" />
+    <Compile Include="algorithms\anomaly_likelihood_test.py" />
+    <Compile Include="algorithms\anomaly_test.py" />
+    <Compile Include="algorithms\backtracking_tm_constant_test.py" />
+    <Compile Include="algorithms\backtracking_tm_cpp2_test.py" />
+    <Compile Include="algorithms\backtracking_tm_cpp_test.py" />
+    <Compile Include="algorithms\backtracking_tm_test.py" />
+    <Compile Include="algorithms\connections_test.py" />
+    <Compile Include="algorithms\inhibition_object_test.py" />
+    <Compile Include="algorithms\knn_classifier_test.py" />
+    <Compile Include="algorithms\monitor_mixin\metric_test.py" />
+    <Compile Include="algorithms\monitor_mixin\trace_test.py" />
+    <Compile Include="algorithms\monitor_mixin\__init__.py" />
+    <Compile Include="algorithms\sdr_classifier_test.py" />
+    <Compile Include="algorithms\spatial_pooler_boost_test.py" />
+    <Compile Include="algorithms\spatial_pooler_compatability_test.py" />
+    <Compile Include="algorithms\spatial_pooler_compute_test.py" />
+    <Compile Include="algorithms\spatial_pooler_cpp_api_test.py" />
+    <Compile Include="algorithms\spatial_pooler_cpp_unit_test.py" />
+    <Compile Include="algorithms\spatial_pooler_py_api_test.py" />
+    <Compile Include="algorithms\spatial_pooler_unit_test.py" />
+    <Compile Include="algorithms\sp_learn_inference_test.py" />
+    <Compile Include="algorithms\sp_overlap_test.py" />
+    <Compile Include="algorithms\temporal_memory_test.py" />
+    <Compile Include="algorithms\__init__.py" />
+    <Compile Include="data\aggregator_test.py" />
+    <Compile Include="data\dictutils_test.py" />
+    <Compile Include="data\fieldmeta_test.py" />
+    <Compile Include="data\file_record_stream_test.py" />
+    <Compile Include="data\filters_test.py" />
+    <Compile Include="data\functionsource_test.py" />
+    <Compile Include="data\generators\anomalyzer_test.py" />
+    <Compile Include="data\generators\pattern_machine_test.py" />
+    <Compile Include="data\generators\sequence_machine_test.py" />
+    <Compile Include="data\generators\__init__.py" />
+    <Compile Include="data\inference_shifter_test.py" />
+    <Compile Include="data\record_stream_test.py" />
+    <Compile Include="data\utils_test.py" />
+    <Compile Include="data\__init__.py" />
+    <Compile Include="docs\examples_test.py" />
+    <Compile Include="docs\__init__.py" />
+    <Compile Include="encoders\adaptivescalar_test.py" />
+    <Compile Include="encoders\category_test.py" />
+    <Compile Include="encoders\coordinate_test.py" />
+    <Compile Include="encoders\date_test.py" />
+    <Compile Include="encoders\delta_test.py" />
+    <Compile Include="encoders\geospatial_coordinate_test.py" />
+    <Compile Include="encoders\logenc_test.py" />
+    <Compile Include="encoders\multi_test.py" />
+    <Compile Include="encoders\pass_through_encoder_test.py" />
+    <Compile Include="encoders\random_distributed_scalar_test.py" />
+    <Compile Include="encoders\scalarspace_test.py" />
+    <Compile Include="encoders\scalar_test.py" />
+    <Compile Include="encoders\sdrcategory_test.py" />
+    <Compile Include="encoders\sparse_pass_through_encoder_test.py" />
+    <Compile Include="encoders\__init__.py" />
+    <Compile Include="engine\network_test.py" />
+    <Compile Include="engine\syntactic_sugar_test.py" />
+    <Compile Include="engine\unified_py_parameter_test.py" />
+    <Compile Include="engine\__init__.py" />
+    <Compile Include="frameworks\opf\common_models\cluster_params_test.py" />
+    <Compile Include="frameworks\opf\common_models\__init__.py" />
+    <Compile Include="frameworks\opf\htmpredictionmodel_classifier_helper_test.py" />
+    <Compile Include="frameworks\opf\htmpredictionmodel_test.py" />
+    <Compile Include="frameworks\opf\opf_metrics_test.py" />
+    <Compile Include="frameworks\opf\previous_value_model_test.py" />
+    <Compile Include="frameworks\opf\safe_interpreter_test.py" />
+    <Compile Include="frameworks\opf\two_gram_model_test.py" />
+    <Compile Include="frameworks\opf\__init__.py" />
+    <Compile Include="frameworks\__init__.py" />
+    <Compile Include="math\lgamma_test.py" />
+    <Compile Include="math\topology_test.py" />
+    <Compile Include="math\__init__.py" />
+    <Compile Include="regions\anomaly_likelihood_region_test.py" />
+    <Compile Include="regions\anomaly_region_test.py" />
+    <Compile Include="regions\knn_anomaly_classifier_region_test.py" />
+    <Compile Include="regions\knn_classifier_region_test.py" />
+    <Compile Include="regions\record_sensor_region_test.py" />
+    <Compile Include="regions\regions_spec_test.py" />
+    <Compile Include="regions\sdr_classifier_region_test.py" />
+    <Compile Include="regions\tm_region_test.py" />
+    <Compile Include="regions\__init__.py" />
+    <Compile Include="research\__init__.py" />
+    <Compile Include="serializable_test.py" />
+    <Compile Include="support\configuration_test.py" />
+    <Compile Include="support\consoleprinter_test\consoleprinter_test.py" />
+    <Compile Include="support\custom_configuration_test.py" />
+    <Compile Include="support\decorators_test.py" />
+    <Compile Include="support\group_by_test.py" />
+    <Compile Include="support\object_json_test.py" />
+    <Compile Include="support\__init__.py" />
+    <Compile Include="utils_test.py" />
+    <Compile Include="__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="support\consoleprinter_test\consoleprinter_output.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="algorithms" />
+    <Folder Include="algorithms\monitor_mixin" />
+    <Folder Include="data" />
+    <Folder Include="data\generators" />
+    <Folder Include="docs" />
+    <Folder Include="encoders" />
+    <Folder Include="engine" />
+    <Folder Include="frameworks" />
+    <Folder Include="frameworks\opf" />
+    <Folder Include="frameworks\opf\common_models" />
+    <Folder Include="math" />
+    <Folder Include="regions" />
+    <Folder Include="research" />
+    <Folder Include="support" />
+    <Folder Include="support\consoleprinter_test" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|2.7" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

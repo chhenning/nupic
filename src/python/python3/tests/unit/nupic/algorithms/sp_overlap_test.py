@@ -173,23 +173,16 @@ class TestSPFrequency(unittest.TestCase):
     for z in coincs:
       summ.append(sum([len(z[1].intersection(y[1])) for y in reUsedCoincs]))
 
-    zeros = len([x for x in summ if x==0])
-    factor = max(summ)*len(summ)/sum(summ)
-    if len(reUsed) < 10:
-      self.assertLess(factor, 41,
-                      "\nComputed factor: %d\nExpected Less than %d" % (
-                          factor, 41))
-      self.assertLess(zeros, 0.99*len(summ),
-                      "\nComputed zeros: %d\nExpected Less than %d" % (
-                          zeros, 0.99*len(summ)))
+    if(len([x for x in summ if x!=0]) > 0):
+      zeros = len([x for x in summ if x==0])
+      factor = max(summ)*len(summ)/sum(summ)
+      if len(reUsed) < 10:
+        self.assertLess(factor, 41, "\nComputed factor: %d\nExpected Less than %d" % (factor, 41))
+        self.assertLess(zeros, 0.99*len(summ), "\nComputed zeros: %d\nExpected Less than %d" % (zeros, 0.99*len(summ)))
 
-    else:
-      self.assertLess(factor, 8,
-                      "\nComputed factor: %d\nExpected Less than %d" % (
-                          factor, 8))
-      self.assertLess(zeros, 12,
-                      "\nComputed zeros: %d\nExpected Less than %d" % (
-                          zeros, 12))
+      else:
+        self.assertLess(factor, 8,"\nComputed factor: %d\nExpected Less than %d" % (factor, 8))
+        self.assertLess(zeros, 12,"\nComputed zeros: %d\nExpected Less than %d" % (zeros, 12))
 
 
 def hammingDistance(s1, s2):

@@ -246,7 +246,7 @@ class SDRClassifierTest(unittest.TestCase):
                                               "actValue": None},
                               learn=True, infer=True)
     for value in predictResult["actualValues"]:
-      self.assertIsInstance(value, (type(None), bytes))
+      self.assertIsInstance(value, (type(None), str))
 
 
   def testComputeCategory2(self):

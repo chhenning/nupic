@@ -1,31 +1,38 @@
+import pickle as pickle
+import random
+import tempfile
+import types
 import unittest
-import random as rnd
-import time
 
 import numpy
 
-from nupic.bindings.math import GetNTAReal
-from nupic.encoders import scalar
+from nupic.algorithms.sdr_classifier import SDRClassifier
 
-from nupic.bindings.algorithms import SpatialPooler
+class SDRClassifierTest(unittest.TestCase):
+  """Unit tests for SDRClassifier class."""
 
-class TestSPFrequency(unittest.TestCase):
 
-  def testMe(self):
-    s = 5
+  def setUp(self):
+    self._classifier = SDRClassifier
 
-    # Instantiate Spatial Pooler
-    spImpl = SpatialPooler(
-                           columnDimensions=(42, 1),
-                           inputDimensions=(1, 32),
-                           potentialRadius=32//2,
-                           numActiveColumnsPerInhArea=40,
-                           spVerbosity=10,
-                           stimulusThreshold=0,
-                           potentialPct=0.5,
-                           seed=42,
-                           globalInhibition=True,
-                           )
+  def testComputeCategory(self):
+    c = self._classifier([1], 0.1, 0.1, 0)
+    c.compute(recordNum=0, patternNZ=[1, 5, 9],
+              classification={"bucketIdx": 4, "actValue": "D"},
+              learn=True, infer=True)
+    result = c.compute(recordNum=1, patternNZ=[1, 5, 9],
+                       classification={"bucketIdx": 4, "actValue": "D"},
+                       learn=True, infer=True)
+    self.assertSetEqual(set(result.keys()), set(("actualValues", 1)))
+    self.assertEqual(result["actualValues"][4], "D")
+
+    predictResult = c.compute(recordNum=2, patternNZ=[1, 5, 9],
+                              classification={"bucketIdx": 5,
+                                              "actValue": None},
+                              learn=True, infer=True)
+    for value in predictResult["actualValues"]:
+      self.assertIsInstance(value, (type(None), str))
+
 
 if __name__ == "__main__":
   unittest.main()
