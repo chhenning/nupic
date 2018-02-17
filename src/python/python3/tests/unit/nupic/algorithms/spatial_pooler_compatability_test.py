@@ -219,14 +219,14 @@ class SpatialPoolerCompatibilityTest(unittest.TestCase):
     inputMatrix = (
       randomState.rand(numRecords,numInputs) > threshold).astype(uintType)
 
-    for i in range(numRecords/2):
+    for i in range(numRecords//2):
       activeArray = numpy.zeros(numColumns).astype(uintType)
       inputVector = inputMatrix[i,:]
       learn = (randomState.rand() > 0.5)
       sp1.compute(inputVector, learn, activeArray)
 
     sp2 = pickle.loads(pickle.dumps(sp1))
-    for i in range(numRecords/2+1,numRecords):
+    for i in range(numRecords//2+1,numRecords):
       activeArray1 = numpy.zeros(numColumns).astype(uintType)
       activeArray2 = numpy.zeros(numColumns).astype(uintType)
       inputVector = inputMatrix[i,:]

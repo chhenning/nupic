@@ -47,7 +47,7 @@ def coordinatesFromIndex(index, dimensions):
   shifted = index
   for i in range(len(dimensions) - 1, 0, -1):
     coordinates[i] = shifted % dimensions[i]
-    shifted = shifted / dimensions[i]
+    shifted = shifted // dimensions[i]
 
   coordinates[0] = shifted
 

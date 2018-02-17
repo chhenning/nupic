@@ -13,6 +13,9 @@ using namespace nupic::algorithms::spatial_pooler;
 
 namespace nupic_ext
 {
+
+
+
     void init_Spatial_Pooler(py::module& m)
     {
         py::class_<SpatialPooler> py_SpatialPooler(m, "SpatialPooler");
@@ -62,6 +65,57 @@ namespace nupic_ext
             , py::arg("spVerbosity") = 0
             , py::arg("wrapAround") = true
         );
+
+
+        
+        py_SpatialPooler.def("getColumnDimensions", &SpatialPooler::getColumnDimensions);
+        py_SpatialPooler.def("getInputDimensions", &SpatialPooler::getInputDimensions);
+        py_SpatialPooler.def("getNumColumns", &SpatialPooler::getNumColumns);
+        py_SpatialPooler.def("getNumInputs", &SpatialPooler::getNumInputs);
+        py_SpatialPooler.def("getPotentialRadius", &SpatialPooler::getPotentialRadius);
+        py_SpatialPooler.def("setPotentialRadius", &SpatialPooler::setPotentialRadius);
+        py_SpatialPooler.def("getPotentialPct", &SpatialPooler::getPotentialPct);
+        py_SpatialPooler.def("setPotentialPct", &SpatialPooler::setPotentialPct);
+        py_SpatialPooler.def("getGlobalInhibition", &SpatialPooler::getGlobalInhibition);
+        py_SpatialPooler.def("setGlobalInhibition", &SpatialPooler::setGlobalInhibition);
+
+
+        py_SpatialPooler.def("getNumActiveColumnsPerInhArea", &SpatialPooler::getNumActiveColumnsPerInhArea);
+        py_SpatialPooler.def("setNumActiveColumnsPerInhArea", &SpatialPooler::setNumActiveColumnsPerInhArea);
+        py_SpatialPooler.def("getLocalAreaDensity", &SpatialPooler::getLocalAreaDensity);
+        py_SpatialPooler.def("setLocalAreaDensity", &SpatialPooler::setLocalAreaDensity);
+        py_SpatialPooler.def("getStimulusThreshold", &SpatialPooler::getStimulusThreshold);
+        py_SpatialPooler.def("setStimulusThreshold", &SpatialPooler::setStimulusThreshold);
+        py_SpatialPooler.def("getInhibitionRadius", &SpatialPooler::getInhibitionRadius);
+        py_SpatialPooler.def("setInhibitionRadius", &SpatialPooler::setInhibitionRadius);
+        py_SpatialPooler.def("getDutyCyclePeriod", &SpatialPooler::getDutyCyclePeriod);
+        py_SpatialPooler.def("setDutyCyclePeriod", &SpatialPooler::setDutyCyclePeriod);
+        py_SpatialPooler.def("getBoostStrength", &SpatialPooler::getBoostStrength);
+        py_SpatialPooler.def("setBoostStrength", &SpatialPooler::setBoostStrength);
+        py_SpatialPooler.def("getIterationNum", &SpatialPooler::getIterationNum);
+        py_SpatialPooler.def("setIterationNum", &SpatialPooler::setIterationNum);
+        py_SpatialPooler.def("getIterationLearnNum", &SpatialPooler::getIterationLearnNum);
+        py_SpatialPooler.def("setIterationLearnNum", &SpatialPooler::setIterationLearnNum);
+        py_SpatialPooler.def("getSpVerbosity", &SpatialPooler::getSpVerbosity);
+        py_SpatialPooler.def("setSpVerbosity", &SpatialPooler::setSpVerbosity);
+        py_SpatialPooler.def("getWrapAround", &SpatialPooler::getWrapAround);
+        py_SpatialPooler.def("setWrapAround", &SpatialPooler::setWrapAround);
+        py_SpatialPooler.def("getUpdatePeriod", &SpatialPooler::getUpdatePeriod);
+        py_SpatialPooler.def("setUpdatePeriod", &SpatialPooler::setUpdatePeriod);
+        py_SpatialPooler.def("getSynPermTrimThreshold", &SpatialPooler::getSynPermTrimThreshold);
+        py_SpatialPooler.def("setSynPermTrimThreshold", &SpatialPooler::setSynPermTrimThreshold);
+        py_SpatialPooler.def("getSynPermActiveInc", &SpatialPooler::getSynPermActiveInc);
+        py_SpatialPooler.def("setSynPermActiveInc", &SpatialPooler::setSynPermActiveInc);
+        py_SpatialPooler.def("getSynPermInactiveDec", &SpatialPooler::getSynPermInactiveDec);
+        py_SpatialPooler.def("setSynPermInactiveDec", &SpatialPooler::setSynPermInactiveDec);
+        py_SpatialPooler.def("getSynPermBelowStimulusInc", &SpatialPooler::getSynPermBelowStimulusInc);
+        py_SpatialPooler.def("setSynPermBelowStimulusInc", &SpatialPooler::setSynPermBelowStimulusInc);
+        py_SpatialPooler.def("getSynPermConnected", &SpatialPooler::getSynPermConnected);
+        py_SpatialPooler.def("setSynPermConnected", &SpatialPooler::setSynPermConnected);
+        py_SpatialPooler.def("getSynPermMax", &SpatialPooler::getSynPermMax);
+        py_SpatialPooler.def("setSynPermMax", &SpatialPooler::setSynPermMax);
+        py_SpatialPooler.def("getMinPctOverlapDutyCycles", &SpatialPooler::getMinPctOverlapDutyCycles);
+        py_SpatialPooler.def("setMinPctOverlapDutyCycles", &SpatialPooler::setMinPctOverlapDutyCycles);
 
         // loadFromString
         py_SpatialPooler.def("loadFromString", [](SpatialPooler& self, const std::string& inString)
@@ -204,8 +258,11 @@ namespace nupic_ext
             return py::array_t<UInt>({ overlapVector.size() }, overlapVector.data());
         });
 
-        // inhibitColumns_
-        py_SpatialPooler.def("inhibitColumns_", [](SpatialPooler& self, py::array_t<Real>& overlaps)
+
+        ////////////////////
+        // inhibitColumns
+
+        auto inhibitColumns_func = [](SpatialPooler& self, py::array_t<Real>& overlaps)
         {
             std::vector<nupic::Real> overlapsVector(get_it(overlaps), get_end(overlaps));
 
@@ -214,7 +271,12 @@ namespace nupic_ext
             self.inhibitColumns_(overlapsVector, activeColumnsVector);
 
             return py::array_t<UInt>({ activeColumnsVector.size() }, activeColumnsVector.data());
-        });
+        };
+
+        py_SpatialPooler.def("inhibitColumns_", inhibitColumns_func);
+        py_SpatialPooler.def("_inhibitColumns", inhibitColumns_func);
+
+
 
         // updatePermanencesForColumn_
         py_SpatialPooler.def("updatePermanencesForColumn_", [](SpatialPooler& self, py::array_t<Real>& perm, UInt column, bool raisePerm)
@@ -234,6 +296,30 @@ namespace nupic_ext
 
         // getIterationLearnNum
         py_SpatialPooler.def("getIterationLearnNum", &SpatialPooler::getIterationLearnNum);
+
+
+        // pickle
+
+        py_SpatialPooler.def(py::pickle(
+            [](const SpatialPooler& sp)
+        {
+            std::stringstream ss;
+
+            sp.save(ss);
+
+            return ss.str();
+        },
+            [](std::string& s)
+        {
+            std::istringstream ss(s);
+            SpatialPooler sp;
+            sp.load(ss);
+
+            return sp;
+        }));
+
+
+
 
     }
 } // namespace nupix_ext

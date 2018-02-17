@@ -559,6 +559,17 @@ namespace nupic_ext
         }, "", py::arg("offset") = 0);
 
 
+        /////////////////////
+        sbm.def("getRow", [](const SM_01_32_32_t& sbm, nupic::UInt32 row)
+        {
+            py::array_t<nupic::UInt32> x({ sbm.nCols() });
+            sbm.getRow(row, get_it(x), get_end(x));
+
+            return x;
+        });
+
+
+
 		///////////////////////////
 		// transpose
 		//////////////////////

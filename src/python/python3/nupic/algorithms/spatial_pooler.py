@@ -1406,7 +1406,7 @@ class SpatialPooler(Serializable):
     numPotential = int(columnInputs.size * self._potentialPct + 0.5)
     selectedInputs = numpy.empty(numPotential, dtype=uintType)
     self._random.sample(columnInputs, selectedInputs)
-
+    
     potential = numpy.zeros(self._numInputs, dtype=uintType)
     potential[selectedInputs] = 1
 

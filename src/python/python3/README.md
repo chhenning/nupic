@@ -45,8 +45,8 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/sdr_classifier_test.py               | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/sp_learn_inference.py                | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/sp_overlap_test.py                   | yes                                   |              |                                             |
-| tests/unit/nupic/algorithms/spatial_pooler_boost_test.py         | InvalidSPParamValueError              | #8           |                                             |
-| tests/unit/nupic/algorithms/spatial_pooler_compatability_test.py | cpp argument errors                   | #9           |                                             |
+| tests/unit/nupic/algorithms/spatial_pooler_boost_test.py         | yes                                   |              |                                             |
+| tests/unit/nupic/algorithms/spatial_pooler_compatability_test.py | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_compute_test.py       | todo                                  |              |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_cpp_api_test.py       | todo                                  |              |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_cpp_unit_test.py      | todo                                  |              |                                             |
@@ -211,6 +211,13 @@ isinstance(numColumns, numpy.integer)
 
 
 
+File "D:\nupic\src\python\python3\nupic\algorithms\spatial_pooler.py", line 64, in __getitem__
+return super(_SparseMatrixCorticalColumnAdapter, self).getRow(columnIndex)
+AttributeError: 'super' object has no attribute 'getRow'
+Solution: SparseBinaryMatrix python interface didn't define getRow() function
+
+
+
 
 # Notes from dealing with pybind11
 
@@ -313,4 +320,3 @@ catch (...)
     std::cout << "Unexpected error." << std::endl;
 }
 ```
-

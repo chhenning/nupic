@@ -3,25 +3,21 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{89b7d929-645d-4721-b789-f0adb71cf8ab}</ProjectGuid>
+    <ProjectGuid>{7da1c1b9-b5af-4522-9afe-3758298d9711}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>test.py</StartupFile>
-    <SearchPath>nupic;..\python3</SearchPath>
+    <StartupFile>tests\chh_test.py</StartupFile>
+    <SearchPath>..\python27</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <InterpreterId>Global|PythonCore|3.6</InterpreterId>
+    <InterpreterId>Global|PythonCore|2.7</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <PropertyGroup>
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Content Include="2to3 output.txt" />
-    <Content Include="tests\unit\nupic\algorithms\pytest_out.txt" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="examples\bindings\sparse_matrix_how_to.py" />
     <Compile Include="examples\bindings\svm_how_to.py" />
@@ -123,6 +119,7 @@
     <Compile Include="examples\opf\experiments\template\base\descriptionTemplate.py" />
     <Compile Include="examples\opf\simple_server\demo.py" />
     <Compile Include="examples\opf\simple_server\model_params.py" />
+    <Compile Include="examples\opf\tools\data_generator.pyw" />
     <Compile Include="examples\opf\tools\MirrorImageViz\mirrorImageViz.py" />
     <Compile Include="examples\opf\tools\sp_plotter.py" />
     <Compile Include="examples\opf\tools\testDiagnostics.py" />
@@ -150,7 +147,6 @@
     <Compile Include="examples\prediction\experiments\generated_data\description.py" />
     <Compile Include="examples\prediction\experiments\inspect_test.py" />
     <Compile Include="examples\sp\hello_sp.py" />
-    <Compile Include="examples\sp\remove_me.py" />
     <Compile Include="examples\sp\sp_tutorial.py" />
     <Compile Include="examples\swarm\test_db.py" />
     <Compile Include="examples\tm\hello_tm.py" />
@@ -343,22 +339,7 @@
     <Compile Include="scripts\run_swarm.py" />
     <Compile Include="scripts\temporal_memory_performance_benchmark.py" />
     <Compile Include="setup.py" />
-    <Compile Include="test.py" />
-    <Compile Include="tests\bindings\algorithms\cells4_test.py" />
-    <Compile Include="tests\bindings\algorithms\svm_test.py" />
-    <Compile Include="tests\bindings\array_algorithms_test.py" />
-    <Compile Include="tests\bindings\cast_mode_test.py" />
-    <Compile Include="tests\bindings\check_test.py" />
-    <Compile Include="tests\bindings\connections_test.py" />
-    <Compile Include="tests\bindings\network_test.py" />
-    <Compile Include="tests\bindings\nupic_random_test.py" />
-    <Compile Include="tests\bindings\pyregion_test.py" />
-    <Compile Include="tests\bindings\segment_sparse_matrix_test.py" />
-    <Compile Include="tests\bindings\sparse_binary_matrix_test.py" />
-    <Compile Include="tests\bindings\sparse_matrix_test.py" />
-    <Compile Include="tests\bindings\temporal_memory_test.py" />
-    <Compile Include="tests\bindings\__init__.py" />
-    <Compile Include="tests\chhenning\test.py" />
+    <Compile Include="tests\chh_test.py" />
     <Compile Include="tests\external\asteval_test.py" />
     <Compile Include="tests\external\testfixture_test.py" />
     <Compile Include="tests\external\__init__.py" />
@@ -547,6 +528,27 @@
     <Compile Include="tests\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="examples\bindings\readme.txt" />
+    <Content Include="examples\opf\clients\hotgym\anomaly\img\hotgym_anomaly1.png" />
+    <Content Include="examples\opf\clients\hotgym\anomaly\img\hotgym_anomaly2.png" />
+    <Content Include="examples\opf\clients\hotgym\anomaly\img\hotgym_anomaly3.png" />
+    <Content Include="examples\opf\clients\hotgym\anomaly\img\hotgym_anomaly4.png" />
+    <Content Include="examples\opf\clients\hotgym\anomaly\img\hotgym_anomaly5.png" />
+    <Content Include="examples\opf\experiments\params\successful_experiments.txt" />
+    <Content Include="examples\prediction\category_prediction\20748.txt" />
+    <Content Include="examples\prediction\category_prediction\stopwords.txt" />
+    <Content Include="nupic\datafiles\extra\firstOrder\categories.txt" />
+    <Content Include="nupic\datafiles\extra\gym\raw\README.txt" />
+    <Content Include="nupic\datafiles\extra\hotgym\raw\README.txt" />
+    <Content Include="tests\integration\nupic\engine\data\vectortestdata.txt" />
+    <Content Include="tests\integration\nupic\engine\data\vectortestdata2.txt" />
+    <Content Include="tests\testmfsnkw.txt" />
+    <Content Include="tests\testnyv04p.txt" />
+    <Content Include="tests\testpps0bt.txt" />
+    <Content Include="tests\tests_egmk.txt" />
+    <Content Include="tests\unit\nupic\support\consoleprinter_test\consoleprinter_output.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="examples\" />
     <Folder Include="examples\bindings" />
     <Folder Include="examples\network" />
@@ -556,6 +558,7 @@
     <Folder Include="examples\opf\clients\cpu" />
     <Folder Include="examples\opf\clients\hotgym\" />
     <Folder Include="examples\opf\clients\hotgym\anomaly" />
+    <Folder Include="examples\opf\clients\hotgym\anomaly\img" />
     <Folder Include="examples\opf\clients\hotgym\anomaly\one_gym" />
     <Folder Include="examples\opf\clients\hotgym\anomaly\one_gym\model_params" />
     <Folder Include="examples\opf\clients\hotgym\prediction\" />
@@ -666,7 +669,7 @@
     <Folder Include="nupic\database" />
     <Folder Include="nupic\datafiles" />
     <Folder Include="nupic\datafiles\extra\" />
-    <Folder Include="nupic\datafiles\extra\firstOrder\" />
+    <Folder Include="nupic\datafiles\extra\firstOrder" />
     <Folder Include="nupic\datafiles\extra\firstOrder\raw" />
     <Folder Include="nupic\datafiles\extra\generated" />
     <Folder Include="nupic\datafiles\extra\gym\" />
@@ -696,9 +699,6 @@
     <Folder Include="scripts" />
     <Folder Include="scripts\profiling" />
     <Folder Include="tests" />
-    <Folder Include="tests\bindings\" />
-    <Folder Include="tests\bindings\algorithms\" />
-    <Folder Include="tests\chhenning\" />
     <Folder Include="tests\external" />
     <Folder Include="tests\integration" />
     <Folder Include="tests\integration\nupic" />
@@ -707,6 +707,7 @@
     <Folder Include="tests\integration\nupic\algorithms\monitor_mixin" />
     <Folder Include="tests\integration\nupic\data" />
     <Folder Include="tests\integration\nupic\engine" />
+    <Folder Include="tests\integration\nupic\engine\data" />
     <Folder Include="tests\integration\nupic\opf" />
     <Folder Include="tests\integration\nupic\opf\opf_checkpoint_test" />
     <Folder Include="tests\integration\nupic\opf\opf_checkpoint_test\experiments\" />
@@ -766,24 +767,7 @@
     <Folder Include="tests\unit\nupic\support\consoleprinter_test" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.6" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\external\vs2017\nupic\nupic.python.algorithms\nupic.python.algorithms.vcxproj">
-      <Name>nupic.python.algorithms</Name>
-      <Project>{ce6b6ae6-83b1-4722-bead-677e0bbee943}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\external\vs2017\nupic\nupic.python.engine\nupic.python.engine.vcxproj">
-      <Name>nupic.python.engine</Name>
-      <Project>{0f74bf72-b738-4a09-818e-6e05a83546af}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\external\vs2017\nupic\nupic.python.math\nupic.python.math.vcxproj">
-      <Name>nupic.python.math</Name>
-      <Project>{9fdf1e19-0299-4566-9a4a-e8c6b5ad6774}</Project>
-      <Private>True</Private>
-    </ProjectReference>
+    <InterpreterReference Include="Global|PythonCore|2.7" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>

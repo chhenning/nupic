@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{398ab57f-981f-4810-b20f-171a04f9375a}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>unit\nupic\algorithms\sp_overlap_test.py</StartupFile>
+    <StartupFile>unit\nupic\algorithms\spatial_pooler_compatability_test.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>

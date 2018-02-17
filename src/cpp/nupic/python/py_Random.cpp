@@ -34,7 +34,7 @@ namespace nupic_ext {
         Random.def("sample", &Random_t::sample<UINT32>);
 
         Random.def("sample",
-            [](Random_t r, py::array_t<nupic::UInt32>& population, py::array_t<nupic::UInt32>& choices)
+            [](Random_t& r, py::array_t<nupic::UInt32>& population, py::array_t<nupic::UInt32>& choices)
         {
             if (population.ndim() != 1 || choices.ndim() != 1)
             {
@@ -51,7 +51,7 @@ namespace nupic_ext {
         /////////////////
 
         Random.def("shuffle",
-            [](Random_t r, py::array_t<nupic::UInt32>& a)
+            [](Random_t& r, py::array_t<nupic::UInt32>& a)
         {
             //py::scoped_ostream_redirect stream(
             //    std::cout,                               // std::ostream&
