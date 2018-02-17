@@ -144,7 +144,7 @@ class TestSPFrequency(unittest.TestCase):
     for i in xrange(numColors):
       # TODO: See https://github.com/numenta/nupic/issues/2072
       spInput = colors[i]
-      onCells = numpy.zeros(columnDimensions)
+      onCells = numpy.zeros(columnDimensions, numpy.uint32)
       spImpl.compute(spInput, True, onCells)
       spOutput.append(onCells.tolist())
       activeCoincIndices = set(onCells.nonzero()[0])

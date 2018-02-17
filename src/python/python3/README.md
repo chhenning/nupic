@@ -44,7 +44,7 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/knn_classifier_test.py               | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/sdr_classifier_test.py               | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/sp_learn_inference.py                | yes                                   |              |                                             |
-| tests/unit/nupic/algorithms/sp_overlap_test.py                   | yes (some modification)               |              |                                             |
+| tests/unit/nupic/algorithms/sp_overlap_test.py                   | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_boost_test.py         | InvalidSPParamValueError              | #8           |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_compatability_test.py | cpp argument errors                   | #9           |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_compute_test.py       | todo                                  |              |                                             |

@@ -145,7 +145,7 @@ def wrappingNeighborhood(centerIndex, radius, dimensions):
     left = centerPosition[i] - radius
     right = min(centerPosition[i] + radius,
                 left + dimensions[i] - 1)
-    interval = [v % dimension for v in range(left, right + 1)]
+    interval = [v % dimension for v in range(int(left), int(right) + 1)]
     intervals.append(interval)
 
   coords = numpy.array(list(itertools.product(*intervals)))
