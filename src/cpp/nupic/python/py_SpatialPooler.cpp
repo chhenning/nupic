@@ -13,21 +13,9 @@ using namespace nupic::algorithms::spatial_pooler;
 
 namespace nupic_ext
 {
-
-
-
     void init_Spatial_Pooler(py::module& m)
     {
         py::class_<SpatialPooler> py_SpatialPooler(m, "SpatialPooler");
-
-        //// default constructor
-        //py_SpatialPooler.def(py::init<>([]() 
-        //{
-        //    vector<UInt> inputDimensions = { 32, 32 };
-        //    vector<UInt> columnDimensions = { 64, 64 };
-
-        //    return SpatialPooler(inputDimensions, columnDimensions);
-        //}));
 
         py_SpatialPooler.def(
             py::init<vector<UInt>
@@ -66,6 +54,24 @@ namespace nupic_ext
             , py::arg("wrapAround") = true
         );
 
+        py_SpatialPooler.def("initialize", &SpatialPooler::initialize
+            , py::arg("inputDimensions") = vector<UInt>({ 32, 32 })
+            , py::arg("columnDimensions") = vector<UInt>({ 64, 64 })
+            , py::arg("potentialRadius") = 16
+            , py::arg("potentialPct") = 0.5
+            , py::arg("globalInhibition") = false
+            , py::arg("localAreaDensity") = -1.0
+            , py::arg("numActiveColumnsPerInhArea") = 10
+            , py::arg("stimulusThreshold") = 0
+            , py::arg("synPermInactiveDec") = 0.01
+            , py::arg("synPermActiveInc") = 0.1
+            , py::arg("synPermConnected") = 0.1
+            , py::arg("minPctOverlapDutyCycle") = 0.001
+            , py::arg("dutyCyclePeriod") = 1000
+            , py::arg("boostStrength") = 0.0
+            , py::arg("seed") = -1
+            , py::arg("spVerbosity") = 0
+            , py::arg("wrapAround") = true);
 
         
         py_SpatialPooler.def("getColumnDimensions", &SpatialPooler::getColumnDimensions);
@@ -137,9 +143,19 @@ namespace nupic_ext
         });
 
         // compute
-        py_SpatialPooler.def("compute", [](SpatialPooler& self, py::array_t<UInt>& x, bool learn, py::array_t<UInt>& y)
+        py_SpatialPooler.def("compute", [](SpatialPooler& self, py::array& x, bool learn, py::array& y)
         {
-            self.compute(get_it(x), learn, get_it(y));
+            if (py::isinstance<py::array_t<std::uint32_t>>(x) == false)
+            {
+                throw runtime_error("Incompatible format. Expect uint32");
+            }
+
+            if (py::isinstance<py::array_t<std::uint32_t>>(y) == false)
+            {
+                throw runtime_error("Incompatible format. Expect uint32");
+            }
+
+            self.compute(get_it<UInt>(x), learn, get_it<UInt>(y));
         });
 
         // stripUnlearnedColumns
@@ -248,15 +264,19 @@ namespace nupic_ext
             return py::array_t<Real>({ overlaps.size() }, overlaps.data());
         });
 
-        // calculateOverlap_
-        py_SpatialPooler.def("calculateOverlap_", [](SpatialPooler& self, py::array_t<UInt>& input)
+        /////////////////////////
+        // calculateOverlap
+        auto calculateOverlap_func = [](SpatialPooler& self, py::array_t<UInt>& input)
         {
             std::vector<nupic::UInt> overlapVector;
 
             self.calculateOverlap_(get_it(input), overlapVector);
 
             return py::array_t<UInt>({ overlapVector.size() }, overlapVector.data());
-        });
+        };
+
+        py_SpatialPooler.def("_calculateOverlap", calculateOverlap_func);
+        py_SpatialPooler.def("calculateOverlap_", calculateOverlap_func);
 
 
         ////////////////////
@@ -273,26 +293,33 @@ namespace nupic_ext
             return py::array_t<UInt>({ activeColumnsVector.size() }, activeColumnsVector.data());
         };
 
-        py_SpatialPooler.def("inhibitColumns_", inhibitColumns_func);
         py_SpatialPooler.def("_inhibitColumns", inhibitColumns_func);
+        py_SpatialPooler.def("inhibitColumns_", inhibitColumns_func);
 
 
-
-        // updatePermanencesForColumn_
-        py_SpatialPooler.def("updatePermanencesForColumn_", [](SpatialPooler& self, py::array_t<Real>& perm, UInt column, bool raisePerm)
+        //////////////////////////////
+        // updatePermanencesForColumn
+        auto updatePermanencesForColumn_func = [](SpatialPooler& self, py::array_t<Real>& perm, UInt column, bool raisePerm)
         {
             std::vector<nupic::Real> permVector(get_it(perm), get_end(perm));
 
             self.updatePermanencesForColumn_(permVector, column, raisePerm);
-        });
+        };
+        
+        py_SpatialPooler.def("_updatePermanencesForColumn", updatePermanencesForColumn_func);
+        py_SpatialPooler.def("updatePermanencesForColumn_", updatePermanencesForColumn_func);
 
-        // updateDutyCycles_
-        py_SpatialPooler.def("updateDutyCycles_", [](SpatialPooler& self, py::array_t<UInt>& overlaps, py::array_t<UInt>& activeArray)
+        //////////////////////
+        // updateDutyCycles
+        auto updateDutyCycles_func = [](SpatialPooler& self, py::array_t<UInt>& overlaps, py::array_t<UInt>& activeArray)
         {
             std::vector<nupic::UInt> overlapsVector(get_it(overlaps), get_end(overlaps));
 
             self.updateDutyCycles_(overlapsVector, get_it(activeArray));
-        });
+        };
+
+        py_SpatialPooler.def("_updateDutyCycles", updateDutyCycles_func);
+        py_SpatialPooler.def("updateDutyCycles_", updateDutyCycles_func);
 
         // getIterationLearnNum
         py_SpatialPooler.def("getIterationLearnNum", &SpatialPooler::getIterationLearnNum);

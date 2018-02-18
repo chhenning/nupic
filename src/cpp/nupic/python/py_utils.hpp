@@ -11,6 +11,9 @@ namespace nupic_ext {
     template<typename T> T* get_it(py::array_t<T>& a) { return (T*)a.request().ptr; }
     template<typename T> T* get_end(py::array_t<T>& a) { return ((T*)a.request().ptr) + a.size(); }
     
+    template<typename T> T* get_it(py::array& a) { return (T*)a.request().ptr; }
+    template<typename T> T* get_end(py::array& a) { return ((T*)a.request().ptr) + a.size(); }
+
     template<typename T> T* get_row_it(py::array_t<T>& a, int row) 
     { 
         auto buffer_info = a.request();

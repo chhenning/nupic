@@ -19,7 +19,7 @@
 # http://numenta.org/licenses/
 # ----------------------------------------------------------------------
 
-from mock import Mock, patch, ANY, call
+from unittest.mock import patch, ANY, call
 import numpy
 import pickle as pickle
 import unittest

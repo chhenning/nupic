@@ -22,7 +22,7 @@
 import unittest
 from nupic.bindings.algorithms import SpatialPooler as CPPSpatialPooler
 
-from . import spatial_pooler_py_api_test
+import spatial_pooler_py_api_test
 
 spatial_pooler_py_api_test.SpatialPooler = CPPSpatialPooler
 SpatialPoolerCPPAPITest = spatial_pooler_py_api_test.SpatialPoolerAPITest
