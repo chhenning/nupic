@@ -172,7 +172,10 @@ class FileRecordStream(RecordStreamIface):
     # newlines
     self._write = write
     self._mode = self._FILE_WRITE_MODE if write else self._FILE_READ_MODE
-    self._file = open(self._filename, self._mode)
+    
+    # https://docs.python.org/3/library/csv.html#csv.writer
+    # If csvfile is a file object, it should be opened with newline=''.
+    self._file = open(self._filename, self._mode, encoding='utf-8', newline='')
     self._sequences = set()
     self.rewindAtEOF = False
 
@@ -183,6 +186,7 @@ class FileRecordStream(RecordStreamIface):
       assert all(isinstance(f, (tuple, FieldMetaInfo)) and len(f) == 3
                  for f in fields)
       names, types, specials = list(zip(*fields))
+
       self._writer = csv.writer(self._file)
     else:
       # Read header lines

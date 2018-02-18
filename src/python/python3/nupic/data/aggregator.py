@@ -227,6 +227,9 @@ def _aggr_weighted_mean(inList, params):
   for i, elem in enumerate(inList):
     weightedMean += elem * params[i]
 
+  if(all(isinstance(n, int) for n in inList)):
+    return weightedMean // weightsSum
+
   return weightedMean / weightsSum
 
 

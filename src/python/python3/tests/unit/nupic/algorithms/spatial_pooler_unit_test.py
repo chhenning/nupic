@@ -27,7 +27,7 @@ import numpy
 import tempfile
 import unittest
 from copy import copy
-from mock import Mock
+from unittest.mock import Mock
 from nupic.bindings.math import GetNTAReal, Random
 
 from nupic.algorithms.spatial_pooler import (BinaryCorticalColumns,

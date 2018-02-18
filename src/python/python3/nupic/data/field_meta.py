@@ -61,7 +61,7 @@ class FieldMetaInfo(FieldMetaInfoBase):
   """
 
 
-  def __init__(self,
+  def __new__(cls,
                name,
                type,  # pylint: disable=W0622
                special):
@@ -72,7 +72,8 @@ class FieldMetaInfo(FieldMetaInfoBase):
     if not FieldMetaSpecial.isValid(special):
       raise ValueError('Unexpected field special attribute %r' % (special,))
 
-    super(FieldMetaInfo, self).__init__(name, type, special)
+    self = super(FieldMetaInfo, cls).__new__(cls, name, type, special)
+    return self
 
 
   @staticmethod

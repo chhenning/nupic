@@ -24,7 +24,7 @@
 from datetime import datetime
 import unittest
 
-import unittest.mock
+from unittest.mock import patch
 
 
 from nupic.data.field_meta import FieldMetaInfo, FieldMetaType, FieldMetaSpecial
@@ -409,7 +409,7 @@ class RecordStreamIfaceTest(unittest.TestCase):
     stream = self.MyRecordStream(fields)
 
 
-    with mock.patch.object(
+    with patch.object(
         stream, 'getNextRecord', autospec=True,
         return_value=['rec_1', datetime(day=1, month=3, year=2010), 5, 6.5, 1,
                       [0, 1, 2]]):
@@ -432,7 +432,7 @@ class RecordStreamIfaceTest(unittest.TestCase):
           '_timestampRecordIdx': None })
 
     # One more time to verify incremeting sequence id
-    with mock.patch.object(
+    with patch.object(
         stream, 'getNextRecord', autospec=True,
         return_value=['rec_2', datetime(day=2, month=3, year=2010), 5, 6.5, 1,
                       [0, 1, 2]]):
@@ -455,7 +455,7 @@ class RecordStreamIfaceTest(unittest.TestCase):
           '_timestampRecordIdx': None })
 
     # Now with reset turned off, expecting no change to sequence id
-    with mock.patch.object(
+    with patch.object(
         stream, 'getNextRecord', autospec=True,
         return_value=['rec_3', datetime(day=3, month=3, year=2010), 5, 6.5, 0,
                       [0, 1, 2]]):
@@ -478,7 +478,7 @@ class RecordStreamIfaceTest(unittest.TestCase):
           '_timestampRecordIdx': None })
 
     # Now check that rewind resets sequence id
-    with mock.patch.object(
+    with patch.object(
         stream, 'getNextRecord', autospec=True,
         return_value=['rec_4', datetime(day=4, month=3, year=2010), 5, 6.5, 1,
                       [0, 1, 2]]):

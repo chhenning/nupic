@@ -50,22 +50,22 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/algorithms/spatial_pooler_compute_test.py       | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_cpp_api_test.py       | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/spatial_pooler_cpp_unit_test.py      | yes                                   |              |                                             |
-| tests/unit/nupic/algorithms/spatial_pooler_py_api_test.py        | todo                                  |              |                                             |
-| tests/unit/nupic/algorithms/spatial_pooler_unit_test.py          | todo                                  |              |                                             |
+| tests/unit/nupic/algorithms/spatial_pooler_py_api_test.py        | yes                                   |              |                                             |
+| tests/unit/nupic/algorithms/spatial_pooler_unit_test.py          | yes                                   |              |                                             |
 | tests/unit/nupic/algorithms/temporal_memory_test.py              | yes                                   |              |                                             |
-| tests/unit/nupic/data/generators\anomalyzer_test.py              | TypeError                             | #10          |                                             |
-| tests/unit/nupic/data/generators\pattern_machine_test.py         | yes                                   |              |                                             |
-| tests/unit/nupic/data/generators\sequence_machine_test.py        | yes                                   |              |                                             |
-| tests/unit/nupic/data/aggregator_test.py                         | AssertionError                        | #11          |                                             |
+| tests/unit/nupic/data/generators/anomalyzer_test.py              | yes                                   |              |                                             |
+| tests/unit/nupic/data/generators/pattern_machine_test.py         | yes                                   |              |                                             |
+| tests/unit/nupic/data/generators/sequence_machine_test.py        | yes                                   |              |                                             |
+| tests/unit/nupic/data/aggregator_test.py                         | yes                                   |              |                                             |
 | tests/unit/nupic/data/dictutils_test.py                          | yes                                   |              |                                             |
 | tests/unit/nupic/data/fieldmeta_test.py                          | yes                                   |              |                                             |
-| tests/unit/nupic/data/file_record_stream_test.py                 | TypeError                             | #10          |                                             |
+| tests/unit/nupic/data/file_record_stream_test.py                 | yes                                   |              |                                             |
 | tests/unit/nupic/data/filters_test.py                            | yes                                   |              |                                             |
 | tests/unit/nupic/data/functionsource_test.py                     | yes                                   |              |                                             |
 | tests/unit/nupic/data/inference_shifter_test.py                  | yes                                   |              |                                             |
-| tests/unit/nupic/data/record_stream_test.py                      | TypeError                             | #10          |                                             |
+| tests/unit/nupic/data/record_stream_test.py                      | yes                                   |              |                                             |
 | tests/unit/nupic/data/utils_test.py                              | yes                                   |              |                                             |
-| tests/unit/nupic/docs/examples_test.py                           | ModuleNotFoundError                   | #10          |                                             |
+| tests/unit/nupic/docs/examples_test.py                           | ModuleNotFoundError                   | #12          |                                             |
 | tests/unit/nupic/encoders/adaptivescalar_test.py                 | TypeError                             | #13          |                                             |
 | tests/unit/nupic/encoders/category_test.py                       | yes                                   |              |                                             |
 | tests/unit/nupic/encoders/coordinate_test.py                     | yes                                   |              |                                             |
@@ -131,6 +131,11 @@ pip install psutil
 from mock import MagicMock, patch
 to
 from unittest.mock import MagicMock, patch
+
+from mock import Mock
+to
+from unittest.mock import Mock
+
 
 
 __builtin__
@@ -223,6 +228,8 @@ to
 import spatial_pooler_py_api_test
 
 
+in python 3 csv writer should be opened with newline=''
+https://docs.python.org/3/library/csv.html#csv.writer
 
 
 # Notes from dealing with pybind11
