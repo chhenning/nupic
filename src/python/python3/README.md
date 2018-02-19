@@ -66,7 +66,7 @@ python c:\Python36\Tools\scripts\2to3.py --output-dir d:\test -W -n d:\nupic\src
 | tests/unit/nupic/data/record_stream_test.py                      | yes                                   |              |                                             |
 | tests/unit/nupic/data/utils_test.py                              | yes                                   |              |                                             |
 | tests/unit/nupic/docs/examples_test.py                           | ModuleNotFoundError                   | #12          |                                             |
-| tests/unit/nupic/encoders/adaptivescalar_test.py                 | TypeError                             | #13          |                                             |
+| tests/unit/nupic/encoders/adaptivescalar_test.py                 | yes                                   |              |                                             |
 | tests/unit/nupic/encoders/category_test.py                       | yes                                   |              |                                             |
 | tests/unit/nupic/encoders/coordinate_test.py                     | yes                                   |              |                                             |
 | tests/unit/nupic/encoders/date_test.py                           | AssertionError                        | #16          |                                             |

@@ -22,12 +22,22 @@
 from array import array
 
 
+# python 2.7
+#def bitsToString(arr):
+#  """Returns a string representing a numpy array of 0's and 1's"""
+#  s = array('c','.'*len(arr))
+#  for i in range(len(arr)):
+#    if arr[i] == 1:
+#      s[i]='*'
+#  return s
 
 def bitsToString(arr):
   """Returns a string representing a numpy array of 0's and 1's"""
-  s = array('c','.'*len(arr))
+  s = array('b')
+  placeholders = '.'*len(arr)
+  s.frombytes(placeholders.encode())
+  
   for i in range(len(arr)):
     if arr[i] == 1:
-      s[i]='*'
-  return s
-
+      s[i]= ord('*')
+  return s.tobytes().decode()

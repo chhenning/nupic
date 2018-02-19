@@ -208,7 +208,7 @@ class ScalarEncoder(Encoder):
     self.periodic = periodic
     self.clipInput = clipInput
 
-    self.halfwidth = (w - 1) / 2
+    self.halfwidth = (w - 1) // 2
 
     # For non-periodic inputs, padding is the number of bits "outside" the range,
     # on each side. I.e. the representation of minval is centered on some bit, and
@@ -536,7 +536,7 @@ class ScalarEncoder(Encoder):
     for run in runs:
       (start, runLen) = run
       if runLen <= self.w:
-        left = right = start + runLen / 2
+        left = right = start + runLen // 2
       else:
         left = start + self.halfwidth
         right = start + runLen - 1 - self.halfwidth
