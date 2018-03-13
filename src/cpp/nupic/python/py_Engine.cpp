@@ -93,7 +93,13 @@ namespace nupic_ext
             .def("getType", &Region::getType)
             .def("getDimensions", &Region::getDimensions)
             .def("setDimensions", &Region::setDimensions);
-                
+
+        py_Region.def("__setattr__", [](Region& r, const std::string& Name, py::dict& d)
+        {
+            //r.python_attributes.insert(std::pair<std::string, py::object>(Name, d));
+        });
+
+
         py_Region.def("__setattr__", [](Region& r, py::args args)
         {
             auto num_args = args.size();
@@ -113,6 +119,8 @@ namespace nupic_ext
                 }
             }
         });
+
+
 
         py_Region.def("__getattr__", [](const Region& r, py::args args)
         {

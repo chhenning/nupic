@@ -798,6 +798,7 @@ namespace nupic
     bool profilingEnabled_;
     Timer computeTimer_;
     Timer executeTimer_;
+
   };
 
 } // namespace nupic

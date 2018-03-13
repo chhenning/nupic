@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7da1c1b9-b5af-4522-9afe-3758298d9711}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>tests\unit\nupic\encoders\adaptivescalar_test.py</StartupFile>
+    <StartupFile>tests\chh_test.py</StartupFile>
     <SearchPath>..\python27</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
